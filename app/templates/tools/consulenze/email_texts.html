@@ -1,0 +1,344 @@
+{% extends 'base.html' %}
+
+{% block title %}Testi Email - Gestione Consulenze Assicurative{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="d-flex justify-content-between align-items-center mb-4 animate__animated animate__fadeIn">
+        <h1 class="h3"><i class="bi bi-chat-text"></i> Testi Email Personalizzati</h1>
+        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addTextModal">
+            <i class="bi bi-plus-circle"></i> Nuovo Testo
+        </button>
+    </div>
+    
+    <div class="row">
+        <div class="col-md-4 animate__animated animate__fadeInLeft">
+            <div class="card shadow-sm mb-4">
+                <div class="card-header bg-light">
+                    <h5 class="mb-0">Testi Disponibili</h5>
+                </div>
+                <div class="card-body p-0">
+                    <div class="list-group list-group-flush" id="emailTextsList">
+                        {% if email_texts %}
+                            {% for text in email_texts %}
+                            <a href="#" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center email-text-item" 
+                               data-id="{{ text.id }}" data-name="{{ text.nome }}" data-content="{{ text.testo }}">
+                                <div>
+                                    <h6 class="mb-1">{{ text.nome }}</h6>
+                                    <small class="text-muted">{{ text.testo|truncate(50) }}</small>
+                                </div>
+                                <span class="badge bg-primary rounded-pill">{{ text.usage_count|default(0) }}</span>
+                            </a>
+                            {% endfor %}
+                        {% else %}
+                            <div class="list-group-item text-center py-4">
+                                <i class="bi bi-chat-square-text text-muted" style="font-size: 2rem;"></i>
+                                <p class="mt-2 mb-0 text-muted">Nessun testo disponibile</p>
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card shadow-sm animate__animated animate__fadeIn" style="animation-delay: 0.3s">
+                <div class="card-header bg-light">
+                    <h5 class="mb-0">Tag Disponibili</h5>
+                </div>
+                <div class="card-body">
+                    <p class="text-muted">Utilizza questi tag nei tuoi testi per personalizzarli:</p>
+                    <div class="table-responsive">
+                        <table class="table table-sm">
+                            <tbody>
+                                <tr>
+                                    <td><code>{nome}</code></td>
+                                    <td>Nome del cliente</td>
+                                </tr>
+                                <tr>
+                                    <td><code>{cognome}</code></td>
+                                    <td>Cognome del cliente</td>
+                                </tr>
+                                <tr>
+                                    <td><code>{email}</code></td>
+                                    <td>Email del cliente</td>
+                                </tr>
+                                <tr>
+                                    <td><code>{codice_fiscale}</code></td>
+                                    <td>Codice fiscale del cliente</td>
+                                </tr>
+                                <tr>
+                                    <td><code>{data_invio}</code></td>
+                                    <td>Data di invio dell'email</td>
+                                </tr>
+                                <tr>
+                                    <td><code>{mittente}</code></td>
+                                    <td>Nome del mittente</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-8 animate__animated animate__fadeInRight">
+            <div class="card shadow-sm">
+                <div class="card-header bg-light d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0" id="previewTitle">Anteprima Testo</h5>
+                    <div id="previewActions" style="display: none;">
+                        <button class="btn btn-sm btn-outline-primary me-2" id="editTextBtn">
+                            <i class="bi bi-pencil"></i> Modifica
+                        </button>
+                        <button class="btn btn-sm btn-outline-danger" id="deleteTextBtn">
+                            <i class="bi bi-trash"></i> Elimina
+                        </button>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div id="emptyPreview" class="text-center py-5">
+                        <i class="bi bi-file-earmark-text text-muted" style="font-size: 4rem;"></i>
+                        <p class="mt-3 text-muted">Seleziona un testo dalla lista per visualizzarlo</p>
+                    </div>
+                    
+                    <div id="textPreview" style="display: none;">
+                        <div class="mb-4">
+                            <label class="form-label">Nome Testo</label>
+                            <h5 id="previewName" class="border-bottom pb-2"></h5>
+                        </div>
+                        
+                        <div class="mb-4">
+                            <label class="form-label">Contenuto</label>
+                            <div id="previewContent" class="border p-3 rounded bg-light"></div>
+                        </div>
+                        
+                        <div class="mt-4">
+                            <h6>Anteprima con dati di esempio</h6>
+                            <div class="card">
+                                <div class="card-header">
+                                    <strong>A:</strong> mario.rossi@example.com
+                                </div>
+                                <div class="card-body">
+                                    <div id="previewWithTags"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal per aggiungere/modificare testo -->
+<div class="modal fade" id="addTextModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalTitle">Nuovo Testo Email</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="emailTextForm">
+                    <input type="hidden" id="textId" name="textId" value="">
+                    
+                    <div class="mb-3">
+                        <label for="textName" class="form-label">Nome Testo *</label>
+                        <input type="text" class="form-control" id="textName" name="textName" required>
+                        <div class="form-text">Un nome breve e descrittivo (es. "Questionario RCA", "Promemoria Scadenza")</div>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="textContent" class="form-label">Contenuto Email *</label>
+                        <textarea class="form-control" id="textContent" name="textContent" rows="10" required></textarea>
+                        <div class="form-text">
+                            Puoi utilizzare i tag come {nome}, {cognome}, ecc. per personalizzare il testo.
+                            <a href="#" data-bs-toggle="collapse" data-bs-target="#tagsHelp">Mostra tutti i tag</a>
+                        </div>
+                        <div class="collapse mt-2" id="tagsHelp">
+                            <div class="card card-body">
+                                <h6>Tag disponibili:</h6>
+                                <ul class="mb-0">
+                                    <li><code>{nome}</code> - Nome del cliente</li>
+                                    <li><code>{cognome}</code> - Cognome del cliente</li>
+                                    <li><code>{email}</code> - Email del cliente</li>
+                                    <li><code>{codice_fiscale}</code> - Codice fiscale del cliente</li>
+                                    <li><code>{data_invio}</code> - Data di invio dell'email</li>
+                                    <li><code>{mittente}</code> - Nome del mittente</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annulla</button>
+                <button type="button" class="btn btn-primary" id="saveTextBtn">Salva Testo</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const emailTextsList = document.getElementById('emailTextsList');
+        const emptyPreview = document.getElementById('emptyPreview');
+        const textPreview = document.getElementById('textPreview');
+        const previewTitle = document.getElementById('previewTitle');
+        const previewName = document.getElementById('previewName');
+        const previewContent = document.getElementById('previewContent');
+        const previewWithTags = document.getElementById('previewWithTags');
+        const previewActions = document.getElementById('previewActions');
+        const editTextBtn = document.getElementById('editTextBtn');
+        const deleteTextBtn = document.getElementById('deleteTextBtn');
+        const addTextModal = new bootstrap.Modal(document.getElementById('addTextModal'));
+        const modalTitle = document.getElementById('modalTitle');
+        const textId = document.getElementById('textId');
+        const textName = document.getElementById('textName');
+        const textContent = document.getElementById('textContent');
+        const saveTextBtn = document.getElementById('saveTextBtn');
+        
+        // Dati di esempio per l'anteprima
+        const sampleData = {
+            nome: 'Mario',
+            cognome: 'Rossi',
+            email: 'mario.rossi@example.com',
+            codice_fiscale: 'RSSMRA80A01H501U',
+            data_invio: new Date().toLocaleDateString('it-IT'),
+            mittente: 'Consulente Assicurativo'
+        };
+        
+        // Gestione click su elemento della lista
+        if (emailTextsList) {
+            emailTextsList.querySelectorAll('.email-text-item').forEach(item => {
+                item.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    // Rimuovi la classe active da tutti gli elementi
+                    emailTextsList.querySelectorAll('.email-text-item').forEach(el => {
+                        el.classList.remove('active');
+                    });
+                    
+                    // Aggiungi la classe active all'elemento cliccato
+                    this.classList.add('active');
+                    
+                    // Ottieni i dati dell'elemento
+                    const id = this.dataset.id;
+                    const name = this.dataset.name;
+                    const content = this.dataset.content;
+                    
+                    // Aggiorna l'anteprima
+                    previewName.textContent = name;
+                    previewContent.textContent = content;
+                    
+                    // Aggiorna l'anteprima con i tag sostituiti
+                    let contentWithTags = content;
+                    for (const [key, value] of Object.entries(sampleData)) {
+                        contentWithTags = contentWithTags.replace(new RegExp(`{${key}}`, 'g'), value);
+                    }
+                    previewWithTags.innerHTML = contentWithTags.replace(/\n/g, '<br>');
+                    
+                    // Mostra l'anteprima e nascondi il messaggio vuoto
+                    emptyPreview.style.display = 'none';
+                    textPreview.style.display = 'block';
+                    previewActions.style.display = 'block';
+                    
+                    // Aggiorna i dati per le azioni
+                    editTextBtn.dataset.id = id;
+                    editTextBtn.dataset.name = name;
+                    editTextBtn.dataset.content = content;
+                    deleteTextBtn.dataset.id = id;
+                });
+            });
+        }
+        
+        // Gestione click su pulsante modifica
+        if (editTextBtn) {
+            editTextBtn.addEventListener('click', function() {
+                const id = this.dataset.id;
+                const name = this.dataset.name;
+                const content = this.dataset.content;
+                
+                // Aggiorna il form
+                textId.value = id;
+                textName.value = name;
+                textContent.value = content;
+                
+                // Aggiorna il titolo del modal
+                modalTitle.textContent = 'Modifica Testo Email';
+                
+                // Mostra il modal
+                addTextModal.show();
+            });
+        }
+        
+        // Gestione click su pulsante elimina
+        if (deleteTextBtn) {
+            deleteTextBtn.addEventListener('click', function() {
+                const id = this.dataset.id;
+                
+                Swal.fire({
+                    title: 'Sei sicuro?',
+                    text: "Questa azione non può essere annullata!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#dc3545',
+                    cancelButtonColor: '#6c757d',
+                    confirmButtonText: 'Sì, elimina!',
+                    cancelButtonText: 'Annulla'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        // Qui andrebbe la chiamata AJAX per eliminare il testo
+                        // Per ora mostriamo solo un messaggio di successo
+                        Swal.fire(
+                            'Eliminato!',
+                            'Il testo è stato eliminato.',
+                            'success'
+                        ).then(() => {
+                            // Ricarica la pagina
+                            location.reload();
+                        });
+                    }
+                });
+            });
+        }
+        
+        // Gestione click su pulsante salva
+        if (saveTextBtn) {
+            saveTextBtn.addEventListener('click', function() {
+                // Verifica che il form sia valido
+                const form = document.getElementById('emailTextForm');
+                if (!form.checkValidity()) {
+                    form.reportValidity();
+                    return;
+                }
+                
+                // Qui andrebbe la chiamata AJAX per salvare il testo
+                // Per ora mostriamo solo un messaggio di successo
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'success',
+                    title: 'Testo salvato!',
+                    showConfirmButton: false,
+                    timer: 1500,
+                    timerProgressBar: true,
+                    toast: true
+                }).then(() => {
+                    // Chiudi il modal
+                    addTextModal.hide();
+                    
+                    // Ricarica la pagina
+                    location.reload();
+                });
+            });
+        }
+        
+        // Reset del form quando il modal viene chiuso
+        document.getElementById('addTextModal').addEventListener('hidden.bs.modal', function() {
+            document.getElementById('emailTextForm').reset();
+            textId.value = '';
+            modalTitle.textContent = 'Nuovo Testo Email';
+        });
+    });
+</script>
+{% endblock %}

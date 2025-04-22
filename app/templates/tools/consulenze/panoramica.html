@@ -1,0 +1,955 @@
+{% extends 'base.html' %}
+
+{% block title %}Panoramica Clienti - Gestione Consulenze Assicurative{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1 class="h3"><i class="bi bi-table"></i> Panoramica Clienti</h1>
+        <a href="{{ url_for('consulenze_anagrafica') }}" class="btn btn-primary">
+            <i class="bi bi-person-plus"></i> Nuovo Cliente
+        </a>
+    </div>
+    
+    <div class="card shadow-sm mb-4">
+        <div class="card-header bg-light">
+            <h5 class="mb-0 d-flex justify-content-between align-items-center">
+                <span>Filtri</span>
+                <button class="btn btn-sm btn-outline-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFilters">
+                    <i class="bi bi-funnel"></i> Mostra/Nascondi
+                </button>
+            </h5>
+        </div>
+        <div class="collapse show" id="collapseFilters">
+            <div class="card-body">
+                <form method="get" action="{{ url_for('consulenze_panoramica') }}" id="filterForm">
+                    <div class="row">
+                        <div class="col-md-3 mb-3">
+                            <label for="nome" class="form-label">Nome</label>
+                            <input type="text" class="form-control" id="nome" name="nome" value="{{ filters.nome|default('') }}">
+                        </div>
+                        
+                        <div class="col-md-3 mb-3">
+                            <label for="cognome" class="form-label">Cognome</label>
+                            <input type="text" class="form-control" id="cognome" name="cognome" value="{{ filters.cognome|default('') }}">
+                        </div>
+                        
+                        <div class="col-md-3 mb-3">
+                            <label for="codice_fiscale" class="form-label">Codice Fiscale</label>
+                            <input type="text" class="form-control" id="codice_fiscale" name="codice_fiscale" value="{{ filters.codice_fiscale|default('') }}">
+                        </div>
+                        
+                        <div class="col-md-3 mb-3">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="text" class="form-control" id="email" name="email" value="{{ filters.email|default('') }}">
+                        </div>
+                        
+                        <div class="col-md-3 mb-3">
+                            <label for="cellulare" class="form-label">Cellulare</label>
+                            <input type="text" class="form-control" id="cellulare" name="cellulare" value="{{ filters.cellulare|default('') }}">
+                        </div>
+                        
+                        <div class="col-md-3 mb-3">
+                            <label for="attivita" class="form-label">Attività</label>
+                            <input type="text" class="form-control" id="attivita" name="attivita" value="{{ filters.attivita|default('') }}">
+                        </div>
+                        
+                        <div class="col-md-3 mb-3">
+                            <label for="questionario_inviato" class="form-label">Questionario</label>
+                            <select class="form-select" id="questionario_inviato" name="questionario_inviato">
+                                <option value="">Tutti</option>
+                                <option value="true" {% if filters.questionario_inviato == 'true' %}selected{% endif %}>Inviato</option>
+                                <option value="false" {% if filters.questionario_inviato == 'false' %}selected{% endif %}>Non Inviato</option>
+                            </select>
+                        </div>
+                        
+                        <div class="col-md-3 mb-3 d-flex align-items-end">
+                            <div class="d-grid w-100">
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="bi bi-search"></i> Filtra
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <div class="card shadow-sm">
+        <div class="card-header bg-light">
+            <h5 class="mb-0">Elenco Clienti</h5>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th>Cognome</th>
+                            <th>Codice Fiscale</th>
+                            <th>Email</th>
+                            <th>Cellulare</th>
+                            <th>Attività</th>
+                            <th>Fatturato 2024</th>
+                            <th>Questionario</th>
+                            <th>Azioni</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for cliente in clienti %}
+                        <tr>
+                            <td class="editable-cell" data-field="nome" data-id="{{ cliente.id }}">{{ cliente.nome }}</td>
+                            <td class="editable-cell" data-field="cognome" data-id="{{ cliente.id }}">{{ cliente.cognome }}</td>
+                            <td>{{ cliente.codice_fiscale }}</td>
+                            <td class="editable-cell" data-field="email" data-id="{{ cliente.id }}">{{ cliente.email }}</td>
+                            <td class="editable-cell" data-field="cellulare" data-id="{{ cliente.id }}">{{ cliente.cellulare }}</td>
+                            <td class="editable-cell" data-field="attivita" data-id="{{ cliente.id }}">{{ cliente.attivita }}</td>
+                            <td class="editable-cell" data-field="fatturato_2024" data-id="{{ cliente.id }}">{{ cliente.fatturato_2024 }}</td>
+                            <td>
+                                {% if cliente.questionario_inviato %}
+                                <span class="badge bg-success badge-status" data-bs-toggle="tooltip" title="Questionario inviato" 
+                                      data-pdf="{{ cliente.nome_questionario_inviato }}">
+                                    <i class="bi bi-check-circle"></i> Inviato
+                                </span>
+                                {% else %}
+                                <span class="badge bg-secondary badge-status">
+                                    <i class="bi bi-x-circle"></i> Non inviato
+                                </span>
+                                {% endif %}
+                            </td>
+                            <td>
+                                <div class="btn-group" role="group">
+                                    <button class="btn btn-sm btn-outline-primary" onclick="showClienteDetails({{ cliente.id }})">
+                                        <i class="bi bi-info-circle"></i>
+                                    </button>
+                                    <button class="btn btn-sm btn-outline-danger" onclick="deleteCliente({{ cliente.id }})">
+                                        <i class="bi bi-trash"></i>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal per modifica inline -->
+<div class="modal fade" id="editModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Modifica Campo</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="editForm">
+                    <input type="hidden" id="editClienteId">
+                    <input type="hidden" id="editField">
+                    <div class="mb-3">
+                        <label for="editValue" class="form-label">Valore</label>
+                        <input type="text" class="form-control" id="editValue">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annulla</button>
+                <button type="button" class="btn btn-primary" id="saveEdit">Salva</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal per visualizzazione PDF -->
+<div class="modal fade" id="pdfModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Anteprima Questionario</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <iframe id="pdfFrame" class="pdf-preview" src=""></iframe>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Chiudi</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal per dettagli cliente -->
+<div class="modal fade" id="clienteDetailsModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-xl modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header bg-primary text-white">
+                <h5 class="modal-title"><i class="bi bi-person-vcard"></i> Dettagli Cliente</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12 mb-3">
+                        <div class="alert alert-info">
+                            <i class="bi bi-info-circle"></i> Fai doppio click su un campo per modificarlo.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div class="col-md-12 mb-4">
+                        <h5 class="border-bottom pb-2"><i class="bi bi-person"></i> Dati Anagrafici</h5>
+                    </div>
+                    
+                    <div class="col-md-4 mb-3">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h6 class="card-subtitle mb-2 text-muted">Nome</h6>
+                                <p class="card-text editable-detail" data-field="nome" id="detail-nome"></p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-4 mb-3">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h6 class="card-subtitle mb-2 text-muted">Cognome</h6>
+                                <p class="card-text editable-detail" data-field="cognome" id="detail-cognome"></p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-4 mb-3">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h6 class="card-subtitle mb-2 text-muted">Codice Fiscale</h6>
+                                <p class="card-text editable-detail" data-field="codice_fiscale" id="detail-codice_fiscale"></p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-4 mb-3">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h6 class="card-subtitle mb-2 text-muted">Data di Nascita</h6>
+                                <p class="card-text editable-detail" data-field="data_nascita" id="detail-data_nascita"></p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-4 mb-3">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h6 class="card-subtitle mb-2 text-muted">Luogo di Nascita</h6>
+                                <p class="card-text editable-detail" data-field="luogo_nascita" id="detail-luogo_nascita"></p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-4 mb-3">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h6 class="card-subtitle mb-2 text-muted">Partita IVA</h6>
+                                <p class="card-text editable-detail" data-field="partita_iva" id="detail-partita_iva"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div class="col-md-12 mb-4">
+                        <h5 class="border-bottom pb-2"><i class="bi bi-envelope"></i> Contatti</h5>
+                    </div>
+                    
+                    <div class="col-md-4 mb-3">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h6 class="card-subtitle mb-2 text-muted">Email</h6>
+                                <p class="card-text editable-detail" data-field="email" id="detail-email"></p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-4 mb-3">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h6 class="card-subtitle mb-2 text-muted">PEC</h6>
+                                <p class="card-text editable-detail" data-field="pec" id="detail-pec"></p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-4 mb-3">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h6 class="card-subtitle mb-2 text-muted">Cellulare</h6>
+                                <p class="card-text editable-detail" data-field="cellulare" id="detail-cellulare"></p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-4 mb-3">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h6 class="card-subtitle mb-2 text-muted">Codice Univoco</h6>
+                                <p class="card-text editable-detail" data-field="codice_univoco" id="detail-codice_univoco"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div class="col-md-12 mb-4">
+                        <h5 class="border-bottom pb-2"><i class="bi bi-geo-alt"></i> Indirizzi</h5>
+                    </div>
+                    
+                    <div class="col-md-4 mb-3">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h6 class="card-subtitle mb-2 text-muted">Residenza</h6>
+                                <p class="card-text editable-detail" data-field="residenza" id="detail-residenza"></p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-4 mb-3">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h6 class="card-subtitle mb-2 text-muted">Domicilio Fiscale</h6>
+                                <p class="card-text editable-detail" data-field="domicilio_fiscale" id="detail-domicilio_fiscale"></p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-4 mb-3">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h6 class="card-subtitle mb-2 text-muted">Ubicazione Studio</h6>
+                                <p class="card-text editable-detail" data-field="ubicazione_studio" id="detail-ubicazione_studio"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div class="col-md-12 mb-4">
+                        <h5 class="border-bottom pb-2"><i class="bi bi-briefcase"></i> Attività Professionale</h5>
+                    </div>
+                    
+                    <div class="col-md-4 mb-3">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h6 class="card-subtitle mb-2 text-muted">Attività</h6>
+                                <p class="card-text editable-detail" data-field="attivita" id="detail-attivita"></p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-4 mb-3">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h6 class="card-subtitle mb-2 text-muted">Data Inizio Attività</h6>
+                                <p class="card-text editable-detail" data-field="data_inizio_attivita" id="detail-data_inizio_attivita"></p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-4 mb-3">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h6 class="card-subtitle mb-2 text-muted">Iscrizione Albo Data</h6>
+                                <p class="card-text editable-detail" data-field="iscrizione_albo_data" id="detail-iscrizione_albo_data"></p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-4 mb-3">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h6 class="card-subtitle mb-2 text-muted">Iscrizione Albo Numero</h6>
+                                <p class="card-text editable-detail" data-field="iscrizione_albo_numero" id="detail-iscrizione_albo_numero"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div class="col-md-12 mb-4">
+                        <h5 class="border-bottom pb-2"><i class="bi bi-cash-coin"></i> Dati Economici</h5>
+                    </div>
+                    
+                    <div class="col-md-4 mb-3">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h6 class="card-subtitle mb-2 text-muted">Fatturato 2024</h6>
+                                <p class="card-text editable-detail" data-field="fatturato_2024" id="detail-fatturato_2024"></p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-4 mb-3">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h6 class="card-subtitle mb-2 text-muted">Stima 2025</h6>
+                                <p class="card-text editable-detail" data-field="stima_2025" id="detail-stima_2025"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div class="col-md-12 mb-4">
+                        <h5 class="border-bottom pb-2"><i class="bi bi-people"></i> Personale</h5>
+                    </div>
+                    
+                    <div class="col-md-4 mb-3">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h6 class="card-subtitle mb-2 text-muted">Dipendenti</h6>
+                                <p class="card-text editable-detail" data-field="dipendenti" id="detail-dipendenti"></p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-4 mb-3">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h6 class="card-subtitle mb-2 text-muted">Addetti</h6>
+                                <p class="card-text editable-detail" data-field="addetti" id="detail-addetti"></p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-4 mb-3">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h6 class="card-subtitle mb-2 text-muted">Subappaltatori</h6>
+                                <p class="card-text editable-detail" data-field="subappaltatori" id="detail-subappaltatori"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div class="col-md-12 mb-4">
+                        <h5 class="border-bottom pb-2"><i class="bi bi-file-earmark"></i> Documenti</h5>
+                    </div>
+                    
+                    <div class="col-md-4 mb-3">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h6 class="card-subtitle mb-2 text-muted">Documento Fronte</h6>
+                                <p class="card-text" id="detail-documento_fronte"></p>
+                                <div id="documento_fronte_preview" class="mt-2"></div>
+                                <div class="mt-3">
+                                    <form id="uploadDocumentoFronte" class="upload-form" enctype="multipart/form-data">
+                                        <input type="hidden" name="cliente_id" class="cliente-id-input">
+                                        <input type="hidden" name="document_type" value="documento_fronte">
+                                        <div class="input-group">
+                                            <input type="file" class="form-control form-control-sm" name="document_file" accept=".jpg,.jpeg,.png,.pdf">
+                                            <button class="btn btn-sm btn-outline-primary upload-btn" type="submit">
+                                                <i class="bi bi-upload"></i>
+                                            </button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-4 mb-3">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h6 class="card-subtitle mb-2 text-muted">Documento Retro</h6>
+                                <p class="card-text" id="detail-documento_retro"></p>
+                                <div id="documento_retro_preview" class="mt-2"></div>
+                                <div class="mt-3">
+                                    <form id="uploadDocumentoRetro" class="upload-form" enctype="multipart/form-data">
+                                        <input type="hidden" name="cliente_id" class="cliente-id-input">
+                                        <input type="hidden" name="document_type" value="documento_retro">
+                                        <div class="input-group">
+                                            <input type="file" class="form-control form-control-sm" name="document_file" accept=".jpg,.jpeg,.png,.pdf">
+                                            <button class="btn btn-sm btn-outline-primary upload-btn" type="submit">
+                                                <i class="bi bi-upload"></i>
+                                            </button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-4 mb-3">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h6 class="card-subtitle mb-2 text-muted">Polizza Precedente</h6>
+                                <p class="card-text" id="detail-polizza_precedente"></p>
+                                <div id="polizza_precedente_preview" class="mt-2"></div>
+                                <div class="mt-3">
+                                    <form id="uploadPolizzaPrecedente" class="upload-form" enctype="multipart/form-data">
+                                        <input type="hidden" name="cliente_id" class="cliente-id-input">
+                                        <input type="hidden" name="document_type" value="polizza_precedente">
+                                        <div class="input-group">
+                                            <input type="file" class="form-control form-control-sm" name="document_file" accept=".jpg,.jpeg,.png,.pdf">
+                                            <button class="btn btn-sm btn-outline-primary upload-btn" type="submit">
+                                                <i class="bi bi-upload"></i>
+                                            </button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div class="col-md-12 mb-4">
+                        <h5 class="border-bottom pb-2"><i class="bi bi-file-earmark-pdf"></i> Questionario</h5>
+                    </div>
+                    
+                    <div class="col-md-4 mb-3">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h6 class="card-subtitle mb-2 text-muted">Questionario Inviato</h6>
+                                <p class="card-text" id="detail-questionario_inviato"></p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-4 mb-3">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h6 class="card-subtitle mb-2 text-muted">Nome Questionario</h6>
+                                <p class="card-text" id="detail-nome_questionario_inviato"></p>
+                                <div id="questionario_preview" class="mt-2"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Chiudi</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal per modifica dettaglio -->
+<div class="modal fade" id="editDetailModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Modifica Campo</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="editDetailForm">
+                    <input type="hidden" id="editDetailClienteId">
+                    <input type="hidden" id="editDetailField">
+                    <div class="mb-3">
+                        <label for="editDetailValue" class="form-label" id="editDetailLabel">Valore</label>
+                        <input type="text" class="form-control" id="editDetailValue">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annulla</button>
+                <button type="button" class="btn btn-primary" id="saveDetailEdit">Salva</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    // Gestione modifica inline
+    document.querySelectorAll('.editable-cell').forEach(cell => {
+        cell.addEventListener('dblclick', function() {
+            const clienteId = this.dataset.id;
+            const field = this.dataset.field;
+            const value = this.textContent;
+            
+            document.getElementById('editClienteId').value = clienteId;
+            document.getElementById('editField').value = field;
+            document.getElementById('editValue').value = value;
+            
+            const editModal = new bootstrap.Modal(document.getElementById('editModal'));
+            editModal.show();
+        });
+    });
+    
+    // Salvataggio modifica
+    document.getElementById('saveEdit').addEventListener('click', function() {
+        const clienteId = document.getElementById('editClienteId').value;
+        const field = document.getElementById('editField').value;
+        const value = document.getElementById('editValue').value;
+        
+        fetch(`/consulenze/cliente/${clienteId}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': getCSRFToken()
+            },
+            body: JSON.stringify({
+                field: field,
+                value: value
+            }),
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                // Aggiorna il valore nella tabella
+                document.querySelector(`.editable-cell[data-id="${clienteId}"][data-field="${field}"]`).textContent = value;
+                
+                // Chiudi il modal
+                bootstrap.Modal.getInstance(document.getElementById('editModal')).hide();
+                
+                // Mostra toast di conferma
+                showToast('Campo aggiornato con successo', 'success');
+            } else {
+                showToast('Errore durante l\'aggiornamento', 'danger');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            showToast('Errore durante l\'aggiornamento', 'danger');
+        });
+    });
+    
+    // Visualizzazione PDF
+    document.querySelectorAll('.badge-status[data-pdf]').forEach(badge => {
+        badge.style.cursor = 'pointer';
+        badge.addEventListener('click', function() {
+            const pdfName = this.dataset.pdf;
+            if (pdfName) {
+                document.getElementById('pdfFrame').src = `/pdf_preview/${pdfName}`;
+                const pdfModal = new bootstrap.Modal(document.getElementById('pdfModal'));
+                pdfModal.show();
+            }
+        });
+    });
+    
+    // Eliminazione cliente
+    function deleteCliente(clienteId) {
+        Swal.fire({
+            title: 'Sei sicuro?',
+            text: "Questa azione non può essere annullata!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#dc3545',
+            cancelButtonColor: '#6c757d',
+            confirmButtonText: 'Sì, elimina!',
+            cancelButtonText: 'Annulla'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                fetch(`/consulenze/cliente/${clienteId}`, {
+                    method: 'DELETE',
+                    headers: {
+                        'X-CSRFToken': getCSRFToken()
+                    }
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        Swal.fire(
+                            'Eliminato!',
+                            'Il cliente è stato eliminato.',
+                            'success'
+                        ).then(() => {
+                            location.reload();
+                        });
+                    } else {
+                        Swal.fire(
+                            'Errore!',
+                            'Si è verificato un errore durante l\'eliminazione.',
+                            'error'
+                        );
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    Swal.fire(
+                        'Errore!',
+                        'Si è verificato un errore durante l\'eliminazione.',
+                        'error'
+                    );
+                });
+            }
+        });
+    }
+    
+    // Visualizzazione dettagli cliente
+    function showClienteDetails(clienteId) {
+        // Recupera i dettagli del cliente dal server
+        fetch(`/consulenze/cliente/${clienteId}/details`)
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    const cliente = data.cliente;
+                    
+                    // Imposta l'ID del cliente nei form di upload
+                    document.querySelectorAll('.cliente-id-input').forEach(input => {
+                        input.value = clienteId;
+                    });
+                    
+                    // Popola i campi del modal con i dati del cliente
+                    for (const [key, value] of Object.entries(cliente)) {
+                        const element = document.getElementById(`detail-${key}`);
+                        if (element) {
+                            // Gestisci i valori booleani
+                            if (typeof value === 'boolean') {
+                                element.textContent = value ? 'Sì' : 'No';
+                            } 
+                            // Gestisci i valori null
+                            else if (value === null) {
+                                element.textContent = '-';
+                            }
+                            // Gestisci le date
+                            else if (key.includes('data') && value) {
+                                const date = new Date(value);
+                                element.textContent = date.toLocaleDateString('it-IT');
+                            }
+                            // Gestisci i documenti
+                            else if (key === 'documento_fronte' || key === 'documento_retro' || key === 'polizza_precedente') {
+                                element.textContent = value || 'Nessun documento';
+                                const previewElement = document.getElementById(`${key}_preview`);
+                                if (value) {
+                                    const extension = value.split('.').pop().toLowerCase();
+                                    if (['jpg', 'jpeg', 'png', 'gif'].includes(extension)) {
+                                        previewElement.innerHTML = `<img src="/static/upload_clienti/${value}" class="img-fluid img-thumbnail" style="max-height: 150px;">`;
+                                    } else if (extension === 'pdf') {
+                                        previewElement.innerHTML = `<a href="/static/upload_clienti/${value}" target="_blank" class="btn btn-sm btn-outline-primary"><i class="bi bi-file-earmark-pdf"></i> Visualizza PDF</a>`;
+                                    } else {
+                                        previewElement.innerHTML = `<a href="/static/upload_clienti/${value}" target="_blank" class="btn btn-sm btn-outline-primary"><i class="bi bi-file-earmark"></i> Scarica File</a>`;
+                                    }
+                                } else {
+                                    previewElement.innerHTML = '';
+                                }
+                            }
+                            // Gestisci il questionario
+                            else if (key === 'nome_questionario_inviato') {
+                                element.textContent = value || 'Nessun questionario';
+                                const previewElement = document.getElementById('questionario_preview');
+                                if (value) {
+                                    previewElement.innerHTML = `<a href="/pdf_preview/${value}" target="_blank" class="btn btn-sm btn-outline-primary"><i class="bi bi-file-earmark-pdf"></i> Visualizza PDF</a>`;
+                                } else {
+                                    previewElement.innerHTML = '';
+                                }
+                            }
+                            // Gestisci tutti gli altri valori
+                            else {
+                                element.textContent = value || '-';
+                            }
+                            
+                            // Aggiungi l'ID del cliente a tutti i campi editabili
+                            if (element.classList.contains('editable-detail')) {
+                                element.dataset.id = clienteId;
+                            }
+                        }
+                    }
+                    
+                    // Mostra il modal
+                    const detailsModal = new bootstrap.Modal(document.getElementById('clienteDetailsModal'));
+                    detailsModal.show();
+                } else {
+                    showToast('Errore durante il recupero dei dettagli del cliente', 'danger');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                showToast('Errore durante il recupero dei dettagli del cliente', 'danger');
+            });
+    }
+    
+    // Gestione modifica dettagli
+    document.querySelectorAll('.editable-detail').forEach(detail => {
+        detail.addEventListener('dblclick', function() {
+            const clienteId = this.dataset.id;
+            const field = this.dataset.field;
+            const value = this.textContent;
+            
+            document.getElementById('editDetailClienteId').value = clienteId;
+            document.getElementById('editDetailField').value = field;
+            document.getElementById('editDetailValue').value = value === '-' ? '' : value;
+            
+            // Imposta l'etichetta del campo
+            const fieldLabel = this.closest('.card-body').querySelector('.card-subtitle').textContent;
+            document.getElementById('editDetailLabel').textContent = fieldLabel;
+            
+            // Gestisci i campi speciali
+            if (field === 'data_nascita' || field === 'data_inizio_attivita' || field === 'iscrizione_albo_data') {
+                document.getElementById('editDetailValue').type = 'date';
+            } else if (field === 'dipendenti' || field === 'addetti' || field === 'subappaltatori') {
+                document.getElementById('editDetailValue').type = 'checkbox';
+                document.getElementById('editDetailValue').checked = value === 'Sì';
+            } else if (field === 'fatturato_2024' || field === 'stima_2025') {
+                document.getElementById('editDetailValue').type = 'number';
+                document.getElementById('editDetailValue').step = '0.01';
+            } else {
+                document.getElementById('editDetailValue').type = 'text';
+            }
+            
+            const editDetailModal = new bootstrap.Modal(document.getElementById('editDetailModal'));
+            editDetailModal.show();
+        });
+    });
+    
+    // Salvataggio modifica dettaglio
+    document.getElementById('saveDetailEdit').addEventListener('click', function() {
+        const clienteId = document.getElementById('editDetailClienteId').value;
+        const field = document.getElementById('editDetailField').value;
+        let value;
+        
+        // Gestisci i campi speciali
+        if (field === 'dipendenti' || field === 'addetti' || field === 'subappaltatori') {
+            value = document.getElementById('editDetailValue').checked;
+        } else {
+            value = document.getElementById('editDetailValue').value;
+        }
+        
+        fetch(`/consulenze/cliente/${clienteId}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': getCSRFToken()
+            },
+            body: JSON.stringify({
+                field: field,
+                value: value
+            }),
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                // Chiudi il modal
+                bootstrap.Modal.getInstance(document.getElementById('editDetailModal')).hide();
+                
+                // Aggiorna il valore nel modal di dettaglio
+                const detailElement = document.getElementById(`detail-${field}`);
+                
+                // Gestisci i valori booleani
+                if (typeof value === 'boolean') {
+                    detailElement.textContent = value ? 'Sì' : 'No';
+                } 
+                // Gestisci i valori vuoti
+                else if (value === '') {
+                    detailElement.textContent = '-';
+                }
+                // Gestisci tutti gli altri valori
+                else {
+                    detailElement.textContent = value;
+                }
+                
+                // Aggiorna anche il valore nella tabella se presente
+                const cellElement = document.querySelector(`.editable-cell[data-id="${clienteId}"][data-field="${field}"]`);
+                if (cellElement) {
+                    cellElement.textContent = value;
+                }
+                
+                // Mostra toast di conferma
+                showToast('Campo aggiornato con successo', 'success');
+            } else {
+                showToast('Errore durante l\'aggiornamento', 'danger');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            showToast('Errore durante l\'aggiornamento', 'danger');
+        });
+    });
+    
+    // Gestione upload documenti
+    document.querySelectorAll('.upload-form').forEach(form => {
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            const uploadBtn = this.querySelector('.upload-btn');
+            const documentType = this.querySelector('[name="document_type"]').value;
+            const clienteId = this.querySelector('[name="cliente_id"]').value;
+            
+            // Disabilita il pulsante durante l'upload
+            uploadBtn.disabled = true;
+            uploadBtn.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>';
+            
+            fetch('/consulenze/cliente/upload-document', {
+                method: 'POST',
+                headers: {
+                    'X-CSRFToken': getCSRFToken()
+                },
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Riabilita il pulsante
+                uploadBtn.disabled = false;
+                uploadBtn.innerHTML = '<i class="bi bi-upload"></i>';
+                
+                if (data.success) {
+                    // Aggiorna l'anteprima del documento
+                    const filename = data.filename;
+                    const element = document.getElementById(`detail-${documentType}`);
+                    const previewElement = document.getElementById(`${documentType}_preview`);
+                    
+                    element.textContent = filename;
+                    
+                    const extension = filename.split('.').pop().toLowerCase();
+                    if (['jpg', 'jpeg', 'png', 'gif'].includes(extension)) {
+                        previewElement.innerHTML = `<img src="/static/upload_clienti/${filename}" class="img-fluid img-thumbnail" style="max-height: 150px;">`;
+                    } else if (extension === 'pdf') {
+                        previewElement.innerHTML = `<a href="/static/upload_clienti/${filename}" target="_blank" class="btn btn-sm btn-outline-primary"><i class="bi bi-file-earmark-pdf"></i> Visualizza PDF</a>`;
+                    } else {
+                        previewElement.innerHTML = `<a href="/static/upload_clienti/${filename}" target="_blank" class="btn btn-sm btn-outline-primary"><i class="bi bi-file-earmark"></i> Scarica File</a>`;
+                    }
+                    
+                    // Mostra toast di conferma
+                    showToast('Documento caricato con successo', 'success');
+                    
+                    // Resetta il form
+                    this.reset();
+                    this.querySelector('[name="cliente_id"]').value = clienteId;
+                } else {
+                    showToast(`Errore durante il caricamento: ${data.message}`, 'danger');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                uploadBtn.disabled = false;
+                uploadBtn.innerHTML = '<i class="bi bi-upload"></i>';
+                showToast('Errore durante il caricamento', 'danger');
+            });
+        });
+    });
+    
+    // Funzione per mostrare toast
+    function showToast(message, type) {
+        const toastContainer = document.querySelector('.toast-container');
+        const toast = document.createElement('div');
+        toast.className = `toast align-items-center text-white bg-${type} border-0`;
+        toast.setAttribute('role', 'alert');
+        toast.setAttribute('aria-live', 'assertive');
+        toast.setAttribute('aria-atomic', 'true');
+        
+        toast.innerHTML = `
+            <div class="d-flex">
+                <div class="toast-body">
+                    <i class="bi bi-info-circle me-2"></i> ${message}
+                </div>
+                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+        `;
+        
+        toastContainer.appendChild(toast);
+        const bsToast = new bootstrap.Toast(toast, { autohide: true, delay: 3000 });
+        bsToast.show();
+        
+        // Rimuovi il toast dopo che è stato nascosto
+        toast.addEventListener('hidden.bs.toast', function() {
+            toast.remove();
+        });
+    }
+</script>
+{% endblock %}

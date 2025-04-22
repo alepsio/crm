@@ -1,0 +1,258 @@
+{% extends 'base.html' %}
+
+{% block title %}Questionari PDF - Gestione Consulenze Assicurative{% endblock %}
+
+{% block extra_css %}
+<style>
+    .flag-container {
+        border: 1px solid #dee2e6;
+        border-radius: 0.25rem;
+        padding: 1rem;
+        background-color: #f8f9fa;
+    }
+    
+    .pdf-preview {
+        width: 100%;
+        height: 600px;
+        border: 1px solid #dee2e6;
+        border-radius: 0.25rem;
+    }
+    
+    .preview-container {
+        display: none;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1 class="h3"><i class="bi bi-file-earmark-pdf"></i> Questionari PDF</h1>
+    </div>
+    
+    <div class="row">
+        <div class="col-md-5">
+            <div class="card shadow-sm mb-4">
+                <div class="card-header bg-light">
+                    <h5 class="mb-0">Genera Questionario</h5>
+                </div>
+                <div class="card-body">
+                    <form id="questionarioForm" method="post" action="{{ url_for('consulenze_questionari') }}">
+                        <div class="mb-3">
+                            <label for="cliente_id" class="form-label">Cliente</label>
+                            <select class="form-select select2" id="cliente_id" name="cliente_id" required>
+                                <option value="">Seleziona cliente...</option>
+                                {% for cliente in clienti %}
+                                <option value="{{ cliente.id }}">{{ cliente.cognome }} {{ cliente.nome }} ({{ cliente.codice_fiscale }})</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="template_id" class="form-label">Template PDF</label>
+                            <div class="input-group">
+                                <select class="form-select" id="template_id" name="template_id" required>
+                                    <option value="">Seleziona template...</option>
+                                    {% for template in templates %}
+                                    <option value="{{ template.id }}">{{ template.nome }}</option>
+                                    {% endfor %}
+                                </select>
+                                <button class="btn btn-outline-secondary" type="button" data-bs-toggle="modal" data-bs-target="#addTemplateModal">
+                                    <i class="bi bi-plus-circle"></i>
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-4 flag-container">
+                            <label class="form-label">Flags (opzionali)</label>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-check mb-2">
+                                        <input class="form-check-input" type="checkbox" id="flag1" name="flags" value="flag1">
+                                        <label class="form-check-label" for="flag1">Flag 1</label>
+                                    </div>
+                                    <div class="form-check mb-2">
+                                        <input class="form-check-input" type="checkbox" id="flag2" name="flags" value="flag2">
+                                        <label class="form-check-label" for="flag2">Flag 2</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="flag3" name="flags" value="flag3">
+                                        <label class="form-check-label" for="flag3">Flag 3</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-check mb-2">
+                                        <input class="form-check-input" type="checkbox" id="flag4" name="flags" value="flag4">
+                                        <label class="form-check-label" for="flag4">Flag 4</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="flag5" name="flags" value="flag5">
+                                        <label class="form-check-label" for="flag5">Flag 5</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="d-grid gap-2">
+                            <button type="button" id="generatePdfBtn" class="btn btn-primary">
+                                <i class="bi bi-file-earmark-pdf"></i> Genera PDF
+                            </button>
+                            <button type="submit" id="sendEmailBtn" name="send_email" value="1" class="btn btn-success" disabled>
+                                <i class="bi bi-envelope"></i> Invia Questionario
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-7">
+            <div class="card shadow-sm preview-container" id="previewContainer">
+                <div class="card-header bg-light">
+                    <h5 class="mb-0">Anteprima PDF</h5>
+                </div>
+                <div class="card-body">
+                    <iframe id="pdfPreview" class="pdf-preview" src=""></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal per aggiungere template -->
+<div class="modal fade" id="addTemplateModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Aggiungi Template PDF</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="templateForm">
+                    <div class="mb-3">
+                        <label for="template_name" class="form-label">Nome Template</label>
+                        <input type="text" class="form-control" id="template_name" name="template_name" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="template_file" class="form-label">File PDF (con campi compilabili)</label>
+                        <input type="file" class="form-control" id="template_file" name="template_file" accept=".pdf" required>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annulla</button>
+                <button type="button" class="btn btn-primary" id="saveTemplate">Salva Template</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    $(document).ready(function() {
+        // Inizializza Select2 per il dropdown clienti
+        $('#cliente_id').select2({
+            theme: 'bootstrap-5',
+            placeholder: 'Seleziona cliente...',
+            allowClear: true
+        });
+        
+        // Genera PDF
+        $('#generatePdfBtn').click(function() {
+            const form = $('#questionarioForm');
+            
+            // Verifica che i campi obbligatori siano compilati
+            if (!form[0].checkValidity()) {
+                form[0].reportValidity();
+                return;
+            }
+            
+            // Disabilita il pulsante durante la generazione
+            $(this).prop('disabled', true).html('<i class="bi bi-hourglass"></i> Generazione...');
+            
+            // Invia i dati al server
+            $.ajax({
+                url: form.attr('action'),
+                type: 'POST',
+                data: form.serialize(),
+                dataType: 'json',
+                success: function(response) {
+                    if (response.success) {
+                        // Mostra l'anteprima del PDF
+                        $('#pdfPreview').attr('src', response.pdf_path);
+                        $('#previewContainer').show();
+                        
+                        // Abilita il pulsante di invio email
+                        $('#sendEmailBtn').prop('disabled', false);
+                        
+                        // Mostra toast di conferma
+                        showToast('PDF generato con successo', 'success');
+                    } else {
+                        showToast(response.message || 'Errore durante la generazione del PDF', 'danger');
+                    }
+                },
+                error: function() {
+                    showToast('Errore durante la generazione del PDF', 'danger');
+                },
+                complete: function() {
+                    // Riabilita il pulsante
+                    $('#generatePdfBtn').prop('disabled', false).html('<i class="bi bi-file-earmark-pdf"></i> Genera PDF');
+                }
+            });
+        });
+        
+        // Salva template
+        $('#saveTemplate').click(function() {
+            const templateName = $('#template_name').val();
+            const templateFile = $('#template_file')[0].files[0];
+            
+            if (!templateName || !templateFile) {
+                showToast('Compila tutti i campi', 'warning');
+                return;
+            }
+            
+            const formData = new FormData();
+            formData.append('template_name', templateName);
+            formData.append('template_file', templateFile);
+
+            
+            // Disabilita il pulsante durante il salvataggio
+            $(this).prop('disabled', true).html('<i class="bi bi-hourglass"></i> Salvataggio...');
+            
+            $.ajax({
+                url: '/template/add',
+                type: 'POST',
+                data: formData,
+                processData: false,
+                contentType: false,
+                dataType: 'json',
+                success: function(response) {
+                    if (response.success) {
+                        // Aggiungi il nuovo template al dropdown
+                        $('#template_id').append(new Option(response.template.nome, response.template.id));
+                        
+                        // Chiudi il modal
+                        $('#addTemplateModal').modal('hide');
+                        
+                        // Reset form
+                        $('#templateForm')[0].reset();
+                        
+                        // Mostra toast di conferma
+                        showToast('Template aggiunto con successo', 'success');
+                    } else {
+                        showToast(response.message || 'Errore durante il salvataggio del template', 'danger');
+                    }
+                },
+                error: function() {
+                    showToast('Errore durante il salvataggio del template', 'danger');
+                },
+                complete: function() {
+                    // Riabilita il pulsante
+                    $('#saveTemplate').prop('disabled', false).html('Salva Template');
+                }
+            });
+        });
+    });
+</script>
+{% endblock %}

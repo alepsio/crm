@@ -1,0 +1,203 @@
+{% extends 'base.html' %}
+
+{% block title %}Anagrafica Clienti - Gestione Consulenze Assicurative{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1 class="h3"><i class="bi bi-person-plus"></i> Anagrafica Clienti</h1>
+        <a href="{{ url_for('consulenze_panoramica') }}" class="btn btn-outline-primary">
+            <i class="bi bi-table"></i> Visualizza Clienti
+        </a>
+    </div>
+    
+    <div class="card shadow-sm">
+        <div class="card-header bg-light">
+            <h5 class="mb-0">Inserimento Nuovo Cliente</h5>
+        </div>
+        <div class="card-body">
+            <form method="post" action="{{ url_for('consulenze_anagrafica') }}" enctype="multipart/form-data">
+                <div class="row">
+                    <!-- Dati Anagrafici -->
+                    <div class="col-md-12 mb-3">
+                        <h5 class="border-bottom pb-2"><i class="bi bi-person"></i> Dati Anagrafici</h5>
+                    </div>
+                    
+                    <div class="col-md-4 mb-3">
+                        <label for="nome" class="form-label">Nome *</label>
+                        <input type="text" class="form-control" id="nome" name="nome" required>
+                    </div>
+                    
+                    <div class="col-md-4 mb-3">
+                        <label for="cognome" class="form-label">Cognome *</label>
+                        <input type="text" class="form-control" id="cognome" name="cognome" required>
+                    </div>
+                    
+                    <div class="col-md-4 mb-3">
+                        <label for="codice_fiscale" class="form-label">Codice Fiscale *</label>
+                        <input type="text" class="form-control" id="codice_fiscale" name="codice_fiscale" required maxlength="16">
+                    </div>
+                    
+                    <div class="col-md-4 mb-3">
+                        <label for="data_nascita" class="form-label">Data di Nascita</label>
+                        <input type="date" class="form-control" id="data_nascita" name="data_nascita">
+                    </div>
+                    
+                    <div class="col-md-4 mb-3">
+                        <label for="luogo_nascita" class="form-label">Luogo di Nascita</label>
+                        <input type="text" class="form-control" id="luogo_nascita" name="luogo_nascita">
+                    </div>
+                    
+                    <div class="col-md-4 mb-3">
+                        <label for="partita_iva" class="form-label">Partita IVA</label>
+                        <input type="text" class="form-control" id="partita_iva" name="partita_iva" maxlength="11">
+                    </div>
+                    
+                    <!-- Contatti -->
+                    <div class="col-md-12 mt-2 mb-3">
+                        <h5 class="border-bottom pb-2"><i class="bi bi-envelope"></i> Contatti</h5>
+                    </div>
+                    
+                    <div class="col-md-4 mb-3">
+                        <label for="email" class="form-label">Email *</label>
+                        <input type="email" class="form-control" id="email" name="email" required>
+                    </div>
+                    
+                    <div class="col-md-4 mb-3">
+                        <label for="pec" class="form-label">PEC</label>
+                        <input type="email" class="form-control" id="pec" name="pec">
+                    </div>
+                    
+                    <div class="col-md-4 mb-3">
+                        <label for="cellulare" class="form-label">Cellulare *</label>
+                        <input type="tel" class="form-control" id="cellulare" name="cellulare" required>
+                    </div>
+                    
+                    <div class="col-md-4 mb-3">
+                        <label for="codice_univoco" class="form-label">Codice Univoco</label>
+                        <input type="text" class="form-control" id="codice_univoco" name="codice_univoco" maxlength="7">
+                    </div>
+                    
+                    <!-- Attività Professionale -->
+                    <div class="col-md-12 mt-2 mb-3">
+                        <h5 class="border-bottom pb-2"><i class="bi bi-briefcase"></i> Attività Professionale</h5>
+                    </div>
+                    
+                    <div class="col-md-4 mb-3">
+                        <label for="attivita" class="form-label">Attività</label>
+                        <input type="text" class="form-control" id="attivita" name="attivita">
+                    </div>
+                    
+                    <div class="col-md-4 mb-3">
+                        <label for="data_inizio_attivita" class="form-label">Data Inizio Attività</label>
+                        <input type="date" class="form-control" id="data_inizio_attivita" name="data_inizio_attivita">
+                    </div>
+                    
+                    <div class="col-md-4 mb-3">
+                        <label for="iscrizione_albo_data" class="form-label">Data Iscrizione Albo</label>
+                        <input type="date" class="form-control" id="iscrizione_albo_data" name="iscrizione_albo_data">
+                    </div>
+                    
+                    <div class="col-md-4 mb-3">
+                        <label for="iscrizione_albo_numero" class="form-label">Numero Iscrizione Albo</label>
+                        <input type="text" class="form-control" id="iscrizione_albo_numero" name="iscrizione_albo_numero">
+                    </div>
+                    
+                    <!-- Indirizzi -->
+                    <div class="col-md-12 mt-2 mb-3">
+                        <h5 class="border-bottom pb-2"><i class="bi bi-geo-alt"></i> Indirizzi</h5>
+                    </div>
+                    
+                    <div class="col-md-4 mb-3">
+                        <label for="residenza" class="form-label">Residenza</label>
+                        <textarea class="form-control" id="residenza" name="residenza" rows="2"></textarea>
+                    </div>
+                    
+                    <div class="col-md-4 mb-3">
+                        <label for="domicilio_fiscale" class="form-label">Domicilio Fiscale</label>
+                        <textarea class="form-control" id="domicilio_fiscale" name="domicilio_fiscale" rows="2"></textarea>
+                    </div>
+                    
+                    <div class="col-md-4 mb-3">
+                        <label for="ubicazione_studio" class="form-label">Ubicazione Studio</label>
+                        <textarea class="form-control" id="ubicazione_studio" name="ubicazione_studio" rows="2"></textarea>
+                    </div>
+                    
+                    <!-- Dati Economici -->
+                    <div class="col-md-12 mt-2 mb-3">
+                        <h5 class="border-bottom pb-2"><i class="bi bi-cash"></i> Dati Economici</h5>
+                    </div>
+                    
+                    <div class="col-md-4 mb-3">
+                        <label for="fatturato_2024" class="form-label">Fatturato 2024 (€)</label>
+                        <input type="number" class="form-control" id="fatturato_2024" name="fatturato_2024" step="0.01" min="0">
+                    </div>
+                    
+                    <div class="col-md-4 mb-3">
+                        <label for="stima_2025" class="form-label">Stima 2025 (€)</label>
+                        <input type="number" class="form-control" id="stima_2025" name="stima_2025" step="0.01" min="0">
+                    </div>
+                    
+                    <div class="col-md-4 mb-3 d-flex align-items-center">
+                        <div class="form-check me-3">
+                            <input class="form-check-input" type="checkbox" id="dipendenti" name="dipendenti">
+                            <label class="form-check-label" for="dipendenti">Dipendenti</label>
+                        </div>
+                        <div class="form-check me-3">
+                            <input class="form-check-input" type="checkbox" id="addetti" name="addetti">
+                            <label class="form-check-label" for="addetti">Addetti</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="subappaltatori" name="subappaltatori">
+                            <label class="form-check-label" for="subappaltatori">Subappaltatori</label>
+                        </div>
+                    </div>
+                    
+                    <!-- Documenti -->
+                    <div class="col-md-12 mt-2 mb-3">
+                        <h5 class="border-bottom pb-2"><i class="bi bi-file-earmark"></i> Documenti</h5>
+                    </div>
+                    
+                    <div class="col-md-4 mb-3">
+                        <label for="documento_fronte" class="form-label">Documento Fronte</label>
+                        <input type="file" class="form-control" id="documento_fronte" name="documento_fronte" accept="image/*,.pdf">
+                    </div>
+                    
+                    <div class="col-md-4 mb-3">
+                        <label for="documento_retro" class="form-label">Documento Retro</label>
+                        <input type="file" class="form-control" id="documento_retro" name="documento_retro" accept="image/*,.pdf">
+                    </div>
+                    
+                    <div class="col-md-4 mb-3">
+                        <label for="polizza_precedente" class="form-label">Polizza Precedente</label>
+                        <input type="file" class="form-control" id="polizza_precedente" name="polizza_precedente" accept="image/*,.pdf">
+                    </div>
+                </div>
+                
+                <div class="d-flex justify-content-end mt-4">
+                    <button type="reset" class="btn btn-outline-secondary me-2">
+                        <i class="bi bi-x-circle"></i> Annulla
+                    </button>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="bi bi-save"></i> Salva Cliente
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    // Validazione codice fiscale
+    document.getElementById('codice_fiscale').addEventListener('input', function() {
+        this.value = this.value.toUpperCase();
+    });
+    
+    // Validazione partita IVA
+    document.getElementById('partita_iva').addEventListener('input', function() {
+        this.value = this.value.replace(/[^0-9]/g, '');
+    });
+</script>
+{% endblock %}

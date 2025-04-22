@@ -1,0 +1,748 @@
+{% extends 'base.html' %}
+
+{% block title %}Agenda Scadenze - Gestione Consulenze Assicurative{% endblock %}
+
+{% block extra_css %}
+<link href='https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.min.css' rel='stylesheet' />
+<style>
+    .fc-event {
+        cursor: pointer;
+    }
+    
+    .fc-event-title {
+        font-weight: 500;
+    }
+    
+    .fc-toolbar-title {
+        font-size: 1.5rem !important;
+        font-weight: 600;
+    }
+    
+    .fc-button-primary {
+        background-color: #0d6efd !important;
+        border-color: #0d6efd !important;
+    }
+    
+    .fc-button-primary:hover {
+        background-color: #0b5ed7 !important;
+        border-color: #0a58ca !important;
+    }
+    
+    .fc-button-active {
+        background-color: #0a58ca !important;
+        border-color: #0a53be !important;
+    }
+    
+    .fc-day-today {
+        background-color: rgba(13, 110, 253, 0.05) !important;
+    }
+    
+    .event-type-scadenza {
+        background-color: #dc3545 !important;
+        border-color: #dc3545 !important;
+    }
+    
+    .event-type-invio {
+        background-color: #198754 !important;
+        border-color: #198754 !important;
+    }
+    
+    .event-type-promemoria {
+        background-color: #ffc107 !important;
+        border-color: #ffc107 !important;
+        color: #212529 !important;
+    }
+    
+    .event-type-appuntamento {
+        background-color: #0dcaf0 !important;
+        border-color: #0dcaf0 !important;
+        color: #212529 !important;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="d-flex justify-content-between align-items-center mb-4 animate__animated animate__fadeIn">
+        <h1 class="h3"><i class="bi bi-calendar-check"></i> Agenda Scadenze</h1>
+        <div>
+            <button class="btn btn-outline-primary me-2" id="filterEventsBtn">
+                <i class="bi bi-funnel"></i> Filtri
+            </button>
+            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addEventModal">
+                <i class="bi bi-plus-circle"></i> Nuovo Evento
+            </button>
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col-md-3 animate__animated animate__fadeInLeft">
+            <div class="card shadow-sm mb-4">
+                <div class="card-header bg-light">
+                    <h5 class="mb-0">Prossime Scadenze</h5>
+                </div>
+                <div class="card-body p-0">
+                    <div class="list-group list-group-flush" id="upcomingEvents">
+                        {% if upcoming_events %}
+                            {% for event in upcoming_events %}
+                            <a href="#" class="list-group-item list-group-item-action upcoming-event" data-event-id="{{ event.id }}">
+                                <div class="d-flex w-100 justify-content-between">
+                                    <h6 class="mb-1">{{ event.title }}</h6>
+                                    <small class="text-muted">{{ event.start|date }}</small>
+                                </div>
+                                <p class="mb-1 small">{{ event.description|truncate(50) }}</p>
+                                <div>
+                                    <span class="badge event-type-{{ event.type }}">{{ event.type_label }}</span>
+                                    {% if event.client_id %}
+                                    <small class="text-muted">{{ event.client_name }}</small>
+                                    {% endif %}
+                                </div>
+                            </a>
+                            {% endfor %}
+                        {% else %}
+                            <div class="list-group-item text-center py-4">
+                                <i class="bi bi-calendar-check text-muted" style="font-size: 2rem;"></i>
+                                <p class="mt-2 mb-0 text-muted">Nessuna scadenza imminente</p>
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card shadow-sm mb-4">
+                <div class="card-header bg-light">
+                    <h5 class="mb-0">Legenda</h5>
+                </div>
+                <div class="card-body">
+                    <div class="d-flex align-items-center mb-2">
+                        <div class="me-2" style="width: 20px; height: 20px; background-color: #dc3545; border-radius: 4px;"></div>
+                        <div>Scadenza</div>
+                    </div>
+                    <div class="d-flex align-items-center mb-2">
+                        <div class="me-2" style="width: 20px; height: 20px; background-color: #198754; border-radius: 4px;"></div>
+                        <div>Invio Programmato</div>
+                    </div>
+                    <div class="d-flex align-items-center mb-2">
+                        <div class="me-2" style="width: 20px; height: 20px; background-color: #ffc107; border-radius: 4px;"></div>
+                        <div>Promemoria</div>
+                    </div>
+                    <div class="d-flex align-items-center">
+                        <div class="me-2" style="width: 20px; height: 20px; background-color: #0dcaf0; border-radius: 4px;"></div>
+                        <div>Appuntamento</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card shadow-sm">
+                <div class="card-header bg-light">
+                    <h5 class="mb-0">Filtri</h5>
+                </div>
+                <div class="card-body">
+                    <div class="mb-3">
+                        <label class="form-label">Tipo Evento</label>
+                        <div class="form-check">
+                            <input class="form-check-input event-filter" type="checkbox" value="scadenza" id="filterScadenza" checked>
+                            <label class="form-check-label" for="filterScadenza">
+                                Scadenze
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input event-filter" type="checkbox" value="invio" id="filterInvio" checked>
+                            <label class="form-check-label" for="filterInvio">
+                                Invii Programmati
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input event-filter" type="checkbox" value="promemoria" id="filterPromemoria" checked>
+                            <label class="form-check-label" for="filterPromemoria">
+                                Promemoria
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input event-filter" type="checkbox" value="appuntamento" id="filterAppuntamento" checked>
+                            <label class="form-check-label" for="filterAppuntamento">
+                                Appuntamenti
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="clientFilter" class="form-label">Cliente</label>
+                        <select class="form-select select2" id="clientFilter">
+                            <option value="">Tutti i clienti</option>
+                            {% for client in clients %}
+                            <option value="{{ client.id }}">{{ client.cognome }} {{ client.nome }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    
+                    <div class="d-grid">
+                        <button class="btn btn-primary" id="applyFiltersBtn">
+                            <i class="bi bi-funnel"></i> Applica Filtri
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-9 animate__animated animate__fadeInRight">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <div id="calendar"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal per aggiungere/modificare evento -->
+<div class="modal fade" id="addEventModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="eventModalTitle">Nuovo Evento</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="eventForm">
+                    <input type="hidden" id="eventId" name="eventId" value="">
+                    
+                    <div class="mb-3">
+                        <label for="eventTitle" class="form-label">Titolo *</label>
+                        <input type="text" class="form-control" id="eventTitle" name="eventTitle" required>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="eventType" class="form-label">Tipo Evento *</label>
+                        <select class="form-select" id="eventType" name="eventType" required>
+                            <option value="scadenza">Scadenza</option>
+                            <option value="invio">Invio Programmato</option>
+                            <option value="promemoria">Promemoria</option>
+                            <option value="appuntamento">Appuntamento</option>
+                        </select>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="eventStartDate" class="form-label">Data Inizio *</label>
+                            <input type="date" class="form-control" id="eventStartDate" name="eventStartDate" required>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="eventStartTime" class="form-label">Ora Inizio</label>
+                            <input type="time" class="form-control" id="eventStartTime" name="eventStartTime">
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="eventEndDate" class="form-label">Data Fine</label>
+                            <input type="date" class="form-control" id="eventEndDate" name="eventEndDate">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="eventEndTime" class="form-label">Ora Fine</label>
+                            <input type="time" class="form-control" id="eventEndTime" name="eventEndTime">
+                        </div>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="eventClient" class="form-label">Cliente</label>
+                        <select class="form-select select2" id="eventClient" name="eventClient">
+                            <option value="">Nessun cliente</option>
+                            {% for client in clients %}
+                            <option value="{{ client.id }}">{{ client.cognome }} {{ client.nome }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="eventDescription" class="form-label">Descrizione</label>
+                        <textarea class="form-control" id="eventDescription" name="eventDescription" rows="3"></textarea>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="eventNotify" name="eventNotify">
+                            <label class="form-check-label" for="eventNotify">
+                                Invia notifica email
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div id="notifyOptions" style="display: none;">
+                        <div class="mb-3">
+                            <label for="notifyDays" class="form-label">Giorni prima</label>
+                            <select class="form-select" id="notifyDays" name="notifyDays">
+                                <option value="0">Stesso giorno</option>
+                                <option value="1">1 giorno prima</option>
+                                <option value="3">3 giorni prima</option>
+                                <option value="7">7 giorni prima</option>
+                                <option value="14">14 giorni prima</option>
+                                <option value="30">30 giorni prima</option>
+                            </select>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="notifyEmail" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="notifyEmail" name="notifyEmail">
+                            <div class="form-text">Lascia vuoto per usare l'email del cliente selezionato</div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annulla</button>
+                <button type="button" class="btn btn-danger me-auto" id="deleteEventBtn" style="display: none;">Elimina</button>
+                <button type="button" class="btn btn-primary" id="saveEventBtn">Salva Evento</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal per visualizzare evento -->
+<div class="modal fade" id="viewEventModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="viewEventTitle"></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="mb-3">
+                    <div class="d-flex justify-content-between">
+                        <span class="badge" id="viewEventType"></span>
+                        <span class="text-muted" id="viewEventDate"></span>
+                    </div>
+                </div>
+                
+                <div class="mb-3" id="viewEventClientContainer">
+                    <label class="form-label">Cliente</label>
+                    <p class="mb-0" id="viewEventClient"></p>
+                </div>
+                
+                <div class="mb-3" id="viewEventDescriptionContainer">
+                    <label class="form-label">Descrizione</label>
+                    <p class="mb-0" id="viewEventDescription"></p>
+                </div>
+                
+                <div class="mb-3" id="viewEventNotifyContainer">
+                    <label class="form-label">Notifica</label>
+                    <p class="mb-0" id="viewEventNotify"></p>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Chiudi</button>
+                <button type="button" class="btn btn-primary" id="editEventBtn">Modifica</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src='https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.min.js'></script>
+<script src='https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/locales/it.js'></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Inizializza FullCalendar
+        const calendarEl = document.getElementById('calendar');
+        const calendar = new FullCalendar.Calendar(calendarEl, {
+            initialView: 'dayGridMonth',
+            locale: 'it',
+            headerToolbar: {
+                left: 'prev,next today',
+                center: 'title',
+                right: 'dayGridMonth,timeGridWeek,timeGridDay,listMonth'
+            },
+            buttonText: {
+                today: 'Oggi',
+                month: 'Mese',
+                week: 'Settimana',
+                day: 'Giorno',
+                list: 'Lista'
+            },
+            themeSystem: 'bootstrap5',
+            height: 'auto',
+            eventTimeFormat: {
+                hour: '2-digit',
+                minute: '2-digit',
+                hour12: false
+            },
+            events: [
+                // Esempi di eventi
+                {
+                    id: '1',
+                    title: 'Scadenza Polizza RCA',
+                    start: '2023-05-15',
+                    classNames: ['event-type-scadenza'],
+                    extendedProps: {
+                        type: 'scadenza',
+                        type_label: 'Scadenza',
+                        description: 'Scadenza della polizza RCA per il cliente Mario Rossi',
+                        client_id: '1',
+                        client_name: 'Mario Rossi',
+                        notify: true,
+                        notify_days: 7,
+                        notify_email: ''
+                    }
+                },
+                {
+                    id: '2',
+                    title: 'Invio Questionario',
+                    start: '2023-05-20',
+                    classNames: ['event-type-invio'],
+                    extendedProps: {
+                        type: 'invio',
+                        type_label: 'Invio Programmato',
+                        description: 'Invio questionario assicurativo al cliente Giuseppe Verdi',
+                        client_id: '2',
+                        client_name: 'Giuseppe Verdi',
+                        notify: false,
+                        notify_days: 0,
+                        notify_email: ''
+                    }
+                },
+                {
+                    id: '3',
+                    title: 'Promemoria Chiamata',
+                    start: '2023-05-22T10:00:00',
+                    classNames: ['event-type-promemoria'],
+                    extendedProps: {
+                        type: 'promemoria',
+                        type_label: 'Promemoria',
+                        description: 'Chiamare il cliente per discutere della nuova polizza',
+                        client_id: '3',
+                        client_name: 'Anna Bianchi',
+                        notify: true,
+                        notify_days: 1,
+                        notify_email: ''
+                    }
+                },
+                {
+                    id: '4',
+                    title: 'Appuntamento in Ufficio',
+                    start: '2023-05-25T15:30:00',
+                    end: '2023-05-25T16:30:00',
+                    classNames: ['event-type-appuntamento'],
+                    extendedProps: {
+                        type: 'appuntamento',
+                        type_label: 'Appuntamento',
+                        description: 'Appuntamento con il cliente per firma contratto',
+                        client_id: '4',
+                        client_name: 'Luca Neri',
+                        notify: true,
+                        notify_days: 1,
+                        notify_email: ''
+                    }
+                }
+            ],
+            eventClick: function(info) {
+                showEventDetails(info.event);
+            },
+            dateClick: function(info) {
+                showAddEventModal(info.dateStr);
+            }
+        });
+        calendar.render();
+        
+        // Gestione notifica email
+        document.getElementById('eventNotify').addEventListener('change', function() {
+            document.getElementById('notifyOptions').style.display = this.checked ? 'block' : 'none';
+        });
+        
+        // Gestione filtri eventi
+        document.querySelectorAll('.event-filter').forEach(filter => {
+            filter.addEventListener('change', applyFilters);
+        });
+        
+        document.getElementById('applyFiltersBtn').addEventListener('click', applyFilters);
+        
+        function applyFilters() {
+            const activeTypes = [];
+            document.querySelectorAll('.event-filter:checked').forEach(filter => {
+                activeTypes.push(filter.value);
+            });
+            
+            const clientId = document.getElementById('clientFilter').value;
+            
+            calendar.getEvents().forEach(event => {
+                const eventType = event.extendedProps.type;
+                const eventClientId = event.extendedProps.client_id;
+                
+                const typeMatch = activeTypes.includes(eventType);
+                const clientMatch = !clientId || eventClientId === clientId;
+                
+                if (typeMatch && clientMatch) {
+                    event.setProp('display', 'auto');
+                } else {
+                    event.setProp('display', 'none');
+                }
+            });
+        }
+        
+        // Mostra dettagli evento
+        function showEventDetails(event) {
+            const viewEventModal = new bootstrap.Modal(document.getElementById('viewEventModal'));
+            
+            document.getElementById('viewEventTitle').textContent = event.title;
+            
+            const eventType = document.getElementById('viewEventType');
+            eventType.textContent = event.extendedProps.type_label;
+            eventType.className = `badge event-type-${event.extendedProps.type}`;
+            
+            let dateText = '';
+            if (event.allDay) {
+                dateText = new Date(event.start).toLocaleDateString('it-IT');
+                if (event.end) {
+                    dateText += ` - ${new Date(event.end).toLocaleDateString('it-IT')}`;
+                }
+            } else {
+                dateText = new Date(event.start).toLocaleString('it-IT');
+                if (event.end) {
+                    dateText += ` - ${new Date(event.end).toLocaleTimeString('it-IT')}`;
+                }
+            }
+            document.getElementById('viewEventDate').textContent = dateText;
+            
+            const clientContainer = document.getElementById('viewEventClientContainer');
+            const clientElement = document.getElementById('viewEventClient');
+            if (event.extendedProps.client_id) {
+                clientContainer.style.display = 'block';
+                clientElement.textContent = event.extendedProps.client_name;
+            } else {
+                clientContainer.style.display = 'none';
+            }
+            
+            const descriptionContainer = document.getElementById('viewEventDescriptionContainer');
+            const descriptionElement = document.getElementById('viewEventDescription');
+            if (event.extendedProps.description) {
+                descriptionContainer.style.display = 'block';
+                descriptionElement.textContent = event.extendedProps.description;
+            } else {
+                descriptionContainer.style.display = 'none';
+            }
+            
+            const notifyContainer = document.getElementById('viewEventNotifyContainer');
+            const notifyElement = document.getElementById('viewEventNotify');
+            if (event.extendedProps.notify) {
+                notifyContainer.style.display = 'block';
+                let notifyText = `${event.extendedProps.notify_days} giorni prima`;
+                if (event.extendedProps.notify_email) {
+                    notifyText += ` a ${event.extendedProps.notify_email}`;
+                } else {
+                    notifyText += ' all\'email del cliente';
+                }
+                notifyElement.textContent = notifyText;
+            } else {
+                notifyContainer.style.display = 'none';
+            }
+            
+            // Imposta l'ID dell'evento per il pulsante di modifica
+            document.getElementById('editEventBtn').dataset.eventId = event.id;
+            
+            viewEventModal.show();
+        }
+        
+        // Mostra modal per aggiungere evento
+        function showAddEventModal(dateStr) {
+            const addEventModal = new bootstrap.Modal(document.getElementById('addEventModal'));
+            
+            // Reset form
+            document.getElementById('eventForm').reset();
+            document.getElementById('eventId').value = '';
+            document.getElementById('eventModalTitle').textContent = 'Nuovo Evento';
+            document.getElementById('deleteEventBtn').style.display = 'none';
+            document.getElementById('notifyOptions').style.display = 'none';
+            
+            // Imposta la data selezionata
+            document.getElementById('eventStartDate').value = dateStr;
+            
+            addEventModal.show();
+        }
+        
+        // Gestione pulsante modifica evento
+        document.getElementById('editEventBtn').addEventListener('click', function() {
+            const eventId = this.dataset.eventId;
+            const event = calendar.getEventById(eventId);
+            
+            if (event) {
+                // Chiudi il modal di visualizzazione
+                bootstrap.Modal.getInstance(document.getElementById('viewEventModal')).hide();
+                
+                // Popola il form di modifica
+                document.getElementById('eventId').value = event.id;
+                document.getElementById('eventTitle').value = event.title;
+                document.getElementById('eventType').value = event.extendedProps.type;
+                
+                // Imposta date e orari
+                const startDate = new Date(event.start);
+                document.getElementById('eventStartDate').value = startDate.toISOString().split('T')[0];
+                if (!event.allDay) {
+                    document.getElementById('eventStartTime').value = startDate.toTimeString().substring(0, 5);
+                }
+                
+                if (event.end) {
+                    const endDate = new Date(event.end);
+                    document.getElementById('eventEndDate').value = endDate.toISOString().split('T')[0];
+                    if (!event.allDay) {
+                        document.getElementById('eventEndTime').value = endDate.toTimeString().substring(0, 5);
+                    }
+                }
+                
+                // Imposta cliente
+                if (event.extendedProps.client_id) {
+                    document.getElementById('eventClient').value = event.extendedProps.client_id;
+                }
+                
+                // Imposta descrizione
+                if (event.extendedProps.description) {
+                    document.getElementById('eventDescription').value = event.extendedProps.description;
+                }
+                
+                // Imposta notifica
+                document.getElementById('eventNotify').checked = event.extendedProps.notify;
+                document.getElementById('notifyOptions').style.display = event.extendedProps.notify ? 'block' : 'none';
+                if (event.extendedProps.notify) {
+                    document.getElementById('notifyDays').value = event.extendedProps.notify_days;
+                    if (event.extendedProps.notify_email) {
+                        document.getElementById('notifyEmail').value = event.extendedProps.notify_email;
+                    }
+                }
+                
+                // Aggiorna titolo modal e mostra pulsante elimina
+                document.getElementById('eventModalTitle').textContent = 'Modifica Evento';
+                document.getElementById('deleteEventBtn').style.display = 'block';
+                
+                // Mostra il modal
+                const addEventModal = new bootstrap.Modal(document.getElementById('addEventModal'));
+                addEventModal.show();
+            }
+        });
+        
+        // Gestione salvataggio evento
+        document.getElementById('saveEventBtn').addEventListener('click', function() {
+            // Verifica che il form sia valido
+            const form = document.getElementById('eventForm');
+            if (!form.checkValidity()) {
+                form.reportValidity();
+                return;
+            }
+            
+            // Raccogli i dati dal form
+            const eventId = document.getElementById('eventId').value;
+            const title = document.getElementById('eventTitle').value;
+            const type = document.getElementById('eventType').value;
+            const startDate = document.getElementById('eventStartDate').value;
+            const startTime = document.getElementById('eventStartTime').value;
+            const endDate = document.getElementById('eventEndDate').value;
+            const endTime = document.getElementById('eventEndTime').value;
+            const clientId = document.getElementById('eventClient').value;
+            const description = document.getElementById('eventDescription').value;
+            const notify = document.getElementById('eventNotify').checked;
+            const notifyDays = document.getElementById('notifyDays').value;
+            const notifyEmail = document.getElementById('notifyEmail').value;
+            
+            // Crea oggetto evento
+            const eventData = {
+                title: title,
+                start: startTime ? `${startDate}T${startTime}` : startDate,
+                end: endDate ? (endTime ? `${endDate}T${endTime}` : endDate) : null,
+                allDay: !startTime,
+                classNames: [`event-type-${type}`],
+                extendedProps: {
+                    type: type,
+                    type_label: getTypeLabel(type),
+                    description: description,
+                    client_id: clientId,
+                    client_name: clientId ? document.querySelector(`#eventClient option[value="${clientId}"]`).textContent : '',
+                    notify: notify,
+                    notify_days: notifyDays,
+                    notify_email: notifyEmail
+                }
+            };
+            
+            // Se è una modifica, aggiorna l'evento esistente
+            if (eventId) {
+                const event = calendar.getEventById(eventId);
+                if (event) {
+                    event.setProp('title', eventData.title);
+                    event.setProp('classNames', eventData.classNames);
+                    event.setStart(eventData.start);
+                    event.setEnd(eventData.end);
+                    event.setAllDay(eventData.allDay);
+                    event.setExtendedProp('type', eventData.extendedProps.type);
+                    event.setExtendedProp('type_label', eventData.extendedProps.type_label);
+                    event.setExtendedProp('description', eventData.extendedProps.description);
+                    event.setExtendedProp('client_id', eventData.extendedProps.client_id);
+                    event.setExtendedProp('client_name', eventData.extendedProps.client_name);
+                    event.setExtendedProp('notify', eventData.extendedProps.notify);
+                    event.setExtendedProp('notify_days', eventData.extendedProps.notify_days);
+                    event.setExtendedProp('notify_email', eventData.extendedProps.notify_email);
+                }
+            } else {
+                // Altrimenti, crea un nuovo evento
+                eventData.id = Date.now().toString(); // ID temporaneo
+                calendar.addEvent(eventData);
+            }
+            
+            // Chiudi il modal
+            bootstrap.Modal.getInstance(document.getElementById('addEventModal')).hide();
+            
+            // Mostra toast di conferma
+            showToast('Evento salvato con successo', 'success');
+        });
+        
+        // Gestione eliminazione evento
+        document.getElementById('deleteEventBtn').addEventListener('click', function() {
+            const eventId = document.getElementById('eventId').value;
+            
+            Swal.fire({
+                title: 'Sei sicuro?',
+                text: "Questa azione non può essere annullata!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#dc3545',
+                cancelButtonColor: '#6c757d',
+                confirmButtonText: 'Sì, elimina!',
+                cancelButtonText: 'Annulla'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    const event = calendar.getEventById(eventId);
+                    if (event) {
+                        event.remove();
+                    }
+                    
+                    // Chiudi il modal
+                    bootstrap.Modal.getInstance(document.getElementById('addEventModal')).hide();
+                    
+                    // Mostra toast di conferma
+                    showToast('Evento eliminato con successo', 'success');
+                }
+            });
+        });
+        
+        // Funzione per ottenere l'etichetta del tipo di evento
+        function getTypeLabel(type) {
+            switch (type) {
+                case 'scadenza':
+                    return 'Scadenza';
+                case 'invio':
+                    return 'Invio Programmato';
+                case 'promemoria':
+                    return 'Promemoria';
+                case 'appuntamento':
+                    return 'Appuntamento';
+                default:
+                    return 'Evento';
+            }
+        }
+        
+        // Inizializza Select2
+        if (typeof $.fn.select2 !== 'undefined') {
+            $('.select2').select2({
+                theme: 'bootstrap-5',
+                width: '100%'
+            });
+        }
+    });
+</script>
+{% endblock %}

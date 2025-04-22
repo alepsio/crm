@@ -1,0 +1,155 @@
+{% extends 'base.html' %}
+
+{% block title %}Gestione Consulenze Assicurative{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="d-flex justify-content-between align-items-center mb-4 animate__animated animate__fadeIn">
+        <h1 class="h3"><i class="bi bi-file-earmark-text"></i> Gestione Consulenze Assicurative</h1>
+    </div>
+    
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4">
+        <div class="col animate__animated animate__fadeInUp" style="animation-delay: 0.1s">
+            <div class="card card-tool h-100 shadow-sm">
+                <div class="card-body text-center">
+                    <div class="mb-3">
+                        <i class="bi bi-person-plus text-primary" style="font-size: 3.5rem;"></i>
+                    </div>
+                    <h5 class="card-title fw-bold">Anagrafica Clienti</h5>
+                    <p class="card-text text-muted">Inserisci e gestisci i dati dei clienti</p>
+                </div>
+                <div class="card-footer bg-transparent border-0 text-center">
+                    <a href="{{ url_for('consulenze_anagrafica') }}" class="btn btn-primary">
+                        <i class="bi bi-arrow-right-circle me-1"></i> Accedi
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col animate__animated animate__fadeInUp" style="animation-delay: 0.2s">
+            <div class="card card-tool h-100 shadow-sm">
+                <div class="card-body text-center">
+                    <div class="mb-3">
+                        <i class="bi bi-table text-success" style="font-size: 3.5rem;"></i>
+                    </div>
+                    <h5 class="card-title fw-bold">Panoramica Clienti</h5>
+                    <p class="card-text text-muted">Visualizza e filtra tutti i clienti</p>
+                </div>
+                <div class="card-footer bg-transparent border-0 text-center">
+                    <a href="{{ url_for('consulenze_panoramica') }}" class="btn btn-success">
+                        <i class="bi bi-arrow-right-circle me-1"></i> Accedi
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col animate__animated animate__fadeInUp" style="animation-delay: 0.3s">
+            <div class="card card-tool h-100 shadow-sm">
+                <div class="card-body text-center">
+                    <div class="mb-3">
+                        <i class="bi bi-file-earmark-pdf text-danger" style="font-size: 3.5rem;"></i>
+                    </div>
+                    <h5 class="card-title fw-bold">Questionari PDF</h5>
+                    <p class="card-text text-muted">Genera e invia questionari ai clienti</p>
+                </div>
+                <div class="card-footer bg-transparent border-0 text-center">
+                    <a href="{{ url_for('consulenze_questionari') }}" class="btn btn-danger">
+                        <i class="bi bi-arrow-right-circle me-1"></i> Accedi
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col animate__animated animate__fadeInUp" style="animation-delay: 0.4s">
+            <div class="card card-tool h-100 shadow-sm">
+                <div class="card-body text-center">
+                    <div class="mb-3">
+                        <i class="bi bi-envelope text-info" style="font-size: 3.5rem;"></i>
+                    </div>
+                    <h5 class="card-title fw-bold">Configurazione Email</h5>
+                    <p class="card-text text-muted">Configura le impostazioni per l'invio email</p>
+                </div>
+                <div class="card-footer bg-transparent border-0 text-center">
+                    <a href="{{ url_for('consulenze_email') }}" class="btn btn-info text-white">
+                        <i class="bi bi-arrow-right-circle me-1"></i> Accedi
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <h4 class="mt-5 mb-4 animate__animated animate__fadeIn" style="animation-delay: 0.5s">
+        <i class="bi bi-tools"></i> Strumenti Avanzati
+    </h4>
+    
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4">
+        <div class="col animate__animated animate__fadeInUp" style="animation-delay: 0.6s">
+            <div class="card card-tool h-100 shadow-sm">
+                <div class="card-body text-center">
+                    <div class="mb-3">
+                        <i class="bi bi-file-earmark-excel text-success" style="font-size: 3.5rem;"></i>
+                    </div>
+                    <h5 class="card-title fw-bold">Importazione Excel</h5>
+                    <p class="card-text text-muted">Importa clienti da file Excel</p>
+                </div>
+                <div class="card-footer bg-transparent border-0 text-center">
+                    <a href="{{ url_for('consulenze_import') }}" class="btn btn-success">
+                        <i class="bi bi-arrow-right-circle me-1"></i> Accedi
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col animate__animated animate__fadeInUp" style="animation-delay: 0.7s">
+            <div class="card card-tool h-100 shadow-sm">
+                <div class="card-body text-center">
+                    <div class="mb-3">
+                        <i class="bi bi-clock-history text-warning" style="font-size: 3.5rem;"></i>
+                    </div>
+                    <h5 class="card-title fw-bold">Storico Invii</h5>
+                    <p class="card-text text-muted">Visualizza lo storico dei questionari inviati</p>
+                </div>
+                <div class="card-footer bg-transparent border-0 text-center">
+                    <a href="{{ url_for('consulenze_history') }}" class="btn btn-warning text-white">
+                        <i class="bi bi-arrow-right-circle me-1"></i> Accedi
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col animate__animated animate__fadeInUp" style="animation-delay: 0.8s">
+            <div class="card card-tool h-100 shadow-sm">
+                <div class="card-body text-center">
+                    <div class="mb-3">
+                        <i class="bi bi-calendar-check text-primary" style="font-size: 3.5rem;"></i>
+                    </div>
+                    <h5 class="card-title fw-bold">Agenda Scadenze</h5>
+                    <p class="card-text text-muted">Gestisci scadenze e appuntamenti</p>
+                </div>
+                <div class="card-footer bg-transparent border-0 text-center">
+                    <a href="{{ url_for('consulenze_calendar') }}" class="btn btn-primary">
+                        <i class="bi bi-arrow-right-circle me-1"></i> Accedi
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col animate__animated animate__fadeInUp" style="animation-delay: 0.9s">
+            <div class="card card-tool h-100 shadow-sm">
+                <div class="card-body text-center">
+                    <div class="mb-3">
+                        <i class="bi bi-chat-text text-info" style="font-size: 3.5rem;"></i>
+                    </div>
+                    <h5 class="card-title fw-bold">Testi Email</h5>
+                    <p class="card-text text-muted">Gestisci testi email personalizzati</p>
+                </div>
+                <div class="card-footer bg-transparent border-0 text-center">
+                    <a href="{{ url_for('consulenze_email_texts') }}" class="btn btn-info text-white">
+                        <i class="bi bi-arrow-right-circle me-1"></i> Accedi
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

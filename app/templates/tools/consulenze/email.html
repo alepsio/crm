@@ -1,0 +1,208 @@
+{% extends 'base.html' %}
+
+{% block title %}Configurazione Email - Gestione Consulenze Assicurative{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1 class="h3"><i class="bi bi-envelope"></i> Configurazione Email</h1>
+    </div>
+    
+    <div class="row">
+        <div class="col-md-7">
+            <div class="card shadow-sm">
+                <div class="card-header bg-light">
+                    <h5 class="mb-0">Impostazioni SMTP</h5>
+                </div>
+                <div class="card-body">
+                    <form method="post" action="{{ url_for('consulenze_email') }}">
+                        <div class="mb-3">
+                            <label for="smtp_server" class="form-label">Server SMTP</label>
+                            <input type="text" class="form-control" id="smtp_server" name="smtp_server" required
+                                   value="{{ config.smtp_server if config else '' }}">
+                            <div class="form-text">Es. smtp.gmail.com, smtp.office365.com</div>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="porta" class="form-label">Porta</label>
+                            <input type="number" class="form-control" id="porta" name="porta" required
+                                   value="{{ config.porta if config else '465' }}">
+                            <div class="form-text">Solitamente 465 (SSL) o 587 (TLS)</div>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email Mittente</label>
+                            <input type="email" class="form-control" id="email" name="email" required
+                                   value="{{ config.email if config else '' }}">
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="password" class="form-label">Password</label>
+                            <input type="password" class="form-control" id="password" name="password" required
+                                   value="{{ config.password if config else '' }}">
+                            <div class="form-text">Per Gmail è necessaria una password per app (vedi tutorial)</div>
+                        </div>
+                        
+                        <div class="mb-4">
+                            <label for="testo" class="form-label">Testo Email Predefinito</label>
+                            <textarea class="form-control" id="testo" name="testo" rows="5">{{ config.testo if config else 'Gentile Cliente,\n\nIn allegato il questionario assicurativo da compilare.\n\nCordiali saluti,\nIl tuo Consulente Assicurativo' }}</textarea>
+                            <div class="form-text">Questo testo verrà utilizzato come corpo dell'email per l'invio dei questionari</div>
+                        </div>
+                        
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-primary">
+                                <i class="bi bi-save"></i> Salva Configurazione
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-5">
+            <div class="card shadow-sm mb-4">
+                <div class="card-header bg-light">
+                    <h5 class="mb-0"><i class="bi bi-info-circle"></i> Tutorial Configurazione</h5>
+                </div>
+                <div class="card-body">
+                    <div class="accordion" id="accordionSmtpGuide">
+                        <!-- Gmail -->
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingGmail">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseGmail" aria-expanded="true" aria-controls="collapseGmail">
+                                    <i class="bi bi-google me-2"></i> Configurazione Gmail
+                                </button>
+                            </h2>
+                            <div id="collapseGmail" class="accordion-collapse collapse show" aria-labelledby="headingGmail" data-bs-parent="#accordionSmtpGuide">
+                                <div class="accordion-body">
+                                    <p>Per utilizzare Gmail come server SMTP, è necessario creare una <strong>password per app</strong>:</p>
+                                    
+                                    <ol class="mb-3">
+                                        <li>Accedi al tuo account Google</li>
+                                        <li>Vai alla <a href="https://myaccount.google.com/security" target="_blank">Gestione account Google</a> &rarr; Sicurezza</li>
+                                        <li>Attiva la "Verifica in due passaggi" se non è già attiva</li>
+                                        <li>Torna alla pagina Sicurezza e cerca "Password per le app"</li>
+                                        <li>Seleziona "App" &rarr; "Altra app (nome personalizzato)"</li>
+                                        <li>Inserisci un nome (es. "CRM Assicurativo") e clicca su "Genera"</li>
+                                        <li>Copia la password generata (16 caratteri senza spazi)</li>
+                                    </ol>
+                                    
+                                    <div class="alert alert-info">
+                                        <strong>Impostazioni Gmail:</strong><br>
+                                        Server SMTP: <code>smtp.gmail.com</code><br>
+                                        Porta: <code>465</code> (SSL) o <code>587</code> (TLS)<br>
+                                        Email: il tuo indirizzo Gmail<br>
+                                        Password: la password per app generata
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Outlook/Office 365 -->
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingOutlook">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOutlook" aria-expanded="false" aria-controls="collapseOutlook">
+                                    <i class="bi bi-microsoft me-2"></i> Configurazione Outlook/Office 365
+                                </button>
+                            </h2>
+                            <div id="collapseOutlook" class="accordion-collapse collapse" aria-labelledby="headingOutlook" data-bs-parent="#accordionSmtpGuide">
+                                <div class="accordion-body">
+                                    <p>Per Outlook o Office 365, puoi utilizzare la tua password normale o creare una password per app:</p>
+                                    
+                                    <div class="alert alert-info">
+                                        <strong>Impostazioni Outlook/Office 365:</strong><br>
+                                        Server SMTP: <code>smtp.office365.com</code><br>
+                                        Porta: <code>587</code> (TLS)<br>
+                                        Email: il tuo indirizzo Outlook/Office 365<br>
+                                        Password: la tua password normale
+                                    </div>
+                                    
+                                    <p class="mb-0 mt-3"><small>Nota: Se hai attivato l'autenticazione a due fattori, dovrai creare una password per app dal pannello di sicurezza del tuo account Microsoft.</small></p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Altri provider -->
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingOthers">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOthers" aria-expanded="false" aria-controls="collapseOthers">
+                                    <i class="bi bi-envelope me-2"></i> Altri Provider Email
+                                </button>
+                            </h2>
+                            <div id="collapseOthers" class="accordion-collapse collapse" aria-labelledby="headingOthers" data-bs-parent="#accordionSmtpGuide">
+                                <div class="accordion-body">
+                                    <p>Ecco le impostazioni per altri provider email comuni:</p>
+                                    
+                                    <div class="mb-3">
+                                        <strong>Yahoo Mail:</strong><br>
+                                        Server SMTP: <code>smtp.mail.yahoo.com</code><br>
+                                        Porta: <code>465</code> (SSL) o <code>587</code> (TLS)<br>
+                                        <small>Richiede password per app se hai attivato la verifica in due passaggi</small>
+                                    </div>
+                                    
+                                    <div class="mb-3">
+                                        <strong>Libero:</strong><br>
+                                        Server SMTP: <code>smtp.libero.it</code><br>
+                                        Porta: <code>465</code> (SSL)
+                                    </div>
+                                    
+                                    <div>
+                                        <strong>Aruba:</strong><br>
+                                        Server SMTP: <code>smtp.aruba.it</code><br>
+                                        Porta: <code>587</code> (TLS)
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Risoluzione problemi -->
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingTroubleshooting">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTroubleshooting" aria-expanded="false" aria-controls="collapseTroubleshooting">
+                                    <i class="bi bi-tools me-2"></i> Risoluzione Problemi
+                                </button>
+                            </h2>
+                            <div id="collapseTroubleshooting" class="accordion-collapse collapse" aria-labelledby="headingTroubleshooting" data-bs-parent="#accordionSmtpGuide">
+                                <div class="accordion-body">
+                                    <p>Se riscontri problemi nella configurazione SMTP:</p>
+                                    
+                                    <ul>
+                                        <li><strong>Gmail:</strong> Assicurati che l'opzione "Accesso app meno sicure" sia attiva o usa una password per app</li>
+                                        <li><strong>Errore di autenticazione:</strong> Verifica che email e password siano corrette</li>
+                                        <li><strong>Timeout connessione:</strong> Verifica che il server SMTP e la porta siano corretti</li>
+                                        <li><strong>Blocco provider:</strong> Alcuni provider bloccano l'invio di email da server esterni, contatta il supporto</li>
+                                    </ul>
+                                    
+                                    <div class="alert alert-warning mt-3">
+                                        <i class="bi bi-exclamation-triangle-fill me-2"></i> Se utilizzi Gmail, ricorda che Google potrebbe limitare il numero di email inviate a 500 al giorno.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card shadow-sm">
+                <div class="card-header bg-light">
+                    <h5 class="mb-0"><i class="bi bi-shield-check"></i> Sicurezza Email</h5>
+                </div>
+                <div class="card-body">
+                    <p>Alcuni consigli per la sicurezza:</p>
+                    
+                    <ul>
+                        <li>Utilizza sempre una password forte e unica</li>
+                        <li>Attiva l'autenticazione a due fattori quando possibile</li>
+                        <li>Usa password per app invece della password principale</li>
+                        <li>Controlla regolarmente l'attività del tuo account email</li>
+                    </ul>
+                    
+                    <div class="alert alert-success">
+                        <i class="bi bi-lock-fill me-2"></i> Le password vengono memorizzate in modo sicuro nel database e non sono accessibili in chiaro.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

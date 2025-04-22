@@ -1,0 +1,306 @@
+{% extends 'base.html' %}
+
+{% block title %}Importazione Clienti - Gestione Consulenze Assicurative{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="d-flex justify-content-between align-items-center mb-4 animate__animated animate__fadeIn">
+        <h1 class="h3"><i class="bi bi-file-earmark-excel"></i> Importazione Clienti da Excel</h1>
+        <a href="{{ url_for('consulenze_panoramica') }}" class="btn btn-outline-primary">
+            <i class="bi bi-table"></i> Torna alla Panoramica
+        </a>
+    </div>
+    
+    <div class="row">
+        <div class="col-md-5 animate__animated animate__fadeInLeft">
+            <div class="card shadow-sm mb-4">
+                <div class="card-header bg-light">
+                    <h5 class="mb-0">Carica File Excel</h5>
+                </div>
+                <div class="card-body">
+                    <form id="importForm" method="post" action="{{ url_for('consulenze_import') }}" enctype="multipart/form-data">
+                        <div class="mb-4">
+                            <label for="excelFile" class="form-label">File Excel (.xlsx, .xls)</label>
+                            <input type="file" class="form-control" id="excelFile" name="excelFile" accept=".xlsx,.xls" required>
+                            <div class="form-text">
+                                Il file deve contenere almeno le colonne: Nome, Cognome, Email, Codice Fiscale
+                            </div>
+                        </div>
+                        
+                        <div class="mb-4">
+                            <label class="form-label">Opzioni di Importazione</label>
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="checkbox" id="skipHeader" name="skipHeader" checked>
+                                <label class="form-check-label" for="skipHeader">
+                                    La prima riga contiene intestazioni
+                                </label>
+                            </div>
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="checkbox" id="updateExisting" name="updateExisting">
+                                <label class="form-check-label" for="updateExisting">
+                                    Aggiorna clienti esistenti (se trovati per Codice Fiscale)
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <div class="d-flex gap-2">
+                            <button type="submit" class="btn btn-primary flex-grow-1" id="previewBtn">
+                                <i class="bi bi-eye"></i> Anteprima Dati
+                            </button>
+                            <button type="button" class="btn btn-outline-secondary" id="debugBtn">
+                                <i class="bi bi-bug"></i> Debug
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="card shadow-sm animate__animated animate__fadeIn" style="animation-delay: 0.3s">
+                <div class="card-header bg-light">
+                    <h5 class="mb-0">Istruzioni</h5>
+                </div>
+                <div class="card-body">
+                    <p>Per importare correttamente i clienti, segui questi passaggi:</p>
+                    <ol>
+                        <li>Prepara un file Excel con i dati dei clienti</li>
+                        <li>Assicurati che il file contenga almeno le colonne obbligatorie</li>
+                        <li>Carica il file e visualizza l'anteprima</li>
+                        <li>Seleziona i clienti da importare</li>
+                        <li>Clicca su "Importa Selezionati"</li>
+                    </ol>
+                    
+                    <div class="alert alert-info">
+                        <h6 class="alert-heading"><i class="bi bi-info-circle"></i> Colonne Supportate</h6>
+                        <p class="mb-0">
+                            <strong>Obbligatorie:</strong> Nome, Cognome, Email, Codice Fiscale<br>
+                            <strong>Opzionali:</strong> Cellulare, Partita IVA, PEC, Residenza, Attività, ecc.
+                        </p>
+                    </div>
+                    
+                    <div class="mt-3">
+                        <a href="{{ url_for('static', filename='templates/template_importazione_clienti.xlsx') }}" class="btn btn-outline-success btn-sm">
+                            <i class="bi bi-download"></i> Scarica Template Excel
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-7 animate__animated animate__fadeInRight">
+            <div class="card shadow-sm">
+                <div class="card-header bg-light d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0">Anteprima Dati</h5>
+                    <div>
+                        <button class="btn btn-sm btn-outline-primary me-2" id="selectAllBtn">
+                            <i class="bi bi-check-all"></i> Seleziona Tutti
+                        </button>
+                        <button class="btn btn-sm btn-success" id="importSelectedBtn" disabled>
+                            <i class="bi bi-file-earmark-arrow-down"></i> Importa Selezionati
+                        </button>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div id="previewContainer">
+                        {% if preview_data %}
+                        <form id="importSelectedForm" method="post" action="{{ url_for('consulenze_import_selected') }}">
+                            <div class="table-responsive">
+                                <table class="table table-striped table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th width="40">
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" id="selectAll">
+                                                </div>
+                                            </th>
+                                            <th>Nome</th>
+                                            <th>Cognome</th>
+                                            <th>Codice Fiscale</th>
+                                            <th>Email</th>
+                                            <th>Cellulare</th>
+                                            <th>Stato</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for row in preview_data %}
+                                        <tr>
+                                            <td>
+                                                <div class="form-check">
+                                                    <input class="form-check-input row-checkbox" type="checkbox" name="selected_rows" value="{{ loop.index0 }}">
+                                                </div>
+                                            </td>
+                                            <td>{{ row.nome }}</td>
+                                            <td>{{ row.cognome }}</td>
+                                            <td>{{ row.codice_fiscale }}</td>
+                                            <td>{{ row.email }}</td>
+                                            <td>{{ row.cellulare|default('') }}</td>
+                                            <td>
+                                                {% if not row.cf_valid %}
+                                                <span class="badge bg-danger" title="{{ row.cf_message }}">Codice Fiscale non valido</span>
+                                                {% elif row.exists %}
+                                                <span class="badge bg-warning">Già esistente</span>
+                                                {% elif row.missing_fields %}
+                                                <span class="badge bg-danger" title="Campi mancanti: {{ row.missing_fields|join(', ') }}">Dati incompleti</span>
+                                                {% else %}
+                                                <span class="badge bg-success">Nuovo</span>
+                                                {% endif %}
+                                            </td>
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                            
+                            <input type="hidden" name="file_path" value="{{ file_path }}">
+                            <input type="hidden" name="update_existing" value="{{ 'true' if update_existing else 'false' }}">
+                            
+                            <div class="d-grid mt-3">
+                                <button type="submit" class="btn btn-success" id="importBtn">
+                                    <i class="bi bi-file-earmark-arrow-down"></i> Importa Selezionati (<span id="selectedCount">0</span>)
+                                </button>
+                            </div>
+                        </form>
+                        {% else %}
+                        <div class="text-center py-5">
+                            <i class="bi bi-file-earmark-excel text-muted" style="font-size: 4rem;"></i>
+                            <p class="mt-3 text-muted">Carica un file Excel per visualizzare l'anteprima dei dati</p>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Gestione debug Excel
+        const debugBtn = document.getElementById('debugBtn');
+        if (debugBtn) {
+            debugBtn.addEventListener('click', function() {
+                const fileInput = document.getElementById('excelFile');
+                if (!fileInput.files || fileInput.files.length === 0) {
+                    alert('Seleziona un file Excel prima di eseguire il debug');
+                    return;
+                }
+                
+                const formData = new FormData();
+                formData.append('excelFile', fileInput.files[0]);
+                
+                // Disabilita il pulsante durante il debug
+                debugBtn.disabled = true;
+                debugBtn.innerHTML = '<i class="bi bi-hourglass"></i> Analisi...';
+                
+                fetch('/consulenze/debug-excel', {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        let message = `<h5>Informazioni sul file Excel</h5>`;
+                        message += `<p><strong>Colonne:</strong> ${data.info.columns.join(', ')}</p>`;
+                        message += `<p><strong>Righe:</strong> ${data.info.rows}</p>`;
+                        message += `<h5>Esempio dati:</h5>`;
+                        message += `<pre>${JSON.stringify(data.info.sample, null, 2)}</pre>`;
+                        
+                        // Mostra i risultati in un modal
+                        const modalDiv = document.createElement('div');
+                        modalDiv.className = 'modal fade';
+                        modalDiv.id = 'debugModal';
+                        modalDiv.innerHTML = `
+                            <div class="modal-dialog modal-lg">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">Debug Excel</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        ${message}
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Chiudi</button>
+                                    </div>
+                                </div>
+                            </div>
+                        `;
+                        document.body.appendChild(modalDiv);
+                        
+                        const modal = new bootstrap.Modal(document.getElementById('debugModal'));
+                        modal.show();
+                        
+                        // Rimuovi il modal dal DOM quando viene chiuso
+                        document.getElementById('debugModal').addEventListener('hidden.bs.modal', function() {
+                            document.body.removeChild(modalDiv);
+                        });
+                    } else {
+                        alert(`Errore: ${data.message}`);
+                    }
+                })
+                .catch(error => {
+                    console.error('Errore:', error);
+                    alert('Si è verificato un errore durante il debug del file');
+                })
+                .finally(() => {
+                    // Riabilita il pulsante
+                    debugBtn.disabled = false;
+                    debugBtn.innerHTML = '<i class="bi bi-bug"></i> Debug';
+                });
+            });
+        }
+        
+        // Gestione selezione righe
+        const selectAll = document.getElementById('selectAll');
+        const rowCheckboxes = document.querySelectorAll('.row-checkbox');
+        const selectedCount = document.getElementById('selectedCount');
+        const importBtn = document.getElementById('importBtn');
+        const importSelectedBtn = document.getElementById('importSelectedBtn');
+        
+        if (selectAll) {
+            selectAll.addEventListener('change', function() {
+                const isChecked = this.checked;
+                rowCheckboxes.forEach(checkbox => {
+                    checkbox.checked = isChecked;
+                });
+                updateSelectedCount();
+            });
+        }
+        
+        if (rowCheckboxes.length > 0) {
+            rowCheckboxes.forEach(checkbox => {
+                checkbox.addEventListener('change', updateSelectedCount);
+            });
+            
+            // Abilita il pulsante di importazione
+            importSelectedBtn.disabled = false;
+            
+            // Collega il pulsante "Seleziona Tutti"
+            document.getElementById('selectAllBtn').addEventListener('click', function() {
+                selectAll.checked = true;
+                rowCheckboxes.forEach(checkbox => {
+                    checkbox.checked = true;
+                });
+                updateSelectedCount();
+            });
+            
+            // Collega il pulsante "Importa Selezionati" al form
+            importSelectedBtn.addEventListener('click', function() {
+                document.getElementById('importSelectedForm').submit();
+            });
+        }
+        
+        function updateSelectedCount() {
+            const checkedCount = document.querySelectorAll('.row-checkbox:checked').length;
+            selectedCount.textContent = checkedCount;
+            importBtn.disabled = checkedCount === 0;
+        }
+        
+        // Inizializza il conteggio
+        if (rowCheckboxes.length > 0) {
+            updateSelectedCount();
+        }
+    });
+</script>
+{% endblock %}

@@ -1,0 +1,176 @@
+{% extends 'base.html' %}
+
+{% block title %}Dashboard - Gestione Consulenze Assicurative{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="d-flex justify-content-between align-items-center mb-4 animate__animated animate__fadeIn">
+        <h1 class="h3"><i class="bi bi-speedometer2"></i> Dashboard Cliente</h1>
+        <div>
+            <span class="badge bg-primary">{{ session.username }}</span>
+        </div>
+    </div>
+    
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+        <!-- Debug info -->
+        <div class="col-12 mb-3">
+            <div class="alert alert-info">
+                <p><strong>Debug - Pacchetti:</strong> {{ packages }}</p>
+                <p><strong>Tipo:</strong> {{ packages|type }}</p>
+                <p><strong>Contiene 'manage_consulenze'?</strong> {{ 'manage_consulenze' in packages }}</p>
+                <a href="{{ url_for('consulenze_index') }}" class="btn btn-sm btn-primary">
+                    Accedi direttamente a Consulenze
+                </a>
+            </div>
+        </div>
+        
+        {% if packages and 'manage_consulenze' in packages %}
+        <div class="col animate__animated animate__fadeInUp" style="animation-delay: 0.1s">
+            <div class="card-flip h-100">
+                <div class="card-flip-inner">
+                    <div class="card-flip-front">
+                        <div class="card card-tool h-100">
+                            <div class="card-body text-center">
+                                <div class="mb-3">
+                                    <i class="bi bi-file-earmark-text text-primary" style="font-size: 3.5rem;"></i>
+                                </div>
+                                <h5 class="card-title fw-bold">Gestione Consulenze Assicurative</h5>
+                                <p class="card-text text-muted">Gestisci clienti, questionari e comunicazioni assicurative</p>
+                            </div>
+                            <div class="card-footer bg-transparent border-0 text-center">
+                                <a href="{{ url_for('consulenze_index') }}" class="btn btn-primary">
+                                    <i class="bi bi-arrow-right-circle me-1"></i> Accedi
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-flip-back">
+                        <h4 class="mb-3">Funzionalità</h4>
+                        <ul class="list-unstyled text-start">
+                            <li><i class="bi bi-check-circle-fill me-2"></i> Anagrafica clienti completa</li>
+                            <li><i class="bi bi-check-circle-fill me-2"></i> Gestione questionari PDF</li>
+                            <li><i class="bi bi-check-circle-fill me-2"></i> Invio email automatico</li>
+                            <li><i class="bi bi-check-circle-fill me-2"></i> Filtri avanzati</li>
+                        </ul>
+                        <a href="{{ url_for('consulenze_index') }}" class="btn btn-light mt-3">
+                            <i class="bi bi-arrow-right-circle me-1"></i> Apri Tool
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+        
+        {% if packages and 'manage_drivers' in packages %}
+        <div class="col animate__animated animate__fadeInUp" style="animation-delay: 0.2s">
+            <div class="card-flip h-100">
+                <div class="card-flip-inner">
+                    <div class="card-flip-front">
+                        <div class="card card-tool h-100">
+                            <div class="card-body text-center">
+                                <div class="mb-3">
+                                    <i class="bi bi-truck text-success" style="font-size: 3.5rem;"></i>
+                                </div>
+                                <h5 class="card-title fw-bold">Gestione Autisti</h5>
+                                <p class="card-text text-muted">Gestisci autisti, veicoli e documentazione</p>
+                            </div>
+                            <div class="card-footer bg-transparent border-0 text-center">
+                                <a href="#" class="btn btn-success">
+                                    <i class="bi bi-arrow-right-circle me-1"></i> Accedi
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-flip-back" style="background: var(--success-gradient)">
+                        <h4 class="mb-3">Funzionalità</h4>
+                        <ul class="list-unstyled text-start">
+                            <li><i class="bi bi-check-circle-fill me-2"></i> Gestione autisti</li>
+                            <li><i class="bi bi-check-circle-fill me-2"></i> Monitoraggio veicoli</li>
+                            <li><i class="bi bi-check-circle-fill me-2"></i> Documenti di trasporto</li>
+                            <li><i class="bi bi-check-circle-fill me-2"></i> Scadenze patenti</li>
+                        </ul>
+                        <a href="#" class="btn btn-light mt-3">
+                            <i class="bi bi-arrow-right-circle me-1"></i> Apri Tool
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+        
+        <div class="col animate__animated animate__fadeInUp" style="animation-delay: 0.3s">
+            <div class="card-flip h-100">
+                <div class="card-flip-inner">
+                    <div class="card-flip-front">
+                        <div class="card card-tool h-100">
+                            <div class="card-body text-center">
+                                <div class="mb-3">
+                                    <i class="bi bi-receipt text-warning" style="font-size: 3.5rem;"></i>
+                                </div>
+                                <h5 class="card-title fw-bold">Fatture</h5>
+                                <p class="card-text text-muted">Gestisci fatture, pagamenti e scadenze</p>
+                            </div>
+                            <div class="card-footer bg-transparent border-0 text-center">
+                                <a href="#" class="btn btn-warning text-white">
+                                    <i class="bi bi-arrow-right-circle me-1"></i> Accedi
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-flip-back" style="background: var(--warning-gradient)">
+                        <h4 class="mb-3">Funzionalità</h4>
+                        <ul class="list-unstyled text-start">
+                            <li><i class="bi bi-check-circle-fill me-2"></i> Gestione fatture</li>
+                            <li><i class="bi bi-check-circle-fill me-2"></i> Monitoraggio pagamenti</li>
+                            <li><i class="bi bi-check-circle-fill me-2"></i> Scadenze fiscali</li>
+                            <li><i class="bi bi-check-circle-fill me-2"></i> Report finanziari</li>
+                        </ul>
+                        <a href="#" class="btn btn-light mt-3">
+                            <i class="bi bi-arrow-right-circle me-1"></i> Apri Tool
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="row mt-5 animate__animated animate__fadeIn" style="animation-delay: 0.5s">
+        <div class="col-12">
+            <div class="card shadow-sm">
+                <div class="card-header">
+                    <h5 class="mb-0"><i class="bi bi-info-circle"></i> Informazioni Utente</h5>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <p><strong>Username:</strong> {{ session.username }}</p>
+                            <p><strong>Ruolo:</strong> {{ session.role }}</p>
+                        </div>
+                        <div class="col-md-6">
+                            <p><strong>Pacchetti attivi:</strong></p>
+                            <div>
+                                {% for package in packages %}
+                                <span class="badge bg-primary me-2 mb-2">{{ package }}</span>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    // Inizializza le animazioni
+    document.addEventListener('DOMContentLoaded', function() {
+        // Aggiungi classe animate__animated a tutti gli elementi con classe card-tool
+        document.querySelectorAll('.card-tool').forEach(function(card, index) {
+            card.classList.add('animate__animated', 'animate__fadeInUp');
+            card.style.animationDelay = (index * 0.1) + 's';
+        });
+    });
+</script>
+{% endblock %}
