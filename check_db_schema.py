@@ -3,10 +3,10 @@ import psycopg2.extras
 
 def get_db_connection():
     conn = psycopg2.connect(
-        host='localhost',
-        database='insurance_management',
-        user='postgres',
-        password='postgres'
+        host='dpg-d042mnbuibrs73amtn5g-a.frankfurt-postgres.render.com',
+        database='crm_96md',
+        user='crm_96md_user',
+        password='JUXtm5gEKXkq03EYfpWntZT0QBbHaf2Z'
     )
     conn.autocommit = True
     return conn

@@ -1219,3 +1219,28 @@ DETAIL:  La chiave (codice_fiscale)=(RSSMRA80A01H501U) esiste già.
 2025-04-23 01:30:50,131 - app - INFO - has_package: Pacchetti per l'utente admin: ['manage_consulenze', 'manage_drivers'], tipo: <class 'list'>
 2025-04-23 01:30:50,131 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze', 'manage_drivers']: True
 2025-04-23 01:30:50,150 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 01:30:50] "GET /pdf_preview/RSSMRA80A01H501D_Questionario%20Base_20250423013049.pdf HTTP/1.1" 200 -
+2025-04-23 01:48:05,624 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.1.60:5000
+2025-04-23 01:48:05,625 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-04-23 01:48:05,627 - werkzeug - INFO -  * Restarting with stat
+2025-04-23 01:48:06,397 - werkzeug - WARNING -  * Debugger is active!
+2025-04-23 01:48:06,400 - werkzeug - INFO -  * Debugger PIN: 176-608-013
+2025-04-23 01:48:16,157 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 01:48:16] "[32mGET / HTTP/1.1[0m" 302 -
+2025-04-23 01:48:16,430 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 01:48:16] "GET /login HTTP/1.1" 200 -
+2025-04-23 01:48:16,589 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 01:48:16] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-04-23 01:48:16,871 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 01:48:16] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-04-23 01:48:22,367 - app - INFO - Login riuscito per l'utente stefano da IP 127.0.0.1
+2025-04-23 01:48:22,368 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 01:48:22] "[32mPOST /login HTTP/1.1[0m" 302 -
+2025-04-23 01:48:22,373 - app - INFO - Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-04-23 01:48:22,380 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 01:48:22] "GET /dashboard HTTP/1.1" 200 -
+2025-04-23 01:48:22,419 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 01:48:22] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-04-23 01:48:22,731 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 01:48:22] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-04-23 01:48:24,615 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-04-23 01:48:24,615 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-04-23 01:48:24,615 - app - INFO - consulenze_index: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-04-23 01:48:24,615 - app - INFO - consulenze_index: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-04-23 01:48:24,619 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 01:48:24] "GET /consulenze HTTP/1.1" 200 -
+2025-04-23 01:48:24,756 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 01:48:24] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-04-23 01:48:24,882 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 01:48:24] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
