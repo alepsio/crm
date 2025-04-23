@@ -1244,3 +1244,54 @@ DETAIL:  La chiave (codice_fiscale)=(RSSMRA80A01H501U) esiste già.
 2025-04-23 01:48:24,619 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 01:48:24] "GET /consulenze HTTP/1.1" 200 -
 2025-04-23 01:48:24,756 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 01:48:24] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
 2025-04-23 01:48:24,882 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 01:48:24] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-04-23 02:02:14,529 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-04-23 02:02:14,529 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-04-23 02:02:14,531 - werkzeug - INFO -  * Restarting with stat
+2025-04-23 02:02:16,554 - werkzeug - WARNING -  * Debugger is active!
+2025-04-23 02:02:16,556 - werkzeug - INFO -  * Debugger PIN: 176-608-013
+2025-04-23 02:03:08,328 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-04-23 02:03:08,328 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-04-23 02:03:08,330 - werkzeug - INFO -  * Restarting with stat
+2025-04-23 02:03:10,406 - werkzeug - WARNING -  * Debugger is active!
+2025-04-23 02:03:10,409 - werkzeug - INFO -  * Debugger PIN: 176-608-013
+2025-04-23 02:03:29,398 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.1.60:5000
+2025-04-23 02:03:29,399 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-04-23 02:03:29,400 - werkzeug - INFO -  * Restarting with stat
+2025-04-23 02:03:31,269 - werkzeug - WARNING -  * Debugger is active!
+2025-04-23 02:03:31,271 - werkzeug - INFO -  * Debugger PIN: 176-608-013
+2025-04-23 18:53:09,161 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.1.60:5000
+2025-04-23 18:53:09,162 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-04-23 18:53:09,172 - werkzeug - INFO -  * Restarting with stat
+2025-04-23 18:53:11,536 - werkzeug - WARNING -  * Debugger is active!
+2025-04-23 18:53:11,539 - werkzeug - INFO -  * Debugger PIN: 126-644-538
+2025-04-23 18:53:11,552 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 18:53:11] "[32mGET / HTTP/1.1[0m" 302 -
+2025-04-23 18:53:11,626 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 18:53:11] "GET /login HTTP/1.1" 200 -
+2025-04-23 18:53:12,169 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 18:53:12] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-04-23 18:53:12,190 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 18:53:12] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-04-23 18:53:12,377 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 18:53:12] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-04-23 18:53:18,441 - app - INFO - Login riuscito per l'utente admin da IP 127.0.0.1
+2025-04-23 18:53:18,442 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 18:53:18] "[32mPOST /login HTTP/1.1[0m" 302 -
+2025-04-23 18:53:18,450 - app - INFO - Pacchetti per l'utente admin: ['manage_consulenze', 'manage_drivers'], tipo: <class 'list'>
+2025-04-23 18:53:18,482 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 18:53:18] "GET /dashboard HTTP/1.1" 200 -
+2025-04-23 18:53:18,523 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 18:53:18] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-04-23 18:53:18,826 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 18:53:18] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-04-23 18:53:20,958 - app - INFO - has_package: Pacchetti per l'utente admin: ['manage_consulenze', 'manage_drivers'], tipo: <class 'list'>
+2025-04-23 18:53:20,959 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze', 'manage_drivers']: True
+2025-04-23 18:53:20,959 - app - INFO - consulenze_index: Pacchetti per l'utente admin: ['manage_consulenze', 'manage_drivers'], tipo: <class 'list'>
+2025-04-23 18:53:20,960 - app - INFO - consulenze_index: Verifica se 'manage_consulenze' è in ['manage_consulenze', 'manage_drivers']: True
+2025-04-23 18:53:20,982 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 18:53:20] "GET /consulenze HTTP/1.1" 200 -
+2025-04-23 18:53:21,087 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 18:53:21] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-04-23 18:53:21,212 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 18:53:21] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-04-23 19:01:17,293 - app - INFO - has_package: Pacchetti per l'utente admin: ['manage_consulenze', 'manage_drivers'], tipo: <class 'list'>
+2025-04-23 19:01:17,294 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze', 'manage_drivers']: True
+2025-04-23 19:01:18,394 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 19:01:18] "GET /consulenze/history HTTP/1.1" 200 -
+2025-04-23 19:01:18,480 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 19:01:18] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-04-23 19:01:18,480 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 19:01:18] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
