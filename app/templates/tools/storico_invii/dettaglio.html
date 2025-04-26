@@ -1,0 +1,612 @@
+{% extends 'base.html' %}
+
+{% block title %}Dettaglio Invio - Storico Invii{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="d-flex justify-content-between align-items-center mb-4 animate__animated animate__fadeIn">
+        <h1 class="h3"><i class="bi bi-envelope-paper"></i> Dettaglio Invio #{{ invio.id }}</h1>
+        <div>
+            <a href="{{ url_for('storico_invii') }}" class="btn btn-outline-primary">
+                <i class="bi bi-arrow-left"></i> Torna allo Storico
+            </a>
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col-md-8 animate__animated animate__fadeInUp" style="animation-delay: 0.1s">
+            <div class="card shadow-sm mb-4">
+                <div class="card-header bg-light">
+                    <h5 class="mb-0">Informazioni Invio</h5>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <table class="table table-sm">
+                                <tr>
+                                    <th class="w-40">ID:</th>
+                                    <td>{{ invio.id }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Cliente:</th>
+                                    <td>
+                                        <a href="{{ url_for('consulenze_cliente', cliente_id=invio.cliente_id) }}">
+                                            {{ invio.nome }} {{ invio.cognome }}
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Email:</th>
+                                    <td>{{ invio.email }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Documento:</th>
+                                    <td>
+                                        <a href="{{ url_for('download_questionario', filename=invio.filename) }}" target="_blank">
+                                            {{ invio.filename }}
+                                            <i class="bi bi-download ms-1"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Template:</th>
+                                    <td>{{ invio.template_nome }}</td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="col-md-6">
+                            <table class="table table-sm">
+                                <tr>
+                                    <th class="w-40">Stato:</th>
+                                    <td>
+                                        {% if invio.stato == 'inviato' %}
+                                        <span class="badge bg-info">Inviato</span>
+                                        {% elif invio.stato == 'aperto' %}
+                                        <span class="badge bg-primary">Aperto</span>
+                                        {% elif invio.stato == 'completato' %}
+                                        <span class="badge bg-success">Completato</span>
+                                        {% elif invio.stato == 'scaduto' %}
+                                        <span class="badge bg-warning">Scaduto</span>
+                                        {% elif invio.stato == 'reinviato' %}
+                                        <span class="badge bg-secondary">Reinviato</span>
+                                        {% else %}
+                                        <span class="badge bg-secondary">{{ invio.stato }}</span>
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Data Invio:</th>
+                                    <td>{{ invio.data_invio|datetime }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Data Apertura:</th>
+                                    <td>{{ invio.data_apertura|datetime if invio.data_apertura else 'Non aperto' }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Data Completamento:</th>
+                                    <td>{{ invio.data_completamento|datetime if invio.data_completamento else 'Non completato' }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Visualizzazioni:</th>
+                                    <td>{{ invio.numero_visualizzazioni }}</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-3">
+                        <h6 class="fw-bold">Testo Email:</h6>
+                        <div class="card bg-light">
+                            <div class="card-body">
+                                <pre class="mb-0" style="white-space: pre-wrap;">{{ invio.testo_email }}</pre>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-3">
+                        <h6 class="fw-bold">Note:</h6>
+                        <div class="card bg-light">
+                            <div class="card-body">
+                                <div id="noteDisplay">
+                                    {% if invio.note %}
+                                    <pre class="mb-0" style="white-space: pre-wrap;">{{ invio.note }}</pre>
+                                    {% else %}
+                                    <p class="text-muted mb-0">Nessuna nota disponibile</p>
+                                    {% endif %}
+                                </div>
+                                <div class="d-flex justify-content-end mt-2">
+                                    <button class="btn btn-sm btn-outline-primary" id="editNoteBtn">
+                                        <i class="bi bi-pencil"></i> Modifica
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer d-flex justify-content-between">
+                    <div>
+                        <button type="button" class="btn btn-outline-success" onclick="reinviaQuestionario({{ invio.id }})">
+                            <i class="bi bi-arrow-repeat"></i> Reinvia
+                        </button>
+                        {% if invio.stato != 'completato' %}
+                        <button type="button" class="btn btn-outline-primary" onclick="cambiaStato({{ invio.id }}, 'completato')">
+                            <i class="bi bi-check-circle"></i> Segna come Completato
+                        </button>
+                        {% endif %}
+                    </div>
+                    <div>
+                        <button type="button" class="btn btn-outline-danger" onclick="eliminaInvio({{ invio.id }})">
+                            <i class="bi bi-trash"></i> Elimina
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card shadow-sm animate__animated animate__fadeInUp" style="animation-delay: 0.2s">
+                <div class="card-header bg-light">
+                    <h5 class="mb-0">Timeline Interazioni</h5>
+                </div>
+                <div class="card-body p-0">
+                    <div class="table-responsive">
+                        <table class="table table-hover mb-0">
+                            <thead class="table-light">
+                                <tr>
+                                    <th>Data</th>
+                                    <th>Tipo</th>
+                                    <th>Dettagli</th>
+                                    <th>IP</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% if interazioni %}
+                                    {% for interazione in interazioni %}
+                                    <tr>
+                                        <td>{{ interazione.data_interazione|datetime }}</td>
+                                        <td>
+                                            {% if interazione.tipo_interazione == 'invio' %}
+                                            <span class="badge bg-info">Invio</span>
+                                            {% elif interazione.tipo_interazione == 'apertura' %}
+                                            <span class="badge bg-primary">Apertura</span>
+                                            {% elif interazione.tipo_interazione == 'click' %}
+                                            <span class="badge bg-warning">Click</span>
+                                            {% elif interazione.tipo_interazione == 'completamento' %}
+                                            <span class="badge bg-success">Completamento</span>
+                                            {% elif interazione.tipo_interazione == 'reinvio' %}
+                                            <span class="badge bg-secondary">Reinvio</span>
+                                            {% else %}
+                                            <span class="badge bg-secondary">{{ interazione.tipo_interazione }}</span>
+                                            {% endif %}
+                                        </td>
+                                        <td>{{ interazione.dettagli }}</td>
+                                        <td>{{ interazione.ip_address }}</td>
+                                    </tr>
+                                    {% endfor %}
+                                {% else %}
+                                    <tr>
+                                        <td colspan="4" class="text-center py-4">
+                                            <div class="alert alert-info mb-0">
+                                                <i class="bi bi-info-circle me-2"></i> Nessuna interazione registrata.
+                                            </div>
+                                        </td>
+                                    </tr>
+                                {% endif %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-4 animate__animated animate__fadeInUp" style="animation-delay: 0.3s">
+            <div class="card shadow-sm mb-4">
+                <div class="card-header bg-light">
+                    <h5 class="mb-0">Informazioni Tecniche</h5>
+                </div>
+                <div class="card-body">
+                    <table class="table table-sm">
+                        <tr>
+                            <th>IP Apertura:</th>
+                            <td>{{ invio.ip_apertura or 'N/A' }}</td>
+                        </tr>
+                        <tr>
+                            <th>User Agent:</th>
+                            <td>
+                                <small class="text-muted">{{ invio.user_agent or 'N/A' }}</small>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Inviato da:</th>
+                            <td>{{ invio.inviato_da_username or 'Sistema' }}</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            
+            {% if reinvii %}
+            <div class="card shadow-sm mb-4">
+                <div class="card-header bg-light">
+                    <h5 class="mb-0">Storico Reinvii</h5>
+                </div>
+                <div class="card-body p-0">
+                    <div class="list-group list-group-flush">
+                        {% for reinvio in reinvii %}
+                        <div class="list-group-item">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <small class="text-muted">{{ reinvio.data_reinvio|date }}</small>
+                                <a href="{{ url_for('storico_invii_dettaglio', invio_id=reinvio.questionario_nuovo_id) }}" class="btn btn-sm btn-outline-primary">
+                                    <i class="bi bi-eye"></i>
+                                </a>
+                            </div>
+                            <div class="mt-1">
+                                <strong>Motivo:</strong> {{ reinvio.motivo }}
+                            </div>
+                            {% if reinvio.inviato_da_username %}
+                            <div class="mt-1">
+                                <small>Inviato da: {{ reinvio.inviato_da_username }}</small>
+                            </div>
+                            {% endif %}
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+            
+            <div class="card shadow-sm">
+                <div class="card-header bg-light">
+                    <h5 class="mb-0">Azioni Rapide</h5>
+                </div>
+                <div class="card-body">
+                    <div class="d-grid gap-2">
+                        <a href="{{ url_for('download_questionario', filename=invio.filename) }}" class="btn btn-outline-primary" target="_blank">
+                            <i class="bi bi-file-earmark-pdf"></i> Visualizza Documento
+                        </a>
+                        <button type="button" class="btn btn-outline-secondary" onclick="inviaPromemoria({{ invio.id }})">
+                            <i class="bi bi-bell"></i> Invia Promemoria
+                        </button>
+                        <a href="{{ url_for('consulenze_cliente', cliente_id=invio.cliente_id) }}" class="btn btn-outline-info">
+                            <i class="bi bi-person"></i> Profilo Cliente
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Reinvio -->
+<div class="modal fade" id="reinvioModal" tabindex="-1" aria-labelledby="reinvioModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="reinvioModalLabel">Reinvia Questionario</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="reinvioForm">
+                    <input type="hidden" id="invio_id" name="invio_id" value="{{ invio.id }}">
+                    <div class="mb-3">
+                        <label for="motivo_reinvio" class="form-label">Motivo del reinvio</label>
+                        <select class="form-select" id="motivo_reinvio" name="motivo_reinvio" required>
+                            <option value="">Seleziona un motivo</option>
+                            <option value="Non ricevuto">Cliente non ha ricevuto l'email</option>
+                            <option value="Problemi tecnici">Problemi tecnici</option>
+                            <option value="Richiesta cliente">Richiesta del cliente</option>
+                            <option value="Scaduto">Questionario scaduto</option>
+                            <option value="Altro">Altro</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="note_reinvio" class="form-label">Note aggiuntive</label>
+                        <textarea class="form-control" id="note_reinvio" name="note_reinvio" rows="3"></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annulla</button>
+                <button type="button" class="btn btn-primary" id="confermaReinvioBtn">Reinvia</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Note -->
+<div class="modal fade" id="noteModal" tabindex="-1" aria-labelledby="noteModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="noteModalLabel">Modifica Note</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="noteForm">
+                    <div class="mb-3">
+                        <label for="note" class="form-label">Note</label>
+                        <textarea class="form-control" id="note" name="note" rows="5">{{ invio.note }}</textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annulla</button>
+                <button type="button" class="btn btn-primary" id="salvaNoteBtn">Salva</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Promemoria -->
+<div class="modal fade" id="promemoriaModal" tabindex="-1" aria-labelledby="promemoriaModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="promemoriaModalLabel">Invia Promemoria</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="promemoriaForm">
+                    <div class="mb-3">
+                        <label for="oggetto_promemoria" class="form-label">Oggetto Email</label>
+                        <input type="text" class="form-control" id="oggetto_promemoria" name="oggetto_promemoria" value="Promemoria: Questionario in attesa di compilazione">
+                    </div>
+                    <div class="mb-3">
+                        <label for="testo_promemoria" class="form-label">Testo Email</label>
+                        <textarea class="form-control" id="testo_promemoria" name="testo_promemoria" rows="5">Gentile {{ invio.nome }},
+
+Le ricordiamo che è ancora in attesa di compilazione il questionario che Le abbiamo inviato in data {{ invio.data_invio|date }}.
+
+Per qualsiasi necessità o chiarimento, non esiti a contattarci.
+
+Cordiali saluti,
+{{ current_user.nome }} {{ current_user.cognome }}</textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annulla</button>
+                <button type="button" class="btn btn-primary" id="inviaPromemoriaBtn">Invia</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Conferma Eliminazione -->
+<div class="modal fade" id="eliminaModal" tabindex="-1" aria-labelledby="eliminaModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="eliminaModalLabel">Conferma Eliminazione</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>Sei sicuro di voler eliminare questo invio?</p>
+                <p class="text-danger"><strong>Attenzione:</strong> Questa azione non può essere annullata.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annulla</button>
+                <button type="button" class="btn btn-danger" id="confermaEliminaBtn">Elimina</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Gestione modifica note
+        document.getElementById('editNoteBtn').addEventListener('click', function() {
+            const noteModal = new bootstrap.Modal(document.getElementById('noteModal'));
+            noteModal.show();
+        });
+        
+        // Gestione salvataggio note
+        document.getElementById('salvaNoteBtn').addEventListener('click', function() {
+            const note = document.getElementById('note').value;
+            
+            fetch('/storico-invii/salva-note', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    invio_id: {{ invio.id }},
+                    note: note
+                }),
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    // Aggiorna il display delle note senza ricaricare la pagina
+                    const noteDisplay = document.getElementById('noteDisplay');
+                    if (note) {
+                        noteDisplay.innerHTML = `<pre class="mb-0" style="white-space: pre-wrap;">${note}</pre>`;
+                    } else {
+                        noteDisplay.innerHTML = `<p class="text-muted mb-0">Nessuna nota disponibile</p>`;
+                    }
+                    
+                    bootstrap.Modal.getInstance(document.getElementById('noteModal')).hide();
+                    
+                    // Mostra un messaggio di successo
+                    const alertDiv = document.createElement('div');
+                    alertDiv.className = 'alert alert-success alert-dismissible fade show';
+                    alertDiv.innerHTML = `
+                        <i class="bi bi-check-circle me-2"></i> Note salvate con successo!
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    `;
+                    document.querySelector('.container-fluid').prepend(alertDiv);
+                    
+                    // Rimuovi l'alert dopo 3 secondi
+                    setTimeout(() => {
+                        alertDiv.remove();
+                    }, 3000);
+                } else {
+                    alert('Errore nel salvataggio delle note: ' + data.message);
+                }
+            })
+            .catch(error => {
+                console.error('Errore:', error);
+                alert('Si è verificato un errore nel salvataggio delle note');
+            });
+        });
+        
+        // Gestione reinvio questionario
+        window.reinviaQuestionario = function(invioId) {
+            const reinvioModal = new bootstrap.Modal(document.getElementById('reinvioModal'));
+            reinvioModal.show();
+        };
+        
+        // Gestione conferma reinvio
+        document.getElementById('confermaReinvioBtn').addEventListener('click', function() {
+            const motivo = document.getElementById('motivo_reinvio').value;
+            const note = document.getElementById('note_reinvio').value;
+            
+            if (!motivo) {
+                alert('Seleziona un motivo per il reinvio');
+                return;
+            }
+            
+            fetch('/storico-invii/reinvia', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    invio_id: {{ invio.id }},
+                    motivo: motivo,
+                    note: note
+                }),
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert('Questionario reinviato con successo!');
+                    location.reload();
+                } else {
+                    alert('Errore nel reinvio: ' + data.message);
+                }
+            })
+            .catch(error => {
+                console.error('Errore:', error);
+                alert('Si è verificato un errore nel reinvio del questionario');
+            });
+        });
+        
+        // Gestione invio promemoria
+        window.inviaPromemoria = function(invioId) {
+            const promemoriaModal = new bootstrap.Modal(document.getElementById('promemoriaModal'));
+            promemoriaModal.show();
+        };
+        
+        // Gestione conferma invio promemoria
+        document.getElementById('inviaPromemoriaBtn').addEventListener('click', function() {
+            const oggetto = document.getElementById('oggetto_promemoria').value;
+            const testo = document.getElementById('testo_promemoria').value;
+            
+            if (!oggetto || !testo) {
+                alert('Compila tutti i campi');
+                return;
+            }
+            
+            fetch('/storico-invii/invia-promemoria', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    invio_id: {{ invio.id }},
+                    oggetto: oggetto,
+                    testo: testo
+                }),
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert('Promemoria inviato con successo!');
+                    bootstrap.Modal.getInstance(document.getElementById('promemoriaModal')).hide();
+                    
+                    // Aggiungi l'interazione alla tabella senza ricaricare la pagina
+                    const tbody = document.querySelector('table tbody');
+                    const now = new Date().toLocaleString();
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td>${now}</td>
+                        <td><span class="badge bg-info">Promemoria</span></td>
+                        <td>Promemoria inviato</td>
+                        <td>-</td>
+                    `;
+                    tbody.prepend(row);
+                } else {
+                    alert('Errore nell\'invio del promemoria: ' + data.message);
+                }
+            })
+            .catch(error => {
+                console.error('Errore:', error);
+                alert('Si è verificato un errore nell\'invio del promemoria');
+            });
+        });
+        
+        // Gestione cambio stato
+        window.cambiaStato = function(invioId, stato) {
+            if (!confirm(`Sei sicuro di voler cambiare lo stato a "${stato}"?`)) {
+                return;
+            }
+            
+            fetch('/storico-invii/cambia-stato', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    invio_id: invioId,
+                    stato: stato
+                }),
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert('Stato aggiornato con successo!');
+                    location.reload();
+                } else {
+                    alert('Errore nell\'aggiornamento dello stato: ' + data.message);
+                }
+            })
+            .catch(error => {
+                console.error('Errore:', error);
+                alert('Si è verificato un errore nell\'aggiornamento dello stato');
+            });
+        };
+        
+        // Gestione eliminazione invio
+        window.eliminaInvio = function(invioId) {
+            const eliminaModal = new bootstrap.Modal(document.getElementById('eliminaModal'));
+            eliminaModal.show();
+        };
+        
+        // Gestione conferma eliminazione
+        document.getElementById('confermaEliminaBtn').addEventListener('click', function() {
+            fetch('/storico-invii/elimina', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    invio_id: {{ invio.id }}
+                }),
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert('Invio eliminato con successo!');
+                    window.location.href = "{{ url_for('storico_invii') }}";
+                } else {
+                    alert('Errore nell\'eliminazione dell\'invio: ' + data.message);
+                }
+            })
+            .catch(error => {
+                console.error('Errore:', error);
+                alert('Si è verificato un errore nell\'eliminazione dell\'invio');
+            });
+        });
+    });
+</script>
+{% endblock %}

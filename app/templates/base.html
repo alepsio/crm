@@ -157,7 +157,7 @@
     
     <div class="container-fluid">
         <div class="row">
-            {% if session.user_id and request.path.startswith('/consulenze') %}
+            {% if session.user_id and (request.path.startswith('/consulenze') or request.path.startswith('/storico-invii')) %}
             <div class="col-md-3 col-lg-2 d-md-block sidebar collapse">
                 <div class="position-sticky pt-3">
                     <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-2 mb-1 text-muted">
@@ -186,6 +186,12 @@
                             <a class="nav-link {% if request.path == '/consulenze/email' %}active{% endif %}" 
                                href="{{ url_for('consulenze_email') }}">
                                 <i class="bi bi-envelope"></i> Configurazione Email
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {% if request.path.startswith('/storico-invii') %}active{% endif %}" 
+                               href="{{ url_for('storico_invii') }}">
+                                <i class="bi bi-clock-history"></i> Storico Invii
                             </a>
                         </li>
                     </ul>

@@ -23,13 +23,16 @@ def main():
     for table in tables:
         print(f"- {table[0]}")
     
-    # Ottieni la struttura della tabella clienti_assicurativi
-    print("\nStruttura della tabella clienti_assicurativi:")
-    cur.execute("""
-        SELECT column_name, data_type, character_maximum_length 
-        FROM information_schema.columns 
-        WHERE table_name = 'clienti_assicurativi'
-    """)
+    # Ottieni la struttura di tutte le tabelle
+    for table in tables:
+        table_name = table[0]
+        print(f"\nStruttura della tabella {table_name}:")
+        cur.execute("""
+            SELECT column_name, data_type, character_maximum_length 
+            FROM information_schema.columns 
+            WHERE table_name = %s
+            ORDER BY ordinal_position
+        """, (table_name,))
     
     columns = cur.fetchall()
     print("Colonna | Tipo | Lunghezza massima")

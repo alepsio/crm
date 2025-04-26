@@ -1295,3 +1295,718 @@ DETAIL:  La chiave (codice_fiscale)=(RSSMRA80A01H501U) esiste già.
 2025-04-23 19:01:18,394 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 19:01:18] "GET /consulenze/history HTTP/1.1" 200 -
 2025-04-23 19:01:18,480 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 19:01:18] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
 2025-04-23 19:01:18,480 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 19:01:18] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-04-23 19:04:51,654 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.1.60:5000
+2025-04-23 19:04:51,654 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-04-23 19:04:51,657 - werkzeug - INFO -  * Restarting with stat
+2025-04-23 19:04:54,085 - werkzeug - WARNING -  * Debugger is active!
+2025-04-23 19:04:54,089 - werkzeug - INFO -  * Debugger PIN: 126-644-538
+2025-04-23 19:04:56,543 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 19:04:56] "[32mGET /consulenze/history HTTP/1.1[0m" 302 -
+2025-04-23 19:04:56,589 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 19:04:56] "GET /login HTTP/1.1" 200 -
+2025-04-23 19:04:56,834 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 19:04:56] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-04-23 19:04:56,987 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 19:04:56] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-04-23 19:05:01,507 - app - INFO - Login riuscito per l'utente admin da IP 127.0.0.1
+2025-04-23 19:05:01,509 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 19:05:01] "[32mPOST /login HTTP/1.1[0m" 302 -
+2025-04-23 19:05:01,514 - app - INFO - Pacchetti per l'utente admin: ['manage_consulenze', 'manage_drivers'], tipo: <class 'list'>
+2025-04-23 19:05:01,522 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 19:05:01] "GET /dashboard HTTP/1.1" 200 -
+2025-04-23 19:05:01,567 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 19:05:01] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-04-23 19:05:01,875 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 19:05:01] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-04-23 19:05:04,579 - app - INFO - has_package: Pacchetti per l'utente admin: ['manage_consulenze', 'manage_drivers'], tipo: <class 'list'>
+2025-04-23 19:05:04,579 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze', 'manage_drivers']: True
+2025-04-23 19:05:04,579 - app - INFO - consulenze_index: Pacchetti per l'utente admin: ['manage_consulenze', 'manage_drivers'], tipo: <class 'list'>
+2025-04-23 19:05:04,580 - app - INFO - consulenze_index: Verifica se 'manage_consulenze' è in ['manage_consulenze', 'manage_drivers']: True
+2025-04-23 19:05:04,584 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 19:05:04] "GET /consulenze HTTP/1.1" 200 -
+2025-04-23 19:05:04,886 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 19:05:04] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-04-23 19:05:04,935 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 19:05:04] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-04-23 19:05:08,102 - app - INFO - has_package: Pacchetti per l'utente admin: ['manage_consulenze', 'manage_drivers'], tipo: <class 'list'>
+2025-04-23 19:05:08,102 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze', 'manage_drivers']: True
+2025-04-23 19:05:09,119 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 19:05:09] "GET /consulenze/history HTTP/1.1" 200 -
+2025-04-23 19:05:09,159 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 19:05:09] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-04-23 19:05:09,160 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 19:05:09] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-04-23 19:07:18,674 - werkzeug - INFO -  * Detected change in 'c:\\Users\\aless\\Desktop\\CRM\\check_db_schema.py', reloading
+2025-04-23 19:07:18,967 - werkzeug - INFO -  * Restarting with stat
+2025-04-23 19:07:23,444 - werkzeug - WARNING -  * Debugger is active!
+2025-04-23 19:07:23,447 - werkzeug - INFO -  * Debugger PIN: 126-644-538
+2025-04-23 19:11:45,531 - werkzeug - INFO -  * Detected change in 'c:\\Users\\aless\\Desktop\\CRM\\create_storico_invii_table.py', reloading
+2025-04-23 19:11:45,760 - werkzeug - INFO -  * Restarting with stat
+2025-04-23 19:11:48,370 - werkzeug - WARNING -  * Debugger is active!
+2025-04-23 19:11:48,374 - werkzeug - INFO -  * Debugger PIN: 126-644-538
+2025-04-23 19:16:48,547 - werkzeug - INFO -  * Detected change in 'c:\\Users\\aless\\Desktop\\CRM\\app.py', reloading
+2025-04-23 19:16:49,989 - werkzeug - INFO -  * Restarting with stat
+2025-04-23 19:16:55,773 - werkzeug - WARNING -  * Debugger is active!
+2025-04-23 19:16:55,777 - werkzeug - INFO -  * Debugger PIN: 126-644-538
+2025-04-23 19:16:55,791 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 19:16:55] "[32mGET /consulenze/history HTTP/1.1[0m" 302 -
+2025-04-23 19:16:55,819 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 19:16:55] "GET /login HTTP/1.1" 200 -
+2025-04-23 19:16:55,926 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 19:16:55] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-04-23 19:16:56,184 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 19:16:56] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-04-23 19:17:03,399 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 19:17:03] "[35m[1mPOST /login HTTP/1.1[0m" 500 -
+2025-04-23 19:17:03,456 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 19:17:03] "GET /login?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+2025-04-23 19:17:03,461 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 19:17:03] "GET /login?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
+2025-04-23 19:17:03,785 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 19:17:03] "[36mGET /login?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2025-04-23 19:17:04,052 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 19:17:04] "[36mGET /login?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2025-04-23 19:18:46,273 - werkzeug - INFO -  * Detected change in 'c:\\Users\\aless\\Desktop\\CRM\\app.py', reloading
+2025-04-23 19:18:46,989 - werkzeug - INFO -  * Restarting with stat
+2025-04-23 19:18:52,800 - werkzeug - WARNING -  * Debugger is active!
+2025-04-23 19:18:52,804 - werkzeug - INFO -  * Debugger PIN: 126-644-538
+2025-04-23 19:18:53,837 - app - INFO - Login riuscito per l'utente admin da IP 127.0.0.1
+2025-04-23 19:18:53,838 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 19:18:53] "[32mPOST /login HTTP/1.1[0m" 302 -
+2025-04-23 19:18:53,845 - app - INFO - Pacchetti per l'utente admin: ['manage_consulenze', 'manage_drivers'], tipo: <class 'list'>
+2025-04-23 19:18:53,866 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 19:18:53] "GET /dashboard HTTP/1.1" 200 -
+2025-04-23 19:18:53,972 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 19:18:53] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-04-23 19:18:54,240 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 19:18:54] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-04-23 19:18:55,939 - app - INFO - has_package: Pacchetti per l'utente admin: ['manage_consulenze', 'manage_drivers'], tipo: <class 'list'>
+2025-04-23 19:18:55,940 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze', 'manage_drivers']: True
+2025-04-23 19:18:55,940 - app - INFO - consulenze_index: Pacchetti per l'utente admin: ['manage_consulenze', 'manage_drivers'], tipo: <class 'list'>
+2025-04-23 19:18:55,940 - app - INFO - consulenze_index: Verifica se 'manage_consulenze' è in ['manage_consulenze', 'manage_drivers']: True
+2025-04-23 19:18:55,945 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 19:18:55] "GET /consulenze HTTP/1.1" 200 -
+2025-04-23 19:18:56,069 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 19:18:56] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-04-23 19:18:56,209 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 19:18:56] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-04-23 19:18:57,967 - app - INFO - has_package: Pacchetti per l'utente admin: ['manage_consulenze', 'manage_drivers'], tipo: <class 'list'>
+2025-04-23 19:18:57,968 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze', 'manage_drivers']: True
+2025-04-23 19:18:58,800 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 19:18:58] "GET /consulenze/history HTTP/1.1" 200 -
+2025-04-23 19:18:58,845 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 19:18:58] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-04-23 19:18:59,153 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 19:18:59] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-04-23 19:19:09,878 - app - INFO - has_package: Pacchetti per l'utente admin: ['manage_consulenze', 'manage_drivers'], tipo: <class 'list'>
+2025-04-23 19:19:09,878 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze', 'manage_drivers']: True
+2025-04-23 19:19:11,257 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 19:19:11] "GET /consulenze/history HTTP/1.1" 200 -
+2025-04-23 19:19:11,294 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 19:19:11] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-04-23 19:19:11,295 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 19:19:11] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-04-23 19:19:42,040 - werkzeug - INFO -  * Detected change in 'c:\\Users\\aless\\Desktop\\CRM\\app.py', reloading
+2025-04-23 19:19:42,391 - werkzeug - INFO -  * Restarting with stat
+2025-04-23 19:19:48,000 - werkzeug - WARNING -  * Debugger is active!
+2025-04-23 19:19:48,003 - werkzeug - INFO -  * Debugger PIN: 126-644-538
+2025-04-23 19:19:51,668 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 19:19:51] "[32mGET /consulenze/history HTTP/1.1[0m" 302 -
+2025-04-23 19:19:51,700 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 19:19:51] "GET /login HTTP/1.1" 200 -
+2025-04-23 19:19:51,970 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 19:19:51] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-04-23 19:19:52,096 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 19:19:52] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-04-23 19:19:57,237 - app - INFO - Login riuscito per l'utente admin da IP 127.0.0.1
+2025-04-23 19:19:57,238 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 19:19:57] "[32mPOST /login HTTP/1.1[0m" 302 -
+2025-04-23 19:19:57,244 - app - INFO - Pacchetti per l'utente admin: ['manage_consulenze', 'manage_drivers'], tipo: <class 'list'>
+2025-04-23 19:19:57,252 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 19:19:57] "GET /dashboard HTTP/1.1" 200 -
+2025-04-23 19:19:57,296 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 19:19:57] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-04-23 19:19:57,610 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 19:19:57] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-04-23 19:20:01,776 - app - INFO - has_package: Pacchetti per l'utente admin: ['manage_consulenze', 'manage_drivers'], tipo: <class 'list'>
+2025-04-23 19:20:01,777 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze', 'manage_drivers']: True
+2025-04-23 19:20:01,777 - app - INFO - consulenze_index: Pacchetti per l'utente admin: ['manage_consulenze', 'manage_drivers'], tipo: <class 'list'>
+2025-04-23 19:20:01,777 - app - INFO - consulenze_index: Verifica se 'manage_consulenze' è in ['manage_consulenze', 'manage_drivers']: True
+2025-04-23 19:20:01,783 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 19:20:01] "GET /consulenze HTTP/1.1" 200 -
+2025-04-23 19:20:02,087 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 19:20:02] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-04-23 19:20:02,135 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 19:20:02] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-04-23 19:20:03,524 - app - INFO - has_package: Pacchetti per l'utente admin: ['manage_consulenze', 'manage_drivers'], tipo: <class 'list'>
+2025-04-23 19:20:03,524 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze', 'manage_drivers']: True
+2025-04-23 19:20:04,570 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 19:20:04] "GET /consulenze/history HTTP/1.1" 200 -
+2025-04-23 19:20:04,608 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 19:20:04] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-04-23 19:20:04,611 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 19:20:04] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-04-23 19:20:19,055 - app - INFO - has_package: Pacchetti per l'utente admin: ['manage_consulenze', 'manage_drivers'], tipo: <class 'list'>
+2025-04-23 19:20:19,056 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze', 'manage_drivers']: True
+2025-04-23 19:20:19,975 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 19:20:19] "GET /consulenze/questionari HTTP/1.1" 200 -
+2025-04-23 19:20:20,025 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 19:20:20] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-04-23 19:20:20,026 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 19:20:20] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-04-23 19:20:22,907 - app - INFO - has_package: Pacchetti per l'utente admin: ['manage_consulenze', 'manage_drivers'], tipo: <class 'list'>
+2025-04-23 19:20:22,907 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze', 'manage_drivers']: True
+2025-04-23 19:20:24,089 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 19:20:24] "GET /consulenze/questionari HTTP/1.1" 200 -
+2025-04-23 19:20:24,131 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 19:20:24] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-04-23 19:20:24,131 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 19:20:24] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-04-23 19:20:28,232 - werkzeug - INFO -  * Detected change in 'c:\\Users\\aless\\Desktop\\CRM\\app.py', reloading
+2025-04-23 19:20:28,438 - werkzeug - INFO -  * Restarting with stat
+2025-04-23 19:20:31,189 - werkzeug - WARNING -  * Debugger is active!
+2025-04-23 19:20:31,192 - werkzeug - INFO -  * Debugger PIN: 126-644-538
+2025-04-23 19:20:33,141 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 19:20:33] "[32mGET /consulenze/history HTTP/1.1[0m" 302 -
+2025-04-23 19:20:33,167 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 19:20:33] "GET /login HTTP/1.1" 200 -
+2025-04-23 19:20:33,445 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 19:20:33] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-04-23 19:20:33,519 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 19:20:33] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-04-23 19:20:39,667 - app - INFO - Login riuscito per l'utente admin da IP 127.0.0.1
+2025-04-23 19:20:39,668 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 19:20:39] "[32mPOST /login HTTP/1.1[0m" 302 -
+2025-04-23 19:20:39,676 - app - INFO - Pacchetti per l'utente admin: ['manage_consulenze', 'manage_drivers'], tipo: <class 'list'>
+2025-04-23 19:20:39,684 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 19:20:39] "GET /dashboard HTTP/1.1" 200 -
+2025-04-23 19:20:39,738 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 19:20:39] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-04-23 19:20:40,060 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 19:20:40] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-04-23 19:20:42,018 - app - INFO - has_package: Pacchetti per l'utente admin: ['manage_consulenze', 'manage_drivers'], tipo: <class 'list'>
+2025-04-23 19:20:42,018 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze', 'manage_drivers']: True
+2025-04-23 19:20:42,019 - app - INFO - consulenze_index: Pacchetti per l'utente admin: ['manage_consulenze', 'manage_drivers'], tipo: <class 'list'>
+2025-04-23 19:20:42,021 - app - INFO - consulenze_index: Verifica se 'manage_consulenze' è in ['manage_consulenze', 'manage_drivers']: True
+2025-04-23 19:20:42,031 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 19:20:42] "GET /consulenze HTTP/1.1" 200 -
+2025-04-23 19:20:42,188 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 19:20:42] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-04-23 19:20:42,285 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 19:20:42] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-04-23 19:20:44,152 - app - INFO - has_package: Pacchetti per l'utente admin: ['manage_consulenze', 'manage_drivers'], tipo: <class 'list'>
+2025-04-23 19:20:44,153 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze', 'manage_drivers']: True
+2025-04-23 19:20:45,060 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 19:20:45] "[35m[1mGET /storico-invii HTTP/1.1[0m" 500 -
+2025-04-23 19:20:45,105 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 19:20:45] "GET /storico-invii?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+2025-04-23 19:20:45,412 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 19:20:45] "GET /storico-invii?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
+2025-04-23 19:20:45,736 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 19:20:45] "GET /storico-invii?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+2025-04-23 19:20:46,007 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 19:20:46] "[36mGET /storico-invii?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2025-04-23 19:20:55,176 - app - INFO - has_package: Pacchetti per l'utente admin: ['manage_consulenze', 'manage_drivers'], tipo: <class 'list'>
+2025-04-23 19:20:55,176 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze', 'manage_drivers']: True
+2025-04-23 19:20:56,662 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 19:20:56] "[35m[1mGET /storico-invii HTTP/1.1[0m" 500 -
+2025-04-23 19:20:56,701 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 19:20:56] "[36mGET /storico-invii?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2025-04-23 19:20:57,007 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 19:20:57] "[36mGET /storico-invii?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2025-04-23 19:20:57,344 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 19:20:57] "[36mGET /storico-invii?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2025-04-23 19:20:59,095 - app - INFO - has_package: Pacchetti per l'utente admin: ['manage_consulenze', 'manage_drivers'], tipo: <class 'list'>
+2025-04-23 19:20:59,095 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze', 'manage_drivers']: True
+2025-04-23 19:21:00,044 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 19:21:00] "GET /consulenze/history HTTP/1.1" 200 -
+2025-04-23 19:21:00,085 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 19:21:00] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-04-23 19:21:00,403 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 19:21:00] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-04-23 19:21:03,249 - app - INFO - has_package: Pacchetti per l'utente admin: ['manage_consulenze', 'manage_drivers'], tipo: <class 'list'>
+2025-04-23 19:21:03,249 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze', 'manage_drivers']: True
+2025-04-23 19:21:04,603 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 19:21:04] "[35m[1mGET /storico-invii HTTP/1.1[0m" 500 -
+2025-04-23 19:21:04,655 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 19:21:04] "[36mGET /storico-invii?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2025-04-23 19:21:04,656 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 19:21:04] "[36mGET /storico-invii?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2025-04-23 19:21:05,003 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 19:21:05] "[36mGET /storico-invii?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2025-04-23 19:21:10,665 - app - INFO - has_package: Pacchetti per l'utente admin: ['manage_consulenze', 'manage_drivers'], tipo: <class 'list'>
+2025-04-23 19:21:10,666 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze', 'manage_drivers']: True
+2025-04-23 19:21:14,276 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 19:21:14] "[35m[1mGET /storico-invii HTTP/1.1[0m" 500 -
+2025-04-23 19:21:14,308 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 19:21:14] "[36mGET /storico-invii?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2025-04-23 19:21:14,624 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 19:21:14] "[36mGET /storico-invii?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2025-04-23 19:21:14,939 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 19:21:14] "[36mGET /storico-invii?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2025-04-23 19:21:15,193 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 19:21:15] "[36mGET /storico-invii?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2025-04-23 19:22:22,692 - werkzeug - INFO -  * Detected change in 'c:\\Users\\aless\\Desktop\\CRM\\app.py', reloading
+2025-04-23 19:22:22,988 - werkzeug - INFO -  * Restarting with stat
+2025-04-23 19:22:25,683 - werkzeug - WARNING -  * Debugger is active!
+2025-04-23 19:22:25,686 - werkzeug - INFO -  * Debugger PIN: 126-644-538
+2025-04-23 19:22:37,964 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 19:22:37] "[32mGET /storico-invii HTTP/1.1[0m" 302 -
+2025-04-23 19:22:37,993 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 19:22:37] "GET /login HTTP/1.1" 200 -
+2025-04-23 19:22:38,258 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 19:22:38] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-04-23 19:22:38,375 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 19:22:38] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-04-23 19:22:39,599 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-04-23 19:22:39,600 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-04-23 19:22:39,602 - werkzeug - INFO -  * Restarting with stat
+2025-04-23 19:22:42,306 - werkzeug - WARNING -  * Debugger is active!
+2025-04-23 19:22:42,310 - werkzeug - INFO -  * Debugger PIN: 126-644-538
+2025-04-23 19:22:51,580 - app - INFO - Login riuscito per l'utente admin da IP 127.0.0.1
+2025-04-23 19:22:51,581 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 19:22:51] "[32mPOST /login HTTP/1.1[0m" 302 -
+2025-04-23 19:22:51,591 - app - INFO - Pacchetti per l'utente admin: ['manage_consulenze', 'manage_drivers'], tipo: <class 'list'>
+2025-04-23 19:22:51,600 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 19:22:51] "GET /dashboard HTTP/1.1" 200 -
+2025-04-23 19:22:51,799 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 19:22:51] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-04-23 19:22:52,114 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 19:22:52] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-04-23 19:22:53,793 - app - INFO - has_package: Pacchetti per l'utente admin: ['manage_consulenze', 'manage_drivers'], tipo: <class 'list'>
+2025-04-23 19:22:53,794 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze', 'manage_drivers']: True
+2025-04-23 19:22:53,794 - app - INFO - consulenze_index: Pacchetti per l'utente admin: ['manage_consulenze', 'manage_drivers'], tipo: <class 'list'>
+2025-04-23 19:22:53,794 - app - INFO - consulenze_index: Verifica se 'manage_consulenze' è in ['manage_consulenze', 'manage_drivers']: True
+2025-04-23 19:22:53,801 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 19:22:53] "GET /consulenze HTTP/1.1" 200 -
+2025-04-23 19:22:53,939 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 19:22:53] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-04-23 19:22:54,062 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 19:22:54] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-04-23 19:22:54,834 - app - INFO - has_package: Pacchetti per l'utente admin: ['manage_consulenze', 'manage_drivers'], tipo: <class 'list'>
+2025-04-23 19:22:54,834 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze', 'manage_drivers']: True
+2025-04-23 19:22:57,784 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 19:22:57] "[35m[1mGET /storico-invii HTTP/1.1[0m" 500 -
+2025-04-23 19:22:57,830 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 19:22:57] "[36mGET /storico-invii?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2025-04-23 19:22:58,136 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 19:22:58] "[36mGET /storico-invii?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2025-04-23 19:22:58,467 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 19:22:58] "[36mGET /storico-invii?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2025-04-23 19:22:58,716 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 19:22:58] "[36mGET /storico-invii?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2025-04-23 19:27:41,080 - app - INFO - has_package: Pacchetti per l'utente admin: ['manage_consulenze', 'manage_drivers'], tipo: <class 'list'>
+2025-04-23 19:27:41,081 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze', 'manage_drivers']: True
+2025-04-23 19:27:41,776 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 19:27:41] "[35m[1mGET /storico-invii HTTP/1.1[0m" 500 -
+2025-04-23 19:27:41,811 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 19:27:41] "[36mGET /storico-invii?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2025-04-23 19:27:41,811 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 19:27:41] "[36mGET /storico-invii?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2025-04-23 19:27:42,137 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 19:27:42] "[36mGET /storico-invii?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2025-04-23 19:27:42,403 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 19:27:42] "[36mGET /storico-invii?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2025-04-23 19:29:45,435 - werkzeug - INFO -  * Detected change in 'c:\\Users\\aless\\Desktop\\CRM\\app.py', reloading
+2025-04-23 19:29:45,715 - werkzeug - INFO -  * Restarting with stat
+2025-04-23 19:29:48,328 - werkzeug - WARNING -  * Debugger is active!
+2025-04-23 19:29:48,331 - werkzeug - INFO -  * Debugger PIN: 126-644-538
+2025-04-23 20:01:10,148 - werkzeug - INFO -  * Detected change in 'c:\\Users\\aless\\Desktop\\CRM\\app.py', reloading
+2025-04-23 20:01:10,783 - werkzeug - INFO -  * Restarting with stat
+2025-04-23 20:01:14,072 - werkzeug - WARNING -  * Debugger is active!
+2025-04-23 20:01:14,076 - werkzeug - INFO -  * Debugger PIN: 126-644-538
+2025-04-23 20:01:14,379 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 20:01:14] "[32mGET /storico-invii HTTP/1.1[0m" 302 -
+2025-04-23 20:01:14,405 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 20:01:14] "GET /login HTTP/1.1" 200 -
+2025-04-23 20:01:14,682 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 20:01:14] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-04-23 20:01:14,769 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 20:01:14] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-04-23 20:01:19,456 - app - INFO - Login riuscito per l'utente admin da IP 127.0.0.1
+2025-04-23 20:01:19,457 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 20:01:19] "[32mPOST /login HTTP/1.1[0m" 302 -
+2025-04-23 20:01:19,472 - app - INFO - Pacchetti per l'utente admin: ['manage_consulenze', 'manage_drivers'], tipo: <class 'list'>
+2025-04-23 20:01:19,484 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 20:01:19] "GET /dashboard HTTP/1.1" 200 -
+2025-04-23 20:01:19,537 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 20:01:19] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-04-23 20:01:19,842 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 20:01:19] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-04-23 20:01:22,552 - app - INFO - has_package: Pacchetti per l'utente admin: ['manage_consulenze', 'manage_drivers'], tipo: <class 'list'>
+2025-04-23 20:01:22,554 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze', 'manage_drivers']: True
+2025-04-23 20:01:22,554 - app - INFO - consulenze_index: Pacchetti per l'utente admin: ['manage_consulenze', 'manage_drivers'], tipo: <class 'list'>
+2025-04-23 20:01:22,554 - app - INFO - consulenze_index: Verifica se 'manage_consulenze' è in ['manage_consulenze', 'manage_drivers']: True
+2025-04-23 20:01:22,560 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 20:01:22] "GET /consulenze HTTP/1.1" 200 -
+2025-04-23 20:01:22,868 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 20:01:22] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-04-23 20:01:22,917 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 20:01:22] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-04-23 20:01:25,437 - app - INFO - has_package: Pacchetti per l'utente admin: ['manage_consulenze', 'manage_drivers'], tipo: <class 'list'>
+2025-04-23 20:01:25,437 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze', 'manage_drivers']: True
+2025-04-23 20:01:26,065 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 20:01:26] "[35m[1mGET /storico-invii HTTP/1.1[0m" 500 -
+2025-04-23 20:01:26,108 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 20:01:26] "[36mGET /storico-invii?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2025-04-23 20:01:26,109 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 20:01:26] "[36mGET /storico-invii?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2025-04-23 20:01:26,453 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 20:01:26] "[36mGET /storico-invii?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2025-04-23 20:01:26,717 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 20:01:26] "[36mGET /storico-invii?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2025-04-23 20:01:27,955 - app - INFO - has_package: Pacchetti per l'utente admin: ['manage_consulenze', 'manage_drivers'], tipo: <class 'list'>
+2025-04-23 20:01:27,955 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze', 'manage_drivers']: True
+2025-04-23 20:01:29,035 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 20:01:29] "GET /consulenze/history HTTP/1.1" 200 -
+2025-04-23 20:01:29,079 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 20:01:29] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-04-23 20:01:29,388 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 20:01:29] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-04-23 20:01:32,171 - app - INFO - has_package: Pacchetti per l'utente admin: ['manage_consulenze', 'manage_drivers'], tipo: <class 'list'>
+2025-04-23 20:01:32,171 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze', 'manage_drivers']: True
+2025-04-23 20:01:33,577 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 20:01:33] "[35m[1mGET /storico-invii HTTP/1.1[0m" 500 -
+2025-04-23 20:01:33,624 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 20:01:33] "[36mGET /storico-invii?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2025-04-23 20:01:33,624 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 20:01:33] "[36mGET /storico-invii?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2025-04-23 20:01:33,960 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 20:01:33] "[36mGET /storico-invii?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2025-04-23 20:05:22,033 - app - INFO - has_package: Pacchetti per l'utente admin: ['manage_consulenze', 'manage_drivers'], tipo: <class 'list'>
+2025-04-23 20:05:22,033 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze', 'manage_drivers']: True
+2025-04-23 20:05:22,724 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 20:05:22] "[35m[1mGET /storico-invii HTTP/1.1[0m" 500 -
+2025-04-23 20:05:22,765 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 20:05:22] "[36mGET /storico-invii?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2025-04-23 20:05:22,766 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 20:05:22] "[36mGET /storico-invii?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2025-04-23 20:05:23,100 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 20:05:23] "[36mGET /storico-invii?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2025-04-23 20:05:23,366 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 20:05:23] "[36mGET /storico-invii?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2025-04-23 20:09:06,061 - app - INFO - has_package: Pacchetti per l'utente admin: ['manage_consulenze', 'manage_drivers'], tipo: <class 'list'>
+2025-04-23 20:09:06,062 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze', 'manage_drivers']: True
+2025-04-23 20:09:07,295 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 20:09:07] "GET /storico-invii HTTP/1.1" 200 -
+2025-04-23 20:09:07,361 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 20:09:07] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-04-23 20:09:07,363 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 20:09:07] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-04-23 20:09:10,030 - app - INFO - Pacchetti per l'utente admin: ['manage_consulenze', 'manage_drivers'], tipo: <class 'list'>
+2025-04-23 20:09:10,031 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 20:09:10] "GET /dashboard HTTP/1.1" 200 -
+2025-04-23 20:09:10,135 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 20:09:10] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-04-23 20:09:10,297 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 20:09:10] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-04-23 20:09:11,938 - app - INFO - has_package: Pacchetti per l'utente admin: ['manage_consulenze', 'manage_drivers'], tipo: <class 'list'>
+2025-04-23 20:09:11,938 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze', 'manage_drivers']: True
+2025-04-23 20:09:11,938 - app - INFO - consulenze_index: Pacchetti per l'utente admin: ['manage_consulenze', 'manage_drivers'], tipo: <class 'list'>
+2025-04-23 20:09:11,938 - app - INFO - consulenze_index: Verifica se 'manage_consulenze' è in ['manage_consulenze', 'manage_drivers']: True
+2025-04-23 20:09:11,940 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 20:09:11] "GET /consulenze HTTP/1.1" 200 -
+2025-04-23 20:09:12,248 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 20:09:12] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-04-23 20:09:12,294 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 20:09:12] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-04-23 20:09:14,555 - app - INFO - has_package: Pacchetti per l'utente admin: ['manage_consulenze', 'manage_drivers'], tipo: <class 'list'>
+2025-04-23 20:09:14,555 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze', 'manage_drivers']: True
+2025-04-23 20:09:15,317 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 20:09:15] "GET /storico-invii HTTP/1.1" 200 -
+2025-04-23 20:09:15,377 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 20:09:15] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-04-23 20:09:15,379 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 20:09:15] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-04-23 20:09:45,405 - werkzeug - INFO -  * Detected change in 'c:\\Users\\aless\\Desktop\\CRM\\app.py', reloading
+2025-04-23 20:09:45,640 - werkzeug - INFO -  * Restarting with stat
+2025-04-23 20:09:48,844 - werkzeug - WARNING -  * Debugger is active!
+2025-04-23 20:09:48,847 - werkzeug - INFO -  * Debugger PIN: 126-644-538
+2025-04-23 20:10:20,199 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 20:10:20] "[32mGET /consulenze HTTP/1.1[0m" 302 -
+2025-04-23 20:10:20,331 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 20:10:20] "GET /login HTTP/1.1" 200 -
+2025-04-23 20:10:20,501 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 20:10:20] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-04-23 20:10:20,704 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 20:10:20] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-04-23 20:10:24,771 - app - INFO - Login riuscito per l'utente admin da IP 127.0.0.1
+2025-04-23 20:10:24,773 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 20:10:24] "[32mPOST /login HTTP/1.1[0m" 302 -
+2025-04-23 20:10:24,778 - app - INFO - Pacchetti per l'utente admin: ['manage_consulenze', 'manage_drivers'], tipo: <class 'list'>
+2025-04-23 20:10:24,784 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 20:10:24] "GET /dashboard HTTP/1.1" 200 -
+2025-04-23 20:10:25,151 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 20:10:25] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-04-23 20:10:25,152 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 20:10:25] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-04-23 20:10:26,878 - app - INFO - has_package: Pacchetti per l'utente admin: ['manage_consulenze', 'manage_drivers'], tipo: <class 'list'>
+2025-04-23 20:10:26,878 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze', 'manage_drivers']: True
+2025-04-23 20:10:26,878 - app - INFO - consulenze_index: Pacchetti per l'utente admin: ['manage_consulenze', 'manage_drivers'], tipo: <class 'list'>
+2025-04-23 20:10:26,879 - app - INFO - consulenze_index: Verifica se 'manage_consulenze' è in ['manage_consulenze', 'manage_drivers']: True
+2025-04-23 20:10:26,884 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 20:10:26] "GET /consulenze HTTP/1.1" 200 -
+2025-04-23 20:10:27,192 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 20:10:27] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-04-23 20:10:27,241 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 20:10:27] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-04-23 20:10:28,770 - app - INFO - has_package: Pacchetti per l'utente admin: ['manage_consulenze', 'manage_drivers'], tipo: <class 'list'>
+2025-04-23 20:10:28,770 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze', 'manage_drivers']: True
+2025-04-23 20:10:31,211 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 20:10:31] "GET /consulenze/history HTTP/1.1" 200 -
+2025-04-23 20:10:31,254 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 20:10:31] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-04-23 20:10:31,256 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 20:10:31] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-04-23 20:10:34,833 - app - INFO - has_package: Pacchetti per l'utente admin: ['manage_consulenze', 'manage_drivers'], tipo: <class 'list'>
+2025-04-23 20:10:34,833 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze', 'manage_drivers']: True
+2025-04-23 20:10:36,808 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 20:10:36] "GET /storico-invii HTTP/1.1" 200 -
+2025-04-23 20:10:36,853 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 20:10:36] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-04-23 20:10:36,854 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 20:10:36] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-04-23 20:10:52,458 - app - INFO - has_package: Pacchetti per l'utente admin: ['manage_consulenze', 'manage_drivers'], tipo: <class 'list'>
+2025-04-23 20:10:52,459 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze', 'manage_drivers']: True
+2025-04-23 20:10:52,459 - app - INFO - consulenze_index: Pacchetti per l'utente admin: ['manage_consulenze', 'manage_drivers'], tipo: <class 'list'>
+2025-04-23 20:10:52,459 - app - INFO - consulenze_index: Verifica se 'manage_consulenze' è in ['manage_consulenze', 'manage_drivers']: True
+2025-04-23 20:10:52,462 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 20:10:52] "GET /consulenze HTTP/1.1" 200 -
+2025-04-23 20:10:52,553 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 20:10:52] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-04-23 20:10:52,709 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 20:10:52] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-04-23 20:17:59,887 - werkzeug - INFO -  * Detected change in 'c:\\Users\\aless\\Desktop\\CRM\\app.py', reloading
+2025-04-23 20:18:00,783 - werkzeug - INFO -  * Restarting with stat
+2025-04-23 20:18:04,065 - werkzeug - WARNING -  * Debugger is active!
+2025-04-23 20:18:04,068 - werkzeug - INFO -  * Debugger PIN: 126-644-538
+2025-04-23 20:18:04,084 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 20:18:04] "[32mGET /consulenze HTTP/1.1[0m" 302 -
+2025-04-23 20:18:04,114 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 20:18:04] "GET /login HTTP/1.1" 200 -
+2025-04-23 20:18:04,229 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 20:18:04] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-04-23 20:18:04,484 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 20:18:04] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-04-23 20:18:10,663 - app - INFO - Login riuscito per l'utente admin da IP 127.0.0.1
+2025-04-23 20:18:10,664 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 20:18:10] "[32mPOST /login HTTP/1.1[0m" 302 -
+2025-04-23 20:18:10,672 - app - INFO - Pacchetti per l'utente admin: ['manage_consulenze', 'manage_drivers'], tipo: <class 'list'>
+2025-04-23 20:18:10,681 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 20:18:10] "GET /dashboard HTTP/1.1" 200 -
+2025-04-23 20:18:10,726 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 20:18:10] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-04-23 20:18:11,035 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 20:18:11] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-04-23 20:18:12,696 - app - INFO - has_package: Pacchetti per l'utente admin: ['manage_consulenze', 'manage_drivers'], tipo: <class 'list'>
+2025-04-23 20:18:12,696 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze', 'manage_drivers']: True
+2025-04-23 20:18:12,697 - app - INFO - consulenze_index: Pacchetti per l'utente admin: ['manage_consulenze', 'manage_drivers'], tipo: <class 'list'>
+2025-04-23 20:18:12,697 - app - INFO - consulenze_index: Verifica se 'manage_consulenze' è in ['manage_consulenze', 'manage_drivers']: True
+2025-04-23 20:18:12,703 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 20:18:12] "GET /consulenze HTTP/1.1" 200 -
+2025-04-23 20:18:12,855 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 20:18:12] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-04-23 20:18:12,966 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 20:18:12] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-04-23 20:18:16,129 - app - INFO - has_package: Pacchetti per l'utente admin: ['manage_consulenze', 'manage_drivers'], tipo: <class 'list'>
+2025-04-23 20:18:16,129 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze', 'manage_drivers']: True
+2025-04-23 20:18:17,494 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 20:18:17] "GET /consulenze/history HTTP/1.1" 200 -
+2025-04-23 20:18:17,532 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 20:18:17] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-04-23 20:18:17,842 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 20:18:17] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-04-23 20:18:20,633 - app - INFO - has_package: Pacchetti per l'utente admin: ['manage_consulenze', 'manage_drivers'], tipo: <class 'list'>
+2025-04-23 20:18:20,633 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze', 'manage_drivers']: True
+2025-04-23 20:18:21,857 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 20:18:21] "GET /storico-invii HTTP/1.1" 200 -
+2025-04-23 20:18:21,896 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 20:18:21] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-04-23 20:18:21,897 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 20:18:21] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-04-23 20:18:28,174 - app - INFO - has_package: Pacchetti per l'utente admin: ['manage_consulenze', 'manage_drivers'], tipo: <class 'list'>
+2025-04-23 20:18:28,174 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze', 'manage_drivers']: True
+2025-04-23 20:18:29,758 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 20:18:29] "GET /consulenze/history HTTP/1.1" 200 -
+2025-04-23 20:18:29,805 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 20:18:29] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-04-23 20:18:29,806 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 20:18:29] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-04-23 20:18:33,312 - app - INFO - has_package: Pacchetti per l'utente admin: ['manage_consulenze', 'manage_drivers'], tipo: <class 'list'>
+2025-04-23 20:18:33,312 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze', 'manage_drivers']: True
+2025-04-23 20:18:34,246 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 20:18:34] "GET /storico-invii HTTP/1.1" 200 -
+2025-04-23 20:18:34,290 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 20:18:34] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-04-23 20:18:34,290 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 20:18:34] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-04-23 20:18:51,403 - app - INFO - has_package: Pacchetti per l'utente admin: ['manage_consulenze', 'manage_drivers'], tipo: <class 'list'>
+2025-04-23 20:18:51,404 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze', 'manage_drivers']: True
+2025-04-23 20:18:52,595 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 20:18:52] "[35m[1mGET /storico-invii?export=pdf HTTP/1.1[0m" 501 -
+2025-04-23 20:18:56,579 - app - INFO - has_package: Pacchetti per l'utente admin: ['manage_consulenze', 'manage_drivers'], tipo: <class 'list'>
+2025-04-23 20:18:56,580 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze', 'manage_drivers']: True
+2025-04-23 20:18:58,649 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 20:18:58] "[35m[1mGET /storico-invii?export=excel HTTP/1.1[0m" 500 -
+2025-04-23 20:18:58,685 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 20:18:58] "[36mGET /storico-invii?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2025-04-23 20:18:58,991 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 20:18:58] "[36mGET /storico-invii?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2025-04-23 20:18:59,306 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 20:18:59] "[36mGET /storico-invii?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2025-04-23 20:18:59,574 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 20:18:59] "[36mGET /storico-invii?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2025-04-23 20:20:01,565 - werkzeug - INFO -  * Detected change in 'c:\\Users\\aless\\Desktop\\CRM\\app.py', reloading
+2025-04-23 20:20:01,825 - werkzeug - INFO -  * Restarting with stat
+2025-04-23 20:20:04,245 - werkzeug - WARNING -  * Debugger is active!
+2025-04-23 20:20:04,249 - werkzeug - INFO -  * Debugger PIN: 126-644-538
+2025-04-23 20:20:21,445 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 20:20:21] "[32mGET /storico-invii HTTP/1.1[0m" 302 -
+2025-04-23 20:20:21,473 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 20:20:21] "GET /login HTTP/1.1" 200 -
+2025-04-23 20:20:21,755 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 20:20:21] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-04-23 20:20:21,837 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 20:20:21] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-04-23 20:20:26,171 - app - INFO - Login riuscito per l'utente admin da IP 127.0.0.1
+2025-04-23 20:20:26,172 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 20:20:26] "[32mPOST /login HTTP/1.1[0m" 302 -
+2025-04-23 20:20:26,178 - app - INFO - Pacchetti per l'utente admin: ['manage_consulenze', 'manage_drivers'], tipo: <class 'list'>
+2025-04-23 20:20:26,186 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 20:20:26] "GET /dashboard HTTP/1.1" 200 -
+2025-04-23 20:20:26,241 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 20:20:26] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-04-23 20:20:26,545 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 20:20:26] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-04-23 20:20:28,093 - app - INFO - has_package: Pacchetti per l'utente admin: ['manage_consulenze', 'manage_drivers'], tipo: <class 'list'>
+2025-04-23 20:20:28,093 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze', 'manage_drivers']: True
+2025-04-23 20:20:28,093 - app - INFO - consulenze_index: Pacchetti per l'utente admin: ['manage_consulenze', 'manage_drivers'], tipo: <class 'list'>
+2025-04-23 20:20:28,094 - app - INFO - consulenze_index: Verifica se 'manage_consulenze' è in ['manage_consulenze', 'manage_drivers']: True
+2025-04-23 20:20:28,100 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 20:20:28] "GET /consulenze HTTP/1.1" 200 -
+2025-04-23 20:20:28,221 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 20:20:28] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-04-23 20:20:28,359 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 20:20:28] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-04-23 20:20:31,158 - app - INFO - has_package: Pacchetti per l'utente admin: ['manage_consulenze', 'manage_drivers'], tipo: <class 'list'>
+2025-04-23 20:20:31,159 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze', 'manage_drivers']: True
+2025-04-23 20:20:31,792 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 20:20:31] "GET /storico-invii HTTP/1.1" 200 -
+2025-04-23 20:20:31,835 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 20:20:31] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-04-23 20:20:32,151 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 20:20:32] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-04-23 20:20:35,354 - app - INFO - has_package: Pacchetti per l'utente admin: ['manage_consulenze', 'manage_drivers'], tipo: <class 'list'>
+2025-04-23 20:20:35,354 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze', 'manage_drivers']: True
+2025-04-23 20:20:35,411 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 20:20:35] "GET /consulenze/import HTTP/1.1" 200 -
+2025-04-23 20:20:35,498 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 20:20:35] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-04-23 20:20:35,624 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 20:20:35] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-04-23 20:20:36,897 - app - INFO - has_package: Pacchetti per l'utente admin: ['manage_consulenze', 'manage_drivers'], tipo: <class 'list'>
+2025-04-23 20:20:36,898 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze', 'manage_drivers']: True
+2025-04-23 20:20:38,671 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 20:20:38] "GET /storico-invii HTTP/1.1" 200 -
+2025-04-23 20:20:38,715 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 20:20:38] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-04-23 20:20:39,021 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 20:20:39] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-04-23 20:20:47,287 - app - INFO - has_package: Pacchetti per l'utente admin: ['manage_consulenze', 'manage_drivers'], tipo: <class 'list'>
+2025-04-23 20:20:47,288 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze', 'manage_drivers']: True
+2025-04-23 20:20:50,294 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 20:20:50] "GET /consulenze/panoramica HTTP/1.1" 200 -
+2025-04-23 20:20:50,346 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 20:20:50] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-04-23 20:20:50,348 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 20:20:50] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-04-23 20:21:10,827 - app - INFO - has_package: Pacchetti per l'utente admin: ['manage_consulenze', 'manage_drivers'], tipo: <class 'list'>
+2025-04-23 20:21:10,827 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze', 'manage_drivers']: True
+2025-04-23 20:21:13,379 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 20:21:13] "PUT /consulenze/cliente/1 HTTP/1.1" 200 -
+2025-04-23 20:21:19,521 - app - INFO - has_package: Pacchetti per l'utente admin: ['manage_consulenze', 'manage_drivers'], tipo: <class 'list'>
+2025-04-23 20:21:19,522 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze', 'manage_drivers']: True
+2025-04-23 20:21:20,673 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 20:21:20] "GET /consulenze/questionari HTTP/1.1" 200 -
+2025-04-23 20:21:20,733 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 20:21:20] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-04-23 20:21:21,040 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 20:21:21] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-04-23 20:21:26,338 - app - INFO - has_package: Pacchetti per l'utente admin: ['manage_consulenze', 'manage_drivers'], tipo: <class 'list'>
+2025-04-23 20:21:26,338 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze', 'manage_drivers']: True
+2025-04-23 20:21:27,185 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 20:21:27] "POST /consulenze/questionari HTTP/1.1" 200 -
+2025-04-23 20:21:27,200 - app - INFO - has_package: Pacchetti per l'utente admin: ['manage_consulenze', 'manage_drivers'], tipo: <class 'list'>
+2025-04-23 20:21:27,201 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze', 'manage_drivers']: True
+2025-04-23 20:21:27,224 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 20:21:27] "GET /pdf_preview/RSSMRA80A01H501D_Questionario%20Base_20250423202127.pdf HTTP/1.1" 200 -
+2025-04-23 20:21:31,160 - app - INFO - has_package: Pacchetti per l'utente admin: ['manage_consulenze', 'manage_drivers'], tipo: <class 'list'>
+2025-04-23 20:21:31,160 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze', 'manage_drivers']: True
+2025-04-23 20:21:36,126 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 20:21:36] "POST /consulenze/questionari HTTP/1.1" 200 -
+2025-04-23 20:21:38,042 - app - INFO - has_package: Pacchetti per l'utente admin: ['manage_consulenze', 'manage_drivers'], tipo: <class 'list'>
+2025-04-23 20:21:38,043 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze', 'manage_drivers']: True
+2025-04-23 20:21:38,836 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 20:21:38] "GET /consulenze/questionari HTTP/1.1" 200 -
+2025-04-23 20:21:38,899 - app - INFO - has_package: Pacchetti per l'utente admin: ['manage_consulenze', 'manage_drivers'], tipo: <class 'list'>
+2025-04-23 20:21:38,899 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze', 'manage_drivers']: True
+2025-04-23 20:21:38,901 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 20:21:38] "[36mGET /pdf_preview/RSSMRA80A01H501D_Questionario%20Base_20250423202127.pdf HTTP/1.1[0m" 304 -
+2025-04-23 20:21:41,286 - app - INFO - has_package: Pacchetti per l'utente admin: ['manage_consulenze', 'manage_drivers'], tipo: <class 'list'>
+2025-04-23 20:21:41,286 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze', 'manage_drivers']: True
+2025-04-23 20:21:42,088 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 20:21:42] "GET /storico-invii HTTP/1.1" 200 -
+2025-04-23 20:21:42,136 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 20:21:42] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-04-23 20:21:42,137 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 20:21:42] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-04-23 20:21:46,640 - app - INFO - has_package: Pacchetti per l'utente admin: ['manage_consulenze', 'manage_drivers'], tipo: <class 'list'>
+2025-04-23 20:21:46,641 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze', 'manage_drivers']: True
+2025-04-23 20:21:47,367 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 20:21:47] "GET /consulenze/panoramica HTTP/1.1" 200 -
+2025-04-23 20:21:47,415 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 20:21:47] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-04-23 20:21:47,416 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 20:21:47] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-04-23 20:21:51,019 - app - INFO - has_package: Pacchetti per l'utente admin: ['manage_consulenze', 'manage_drivers'], tipo: <class 'list'>
+2025-04-23 20:21:51,019 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze', 'manage_drivers']: True
+2025-04-23 20:21:52,122 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 20:21:52] "GET /storico-invii HTTP/1.1" 200 -
+2025-04-23 20:21:52,174 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 20:21:52] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-04-23 20:21:52,174 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 20:21:52] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-04-23 20:31:07,099 - werkzeug - INFO -  * Detected change in 'c:\\Users\\aless\\Desktop\\CRM\\app.py', reloading
+2025-04-23 20:31:07,328 - werkzeug - INFO -  * Restarting with stat
+2025-04-23 20:31:10,058 - werkzeug - WARNING -  * Debugger is active!
+2025-04-23 20:31:10,062 - werkzeug - INFO -  * Debugger PIN: 126-644-538
+2025-04-23 20:31:11,235 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 20:31:11] "[32mGET /storico-invii HTTP/1.1[0m" 302 -
+2025-04-23 20:31:11,260 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 20:31:11] "GET /login HTTP/1.1" 200 -
+2025-04-23 20:31:11,524 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 20:31:11] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-04-23 20:31:11,628 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 20:31:11] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-04-23 20:31:17,738 - app - INFO - Login riuscito per l'utente admin da IP 127.0.0.1
+2025-04-23 20:31:17,741 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 20:31:17] "[32mPOST /login HTTP/1.1[0m" 302 -
+2025-04-23 20:31:17,750 - app - INFO - Pacchetti per l'utente admin: ['manage_consulenze', 'manage_drivers'], tipo: <class 'list'>
+2025-04-23 20:31:17,759 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 20:31:17] "GET /dashboard HTTP/1.1" 200 -
+2025-04-23 20:31:17,808 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 20:31:17] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-04-23 20:31:18,125 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 20:31:18] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-04-23 20:31:25,872 - app - INFO - has_package: Pacchetti per l'utente admin: ['manage_consulenze', 'manage_drivers'], tipo: <class 'list'>
+2025-04-23 20:31:25,873 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze', 'manage_drivers']: True
+2025-04-23 20:31:25,874 - app - INFO - consulenze_index: Pacchetti per l'utente admin: ['manage_consulenze', 'manage_drivers'], tipo: <class 'list'>
+2025-04-23 20:31:25,874 - app - INFO - consulenze_index: Verifica se 'manage_consulenze' è in ['manage_consulenze', 'manage_drivers']: True
+2025-04-23 20:31:25,882 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 20:31:25] "GET /consulenze HTTP/1.1" 200 -
+2025-04-23 20:31:26,178 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 20:31:26] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-04-23 20:31:26,272 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 20:31:26] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-04-23 20:31:28,509 - app - INFO - has_package: Pacchetti per l'utente admin: ['manage_consulenze', 'manage_drivers'], tipo: <class 'list'>
+2025-04-23 20:31:28,510 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze', 'manage_drivers']: True
+2025-04-23 20:31:29,174 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 20:31:29] "GET /consulenze/questionari HTTP/1.1" 200 -
+2025-04-23 20:31:29,218 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 20:31:29] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-04-23 20:31:29,219 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 20:31:29] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-04-23 20:31:32,751 - app - INFO - has_package: Pacchetti per l'utente admin: ['manage_consulenze', 'manage_drivers'], tipo: <class 'list'>
+2025-04-23 20:31:32,751 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze', 'manage_drivers']: True
+2025-04-23 20:31:33,714 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 20:31:33] "POST /consulenze/questionari HTTP/1.1" 200 -
+2025-04-23 20:31:33,728 - app - INFO - has_package: Pacchetti per l'utente admin: ['manage_consulenze', 'manage_drivers'], tipo: <class 'list'>
+2025-04-23 20:31:33,729 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze', 'manage_drivers']: True
+2025-04-23 20:31:33,755 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 20:31:33] "GET /pdf_preview/RSSMRA80A01H501D_Questionario%20Base_20250423203133.pdf HTTP/1.1" 200 -
+2025-04-23 20:31:35,538 - app - INFO - has_package: Pacchetti per l'utente admin: ['manage_consulenze', 'manage_drivers'], tipo: <class 'list'>
+2025-04-23 20:31:35,539 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze', 'manage_drivers']: True
+2025-04-23 20:31:41,132 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 20:31:41] "POST /consulenze/questionari HTTP/1.1" 200 -
+2025-04-23 20:31:42,321 - app - INFO - has_package: Pacchetti per l'utente admin: ['manage_consulenze', 'manage_drivers'], tipo: <class 'list'>
+2025-04-23 20:31:42,321 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze', 'manage_drivers']: True
+2025-04-23 20:31:42,932 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 20:31:42] "GET /consulenze/questionari HTTP/1.1" 200 -
+2025-04-23 20:31:42,977 - app - INFO - has_package: Pacchetti per l'utente admin: ['manage_consulenze', 'manage_drivers'], tipo: <class 'list'>
+2025-04-23 20:31:42,978 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze', 'manage_drivers']: True
+2025-04-23 20:31:42,978 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 20:31:42] "[36mGET /pdf_preview/RSSMRA80A01H501D_Questionario%20Base_20250423203133.pdf HTTP/1.1[0m" 304 -
+2025-04-23 20:31:45,999 - app - INFO - has_package: Pacchetti per l'utente admin: ['manage_consulenze', 'manage_drivers'], tipo: <class 'list'>
+2025-04-23 20:31:45,999 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze', 'manage_drivers']: True
+2025-04-23 20:31:46,874 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 20:31:46] "GET /storico-invii HTTP/1.1" 200 -
+2025-04-23 20:31:46,917 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 20:31:46] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-04-23 20:31:46,918 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 20:31:46] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-04-23 20:31:57,498 - app - INFO - has_package: Pacchetti per l'utente admin: ['manage_consulenze', 'manage_drivers'], tipo: <class 'list'>
+2025-04-23 20:31:57,498 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze', 'manage_drivers']: True
+2025-04-23 20:31:58,222 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 20:31:58] "[35m[1mGET /storico-invii/1 HTTP/1.1[0m" 500 -
+2025-04-23 20:31:58,266 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 20:31:58] "GET /storico-invii/1?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+2025-04-23 20:31:58,266 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 20:31:58] "GET /storico-invii/1?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
+2025-04-23 20:31:58,611 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 20:31:58] "GET /storico-invii/1?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+2025-04-23 20:31:58,878 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 20:31:58] "[36mGET /storico-invii/1?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2025-04-23 20:32:17,388 - app - INFO - has_package: Pacchetti per l'utente admin: ['manage_consulenze', 'manage_drivers'], tipo: <class 'list'>
+2025-04-23 20:32:17,389 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze', 'manage_drivers']: True
+2025-04-23 20:32:18,619 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 20:32:18] "POST /storico-invii/reinvia HTTP/1.1" 200 -
+2025-04-23 20:32:20,790 - app - INFO - has_package: Pacchetti per l'utente admin: ['manage_consulenze', 'manage_drivers'], tipo: <class 'list'>
+2025-04-23 20:32:20,790 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze', 'manage_drivers']: True
+2025-04-23 20:32:22,554 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 20:32:22] "GET /storico-invii HTTP/1.1" 200 -
+2025-04-23 20:32:22,587 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 20:32:22] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-04-23 20:32:22,589 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 20:32:22] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-04-23 20:32:49,570 - app - INFO - has_package: Pacchetti per l'utente admin: ['manage_consulenze', 'manage_drivers'], tipo: <class 'list'>
+2025-04-23 20:32:49,571 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze', 'manage_drivers']: True
+2025-04-23 20:32:51,272 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 20:32:51] "GET /storico-invii/1/note HTTP/1.1" 200 -
+2025-04-23 20:32:52,389 - app - INFO - has_package: Pacchetti per l'utente admin: ['manage_consulenze', 'manage_drivers'], tipo: <class 'list'>
+2025-04-23 20:32:52,390 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze', 'manage_drivers']: True
+2025-04-23 20:32:54,810 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 20:32:54] "GET /consulenze/cliente/1 HTTP/1.1" 200 -
+2025-04-23 20:33:25,068 - app - INFO - has_package: Pacchetti per l'utente admin: ['manage_consulenze', 'manage_drivers'], tipo: <class 'list'>
+2025-04-23 20:33:25,068 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze', 'manage_drivers']: True
+2025-04-23 20:33:27,890 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 20:33:27] "[35m[1mGET /storico-invii/2 HTTP/1.1[0m" 500 -
+2025-04-23 20:33:27,937 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 20:33:27] "GET /storico-invii/2?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+2025-04-23 20:33:28,255 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 20:33:28] "GET /storico-invii/2?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
+2025-04-23 20:33:28,582 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 20:33:28] "GET /storico-invii/2?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+2025-04-23 20:33:28,849 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 20:33:28] "[36mGET /storico-invii/2?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2025-04-23 20:33:33,933 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 20:33:33] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-04-23 20:34:05,987 - app - INFO - has_package: Pacchetti per l'utente admin: ['manage_consulenze', 'manage_drivers'], tipo: <class 'list'>
+2025-04-23 20:34:05,988 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze', 'manage_drivers']: True
+2025-04-23 20:34:06,801 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 20:34:06] "[35m[1mGET /storico-invii/2 HTTP/1.1[0m" 500 -
+2025-04-23 20:34:06,922 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 20:34:06] "[36mGET /storico-invii/2?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2025-04-23 20:34:06,923 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 20:34:06] "[36mGET /storico-invii/2?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2025-04-23 20:34:07,305 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 20:34:07] "[36mGET /storico-invii/2?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2025-04-23 20:35:06,804 - app - INFO - has_package: Pacchetti per l'utente admin: ['manage_consulenze', 'manage_drivers'], tipo: <class 'list'>
+2025-04-23 20:35:06,804 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze', 'manage_drivers']: True
+2025-04-23 20:35:07,540 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 20:35:07] "GET /consulenze/panoramica HTTP/1.1" 200 -
+2025-04-23 20:35:07,622 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 20:35:07] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-04-23 20:35:07,927 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 20:35:07] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-04-23 20:35:11,171 - app - INFO - has_package: Pacchetti per l'utente admin: ['manage_consulenze', 'manage_drivers'], tipo: <class 'list'>
+2025-04-23 20:35:11,171 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze', 'manage_drivers']: True
+2025-04-23 20:35:11,173 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 20:35:11] "GET /pdf_preview/RSSMRA80A01H501D_Questionario%20Base_20250423203137.pdf HTTP/1.1" 200 -
+2025-04-23 20:36:04,418 - werkzeug - INFO -  * Detected change in 'c:\\Users\\aless\\Desktop\\CRM\\app.py', reloading
+2025-04-23 20:36:04,912 - werkzeug - INFO -  * Restarting with stat
+2025-04-23 20:36:09,126 - werkzeug - WARNING -  * Debugger is active!
+2025-04-23 20:36:09,131 - werkzeug - INFO -  * Debugger PIN: 126-644-538
+2025-04-23 20:45:50,258 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 20:45:50] "[32mGET /storico-invii/2 HTTP/1.1[0m" 302 -
+2025-04-23 20:45:50,283 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 20:45:50] "GET /login HTTP/1.1" 200 -
+2025-04-23 20:45:50,547 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 20:45:50] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-04-23 20:45:50,649 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 20:45:50] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-04-23 20:45:58,177 - app - INFO - Login riuscito per l'utente admin da IP 127.0.0.1
+2025-04-23 20:45:58,179 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 20:45:58] "[32mPOST /login HTTP/1.1[0m" 302 -
+2025-04-23 20:45:58,188 - app - INFO - Pacchetti per l'utente admin: ['manage_consulenze', 'manage_drivers'], tipo: <class 'list'>
+2025-04-23 20:45:58,196 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 20:45:58] "GET /dashboard HTTP/1.1" 200 -
+2025-04-23 20:45:58,249 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 20:45:58] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-04-23 20:45:58,564 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 20:45:58] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-04-23 20:46:01,954 - app - INFO - has_package: Pacchetti per l'utente admin: ['manage_consulenze', 'manage_drivers'], tipo: <class 'list'>
+2025-04-23 20:46:01,955 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze', 'manage_drivers']: True
+2025-04-23 20:46:01,956 - app - INFO - consulenze_index: Pacchetti per l'utente admin: ['manage_consulenze', 'manage_drivers'], tipo: <class 'list'>
+2025-04-23 20:46:01,957 - app - INFO - consulenze_index: Verifica se 'manage_consulenze' è in ['manage_consulenze', 'manage_drivers']: True
+2025-04-23 20:46:01,963 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 20:46:01] "GET /consulenze HTTP/1.1" 200 -
+2025-04-23 20:46:02,259 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 20:46:02] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-04-23 20:46:02,321 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 20:46:02] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-04-23 20:46:04,332 - app - INFO - has_package: Pacchetti per l'utente admin: ['manage_consulenze', 'manage_drivers'], tipo: <class 'list'>
+2025-04-23 20:46:04,333 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze', 'manage_drivers']: True
+2025-04-23 20:46:05,889 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 20:46:05] "GET /storico-invii HTTP/1.1" 200 -
+2025-04-23 20:46:05,927 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 20:46:05] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-04-23 20:46:05,928 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 20:46:05] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-04-23 20:46:08,428 - app - INFO - has_package: Pacchetti per l'utente admin: ['manage_consulenze', 'manage_drivers'], tipo: <class 'list'>
+2025-04-23 20:46:08,429 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze', 'manage_drivers']: True
+2025-04-23 20:46:10,790 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 20:46:10] "[35m[1mGET /storico-invii/2 HTTP/1.1[0m" 500 -
+2025-04-23 20:46:10,835 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 20:46:10] "[36mGET /storico-invii/2?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2025-04-23 20:46:10,835 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 20:46:10] "[36mGET /storico-invii/2?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2025-04-23 20:46:11,173 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 20:46:11] "[36mGET /storico-invii/2?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2025-04-23 20:46:11,438 - werkzeug - INFO - 127.0.0.1 - - [23/Apr/2025 20:46:11] "[36mGET /storico-invii/2?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2025-04-26 21:31:14,886 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.1.74:5000
+2025-04-26 21:31:14,887 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-04-26 21:31:14,889 - werkzeug - INFO -  * Restarting with stat
+2025-04-26 21:31:17,236 - werkzeug - WARNING -  * Debugger is active!
+2025-04-26 21:31:17,239 - werkzeug - INFO -  * Debugger PIN: 128-573-972
+2025-04-26 21:31:38,748 - werkzeug - INFO - 127.0.0.1 - - [26/Apr/2025 21:31:38] "[32mGET / HTTP/1.1[0m" 302 -
+2025-04-26 21:31:38,831 - werkzeug - INFO - 127.0.0.1 - - [26/Apr/2025 21:31:38] "GET /login HTTP/1.1" 200 -
+2025-04-26 21:31:39,057 - werkzeug - INFO - 127.0.0.1 - - [26/Apr/2025 21:31:39] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-04-26 21:31:39,326 - werkzeug - INFO - 127.0.0.1 - - [26/Apr/2025 21:31:39] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-04-26 21:31:39,690 - werkzeug - INFO - 127.0.0.1 - - [26/Apr/2025 21:31:39] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-04-26 21:31:44,004 - app - INFO - Login riuscito per l'utente admin da IP 127.0.0.1
+2025-04-26 21:31:44,005 - werkzeug - INFO - 127.0.0.1 - - [26/Apr/2025 21:31:44] "[32mPOST /login HTTP/1.1[0m" 302 -
+2025-04-26 21:31:44,014 - app - INFO - Pacchetti per l'utente admin: ['manage_consulenze', 'manage_drivers'], tipo: <class 'list'>
+2025-04-26 21:31:44,054 - werkzeug - INFO - 127.0.0.1 - - [26/Apr/2025 21:31:44] "GET /dashboard HTTP/1.1" 200 -
+2025-04-26 21:31:44,405 - werkzeug - INFO - 127.0.0.1 - - [26/Apr/2025 21:31:44] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-04-26 21:31:44,406 - werkzeug - INFO - 127.0.0.1 - - [26/Apr/2025 21:31:44] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-04-26 21:31:47,081 - app - INFO - has_package: Pacchetti per l'utente admin: ['manage_consulenze', 'manage_drivers'], tipo: <class 'list'>
+2025-04-26 21:31:47,081 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze', 'manage_drivers']: True
+2025-04-26 21:31:47,081 - app - INFO - consulenze_index: Pacchetti per l'utente admin: ['manage_consulenze', 'manage_drivers'], tipo: <class 'list'>
+2025-04-26 21:31:47,081 - app - INFO - consulenze_index: Verifica se 'manage_consulenze' è in ['manage_consulenze', 'manage_drivers']: True
+2025-04-26 21:31:47,112 - werkzeug - INFO - 127.0.0.1 - - [26/Apr/2025 21:31:47] "GET /consulenze HTTP/1.1" 200 -
+2025-04-26 21:31:47,388 - werkzeug - INFO - 127.0.0.1 - - [26/Apr/2025 21:31:47] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-04-26 21:31:47,467 - werkzeug - INFO - 127.0.0.1 - - [26/Apr/2025 21:31:47] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-04-26 21:31:51,404 - app - INFO - has_package: Pacchetti per l'utente admin: ['manage_consulenze', 'manage_drivers'], tipo: <class 'list'>
+2025-04-26 21:31:51,405 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze', 'manage_drivers']: True
+2025-04-26 21:31:51,439 - werkzeug - INFO - 127.0.0.1 - - [26/Apr/2025 21:31:51] "GET /consulenze/anagrafica HTTP/1.1" 200 -
+2025-04-26 21:31:51,476 - werkzeug - INFO - 127.0.0.1 - - [26/Apr/2025 21:31:51] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-04-26 21:31:51,671 - werkzeug - INFO - 127.0.0.1 - - [26/Apr/2025 21:31:51] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-04-26 21:31:53,555 - app - INFO - has_package: Pacchetti per l'utente admin: ['manage_consulenze', 'manage_drivers'], tipo: <class 'list'>
+2025-04-26 21:31:53,555 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze', 'manage_drivers']: True
+2025-04-26 21:31:54,242 - werkzeug - INFO - 127.0.0.1 - - [26/Apr/2025 21:31:54] "GET /consulenze/panoramica HTTP/1.1" 200 -
+2025-04-26 21:31:54,284 - werkzeug - INFO - 127.0.0.1 - - [26/Apr/2025 21:31:54] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-04-26 21:31:54,284 - werkzeug - INFO - 127.0.0.1 - - [26/Apr/2025 21:31:54] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-04-26 21:32:08,540 - app - INFO - has_package: Pacchetti per l'utente admin: ['manage_consulenze', 'manage_drivers'], tipo: <class 'list'>
+2025-04-26 21:32:08,540 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze', 'manage_drivers']: True
+2025-04-26 21:32:09,225 - werkzeug - INFO - 127.0.0.1 - - [26/Apr/2025 21:32:09] "GET /consulenze/calendar HTTP/1.1" 200 -
+2025-04-26 21:32:09,285 - werkzeug - INFO - 127.0.0.1 - - [26/Apr/2025 21:32:09] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-04-26 21:32:09,286 - werkzeug - INFO - 127.0.0.1 - - [26/Apr/2025 21:32:09] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-04-26 21:32:11,760 - app - INFO - has_package: Pacchetti per l'utente admin: ['manage_consulenze', 'manage_drivers'], tipo: <class 'list'>
+2025-04-26 21:32:11,760 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze', 'manage_drivers']: True
+2025-04-26 21:32:12,545 - werkzeug - INFO - 127.0.0.1 - - [26/Apr/2025 21:32:12] "[35m[1mGET /consulenze/history HTTP/1.1[0m" 500 -
+2025-04-26 21:32:12,612 - werkzeug - INFO - 127.0.0.1 - - [26/Apr/2025 21:32:12] "GET /consulenze/history?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+2025-04-26 21:32:12,625 - werkzeug - INFO - 127.0.0.1 - - [26/Apr/2025 21:32:12] "GET /consulenze/history?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
+2025-04-26 21:32:12,955 - werkzeug - INFO - 127.0.0.1 - - [26/Apr/2025 21:32:12] "GET /consulenze/history?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+2025-04-26 21:32:13,208 - werkzeug - INFO - 127.0.0.1 - - [26/Apr/2025 21:32:13] "[36mGET /consulenze/history?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2025-04-26 21:32:16,786 - app - INFO - has_package: Pacchetti per l'utente admin: ['manage_consulenze', 'manage_drivers'], tipo: <class 'list'>
+2025-04-26 21:32:16,787 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze', 'manage_drivers']: True
+2025-04-26 21:32:16,849 - werkzeug - INFO - 127.0.0.1 - - [26/Apr/2025 21:32:16] "GET /consulenze/import HTTP/1.1" 200 -
+2025-04-26 21:32:17,099 - werkzeug - INFO - 127.0.0.1 - - [26/Apr/2025 21:32:17] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-04-26 21:32:17,228 - werkzeug - INFO - 127.0.0.1 - - [26/Apr/2025 21:32:17] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-04-26 21:32:19,162 - app - INFO - has_package: Pacchetti per l'utente admin: ['manage_consulenze', 'manage_drivers'], tipo: <class 'list'>
+2025-04-26 21:32:19,162 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze', 'manage_drivers']: True
+2025-04-26 21:32:19,866 - werkzeug - INFO - 127.0.0.1 - - [26/Apr/2025 21:32:19] "[35m[1mGET /consulenze/history HTTP/1.1[0m" 500 -
+2025-04-26 21:32:19,910 - werkzeug - INFO - 127.0.0.1 - - [26/Apr/2025 21:32:19] "[36mGET /consulenze/history?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2025-04-26 21:32:19,919 - werkzeug - INFO - 127.0.0.1 - - [26/Apr/2025 21:32:19] "[36mGET /consulenze/history?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2025-04-26 21:32:20,250 - werkzeug - INFO - 127.0.0.1 - - [26/Apr/2025 21:32:20] "[36mGET /consulenze/history?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2025-04-26 21:32:21,117 - app - INFO - has_package: Pacchetti per l'utente admin: ['manage_consulenze', 'manage_drivers'], tipo: <class 'list'>
+2025-04-26 21:32:21,117 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze', 'manage_drivers']: True
+2025-04-26 21:32:22,638 - werkzeug - INFO - 127.0.0.1 - - [26/Apr/2025 21:32:22] "GET /storico-invii HTTP/1.1" 200 -
+2025-04-26 21:32:22,678 - werkzeug - INFO - 127.0.0.1 - - [26/Apr/2025 21:32:22] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-04-26 21:32:22,994 - werkzeug - INFO - 127.0.0.1 - - [26/Apr/2025 21:32:22] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-04-26 21:32:28,348 - app - INFO - has_package: Pacchetti per l'utente admin: ['manage_consulenze', 'manage_drivers'], tipo: <class 'list'>
+2025-04-26 21:32:28,349 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze', 'manage_drivers']: True
+2025-04-26 21:32:29,524 - werkzeug - INFO - 127.0.0.1 - - [26/Apr/2025 21:32:29] "[35m[1mGET /storico-invii/2 HTTP/1.1[0m" 500 -
+2025-04-26 21:32:29,578 - werkzeug - INFO - 127.0.0.1 - - [26/Apr/2025 21:32:29] "[36mGET /storico-invii/2?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2025-04-26 21:32:29,582 - werkzeug - INFO - 127.0.0.1 - - [26/Apr/2025 21:32:29] "[36mGET /storico-invii/2?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2025-04-26 21:32:29,915 - werkzeug - INFO - 127.0.0.1 - - [26/Apr/2025 21:32:29] "[36mGET /storico-invii/2?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2025-04-26 21:32:44,858 - app - INFO - has_package: Pacchetti per l'utente admin: ['manage_consulenze', 'manage_drivers'], tipo: <class 'list'>
+2025-04-26 21:32:44,858 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze', 'manage_drivers']: True
+2025-04-26 21:32:44,860 - werkzeug - INFO - 127.0.0.1 - - [26/Apr/2025 21:32:44] "GET /consulenze/import HTTP/1.1" 200 -
+2025-04-26 21:32:45,169 - werkzeug - INFO - 127.0.0.1 - - [26/Apr/2025 21:32:45] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-04-26 21:32:45,218 - werkzeug - INFO - 127.0.0.1 - - [26/Apr/2025 21:32:45] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-04-26 21:32:57,242 - app - INFO - has_package: Pacchetti per l'utente admin: ['manage_consulenze', 'manage_drivers'], tipo: <class 'list'>
+2025-04-26 21:32:57,242 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze', 'manage_drivers']: True
+2025-04-26 21:32:57,601 - werkzeug - INFO - 127.0.0.1 - - [26/Apr/2025 21:32:57] "POST /consulenze/debug-excel HTTP/1.1" 200 -
+2025-04-26 21:33:06,023 - app - INFO - has_package: Pacchetti per l'utente admin: ['manage_consulenze', 'manage_drivers'], tipo: <class 'list'>
+2025-04-26 21:33:06,023 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze', 'manage_drivers']: True
+2025-04-26 21:33:06,035 - app - INFO - Colonne originali: ['Nome', 'Cognome', 'Codice Fiscale', 'Email', 'Cellulare', 'Partita IVA', 'PEC', 'Codice Univoco', 'Residenza', 'Domicilio Fiscale', 'Attività', 'Data Nascita', 'Luogo Nascita']
+2025-04-26 21:33:06,046 - app - INFO - Colonne rinominate: ['nome', 'cognome', 'codice_fiscale', 'email', 'cellulare', 'partita_iva', 'pec', 'codice_univoco', 'residenza', 'domicilio_fiscale', 'attività', 'data_nascita', 'luogo_nascita']
+2025-04-26 21:33:06,049 - app - INFO - Primi record: [{'nome': 'Mario', 'cognome': 'Rossi', 'codice_fiscale': 'RSSMRA80A01H501U', 'email': 'mario.rossi@example.com', 'cellulare': 3331234567.0, 'partita_iva': 12345678901.0, 'pec': 'mario.rossi@pec.it', 'codice_univoco': 'ABC123', 'residenza': 'Via Roma 1, Roma', 'domicilio_fiscale': 'Via Roma 1, Roma', 'attività': 'Commercialista', 'data_nascita': '01/01/1980', 'luogo_nascita': 'Roma'}, {'nome': 'Anna', 'cognome': 'Bianchi', 'codice_fiscale': 'BNCNNA85B02H501V', 'email': 'anna.bianchi@example.com', 'cellulare': 3339876543.0, 'partita_iva': '', 'pec': 'anna.bianchi@pec.it', 'codice_univoco': '', 'residenza': 'Via Milano 2, Milano', 'domicilio_fiscale': 'Via Milano 2, Milano', 'attività': 'Avvocato', 'data_nascita': '02/02/1985', 'luogo_nascita': 'Milano'}]
+2025-04-26 21:33:06,686 - werkzeug - INFO - 127.0.0.1 - - [26/Apr/2025 21:33:06] "POST /consulenze/import HTTP/1.1" 200 -
+2025-04-26 21:33:06,716 - werkzeug - INFO - 127.0.0.1 - - [26/Apr/2025 21:33:06] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-04-26 21:33:07,030 - werkzeug - INFO - 127.0.0.1 - - [26/Apr/2025 21:33:07] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-04-26 21:33:19,724 - app - INFO - has_package: Pacchetti per l'utente admin: ['manage_consulenze', 'manage_drivers'], tipo: <class 'list'>
+2025-04-26 21:33:19,724 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze', 'manage_drivers']: True
+2025-04-26 21:33:19,734 - app - INFO - Colonne nel file di importazione: ['Nome', 'Cognome', 'Codice Fiscale', 'Email', 'Cellulare', 'Partita IVA', 'PEC', 'Codice Univoco', 'Residenza', 'Domicilio Fiscale', 'Attività', 'Data Nascita', 'Luogo Nascita']
+2025-04-26 21:33:19,735 - app - INFO - Colonne rinominate: ['nome', 'cognome', 'codice_fiscale', 'email', 'cellulare', 'partita_iva', 'pec', 'codice_univoco', 'residenza', 'domicilio_fiscale', 'attività', 'data_nascita', 'luogo_nascita']
+2025-04-26 21:33:19,737 - app - INFO - Primi record: [{'nome': 'Mario', 'cognome': 'Rossi', 'codice_fiscale': 'RSSMRA80A01H501U', 'email': 'mario.rossi@example.com', 'cellulare': 3331234567.0, 'partita_iva': 12345678901.0, 'pec': 'mario.rossi@pec.it', 'codice_univoco': 'ABC123', 'residenza': 'Via Roma 1, Roma', 'domicilio_fiscale': 'Via Roma 1, Roma', 'attività': 'Commercialista', 'data_nascita': '01/01/1980', 'luogo_nascita': 'Roma'}, {'nome': 'Anna', 'cognome': 'Bianchi', 'codice_fiscale': 'BNCNNA85B02H501V', 'email': 'anna.bianchi@example.com', 'cellulare': 3339876543.0, 'partita_iva': '', 'pec': 'anna.bianchi@pec.it', 'codice_univoco': '', 'residenza': 'Via Milano 2, Milano', 'domicilio_fiscale': 'Via Milano 2, Milano', 'attività': 'Avvocato', 'data_nascita': '02/02/1985', 'luogo_nascita': 'Milano'}]
+2025-04-26 21:33:21,169 - app - INFO - Elaborazione record 1: {'nome': 'Mario', 'cognome': 'Rossi', 'codice_fiscale': 'RSSMRA80A01H501U', 'email': 'mario.rossi@example.com', 'cellulare': 3331234567.0, 'partita_iva': 12345678901.0, 'pec': 'mario.rossi@pec.it', 'codice_univoco': 'ABC123', 'residenza': 'Via Roma 1, Roma', 'domicilio_fiscale': 'Via Roma 1, Roma', 'attività': 'Commercialista', 'data_nascita': '01/01/1980', 'luogo_nascita': 'Roma'}
+2025-04-26 21:33:21,215 - app - INFO - Elaborazione record 2: {'nome': 'Anna', 'cognome': 'Bianchi', 'codice_fiscale': 'BNCNNA85B02H501V', 'email': 'anna.bianchi@example.com', 'cellulare': 3339876543.0, 'partita_iva': '', 'pec': 'anna.bianchi@pec.it', 'codice_univoco': '', 'residenza': 'Via Milano 2, Milano', 'domicilio_fiscale': 'Via Milano 2, Milano', 'attività': 'Avvocato', 'data_nascita': '02/02/1985', 'luogo_nascita': 'Milano'}
+2025-04-26 21:33:21,261 - app - INFO - Elaborazione record 3: {'nome': '', 'cognome': '', 'codice_fiscale': '', 'email': '', 'cellulare': '', 'partita_iva': '', 'pec': '', 'codice_univoco': '', 'residenza': '', 'domicilio_fiscale': '', 'attività': '', 'data_nascita': '', 'luogo_nascita': ''}
+2025-04-26 21:33:21,261 - app - ERROR - Campi mancanti nel record 3: ['nome', 'cognome', 'email', 'codice_fiscale']
+2025-04-26 21:33:21,261 - app - INFO - Elaborazione record 4: {'nome': 'Note:', 'cognome': '', 'codice_fiscale': '', 'email': '', 'cellulare': '', 'partita_iva': '', 'pec': '', 'codice_univoco': '', 'residenza': '', 'domicilio_fiscale': '', 'attività': '', 'data_nascita': '', 'luogo_nascita': ''}
+2025-04-26 21:33:21,261 - app - ERROR - Campi mancanti nel record 4: ['cognome', 'email', 'codice_fiscale']
+2025-04-26 21:33:21,261 - app - INFO - Elaborazione record 5: {'nome': '- I campi Nome, Cognome, Codice Fiscale ed Email sono obbligatori', 'cognome': '', 'codice_fiscale': '', 'email': '', 'cellulare': '', 'partita_iva': '', 'pec': '', 'codice_univoco': '', 'residenza': '', 'domicilio_fiscale': '', 'attività': '', 'data_nascita': '', 'luogo_nascita': ''}
+2025-04-26 21:33:21,261 - app - ERROR - Campi mancanti nel record 5: ['cognome', 'email', 'codice_fiscale']
+2025-04-26 21:33:21,261 - app - INFO - Elaborazione record 6: {'nome': '- Per le date utilizzare il formato GG/MM/AAAA', 'cognome': '', 'codice_fiscale': '', 'email': '', 'cellulare': '', 'partita_iva': '', 'pec': '', 'codice_univoco': '', 'residenza': '', 'domicilio_fiscale': '', 'attività': '', 'data_nascita': '', 'luogo_nascita': ''}
+2025-04-26 21:33:21,263 - app - ERROR - Campi mancanti nel record 6: ['cognome', 'email', 'codice_fiscale']
+2025-04-26 21:33:21,263 - app - INFO - Elaborazione record 7: {'nome': "- Rimuovere le righe di esempio prima dell'importazione", 'cognome': '', 'codice_fiscale': '', 'email': '', 'cellulare': '', 'partita_iva': '', 'pec': '', 'codice_univoco': '', 'residenza': '', 'domicilio_fiscale': '', 'attività': '', 'data_nascita': '', 'luogo_nascita': ''}
+2025-04-26 21:33:21,263 - app - ERROR - Campi mancanti nel record 7: ['cognome', 'email', 'codice_fiscale']
+2025-04-26 21:33:21,263 - app - INFO - Elaborazione record 8: {'nome': '- Limiti di lunghezza: Partita IVA (11), Codice Fiscale (16), Codice Univoco (7)', 'cognome': '', 'codice_fiscale': '', 'email': '', 'cellulare': '', 'partita_iva': '', 'pec': '', 'codice_univoco': '', 'residenza': '', 'domicilio_fiscale': '', 'attività': '', 'data_nascita': '', 'luogo_nascita': ''}
+2025-04-26 21:33:21,264 - app - ERROR - Campi mancanti nel record 8: ['cognome', 'email', 'codice_fiscale']
+2025-04-26 21:33:21,266 - werkzeug - INFO - 127.0.0.1 - - [26/Apr/2025 21:33:21] "[32mPOST /consulenze/import-selected HTTP/1.1[0m" 302 -
+2025-04-26 21:33:21,275 - app - INFO - has_package: Pacchetti per l'utente admin: ['manage_consulenze', 'manage_drivers'], tipo: <class 'list'>
+2025-04-26 21:33:21,276 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze', 'manage_drivers']: True
+2025-04-26 21:33:21,318 - werkzeug - INFO - 127.0.0.1 - - [26/Apr/2025 21:33:21] "GET /consulenze/import-results HTTP/1.1" 200 -
+2025-04-26 21:33:21,358 - werkzeug - INFO - 127.0.0.1 - - [26/Apr/2025 21:33:21] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-04-26 21:33:21,668 - werkzeug - INFO - 127.0.0.1 - - [26/Apr/2025 21:33:21] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-04-26 21:33:28,193 - app - INFO - has_package: Pacchetti per l'utente admin: ['manage_consulenze', 'manage_drivers'], tipo: <class 'list'>
+2025-04-26 21:33:28,193 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze', 'manage_drivers']: True
+2025-04-26 21:33:29,507 - werkzeug - INFO - 127.0.0.1 - - [26/Apr/2025 21:33:29] "GET /consulenze/panoramica HTTP/1.1" 200 -
+2025-04-26 21:33:29,545 - werkzeug - INFO - 127.0.0.1 - - [26/Apr/2025 21:33:29] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-04-26 21:33:29,547 - werkzeug - INFO - 127.0.0.1 - - [26/Apr/2025 21:33:29] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-04-26 21:37:18,385 - app - INFO - has_package: Pacchetti per l'utente admin: ['manage_consulenze', 'manage_drivers'], tipo: <class 'list'>
+2025-04-26 21:37:18,386 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze', 'manage_drivers']: True
+2025-04-26 21:37:19,051 - werkzeug - INFO - 127.0.0.1 - - [26/Apr/2025 21:37:19] "DELETE /consulenze/cliente/2 HTTP/1.1" 200 -
+2025-04-26 21:37:20,213 - app - INFO - has_package: Pacchetti per l'utente admin: ['manage_consulenze', 'manage_drivers'], tipo: <class 'list'>
+2025-04-26 21:37:20,213 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze', 'manage_drivers']: True
+2025-04-26 21:37:20,794 - werkzeug - INFO - 127.0.0.1 - - [26/Apr/2025 21:37:20] "GET /consulenze/panoramica HTTP/1.1" 200 -
+2025-04-26 21:37:20,861 - werkzeug - INFO - 127.0.0.1 - - [26/Apr/2025 21:37:20] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-04-26 21:37:21,168 - werkzeug - INFO - 127.0.0.1 - - [26/Apr/2025 21:37:21] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-04-26 21:37:23,125 - app - INFO - has_package: Pacchetti per l'utente admin: ['manage_consulenze', 'manage_drivers'], tipo: <class 'list'>
+2025-04-26 21:37:23,125 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze', 'manage_drivers']: True
+2025-04-26 21:37:23,751 - werkzeug - INFO - 127.0.0.1 - - [26/Apr/2025 21:37:23] "DELETE /consulenze/cliente/10 HTTP/1.1" 200 -
+2025-04-26 21:37:24,851 - app - INFO - has_package: Pacchetti per l'utente admin: ['manage_consulenze', 'manage_drivers'], tipo: <class 'list'>
+2025-04-26 21:37:24,852 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze', 'manage_drivers']: True
+2025-04-26 21:37:25,710 - werkzeug - INFO - 127.0.0.1 - - [26/Apr/2025 21:37:25] "GET /consulenze/panoramica HTTP/1.1" 200 -
+2025-04-26 21:37:25,753 - werkzeug - INFO - 127.0.0.1 - - [26/Apr/2025 21:37:25] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-04-26 21:37:26,071 - werkzeug - INFO - 127.0.0.1 - - [26/Apr/2025 21:37:26] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-04-26 21:41:52,292 - app - INFO - has_package: Pacchetti per l'utente admin: ['manage_consulenze', 'manage_drivers'], tipo: <class 'list'>
+2025-04-26 21:41:52,292 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze', 'manage_drivers']: True
+2025-04-26 21:41:52,968 - werkzeug - INFO - 127.0.0.1 - - [26/Apr/2025 21:41:52] "GET /consulenze/calendar HTTP/1.1" 200 -
+2025-04-26 21:41:53,054 - werkzeug - INFO - 127.0.0.1 - - [26/Apr/2025 21:41:53] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-04-26 21:41:53,056 - werkzeug - INFO - 127.0.0.1 - - [26/Apr/2025 21:41:53] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-04-26 21:43:48,378 - app - INFO - has_package: Pacchetti per l'utente admin: ['manage_consulenze', 'manage_drivers'], tipo: <class 'list'>
+2025-04-26 21:43:48,379 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze', 'manage_drivers']: True
+2025-04-26 21:43:49,858 - werkzeug - INFO - 127.0.0.1 - - [26/Apr/2025 21:43:49] "GET /consulenze/email-texts HTTP/1.1" 200 -
+2025-04-26 21:43:49,920 - werkzeug - INFO - 127.0.0.1 - - [26/Apr/2025 21:43:49] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-04-26 21:43:49,921 - werkzeug - INFO - 127.0.0.1 - - [26/Apr/2025 21:43:49] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-04-26 21:43:51,809 - app - INFO - has_package: Pacchetti per l'utente admin: ['manage_consulenze', 'manage_drivers'], tipo: <class 'list'>
+2025-04-26 21:43:51,809 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze', 'manage_drivers']: True
+2025-04-26 21:43:52,396 - werkzeug - INFO - 127.0.0.1 - - [26/Apr/2025 21:43:52] "GET /consulenze/calendar HTTP/1.1" 200 -
+2025-04-26 21:43:52,436 - werkzeug - INFO - 127.0.0.1 - - [26/Apr/2025 21:43:52] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-04-26 21:43:52,438 - werkzeug - INFO - 127.0.0.1 - - [26/Apr/2025 21:43:52] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -

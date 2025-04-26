@@ -1,5 +1,5 @@
 import os
-from flask import Flask, render_template, request, redirect, url_for, session, flash, jsonify, send_from_directory
+from flask import Flask, render_template, request, redirect, url_for, session, flash, jsonify, send_from_directory, send_file
 import psycopg2
 import psycopg2.extras
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -10,11 +10,12 @@ from email.message import EmailMessage
 from functools import wraps
 import PyPDF2
 import uuid
-import datetime
+from datetime import datetime, timedelta
+import math
 import pandas as pd
 import json
 import csv
-from io import StringIO
+from io import StringIO, BytesIO
 from flask_wtf.csrf import CSRFProtect
 import logging
 
@@ -45,6 +46,32 @@ logging.basicConfig(
 
 # Abilita l'escape automatico di Jinja2 per prevenire XSS
 app.jinja_env.autoescape = True
+
+# Filtri per i template
+@app.template_filter('date')
+def format_date(value):
+    if value is None:
+        return ""
+    if isinstance(value, str):
+        try:
+            value = datetime.strptime(value, '%Y-%m-%d %H:%M:%S')
+        except ValueError:
+            try:
+                value = datetime.strptime(value, '%Y-%m-%d')
+            except ValueError:
+                return value
+    return value.strftime('%d/%m/%Y')
+
+@app.template_filter('datetime')
+def format_datetime(value):
+    if value is None:
+        return ""
+    if isinstance(value, str):
+        try:
+            value = datetime.strptime(value, '%Y-%m-%d %H:%M:%S')
+        except ValueError:
+            return value
+    return value.strftime('%d/%m/%Y %H:%M')
 
 # Inizializza la protezione CSRF
 csrf = CSRFProtect(app)
@@ -173,6 +200,68 @@ def is_password_strong(password):
         return False, "La password deve contenere almeno un carattere speciale"
     
     return True, "Password valida"
+
+# Funzione per inviare email con allegato
+def send_email_with_attachment(sender, password, recipient, subject, body, smtp_server, smtp_port, attachment_path=None):
+    """
+    Invia un'email con un allegato opzionale.
+    
+    Args:
+        sender: Email del mittente
+        password: Password del mittente
+        recipient: Email del destinatario
+        subject: Oggetto dell'email
+        body: Corpo dell'email (HTML)
+        smtp_server: Server SMTP
+        smtp_port: Porta SMTP
+        attachment_path: Percorso del file da allegare (opzionale)
+    
+    Returns:
+        True se l'invio è avvenuto con successo, False altrimenti
+    """
+    try:
+        # Crea il messaggio
+        message = EmailMessage()
+        message["From"] = sender
+        message["To"] = recipient
+        message["Subject"] = subject
+        
+        # Aggiungi il corpo HTML
+        message.add_alternative(body, subtype="html")
+        
+        # Aggiungi l'allegato se presente
+        if attachment_path and os.path.exists(attachment_path):
+            with open(attachment_path, "rb") as file:
+                file_data = file.read()
+                file_name = os.path.basename(attachment_path)
+                
+                # Determina il MIME type in base all'estensione
+                if file_name.endswith('.pdf'):
+                    mime_type = 'application/pdf'
+                elif file_name.endswith('.docx'):
+                    mime_type = 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
+                elif file_name.endswith('.xlsx'):
+                    mime_type = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+                else:
+                    mime_type = 'application/octet-stream'
+                
+                message.add_attachment(
+                    file_data,
+                    maintype="application",
+                    subtype="octet-stream",
+                    filename=file_name
+                )
+        
+        # Invia l'email
+        context = ssl.create_default_context()
+        with smtplib.SMTP_SSL(smtp_server, int(smtp_port), context=context) as server:
+            server.login(sender, password)
+            server.send_message(message)
+        
+        return True
+    except Exception as e:
+        app.logger.error(f"Errore nell'invio dell'email: {str(e)}")
+        return False
 
 # Funzione per verificare la validità del codice fiscale
 def is_valid_codice_fiscale(cf):
@@ -335,7 +424,7 @@ def login():
             
             # Imposta la durata della sessione (8 ore)
             session.permanent = True
-            app.permanent_session_lifetime = datetime.timedelta(hours=8)
+            app.permanent_session_lifetime = timedelta(hours=8)
             
             flash('Login effettuato con successo!', 'success')
             
@@ -438,7 +527,7 @@ def admin():
     smtp_configured = 100 if smtp_config else 0
     
     # Get current date for the template
-    now = datetime.datetime.now()
+    now = datetime.now()
     
     cur.close()
     conn.close()
@@ -1014,7 +1103,7 @@ def consulenze_import_error_log():
     
     # Prepara la risposta
     output.seek(0)
-    timestamp = datetime.datetime.now().strftime('%Y%m%d%H%M%S')
+    timestamp = datetime.now().strftime('%Y%m%d%H%M%S')
     
     response = app.response_class(
         response=output.getvalue(),
@@ -1452,7 +1541,7 @@ def export_history():
     
     # Prepara la risposta
     output.seek(0)
-    timestamp = datetime.datetime.now().strftime('%Y%m%d%H%M%S')
+    timestamp = datetime.now().strftime('%Y%m%d%H%M%S')
     
     return jsonify({
         'success': True,
@@ -1694,7 +1783,7 @@ def get_cliente_details(cliente_id):
         
         # Converti le date in stringhe ISO per JSON
         for key, value in cliente_dict.items():
-            if isinstance(value, datetime.date) or isinstance(value, datetime.datetime):
+            if isinstance(value, datetime.date) or isinstance(value, datetime):
                 cliente_dict[key] = value.isoformat()
         
         return jsonify({'success': True, 'cliente': cliente_dict})
@@ -1818,7 +1907,7 @@ def consulenze_questionari():
         if cliente and template:
             # Generate PDF with PyPDF2
             template_path = os.path.join(app.config['PDF_TEMPLATES'], template['filename'])
-            output_filename = f"{cliente['codice_fiscale']}_{template['nome']}_{datetime.datetime.now().strftime('%Y%m%d%H%M%S')}.pdf"
+            output_filename = f"{cliente['codice_fiscale']}_{template['nome']}_{datetime.now().strftime('%Y%m%d%H%M%S')}.pdf"
             output_path = os.path.join(app.config['PDF_GENERATI'], output_filename)
             
             # Fill PDF form fields
@@ -1972,7 +2061,7 @@ def consulenze_questionari():
                 "prov_azienda": info_studio["provincia"],
                 
                 # Data compilazione
-                "data": datetime.datetime.now().strftime('%d/%m/%Y'),
+                "data": datetime.now().strftime('%d/%m/%Y'),
                 
                 # Altri campi che potrebbero essere presenti nel PDF
                 "prov_nascita": provincia_nascita,  # Estratto dal luogo di nascita
@@ -2020,7 +2109,7 @@ def consulenze_questionari():
                 "codice_univoco": cliente['codice_univoco'] or "",
                 
                 # Date
-                "data_compilazione": datetime.datetime.now().strftime('%d/%m/%Y'),
+                "data_compilazione": datetime.now().strftime('%d/%m/%Y'),
             }
             
             # Aggiungi le mappature alternative al form_data
@@ -2097,6 +2186,29 @@ def consulenze_questionari():
                         (output_filename, cliente_id)
                     )
                     
+                    # Registra l'invio nella tabella questionari_inviati
+                    cur.execute("""
+                        INSERT INTO questionari_inviati 
+                        (cliente_id, template_id, filename, testo_email, inviato_da, stato)
+                        VALUES (%s, %s, %s, %s, %s, 'inviato')
+                        RETURNING id
+                    """, (
+                        cliente_id,
+                        template_id,
+                        output_filename,
+                        smtp_config['testo'],
+                        session.get('user_id')
+                    ))
+                    
+                    invio_id = cur.fetchone()[0]
+                    
+                    # Registra l'interazione
+                    cur.execute("""
+                        INSERT INTO questionari_interazioni 
+                        (questionario_id, tipo_interazione, dettagli, ip_address)
+                        VALUES (%s, %s, %s, %s)
+                    """, (invio_id, 'invio', 'Questionario inviato via email', request.remote_addr))
+                    
                     flash('Email inviata con successo!', 'success')
                 else:
                     flash('Configurazione SMTP non trovata. Configura prima le impostazioni email.', 'danger')
@@ -2115,6 +2227,697 @@ def consulenze_questionari():
     conn.close()
     
     return render_template('tools/consulenze/questionari.html', clienti=clienti, templates=templates)
+
+# Statistiche
+@app.route('/consulenze/stats')
+@login_required
+@has_package('manage_consulenze')
+def consulenze_stats():
+    return render_template('tools/consulenze/stats.html')
+
+# Template PDF
+@app.route('/consulenze/templates')
+@login_required
+@has_package('manage_consulenze')
+def consulenze_templates():
+    conn = get_db_connection()
+    cur = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
+    
+    # Ottieni tutti i template
+    cur.execute("SELECT * FROM template_pdf ORDER BY nome")
+    templates = cur.fetchall()
+    
+    cur.close()
+    conn.close()
+    
+    return render_template('tools/consulenze/templates.html', templates=templates)
+
+@app.route('/consulenze/templates/add', methods=['POST'])
+@login_required
+@has_package('manage_consulenze')
+def consulenze_templates_add():
+    if 'templateFile' not in request.files:
+        flash('Nessun file selezionato', 'danger')
+        return redirect(url_for('consulenze_templates'))
+    
+    file = request.files['templateFile']
+    template_name = request.form.get('templateName', '')
+    
+    if file.filename == '' or not template_name:
+        flash('Nome template o file mancante', 'danger')
+        return redirect(url_for('consulenze_templates'))
+    
+    if file and file.filename.endswith('.pdf'):
+        # Genera un nome file univoco
+        filename = secure_filename(f"{uuid.uuid4().hex}_{file.filename}")
+        file_path = os.path.join(app.config['PDF_TEMPLATES'], filename)
+        
+        # Salva il file
+        file.save(file_path)
+        
+        # Salva nel database
+        conn = get_db_connection()
+        cur = conn.cursor()
+        
+        cur.execute(
+            "INSERT INTO template_pdf (nome, filename, data_creazione) VALUES (%s, %s, CURRENT_TIMESTAMP)",
+            (template_name, filename)
+        )
+        
+        conn.commit()
+        cur.close()
+        conn.close()
+        
+        flash('Template aggiunto con successo', 'success')
+    else:
+        flash('Formato file non valido. Seleziona un file PDF', 'danger')
+    
+    return redirect(url_for('consulenze_templates'))
+
+@app.route('/consulenze/templates/edit', methods=['POST'])
+@login_required
+@has_package('manage_consulenze')
+def consulenze_templates_edit():
+    template_id = request.form.get('templateId')
+    template_name = request.form.get('templateName')
+    
+    if not template_id or not template_name:
+        flash('Dati mancanti', 'danger')
+        return redirect(url_for('consulenze_templates'))
+    
+    conn = get_db_connection()
+    cur = conn.cursor()
+    
+    # Se è stato caricato un nuovo file
+    if 'templateFile' in request.files and request.files['templateFile'].filename != '':
+        file = request.files['templateFile']
+        
+        if file.filename.endswith('.pdf'):
+            # Genera un nome file univoco
+            filename = secure_filename(f"{uuid.uuid4().hex}_{file.filename}")
+            file_path = os.path.join(app.config['PDF_TEMPLATES'], filename)
+            
+            # Salva il file
+            file.save(file_path)
+            
+            # Ottieni il vecchio filename per eliminarlo
+            cur.execute("SELECT filename FROM template_pdf WHERE id = %s", (template_id,))
+            old_filename = cur.fetchone()[0]
+            
+            # Aggiorna il database
+            cur.execute(
+                "UPDATE template_pdf SET nome = %s, filename = %s WHERE id = %s",
+                (template_name, filename, template_id)
+            )
+            
+            # Elimina il vecchio file
+            old_file_path = os.path.join(app.config['PDF_TEMPLATES'], old_filename)
+            if os.path.exists(old_file_path):
+                os.remove(old_file_path)
+        else:
+            flash('Formato file non valido. Seleziona un file PDF', 'danger')
+            cur.close()
+            conn.close()
+            return redirect(url_for('consulenze_templates'))
+    else:
+        # Aggiorna solo il nome
+        cur.execute(
+            "UPDATE template_pdf SET nome = %s WHERE id = %s",
+            (template_name, template_id)
+        )
+    
+    conn.commit()
+    cur.close()
+    conn.close()
+    
+    flash('Template aggiornato con successo', 'success')
+    return redirect(url_for('consulenze_templates'))
+
+@app.route('/consulenze/templates/delete/<int:template_id>', methods=['POST'])
+@login_required
+@has_package('manage_consulenze')
+def consulenze_templates_delete(template_id):
+    conn = get_db_connection()
+    cur = conn.cursor()
+    
+    try:
+        # Ottieni il filename
+        cur.execute("SELECT filename FROM template_pdf WHERE id = %s", (template_id,))
+        result = cur.fetchone()
+        
+        if not result:
+            return jsonify({'success': False, 'message': 'Template non trovato'})
+        
+        filename = result[0]
+        
+        # Elimina dal database
+        cur.execute("DELETE FROM template_pdf WHERE id = %s", (template_id,))
+        conn.commit()
+        
+        # Elimina il file
+        file_path = os.path.join(app.config['PDF_TEMPLATES'], filename)
+        if os.path.exists(file_path):
+            os.remove(file_path)
+        
+        return jsonify({'success': True})
+    except Exception as e:
+        conn.rollback()
+        return jsonify({'success': False, 'message': str(e)})
+    finally:
+        cur.close()
+        conn.close()
+
+# Storico Invii routes
+@app.route('/storico-invii')
+@login_required
+@has_package('manage_consulenze')
+def storico_invii():
+    # Ottieni i parametri di filtro
+    cliente = request.args.get('cliente', '')
+    stato = request.args.get('stato', '')
+    data_da = request.args.get('data_da', '')
+    data_a = request.args.get('data_a', '')
+    page = int(request.args.get('page', 1))
+    export = request.args.get('export', '')
+    
+    # Connessione al database
+    conn = get_db_connection()
+    cur = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
+    
+    # Costruisci la query base
+    query = """
+        SELECT qi.*, c.nome, c.cognome, c.email, t.nome as template_nome,
+               (SELECT MAX(data_interazione) FROM questionari_interazioni 
+                WHERE questionario_id = qi.id) as ultima_interazione
+        FROM questionari_inviati qi
+        LEFT JOIN clienti_assicurativi c ON qi.cliente_id = c.id
+        LEFT JOIN template_pdf t ON qi.template_id = t.id
+        WHERE 1=1
+    """
+    params = []
+    
+    # Aggiungi filtri
+    if cliente:
+        query += " AND (c.nome ILIKE %s OR c.cognome ILIKE %s OR c.email ILIKE %s)"
+        params.extend([f'%{cliente}%', f'%{cliente}%', f'%{cliente}%'])
+    
+    if stato:
+        query += " AND qi.stato = %s"
+        params.append(stato)
+    
+    if data_da:
+        query += " AND qi.data_invio >= %s"
+        params.append(data_da)
+    
+    if data_a:
+        query += " AND qi.data_invio <= %s"
+        params.append(data_a + ' 23:59:59')
+    
+    # Aggiungi ordinamento
+    query += " ORDER BY qi.data_invio DESC"
+    
+    # Esegui la query per contare il totale
+    count_query = f"SELECT COUNT(*) FROM ({query}) AS count_query"
+    cur.execute(count_query, params)
+    total_invii = cur.fetchone()[0]
+    
+    # Calcola la paginazione
+    per_page = 20
+    total_pages = math.ceil(total_invii / per_page)
+    offset = (page - 1) * per_page
+    
+    # Aggiungi paginazione alla query principale
+    query += " LIMIT %s OFFSET %s"
+    params.extend([per_page, offset])
+    
+    # Esegui la query principale
+    cur.execute(query, params)
+    invii = cur.fetchall()
+    
+    # Calcola le statistiche
+    cur.execute("""
+        SELECT 
+            COUNT(*) as totale,
+            COUNT(CASE WHEN stato = 'aperto' THEN 1 END) as aperti,
+            COUNT(CASE WHEN stato = 'completato' THEN 1 END) as completati,
+            COUNT(CASE WHEN stato = 'inviato' THEN 1 END) as inviati,
+            COUNT(CASE WHEN stato = 'scaduto' THEN 1 END) as scaduti,
+            COUNT(CASE WHEN stato = 'reinviato' THEN 1 END) as reinviati,
+            AVG(CASE WHEN data_completamento IS NOT NULL AND data_apertura IS NOT NULL 
+                THEN EXTRACT(EPOCH FROM (data_completamento - data_apertura))/3600 
+                ELSE NULL END) as tempo_medio
+        FROM questionari_inviati
+    """)
+    stats_row = cur.fetchone()
+    
+    # Calcola i tassi
+    tasso_apertura = 0
+    tasso_completamento = 0
+    if stats_row['totale'] > 0:
+        tasso_apertura = round((stats_row['aperti'] + stats_row['completati']) / stats_row['totale'] * 100, 1)
+        tasso_completamento = round(stats_row['completati'] / stats_row['totale'] * 100, 1)
+    
+    # Prepara le statistiche
+    stats = {
+        'totale': stats_row['totale'],
+        'tasso_apertura': tasso_apertura,
+        'tasso_completamento': tasso_completamento,
+        'tempo_medio': round(stats_row['tempo_medio'] or 0, 1),
+        'stati': {
+            'inviato': stats_row['inviati'],
+            'aperto': stats_row['aperti'],
+            'completato': stats_row['completati'],
+            'scaduto': stats_row['scaduti'],
+            'reinviato': stats_row['reinviati']
+        }
+    }
+    
+    # Gestisci l'esportazione
+    if export:
+        # Esegui la query senza paginazione per l'export
+        export_query = query.replace(" LIMIT %s OFFSET %s", "")
+        export_params = params[:-2]
+        cur.execute(export_query, export_params)
+        export_data = cur.fetchall()
+        
+        if export == 'excel':
+            # Crea un DataFrame pandas
+            df = pd.DataFrame([dict(row) for row in export_data])
+            
+            # Seleziona e rinomina le colonne
+            columns = {
+                'id': 'ID',
+                'nome': 'Nome Cliente',
+                'cognome': 'Cognome Cliente',
+                'email': 'Email Cliente',
+                'filename': 'Nome File',
+                'data_invio': 'Data Invio',
+                'stato': 'Stato',
+                'data_apertura': 'Data Apertura',
+                'data_completamento': 'Data Completamento',
+                'numero_visualizzazioni': 'Visualizzazioni',
+                'template_nome': 'Template'
+            }
+            
+            df = df[[col for col in columns.keys() if col in df.columns]]
+            df = df.rename(columns=columns)
+            
+            # Crea il file Excel
+            output = BytesIO()
+            with pd.ExcelWriter(output, engine='xlsxwriter') as writer:
+                df.to_excel(writer, sheet_name='Storico Invii', index=False)
+                
+                # Formatta il foglio
+                workbook = writer.book
+                worksheet = writer.sheets['Storico Invii']
+                
+                # Formatta le date
+                date_format = workbook.add_format({'num_format': 'dd/mm/yyyy hh:mm'})
+                for i, col in enumerate(df.columns):
+                    if 'Data' in col:
+                        worksheet.set_column(i, i, 18, date_format)
+                    else:
+                        worksheet.set_column(i, i, 15)
+            
+            # Prepara la risposta
+            output.seek(0)
+            return send_file(
+                output,
+                mimetype='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+                as_attachment=True,
+                download_name=f'storico_invii_{datetime.now().strftime("%Y%m%d")}.xlsx'
+            )
+        
+        elif export == 'pdf':
+            # Implementazione dell'export PDF
+            # Qui si potrebbe usare una libreria come ReportLab o WeasyPrint
+            # Per semplicità, restituiamo un messaggio
+            return "Export PDF non ancora implementato", 501
+    
+    cur.close()
+    conn.close()
+    
+    return render_template(
+        'tools/storico_invii/index.html',
+        invii=invii,
+        total_invii=total_invii,
+        page=page,
+        total_pages=total_pages,
+        stats=stats
+    )
+
+@app.route('/storico-invii/<int:invio_id>')
+@login_required
+@has_package('manage_consulenze')
+def storico_invii_dettaglio(invio_id):
+    conn = get_db_connection()
+    cur = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
+    
+    # Ottieni i dettagli dell'invio
+    cur.execute("""
+        SELECT qi.*, c.nome, c.cognome, c.email, t.nome as template_nome,
+               u.username as inviato_da_username
+        FROM questionari_inviati qi
+        LEFT JOIN clienti_assicurativi c ON qi.cliente_id = c.id
+        LEFT JOIN template_pdf t ON qi.template_id = t.id
+        LEFT JOIN users u ON qi.inviato_da = u.id
+        WHERE qi.id = %s
+    """, (invio_id,))
+    invio = cur.fetchone()
+    
+    if not invio:
+        flash('Invio non trovato', 'danger')
+        return redirect(url_for('storico_invii'))
+    
+    # Ottieni le interazioni
+    cur.execute("""
+        SELECT * FROM questionari_interazioni
+        WHERE questionario_id = %s
+        ORDER BY data_interazione DESC
+    """, (invio_id,))
+    interazioni = cur.fetchall()
+    
+    # Ottieni i reinvii
+    cur.execute("""
+        SELECT r.*, u.username as inviato_da_username
+        FROM questionari_reinvii r
+        LEFT JOIN users u ON r.inviato_da = u.id
+        WHERE r.questionario_originale_id = %s
+        ORDER BY r.data_reinvio DESC
+    """, (invio_id,))
+    reinvii = cur.fetchall()
+    
+    cur.close()
+    conn.close()
+    
+    return render_template(
+        'tools/storico_invii/dettaglio.html',
+        invio=invio,
+        interazioni=interazioni,
+        reinvii=reinvii
+    )
+
+@app.route('/storico-invii/<int:invio_id>/note')
+@login_required
+@has_package('manage_consulenze')
+def storico_invii_get_note(invio_id):
+    conn = get_db_connection()
+    cur = conn.cursor()
+    
+    cur.execute("SELECT note FROM questionari_inviati WHERE id = %s", (invio_id,))
+    result = cur.fetchone()
+    
+    cur.close()
+    conn.close()
+    
+    if result:
+        return jsonify({'success': True, 'note': result[0]})
+    else:
+        return jsonify({'success': False, 'message': 'Invio non trovato'})
+
+@app.route('/storico-invii/salva-note', methods=['POST'])
+@login_required
+@has_package('manage_consulenze')
+def storico_invii_salva_note():
+    data = request.json
+    invio_id = data.get('invio_id')
+    note = data.get('note', '')
+    
+    if not invio_id:
+        return jsonify({'success': False, 'message': 'ID invio mancante'})
+    
+    conn = get_db_connection()
+    cur = conn.cursor()
+    
+    try:
+        cur.execute("UPDATE questionari_inviati SET note = %s WHERE id = %s", (note, invio_id))
+        conn.commit()
+        
+        # Registra l'interazione
+        cur.execute("""
+            INSERT INTO questionari_interazioni 
+            (questionario_id, tipo_interazione, dettagli, ip_address)
+            VALUES (%s, %s, %s, %s)
+        """, (invio_id, 'nota', 'Note aggiornate', request.remote_addr))
+        conn.commit()
+        
+        return jsonify({'success': True})
+    except Exception as e:
+        conn.rollback()
+        return jsonify({'success': False, 'message': str(e)})
+    finally:
+        cur.close()
+        conn.close()
+
+@app.route('/storico-invii/reinvia', methods=['POST'])
+@login_required
+@has_package('manage_consulenze')
+def storico_invii_reinvia():
+    data = request.json
+    invio_id = data.get('invio_id')
+    motivo = data.get('motivo')
+    note = data.get('note', '')
+    
+    if not invio_id or not motivo:
+        return jsonify({'success': False, 'message': 'Dati mancanti'})
+    
+    conn = get_db_connection()
+    cur = conn.cursor()
+    
+    try:
+        # Ottieni i dati dell'invio originale
+        cur.execute("""
+            SELECT cliente_id, template_id, filename, testo_email, email_text_id
+            FROM questionari_inviati
+            WHERE id = %s
+        """, (invio_id,))
+        invio_originale = cur.fetchone()
+        
+        if not invio_originale:
+            return jsonify({'success': False, 'message': 'Invio originale non trovato'})
+        
+        # Crea un nuovo invio
+        cur.execute("""
+            INSERT INTO questionari_inviati 
+            (cliente_id, template_id, filename, testo_email, email_text_id, inviato_da, stato)
+            VALUES (%s, %s, %s, %s, %s, %s, 'inviato')
+            RETURNING id
+        """, (
+            invio_originale[0],
+            invio_originale[1],
+            invio_originale[2],
+            invio_originale[3],
+            invio_originale[4],
+            session.get('user_id')
+        ))
+        nuovo_invio_id = cur.fetchone()[0]
+        
+        # Registra il reinvio
+        cur.execute("""
+            INSERT INTO questionari_reinvii 
+            (questionario_originale_id, questionario_nuovo_id, motivo, inviato_da)
+            VALUES (%s, %s, %s, %s)
+        """, (invio_id, nuovo_invio_id, motivo, session.get('user_id')))
+        
+        # Aggiorna lo stato dell'invio originale
+        cur.execute("UPDATE questionari_inviati SET stato = 'reinviato' WHERE id = %s", (invio_id,))
+        
+        # Registra l'interazione per l'invio originale
+        cur.execute("""
+            INSERT INTO questionari_interazioni 
+            (questionario_id, tipo_interazione, dettagli, ip_address)
+            VALUES (%s, %s, %s, %s)
+        """, (invio_id, 'reinvio', f'Reinviato con motivo: {motivo}', request.remote_addr))
+        
+        # Registra l'interazione per il nuovo invio
+        cur.execute("""
+            INSERT INTO questionari_interazioni 
+            (questionario_id, tipo_interazione, dettagli, ip_address)
+            VALUES (%s, %s, %s, %s)
+        """, (nuovo_invio_id, 'invio', f'Reinvio da questionario #{invio_id}', request.remote_addr))
+        
+        # Aggiorna le note se fornite
+        if note:
+            cur.execute("UPDATE questionari_inviati SET note = %s WHERE id = %s", (note, nuovo_invio_id))
+        
+        conn.commit()
+        return jsonify({'success': True, 'nuovo_invio_id': nuovo_invio_id})
+    except Exception as e:
+        conn.rollback()
+        return jsonify({'success': False, 'message': str(e)})
+    finally:
+        cur.close()
+        conn.close()
+
+@app.route('/storico-invii/cambia-stato', methods=['POST'])
+@login_required
+@has_package('manage_consulenze')
+def storico_invii_cambia_stato():
+    data = request.json
+    invio_id = data.get('invio_id')
+    stato = data.get('stato')
+    
+    if not invio_id or not stato:
+        return jsonify({'success': False, 'message': 'Dati mancanti'})
+    
+    conn = get_db_connection()
+    cur = conn.cursor()
+    
+    try:
+        # Aggiorna lo stato
+        cur.execute("UPDATE questionari_inviati SET stato = %s WHERE id = %s", (stato, invio_id))
+        
+        # Se lo stato è 'completato', aggiorna anche la data di completamento
+        if stato == 'completato':
+            cur.execute("""
+                UPDATE questionari_inviati 
+                SET data_completamento = CURRENT_TIMESTAMP 
+                WHERE id = %s AND data_completamento IS NULL
+            """, (invio_id,))
+        
+        # Registra l'interazione
+        cur.execute("""
+            INSERT INTO questionari_interazioni 
+            (questionario_id, tipo_interazione, dettagli, ip_address)
+            VALUES (%s, %s, %s, %s)
+        """, (invio_id, 'cambio_stato', f'Stato cambiato a: {stato}', request.remote_addr))
+        
+        conn.commit()
+        return jsonify({'success': True})
+    except Exception as e:
+        conn.rollback()
+        return jsonify({'success': False, 'message': str(e)})
+    finally:
+        cur.close()
+        conn.close()
+
+@app.route('/storico-invii/invia-promemoria', methods=['POST'])
+@login_required
+@has_package('manage_consulenze')
+def storico_invii_invia_promemoria():
+    data = request.json
+    invio_id = data.get('invio_id')
+    oggetto = data.get('oggetto')
+    testo = data.get('testo')
+    
+    if not invio_id or not oggetto or not testo:
+        return jsonify({'success': False, 'message': 'Dati mancanti'})
+    
+    conn = get_db_connection()
+    cur = conn.cursor()
+    
+    try:
+        # Ottieni i dati dell'invio
+        cur.execute("""
+            SELECT qi.filename, c.email, c.nome, c.cognome
+            FROM questionari_inviati qi
+            JOIN clienti_assicurativi c ON qi.cliente_id = c.id
+            WHERE qi.id = %s
+        """, (invio_id,))
+        invio = cur.fetchone()
+        
+        if not invio:
+            return jsonify({'success': False, 'message': 'Invio non trovato'})
+        
+        filename, email, nome, cognome = invio
+        
+        # Ottieni la configurazione email
+        cur.execute("SELECT * FROM config_email LIMIT 1")
+        config = cur.fetchone()
+        
+        if not config:
+            return jsonify({'success': False, 'message': 'Configurazione email non trovata'})
+        
+        # Invia l'email
+        try:
+            # Costruisci il percorso del file
+            file_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+            
+            # Invia l'email con allegato
+            send_email_with_attachment(
+                sender=config[3],
+                password=config[4],
+                recipient=email,
+                subject=oggetto,
+                body=testo,
+                smtp_server=config[1],
+                smtp_port=config[2],
+                attachment_path=file_path
+            )
+            
+            # Registra l'interazione
+            cur.execute("""
+                INSERT INTO questionari_interazioni 
+                (questionario_id, tipo_interazione, dettagli, ip_address)
+                VALUES (%s, %s, %s, %s)
+            """, (invio_id, 'promemoria', 'Promemoria inviato', request.remote_addr))
+            
+            conn.commit()
+            return jsonify({'success': True})
+        except Exception as e:
+            return jsonify({'success': False, 'message': f'Errore nell\'invio dell\'email: {str(e)}'})
+    except Exception as e:
+        conn.rollback()
+        return jsonify({'success': False, 'message': str(e)})
+    finally:
+        cur.close()
+        conn.close()
+
+@app.route('/storico-invii/elimina', methods=['POST'])
+@login_required
+@has_package('manage_consulenze')
+def storico_invii_elimina():
+    data = request.json
+    invio_id = data.get('invio_id')
+    
+    if not invio_id:
+        return jsonify({'success': False, 'message': 'ID invio mancante'})
+    
+    conn = get_db_connection()
+    cur = conn.cursor()
+    
+    try:
+        # Elimina le interazioni
+        cur.execute("DELETE FROM questionari_interazioni WHERE questionario_id = %s", (invio_id,))
+        
+        # Elimina i reinvii
+        cur.execute("DELETE FROM questionari_reinvii WHERE questionario_originale_id = %s OR questionario_nuovo_id = %s", 
+                   (invio_id, invio_id))
+        
+        # Elimina l'invio
+        cur.execute("DELETE FROM questionari_inviati WHERE id = %s", (invio_id,))
+        
+        conn.commit()
+        return jsonify({'success': True})
+    except Exception as e:
+        conn.rollback()
+        return jsonify({'success': False, 'message': str(e)})
+    finally:
+        cur.close()
+        conn.close()
+
+@app.route('/download_questionario/<filename>')
+@login_required
+@has_package('manage_consulenze')
+def download_questionario(filename):
+    """
+    Route per scaricare un questionario PDF
+    """
+    # Percorso del file
+    file_path = os.path.join(app.config.get('PDF_GENERATI', os.path.join(app.static_folder, 'pdf_generati')), filename)
+    
+    # Verifica se il file esiste
+    if not os.path.exists(file_path):
+        flash('File non trovato', 'danger')
+        return redirect(url_for('storico_invii'))
+    
+    # Invia il file come allegato
+    return send_file(
+        file_path,
+        as_attachment=True,
+        download_name=filename,
+        mimetype='application/pdf'
+    )
 
 @app.route('/consulenze/email', methods=['GET', 'POST'])
 @login_required
@@ -2349,8 +3152,50 @@ def init_db():
             data_invio TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
             flags TEXT[],
             email_text_id INTEGER REFERENCES email_texts(id),
-            testo_email TEXT
+            testo_email TEXT,
+            stato VARCHAR(50) DEFAULT 'inviato',
+            data_apertura TIMESTAMP,
+            data_completamento TIMESTAMP,
+            numero_visualizzazioni INTEGER DEFAULT 0,
+            ip_apertura VARCHAR(50),
+            user_agent TEXT,
+            note TEXT,
+            inviato_da INTEGER REFERENCES users(id)
         )
+    ''')
+    
+    # Create questionari_interazioni table for tracking interactions
+    cur.execute('''
+        CREATE TABLE IF NOT EXISTS questionari_interazioni (
+            id SERIAL PRIMARY KEY,
+            questionario_id INTEGER REFERENCES questionari_inviati(id) ON DELETE CASCADE,
+            tipo_interazione VARCHAR(50) NOT NULL,
+            data_interazione TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+            dettagli TEXT,
+            ip_address VARCHAR(50),
+            user_agent TEXT
+        )
+    ''')
+    
+    # Create questionari_reinvii table for tracking resends
+    cur.execute('''
+        CREATE TABLE IF NOT EXISTS questionari_reinvii (
+            id SERIAL PRIMARY KEY,
+            questionario_originale_id INTEGER REFERENCES questionari_inviati(id) ON DELETE CASCADE,
+            questionario_nuovo_id INTEGER REFERENCES questionari_inviati(id) ON DELETE CASCADE,
+            data_reinvio TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+            motivo TEXT,
+            inviato_da INTEGER REFERENCES users(id)
+        )
+    ''')
+    
+    # Create indexes for better performance
+    cur.execute('''
+        CREATE INDEX IF NOT EXISTS idx_questionari_cliente_id ON questionari_inviati(cliente_id);
+        CREATE INDEX IF NOT EXISTS idx_questionari_data_invio ON questionari_inviati(data_invio);
+        CREATE INDEX IF NOT EXISTS idx_questionari_stato ON questionari_inviati(stato);
+        CREATE INDEX IF NOT EXISTS idx_interazioni_questionario_id ON questionari_interazioni(questionario_id);
+        CREATE INDEX IF NOT EXISTS idx_interazioni_tipo ON questionari_interazioni(tipo_interazione);
     ''')
     
     # Create eventi table for calendar events

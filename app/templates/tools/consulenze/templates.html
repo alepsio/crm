@@ -1,0 +1,166 @@
+{% extends 'base.html' %}
+
+{% block title %}Template PDF - Gestione Consulenze Assicurative{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="d-flex justify-content-between align-items-center mb-4 animate__animated animate__fadeIn">
+        <h1 class="h3"><i class="bi bi-file-earmark-text"></i> Template PDF</h1>
+        <div>
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addTemplateModal">
+                <i class="bi bi-plus-circle"></i> Nuovo Template
+            </button>
+        </div>
+    </div>
+    
+    <div class="row animate__animated animate__fadeInUp" style="animation-delay: 0.1s">
+        <div class="col-md-12">
+            <div class="card shadow-sm">
+                <div class="card-header bg-light">
+                    <h5 class="mb-0">Template Disponibili</h5>
+                </div>
+                <div class="card-body p-0">
+                    <div class="table-responsive">
+                        <table class="table table-hover table-striped mb-0">
+                            <thead class="table-light">
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Nome</th>
+                                    <th>File</th>
+                                    <th>Data Creazione</th>
+                                    <th>Azioni</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% if templates %}
+                                    {% for template in templates %}
+                                    <tr>
+                                        <td>{{ template.id }}</td>
+                                        <td>{{ template.nome }}</td>
+                                        <td>{{ template.filename }}</td>
+                                        <td>{{ template.data_creazione|date }}</td>
+                                        <td>
+                                            <div class="btn-group btn-group-sm">
+                                                <a href="{{ url_for('static', filename='pdf_templates/' + template.filename) }}" target="_blank" class="btn btn-outline-primary">
+                                                    <i class="bi bi-eye"></i>
+                                                </a>
+                                                <button type="button" class="btn btn-outline-secondary" onclick="editTemplate({{ template.id }}, '{{ template.nome }}')">
+                                                    <i class="bi bi-pencil"></i>
+                                                </button>
+                                                <button type="button" class="btn btn-outline-danger" onclick="deleteTemplate({{ template.id }})">
+                                                    <i class="bi bi-trash"></i>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                {% else %}
+                                    <tr>
+                                        <td colspan="5" class="text-center py-4">
+                                            <div class="alert alert-info mb-0">
+                                                <i class="bi bi-info-circle me-2"></i> Nessun template disponibile.
+                                            </div>
+                                        </td>
+                                    </tr>
+                                {% endif %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Aggiungi Template -->
+<div class="modal fade" id="addTemplateModal" tabindex="-1" aria-labelledby="addTemplateModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addTemplateModalLabel">Nuovo Template</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="addTemplateForm" action="{{ url_for('consulenze_templates_add') }}" method="post" enctype="multipart/form-data">
+                    <div class="mb-3">
+                        <label for="templateName" class="form-label">Nome Template</label>
+                        <input type="text" class="form-control" id="templateName" name="templateName" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="templateFile" class="form-label">File PDF</label>
+                        <input type="file" class="form-control" id="templateFile" name="templateFile" accept=".pdf" required>
+                        <div class="form-text">Seleziona un file PDF da utilizzare come template.</div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annulla</button>
+                <button type="submit" form="addTemplateForm" class="btn btn-primary">Salva</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Modifica Template -->
+<div class="modal fade" id="editTemplateModal" tabindex="-1" aria-labelledby="editTemplateModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editTemplateModalLabel">Modifica Template</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="editTemplateForm" action="{{ url_for('consulenze_templates_edit') }}" method="post" enctype="multipart/form-data">
+                    <input type="hidden" id="editTemplateId" name="templateId">
+                    <div class="mb-3">
+                        <label for="editTemplateName" class="form-label">Nome Template</label>
+                        <input type="text" class="form-control" id="editTemplateName" name="templateName" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="editTemplateFile" class="form-label">File PDF (opzionale)</label>
+                        <input type="file" class="form-control" id="editTemplateFile" name="templateFile" accept=".pdf">
+                        <div class="form-text">Seleziona un nuovo file PDF solo se vuoi sostituire quello esistente.</div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annulla</button>
+                <button type="submit" form="editTemplateForm" class="btn btn-primary">Salva Modifiche</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    function editTemplate(id, nome) {
+        document.getElementById('editTemplateId').value = id;
+        document.getElementById('editTemplateName').value = nome;
+        
+        const editModal = new bootstrap.Modal(document.getElementById('editTemplateModal'));
+        editModal.show();
+    }
+    
+    function deleteTemplate(id) {
+        if (confirm('Sei sicuro di voler eliminare questo template?')) {
+            fetch(`/consulenze/templates/delete/${id}`, {
+                method: 'POST',
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert('Template eliminato con successo!');
+                    location.reload();
+                } else {
+                    alert('Errore: ' + data.message);
+                }
+            })
+            .catch(error => {
+                console.error('Errore:', error);
+                alert('Si è verificato un errore durante l\'eliminazione del template');
+            });
+        }
+    }
+</script>
+{% endblock %}

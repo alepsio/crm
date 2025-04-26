@@ -1,0 +1,496 @@
+{% extends 'base.html' %}
+
+{% block title %}Storico Invii - Gestione Consulenze Assicurative{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="d-flex justify-content-between align-items-center mb-4 animate__animated animate__fadeIn">
+        <h1 class="h3"><i class="bi bi-clock-history"></i> Storico Invii</h1>
+        <div>
+            <a href="{{ url_for('consulenze_index') }}" class="btn btn-outline-primary">
+                <i class="bi bi-arrow-left"></i> Torna alla Dashboard
+            </a>
+        </div>
+    </div>
+    
+    <div class="row mb-4 animate__animated animate__fadeInUp" style="animation-delay: 0.1s">
+        <div class="col-md-12">
+            <div class="card shadow-sm">
+                <div class="card-header bg-light d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0">Filtri</h5>
+                    <button type="button" class="btn btn-sm btn-outline-secondary" data-bs-toggle="collapse" data-bs-target="#filtriCollapse">
+                        <i class="bi bi-funnel"></i> Mostra/Nascondi
+                    </button>
+                </div>
+                <div class="collapse show" id="filtriCollapse">
+                    <div class="card-body">
+                        <form method="get" action="{{ url_for('storico_invii') }}" id="filtroForm">
+                            <div class="row g-3">
+                                <div class="col-md-3">
+                                    <label for="cliente" class="form-label">Cliente</label>
+                                    <input type="text" class="form-control" id="cliente" name="cliente" value="{{ request.args.get('cliente', '') }}">
+                                </div>
+                                <div class="col-md-2">
+                                    <label for="stato" class="form-label">Stato</label>
+                                    <select class="form-select" id="stato" name="stato">
+                                        <option value="">Tutti</option>
+                                        <option value="inviato" {% if request.args.get('stato') == 'inviato' %}selected{% endif %}>Inviato</option>
+                                        <option value="aperto" {% if request.args.get('stato') == 'aperto' %}selected{% endif %}>Aperto</option>
+                                        <option value="completato" {% if request.args.get('stato') == 'completato' %}selected{% endif %}>Completato</option>
+                                        <option value="scaduto" {% if request.args.get('stato') == 'scaduto' %}selected{% endif %}>Scaduto</option>
+                                        <option value="reinviato" {% if request.args.get('stato') == 'reinviato' %}selected{% endif %}>Reinviato</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-2">
+                                    <label for="data_da" class="form-label">Data da</label>
+                                    <input type="date" class="form-control" id="data_da" name="data_da" value="{{ request.args.get('data_da', '') }}">
+                                </div>
+                                <div class="col-md-2">
+                                    <label for="data_a" class="form-label">Data a</label>
+                                    <input type="date" class="form-control" id="data_a" name="data_a" value="{{ request.args.get('data_a', '') }}">
+                                </div>
+                                <div class="col-md-3 d-flex align-items-end">
+                                    <div class="d-grid gap-2 d-md-flex w-100">
+                                        <button type="submit" class="btn btn-primary flex-grow-1">
+                                            <i class="bi bi-search"></i> Filtra
+                                        </button>
+                                        <a href="{{ url_for('storico_invii') }}" class="btn btn-outline-secondary">
+                                            <i class="bi bi-x-circle"></i> Reset
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="row animate__animated animate__fadeInUp" style="animation-delay: 0.2s">
+        <div class="col-md-12">
+            <div class="card shadow-sm">
+                <div class="card-header bg-light d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0">Elenco Invii</h5>
+                    <div>
+                        <button type="button" class="btn btn-sm btn-outline-success" id="exportExcelBtn">
+                            <i class="bi bi-file-earmark-excel"></i> Esporta Excel
+                        </button>
+                        <button type="button" class="btn btn-sm btn-outline-danger" id="exportPdfBtn">
+                            <i class="bi bi-file-earmark-pdf"></i> Esporta PDF
+                        </button>
+                    </div>
+                </div>
+                <div class="card-body p-0">
+                    <div class="table-responsive">
+                        <table class="table table-hover table-striped mb-0">
+                            <thead class="table-light">
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Cliente</th>
+                                    <th>Documento</th>
+                                    <th>Data Invio</th>
+                                    <th>Stato</th>
+                                    <th>Visualizzazioni</th>
+                                    <th>Ultima Interazione</th>
+                                    <th>Azioni</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% if invii %}
+                                    {% for invio in invii %}
+                                    <tr>
+                                        <td>{{ invio.id }}</td>
+                                        <td>
+                                            <a href="{{ url_for('consulenze_cliente', cliente_id=invio.cliente_id) }}">
+                                                {{ invio.nome }} {{ invio.cognome }}
+                                            </a>
+                                        </td>
+                                        <td>{{ invio.filename }}</td>
+                                        <td>{{ invio.data_invio|date }}</td>
+                                        <td>
+                                            {% if invio.stato == 'inviato' %}
+                                            <span class="badge bg-info">Inviato</span>
+                                            {% elif invio.stato == 'aperto' %}
+                                            <span class="badge bg-primary">Aperto</span>
+                                            {% elif invio.stato == 'completato' %}
+                                            <span class="badge bg-success">Completato</span>
+                                            {% elif invio.stato == 'scaduto' %}
+                                            <span class="badge bg-warning">Scaduto</span>
+                                            {% elif invio.stato == 'reinviato' %}
+                                            <span class="badge bg-secondary">Reinviato</span>
+                                            {% else %}
+                                            <span class="badge bg-secondary">{{ invio.stato }}</span>
+                                            {% endif %}
+                                        </td>
+                                        <td>{{ invio.numero_visualizzazioni }}</td>
+                                        <td>
+                                            {% if invio.ultima_interazione %}
+                                            {{ invio.ultima_interazione|date }}
+                                            {% else %}
+                                            -
+                                            {% endif %}
+                                        </td>
+                                        <td>
+                                            <div class="btn-group btn-group-sm">
+                                                <a href="{{ url_for('storico_invii_dettaglio', invio_id=invio.id) }}" class="btn btn-outline-primary">
+                                                    <i class="bi bi-eye"></i>
+                                                </a>
+                                                <button type="button" class="btn btn-outline-success" onclick="reinviaQuestionario({{ invio.id }})">
+                                                    <i class="bi bi-arrow-repeat"></i>
+                                                </button>
+                                                <button type="button" class="btn btn-outline-secondary" onclick="aggiungiNote({{ invio.id }})">
+                                                    <i class="bi bi-pencil"></i>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                {% else %}
+                                    <tr>
+                                        <td colspan="8" class="text-center py-4">
+                                            <div class="alert alert-info mb-0">
+                                                <i class="bi bi-info-circle me-2"></i> Nessun invio trovato con i filtri selezionati.
+                                            </div>
+                                        </td>
+                                    </tr>
+                                {% endif %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            Mostrando {{ invii|length }} di {{ total_invii }} invii
+                        </div>
+                        <nav aria-label="Paginazione">
+                            <ul class="pagination pagination-sm mb-0">
+                                {% if page > 1 %}
+                                <li class="page-item">
+                                    <a class="page-link" href="{{ url_for('storico_invii', page=page-1, **request.args) }}" aria-label="Precedente">
+                                        <span aria-hidden="true">&laquo;</span>
+                                    </a>
+                                </li>
+                                {% else %}
+                                <li class="page-item disabled">
+                                    <a class="page-link" href="#" aria-label="Precedente">
+                                        <span aria-hidden="true">&laquo;</span>
+                                    </a>
+                                </li>
+                                {% endif %}
+                                
+                                {% for p in range(1, total_pages + 1) %}
+                                    {% if p == page %}
+                                    <li class="page-item active"><a class="page-link" href="#">{{ p }}</a></li>
+                                    {% elif p >= page - 2 and p <= page + 2 %}
+                                    <li class="page-item"><a class="page-link" href="{{ url_for('storico_invii', page=p, **request.args) }}">{{ p }}</a></li>
+                                    {% endif %}
+                                {% endfor %}
+                                
+                                {% if page < total_pages %}
+                                <li class="page-item">
+                                    <a class="page-link" href="{{ url_for('storico_invii', page=page+1, **request.args) }}" aria-label="Successivo">
+                                        <span aria-hidden="true">&raquo;</span>
+                                    </a>
+                                </li>
+                                {% else %}
+                                <li class="page-item disabled">
+                                    <a class="page-link" href="#" aria-label="Successivo">
+                                        <span aria-hidden="true">&raquo;</span>
+                                    </a>
+                                </li>
+                                {% endif %}
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="row mt-4 animate__animated animate__fadeInUp" style="animation-delay: 0.3s">
+        <div class="col-md-6">
+            <div class="card shadow-sm">
+                <div class="card-header bg-light">
+                    <h5 class="mb-0">Statistiche Invii</h5>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <div class="card border-0 bg-light">
+                                <div class="card-body text-center">
+                                    <h6 class="text-muted">Totale Invii</h6>
+                                    <h2 class="mb-0">{{ stats.totale }}</h2>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <div class="card border-0 bg-light">
+                                <div class="card-body text-center">
+                                    <h6 class="text-muted">Tasso di Apertura</h6>
+                                    <h2 class="mb-0">{{ stats.tasso_apertura }}%</h2>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <div class="card border-0 bg-light">
+                                <div class="card-body text-center">
+                                    <h6 class="text-muted">Tasso di Completamento</h6>
+                                    <h2 class="mb-0">{{ stats.tasso_completamento }}%</h2>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <div class="card border-0 bg-light">
+                                <div class="card-body text-center">
+                                    <h6 class="text-muted">Tempo Medio Completamento</h6>
+                                    <h2 class="mb-0">{{ stats.tempo_medio }} ore</h2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-6">
+            <div class="card shadow-sm">
+                <div class="card-header bg-light">
+                    <h5 class="mb-0">Distribuzione Stati</h5>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-4 mb-3">
+                            <div class="card border-0 bg-light">
+                                <div class="card-body text-center">
+                                    <h6 class="text-muted">Inviati</h6>
+                                    <h2 class="mb-0">{{ stats.stati.inviato }}</h2>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <div class="card border-0 bg-light">
+                                <div class="card-body text-center">
+                                    <h6 class="text-muted">Aperti</h6>
+                                    <h2 class="mb-0">{{ stats.stati.aperto }}</h2>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <div class="card border-0 bg-light">
+                                <div class="card-body text-center">
+                                    <h6 class="text-muted">Completati</h6>
+                                    <h2 class="mb-0">{{ stats.stati.completato }}</h2>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <div class="card border-0 bg-light">
+                                <div class="card-body text-center">
+                                    <h6 class="text-muted">Scaduti</h6>
+                                    <h2 class="mb-0">{{ stats.stati.scaduto }}</h2>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <div class="card border-0 bg-light">
+                                <div class="card-body text-center">
+                                    <h6 class="text-muted">Reinviati</h6>
+                                    <h2 class="mb-0">{{ stats.stati.reinviato }}</h2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Aggiungi Note -->
+<div class="modal fade" id="noteModal" tabindex="-1" aria-labelledby="noteModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="noteModalLabel">Aggiungi Note</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="noteForm">
+                    <input type="hidden" id="invio_id" name="invio_id">
+                    <div class="mb-3">
+                        <label for="note" class="form-label">Note</label>
+                        <textarea class="form-control" id="note" name="note" rows="5"></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annulla</button>
+                <button type="button" class="btn btn-primary" id="salvaNoteBtn">Salva</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Reinvio -->
+<div class="modal fade" id="reinvioModal" tabindex="-1" aria-labelledby="reinvioModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="reinvioModalLabel">Reinvia Questionario</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="reinvioForm">
+                    <input type="hidden" id="reinvio_id" name="invio_id">
+                    <div class="mb-3">
+                        <label for="motivo_reinvio" class="form-label">Motivo del reinvio</label>
+                        <select class="form-select" id="motivo_reinvio" name="motivo_reinvio" required>
+                            <option value="">Seleziona un motivo</option>
+                            <option value="Non ricevuto">Cliente non ha ricevuto l'email</option>
+                            <option value="Problemi tecnici">Problemi tecnici</option>
+                            <option value="Richiesta cliente">Richiesta del cliente</option>
+                            <option value="Scaduto">Questionario scaduto</option>
+                            <option value="Altro">Altro</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="note_reinvio" class="form-label">Note aggiuntive</label>
+                        <textarea class="form-control" id="note_reinvio" name="note_reinvio" rows="3"></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annulla</button>
+                <button type="button" class="btn btn-primary" id="confermaReinvioBtn">Reinvia</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Gestione esportazione Excel
+        document.getElementById('exportExcelBtn').addEventListener('click', function() {
+            // Aggiungi il parametro export=excel all'URL corrente
+            const currentUrl = new URL(window.location.href);
+            currentUrl.searchParams.set('export', 'excel');
+            window.location.href = currentUrl.toString();
+        });
+        
+        // Gestione esportazione PDF
+        document.getElementById('exportPdfBtn').addEventListener('click', function() {
+            // Aggiungi il parametro export=pdf all'URL corrente
+            const currentUrl = new URL(window.location.href);
+            currentUrl.searchParams.set('export', 'pdf');
+            window.location.href = currentUrl.toString();
+        });
+        
+        // Gestione aggiungi note
+        window.aggiungiNote = function(invioId) {
+            document.getElementById('invio_id').value = invioId;
+            
+            // Carica le note esistenti
+            fetch(`/storico-invii/${invioId}/note`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        document.getElementById('note').value = data.note || '';
+                    }
+                })
+                .catch(error => {
+                    console.error('Errore nel caricamento delle note:', error);
+                });
+            
+            const noteModal = new bootstrap.Modal(document.getElementById('noteModal'));
+            noteModal.show();
+        };
+        
+        // Gestione salvataggio note
+        document.getElementById('salvaNoteBtn').addEventListener('click', function() {
+            const invioId = document.getElementById('invio_id').value;
+            const note = document.getElementById('note').value;
+            
+            fetch('/storico-invii/salva-note', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    invio_id: invioId,
+                    note: note
+                }),
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    // Chiudi il modal
+                    bootstrap.Modal.getInstance(document.getElementById('noteModal')).hide();
+                    
+                    // Mostra un messaggio di successo
+                    alert('Note salvate con successo!');
+                } else {
+                    alert('Errore nel salvataggio delle note: ' + data.message);
+                }
+            })
+            .catch(error => {
+                console.error('Errore:', error);
+                alert('Si è verificato un errore nel salvataggio delle note');
+            });
+        });
+        
+        // Gestione reinvio questionario
+        window.reinviaQuestionario = function(invioId) {
+            document.getElementById('reinvio_id').value = invioId;
+            const reinvioModal = new bootstrap.Modal(document.getElementById('reinvioModal'));
+            reinvioModal.show();
+        };
+        
+        // Gestione conferma reinvio
+        document.getElementById('confermaReinvioBtn').addEventListener('click', function() {
+            const invioId = document.getElementById('reinvio_id').value;
+            const motivo = document.getElementById('motivo_reinvio').value;
+            const note = document.getElementById('note_reinvio').value;
+            
+            if (!motivo) {
+                alert('Seleziona un motivo per il reinvio');
+                return;
+            }
+            
+            fetch('/storico-invii/reinvia', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    invio_id: invioId,
+                    motivo: motivo,
+                    note: note
+                }),
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    // Chiudi il modal
+                    bootstrap.Modal.getInstance(document.getElementById('reinvioModal')).hide();
+                    
+                    // Mostra un messaggio di successo
+                    alert('Questionario reinviato con successo!');
+                    
+                    // Ricarica la pagina
+                    location.reload();
+                } else {
+                    alert('Errore nel reinvio: ' + data.message);
+                }
+            })
+            .catch(error => {
+                console.error('Errore:', error);
+                alert('Si è verificato un errore nel reinvio del questionario');
+            });
+        });
+    });
+</script>
+{% endblock %}
