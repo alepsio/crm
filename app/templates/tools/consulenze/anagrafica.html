@@ -12,8 +12,11 @@
     </div>
     
     <div class="card shadow-sm">
-        <div class="card-header bg-light">
+        <div class="card-header bg-light d-flex justify-content-between align-items-center">
             <h5 class="mb-0">Inserimento Nuovo Cliente</h5>
+            <button type="button" class="btn btn-outline-warning btn-sm" id="generateTestDataBtn">
+                <i class="bi bi-magic"></i> Genera Dati Test
+            </button>
         </div>
         <div class="card-body">
             <form method="post" action="{{ url_for('consulenze_anagrafica') }}" enctype="multipart/form-data">
@@ -153,6 +156,50 @@
                         </div>
                     </div>
                     
+                    <!-- Dati Polizza Assicurativa -->
+                    <div class="col-md-12 mt-2 mb-3">
+                        <h5 class="border-bottom pb-2"><i class="bi bi-shield-check"></i> Polizza Assicurativa</h5>
+                    </div>
+                    
+                    <div class="col-md-3 mb-3">
+                        <label for="compagnia_assicurativa" class="form-label">Compagnia Assicurativa</label>
+                        <input type="text" class="form-control" id="compagnia_assicurativa" name="compagnia_assicurativa" 
+                               placeholder="es. Generali, Allianz, AXA...">
+                    </div>
+                    
+                    <div class="col-md-3 mb-3">
+                        <label for="numero_polizza" class="form-label">Numero Polizza</label>
+                        <input type="text" class="form-control" id="numero_polizza" name="numero_polizza" 
+                               placeholder="Numero identificativo polizza">
+                    </div>
+                    
+                    <div class="col-md-3 mb-3">
+                        <label for="tipo_polizza" class="form-label">Tipo Polizza</label>
+                        <select class="form-select" id="tipo_polizza" name="tipo_polizza">
+                            <option value="">Seleziona tipo...</option>
+                            <option value="RC Professionale">RC Professionale</option>
+                            <option value="RC Generale">RC Generale</option>
+                            <option value="Tutela Legale">Tutela Legale</option>
+                            <option value="Cyber Risk">Cyber Risk</option>
+                            <option value="Infortuni">Infortuni</option>
+                            <option value="Malattia">Malattia</option>
+                            <option value="Vita">Vita</option>
+                            <option value="Auto">Auto</option>
+                            <option value="Casa">Casa</option>
+                            <option value="Altro">Altro</option>
+                        </select>
+                    </div>
+                    
+                    <div class="col-md-3 mb-3">
+                        <label for="data_scadenza_polizza" class="form-label">
+                            <i class="bi bi-calendar-event text-warning"></i> Data Scadenza Polizza
+                        </label>
+                        <input type="date" class="form-control" id="data_scadenza_polizza" name="data_scadenza_polizza">
+                        <div class="form-text">
+                            <i class="bi bi-info-circle"></i> Utilizzata per automazioni di promemoria
+                        </div>
+                    </div>
+                    
                     <!-- Documenti -->
                     <div class="col-md-12 mt-2 mb-3">
                         <h5 class="border-bottom pb-2"><i class="bi bi-file-earmark"></i> Documenti</h5>
@@ -198,6 +245,80 @@
     // Validazione partita IVA
     document.getElementById('partita_iva').addEventListener('input', function() {
         this.value = this.value.replace(/[^0-9]/g, '');
+    });
+    
+    // Funzione per generare dati di test
+    document.getElementById('generateTestDataBtn').addEventListener('click', function() {
+        // Array di nomi e cognomi italiani
+        const nomi = ['Mario', 'Luigi', 'Giuseppe', 'Francesco', 'Antonio', 'Marco', 'Andrea', 'Alessandro', 'Matteo', 'Lorenzo', 'Davide', 'Simone', 'Luca', 'Stefano', 'Federico', 'Giulia', 'Francesca', 'Chiara', 'Sara', 'Martina', 'Giorgia', 'Silvia', 'Valentina', 'Alessia', 'Jessica', 'Elisa', 'Federica', 'Ilaria', 'Cristina', 'Paola'];
+        const cognomi = ['Rossi', 'Russo', 'Ferrari', 'Esposito', 'Bianchi', 'Romano', 'Colombo', 'Ricci', 'Marino', 'Greco', 'Bruno', 'Gallo', 'Conti', 'De Luca', 'Mancini', 'Costa', 'Giordano', 'Rizzo', 'Lombardi', 'Moretti', 'Barbieri', 'Fontana', 'Santoro', 'Mariani', 'Rinaldi', 'Caruso', 'Ferrara', 'Galli', 'Martini', 'Leone'];
+        
+        // Genera nome e cognome casuali
+        const nome = nomi[Math.floor(Math.random() * nomi.length)];
+        const cognome = cognomi[Math.floor(Math.random() * cognomi.length)];
+        
+        // Genera codice fiscale fittizio (16 caratteri alfanumerici)
+        function generateCodiceFiscale() {
+            const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+            let result = '';
+            for (let i = 0; i < 16; i++) {
+                result += chars.charAt(Math.floor(Math.random() * chars.length));
+            }
+            return result;
+        }
+        
+        // Genera email basata su nome e cognome
+        const email = `${nome.toLowerCase()}.${cognome.toLowerCase()}@test.com`;
+        
+        // Genera numero di cellulare italiano
+        const cellulare = `3${Math.floor(Math.random() * 9) + 1}${Math.floor(Math.random() * 90000000) + 10000000}`;
+        
+        // Conferma prima di compilare
+        Swal.fire({
+            title: 'Genera Dati Test',
+            text: 'Vuoi compilare automaticamente i campi obbligatori con dati casuali per il test?',
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonColor: '#ffc107',
+            cancelButtonColor: '#6c757d',
+            confirmButtonText: 'Sì, genera!',
+            cancelButtonText: 'Annulla'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // Compila i campi obbligatori
+                document.getElementById('nome').value = nome;
+                document.getElementById('cognome').value = cognome;
+                document.getElementById('codice_fiscale').value = generateCodiceFiscale();
+                document.getElementById('email').value = email;
+                document.getElementById('cellulare').value = cellulare;
+                
+                // Mostra toast di conferma
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'success',
+                    title: 'Dati generati!',
+                    text: `Cliente test: ${nome} ${cognome}`,
+                    showConfirmButton: false,
+                    timer: 2000,
+                    timerProgressBar: true,
+                    toast: true
+                });
+                
+                // Evidenzia i campi compilati con un effetto
+                const campiCompilati = ['nome', 'cognome', 'codice_fiscale', 'email', 'cellulare'];
+                campiCompilati.forEach(campo => {
+                    const element = document.getElementById(campo);
+                    element.style.backgroundColor = '#fff3cd';
+                    element.style.borderColor = '#ffc107';
+                    
+                    // Rimuovi l'evidenziazione dopo 3 secondi
+                    setTimeout(() => {
+                        element.style.backgroundColor = '';
+                        element.style.borderColor = '';
+                    }, 3000);
+                });
+            }
+        });
     });
 </script>
 {% endblock %}

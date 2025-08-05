@@ -288,15 +288,44 @@
                     cancelButtonText: 'Annulla'
                 }).then((result) => {
                     if (result.isConfirmed) {
-                        // Qui andrebbe la chiamata AJAX per eliminare il testo
-                        // Per ora mostriamo solo un messaggio di successo
-                        Swal.fire(
-                            'Eliminato!',
-                            'Il testo è stato eliminato.',
-                            'success'
-                        ).then(() => {
-                            // Ricarica la pagina
-                            location.reload();
+                        // Chiamata AJAX per eliminare il testo
+                        fetch(`{{ url_for("delete_email_text", text_id=0) }}`.replace('0', id), {
+                            method: 'DELETE',
+                            headers: {
+                                'Content-Type': 'application/json',
+                            }
+                        })
+                        .then(response => {
+                            if (response.ok) {
+                                return response.json();
+                            }
+                            throw new Error('Errore durante l\'eliminazione');
+                        })
+                        .then(data => {
+                            if (data.success) {
+                                Swal.fire(
+                                    'Eliminato!',
+                                    'Il testo è stato eliminato.',
+                                    'success'
+                                ).then(() => {
+                                    // Ricarica la pagina
+                                    location.reload();
+                                });
+                            } else {
+                                Swal.fire(
+                                    'Errore!',
+                                    data.message || 'Non è possibile eliminare questo testo.',
+                                    'error'
+                                );
+                            }
+                        })
+                        .catch(error => {
+                            console.error('Errore:', error);
+                            Swal.fire(
+                                'Errore!',
+                                'Si è verificato un errore durante l\'eliminazione.',
+                                'error'
+                            );
                         });
                     }
                 });
@@ -313,22 +342,61 @@
                     return;
                 }
                 
-                // Qui andrebbe la chiamata AJAX per salvare il testo
-                // Per ora mostriamo solo un messaggio di successo
-                Swal.fire({
-                    position: 'top-end',
-                    icon: 'success',
-                    title: 'Testo salvato!',
-                    showConfirmButton: false,
-                    timer: 1500,
-                    timerProgressBar: true,
-                    toast: true
-                }).then(() => {
-                    // Chiudi il modal
-                    addTextModal.hide();
-                    
-                    // Ricarica la pagina
-                    location.reload();
+                // Disabilita il pulsante durante il salvataggio
+                this.disabled = true;
+                this.innerHTML = '<i class="bi bi-hourglass"></i> Salvataggio...';
+                
+                // Prepara i dati del form
+                const formData = new FormData(form);
+                
+                // Chiamata AJAX per salvare il testo
+                fetch('{{ url_for("consulenze_email_texts") }}', {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'X-Requested-With': 'XMLHttpRequest'
+                    }
+                })
+                .then(response => {
+                    if (response.ok) {
+                        return response.json();
+                    }
+                    throw new Error('Errore durante il salvataggio');
+                })
+                .then(data => {
+                    if (data.success) {
+                        Swal.fire({
+                            position: 'top-end',
+                            icon: 'success',
+                            title: 'Testo salvato!',
+                            showConfirmButton: false,
+                            timer: 1500,
+                            timerProgressBar: true,
+                            toast: true
+                        }).then(() => {
+                            // Chiudi il modal
+                            addTextModal.hide();
+                            
+                            // Ricarica la pagina
+                            location.reload();
+                        });
+                    } else {
+                        throw new Error(data.message || 'Errore durante il salvataggio');
+                    }
+                })
+                .catch(error => {
+                    console.error('Errore:', error);
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Errore!',
+                        text: 'Si è verificato un errore durante il salvataggio.',
+                        confirmButtonText: 'OK'
+                    });
+                })
+                .finally(() => {
+                    // Riabilita il pulsante
+                    this.disabled = false;
+                    this.innerHTML = 'Salva Testo';
                 });
             });
         }

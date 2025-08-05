@@ -18,10 +18,10 @@ PDF_GENERATI = 'app/static/pdf_generati'
 MAX_CONTENT_LENGTH = 16 * 1024 * 1024  # 16MB max upload
 
 # Configurazioni del database
-DB_HOST = os.environ.get('DB_HOST', 'dpg-d042mnbuibrs73amtn5g-a.frankfurt-postgres.render.com')
-DB_NAME = os.environ.get('DB_NAME', 'crm_96md')
-DB_USER = os.environ.get('DB_USER', 'crm_96md_user')
-DB_PASSWORD = os.environ.get('DB_PASSWORD', 'JUXtm5gEKXkq03EYfpWntZT0QBbHaf2Z')
+DB_HOST = os.environ.get('DB_HOST', 'localhost')
+DB_NAME = os.environ.get('DB_NAME', 'insurance_management')
+DB_USER = os.environ.get('DB_USER', 'postgres')
+DB_PASSWORD = os.environ.get('DB_PASSWORD', 'admin')
 
 # Configurazioni di logging
 LOG_LEVEL = os.environ.get('LOG_LEVEL', 'INFO')

@@ -1,0 +1,473 @@
+{% extends "base.html" %}
+
+{% block title %}Crea Automazione Email{% endblock %}
+
+{% block extra_css %}
+<style>
+    .content-section {
+        background: #f8f9fa;
+        border-radius: 8px;
+        padding: 20px;
+        margin-bottom: 20px;
+    }
+    
+    .cliente-item {
+        padding: 10px;
+        border-bottom: 1px solid #eee;
+        transition: background-color 0.2s;
+    }
+    
+    .cliente-item:hover {
+        background-color: #f8f9fa;
+    }
+    
+    .cliente-item:last-child {
+        border-bottom: none;
+    }
+    
+    .section-header {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 15px 20px;
+        border-radius: 8px 8px 0 0;
+        margin: -20px -20px 20px -20px;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <div>
+                    <h2><i class="bi bi-robot"></i> Crea Nuova Automazione Email</h2>
+                    <p class="text-muted">Configura un'automazione per l'invio automatico di email ai tuoi clienti</p>
+                </div>
+                <a href="{{ url_for('consulenze_automazioni') }}" class="btn btn-outline-secondary">
+                    <i class="bi bi-arrow-left"></i> Torna alle Automazioni
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <form id="automationForm" method="POST">
+        <div class="row">
+            <!-- Colonna Sinistra -->
+            <div class="col-lg-8">
+                <!-- Informazioni Base -->
+                <div class="card mb-4">
+                    <div class="section-header">
+                        <h5 class="mb-0"><i class="bi bi-info-circle"></i> Informazioni Base</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="nome" class="form-label">Nome Automazione *</label>
+                                <input type="text" class="form-control" id="nome" name="nome" required
+                                       placeholder="es. Promemoria Scadenza Polizza">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="descrizione" class="form-label">Descrizione</label>
+                                <input type="text" class="form-control" id="descrizione" name="descrizione"
+                                       placeholder="Breve descrizione dell'automazione">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tipo di Contenuto -->
+                <div class="card mb-4">
+                    <div class="section-header">
+                        <h5 class="mb-0"><i class="bi bi-envelope"></i> Tipo di Contenuto</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-4 mb-3">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="tipo_contenuto" 
+                                           id="email_semplice" value="email_semplice" checked>
+                                    <label class="form-check-label" for="email_semplice">
+                                        <i class="bi bi-envelope text-primary"></i> Email Template
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="tipo_contenuto" 
+                                           id="questionario_pdf" value="questionario_pdf">
+                                    <label class="form-check-label" for="questionario_pdf">
+                                        <i class="bi bi-file-pdf text-danger"></i> Questionario PDF
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="tipo_contenuto" 
+                                           id="testo_personalizzato" value="testo_personalizzato">
+                                    <label class="form-check-label" for="testo_personalizzato">
+                                        <i class="bi bi-pencil text-warning"></i> Testo Personalizzato
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Configurazione Contenuto -->
+                        <div class="content-section" id="email-section">
+                            <h6><i class="bi bi-envelope"></i> Template Email</h6>
+                            <select class="form-select" id="email_template_id" name="email_template_id">
+                                <option value="">Seleziona template email...</option>
+                                {% for template in email_templates %}
+                                    <option value="{{ template.id }}">{{ template.nome }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+
+                        <div class="content-section d-none" id="pdf-section">
+                            <h6><i class="bi bi-file-pdf"></i> Template PDF</h6>
+                            <select class="form-select" id="template_pdf_id" name="template_pdf_id">
+                                <option value="">Seleziona template PDF...</option>
+                                {% for template in templates %}
+                                    <option value="{{ template.id }}">{{ template.nome }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+
+                        <div class="content-section d-none" id="testo-section">
+                            <h6><i class="bi bi-pencil"></i> Testo Personalizzato</h6>
+                            <textarea class="form-control" id="testo_personalizzato" name="testo_personalizzato" 
+                                      rows="5" placeholder="Scrivi il testo dell'email..."></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Programmazione -->
+                <div class="card mb-4">
+                    <div class="section-header">
+                        <h5 class="mb-0"><i class="bi bi-clock"></i> Programmazione</h5>
+                    </div>
+                    <div class="card-body">
+                        <!-- Tipo di Programmazione -->
+                        <div class="row mb-4">
+                            <div class="col-md-6">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="tipo_programmazione" 
+                                           id="prog_frequenza" value="frequenza" checked>
+                                    <label class="form-check-label" for="prog_frequenza">
+                                        <i class="bi bi-arrow-repeat text-primary"></i> Invio Ricorrente
+                                    </label>
+                                    <div class="form-text">Invia email a intervalli regolari</div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="tipo_programmazione" 
+                                           id="prog_scadenza" value="scadenza_polizza">
+                                    <label class="form-check-label" for="prog_scadenza">
+                                        <i class="bi bi-calendar-event text-warning"></i> Promemoria Scadenza
+                                    </label>
+                                    <div class="form-text">Invia promemoria prima della scadenza polizza</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Configurazione Frequenza -->
+                        <div class="content-section" id="frequenza-config">
+                            <h6><i class="bi bi-arrow-repeat"></i> Configurazione Frequenza</h6>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label for="frequenza_giorni" class="form-label">Frequenza (giorni) *</label>
+                                    <select class="form-select" id="frequenza_giorni" name="frequenza_giorni">
+                                        <option value="1">Ogni giorno</option>
+                                        <option value="7">Ogni settimana</option>
+                                        <option value="14">Ogni 2 settimane</option>
+                                        <option value="30" selected>Ogni mese</option>
+                                        <option value="90">Ogni 3 mesi</option>
+                                        <option value="180">Ogni 6 mesi</option>
+                                        <option value="365">Ogni anno</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="ora_invio" class="form-label">Orario Invio *</label>
+                                    <input type="time" class="form-control" id="ora_invio" name="ora_invio" 
+                                           value="09:00" required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Configurazione Scadenza -->
+                        <div class="content-section d-none" id="scadenza-config">
+                            <h6><i class="bi bi-calendar-event"></i> Configurazione Promemoria Scadenza</h6>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <label for="giorni_prima_scadenza" class="form-label">Giorni prima della scadenza *</label>
+                                    <select class="form-select" id="giorni_prima_scadenza" name="giorni_prima_scadenza">
+                                        <option value="7">7 giorni prima</option>
+                                        <option value="15">15 giorni prima</option>
+                                        <option value="30" selected>30 giorni prima</option>
+                                        <option value="45">45 giorni prima</option>
+                                        <option value="60">60 giorni prima</option>
+                                        <option value="90">90 giorni prima</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="ora_invio_scadenza" class="form-label">Orario Invio *</label>
+                                    <input type="time" class="form-control" id="ora_invio_scadenza" name="ora_invio_scadenza" 
+                                           value="09:00">
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-check mt-4">
+                                        <input class="form-check-input" type="checkbox" id="ripeti_promemoria" name="ripeti_promemoria">
+                                        <label class="form-check-label" for="ripeti_promemoria">
+                                            Ripeti promemoria
+                                        </label>
+                                        <div class="form-text">Invia più promemoria (es. 60, 30, 7 giorni prima)</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Colonna Destra -->
+            <div class="col-lg-4">
+                <!-- Target Clienti -->
+                <div class="card mb-4">
+                    <div class="section-header">
+                        <h5 class="mb-0"><i class="bi bi-people"></i> Target Clienti</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="row mb-3">
+                            <div class="col-12">
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="radio" name="target_clienti" 
+                                           id="tutti_clienti" value="tutti" checked>
+                                    <label class="form-check-label" for="tutti_clienti">
+                                        <i class="bi bi-people-fill text-success"></i> Tutti i clienti
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="target_clienti" 
+                                           id="clienti_specifici" value="specifici">
+                                    <label class="form-check-label" for="clienti_specifici">
+                                        <i class="bi bi-person-check text-primary"></i> Clienti specifici
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Selezione Clienti Specifici -->
+                        <div class="d-none" id="clienti-specifici-section">
+                            <label class="form-label">Seleziona Clienti</label>
+                            
+                            <!-- Campo di ricerca -->
+                            <div class="mb-2">
+                                <input type="text" class="form-control form-control-sm" id="search_clienti" 
+                                       placeholder="Cerca cliente...">
+                            </div>
+                            
+                            <!-- Lista clienti con checkbox -->
+                            <div class="border rounded" style="max-height: 300px; overflow-y: auto;">
+                                {% if clienti %}
+                                    {% for cliente in clienti %}
+                                        <div class="cliente-item" data-search="{{ (cliente.cognome or '')|lower }} {{ (cliente.nome or '')|lower }} {{ (cliente.codice_fiscale or '')|lower }}">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" 
+                                                       name="clienti_selezionati" value="{{ cliente.id }}" 
+                                                       id="cliente_{{ cliente.id }}">
+                                                <label class="form-check-label w-100" for="cliente_{{ cliente.id }}">
+                                                    <div class="d-flex justify-content-between align-items-start">
+                                                        <div>
+                                                            <strong>{{ cliente.cognome or 'Cognome mancante' }} {{ cliente.nome or 'Nome mancante' }}</strong>
+                                                            <br>
+                                                            <small class="text-muted">
+                                                                CF: {{ cliente.codice_fiscale or 'CF mancante' }}
+                                                                {% if cliente.email %}
+                                                                    <br>Email: {{ cliente.email }}
+                                                                {% endif %}
+                                                            </small>
+                                                        </div>
+                                                    </div>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    {% endfor %}
+                                {% else %}
+                                    <div class="text-center text-muted py-3">
+                                        <i class="bi bi-exclamation-triangle"></i> 
+                                        Nessun cliente trovato. Aggiungi prima dei clienti dall'anagrafica.
+                                    </div>
+                                {% endif %}
+                            </div>
+                            
+                            <!-- Contatore clienti selezionati -->
+                            <div class="form-text mt-2">
+                                <span id="clienti-selezionati-count">0</span> clienti selezionati
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Azioni -->
+                <div class="card">
+                    <div class="card-body">
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-primary btn-lg" id="saveAutomation">
+                                <i class="bi bi-save"></i> Crea Automazione
+                            </button>
+                            <a href="{{ url_for('consulenze_automazioni') }}" class="btn btn-outline-secondary">
+                                <i class="bi bi-x-circle"></i> Annulla
+                            </a>
+                        </div>
+                        
+                        <div class="mt-3">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="attiva" name="attiva" checked>
+                                <label class="form-check-label" for="attiva">
+                                    <i class="bi bi-play-circle text-success"></i> Attiva immediatamente
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    $(document).ready(function() {
+        // Debug: verifica se ci sono clienti disponibili
+        const clientiCount = $('.cliente-item').length;
+        console.log('Clienti disponibili:', clientiCount);
+        
+        // Gestione ricerca clienti
+        $('#search_clienti').on('input', function() {
+            const searchTerm = $(this).val().toLowerCase();
+            $('.cliente-item').each(function() {
+                const searchData = $(this).data('search');
+                if (searchData.includes(searchTerm)) {
+                    $(this).show();
+                } else {
+                    $(this).hide();
+                }
+            });
+        });
+        
+        // Gestione contatore clienti selezionati
+        $('input[name="clienti_selezionati"]').change(function() {
+            const selectedCount = $('input[name="clienti_selezionati"]:checked').length;
+            $('#clienti-selezionati-count').text(selectedCount);
+        });
+        
+        // Gestione cambio tipo contenuto
+        $('input[name="tipo_contenuto"]').change(function() {
+            $('.content-section').addClass('d-none');
+            
+            const tipo = $(this).val();
+            if (tipo === 'email_semplice') {
+                $('#email-section').removeClass('d-none');
+            } else if (tipo === 'questionario_pdf') {
+                $('#pdf-section').removeClass('d-none');
+            } else if (tipo === 'testo_personalizzato') {
+                $('#testo-section').removeClass('d-none');
+            }
+        });
+        
+        // Gestione cambio target clienti
+        $('input[name="target_clienti"]').change(function() {
+            if ($(this).val() === 'specifici') {
+                $('#clienti-specifici-section').removeClass('d-none');
+            } else {
+                $('#clienti-specifici-section').addClass('d-none');
+            }
+        });
+        
+        // Gestione cambio tipo programmazione
+        $('input[name="tipo_programmazione"]').change(function() {
+            if ($(this).val() === 'frequenza') {
+                $('#frequenza-config').removeClass('d-none');
+                $('#scadenza-config').addClass('d-none');
+                $('#frequenza_giorni').prop('required', true);
+                $('#giorni_prima_scadenza').prop('required', false);
+            } else {
+                $('#frequenza-config').addClass('d-none');
+                $('#scadenza-config').removeClass('d-none');
+                $('#frequenza_giorni').prop('required', false);
+                $('#giorni_prima_scadenza').prop('required', true);
+            }
+        });
+        
+        // Salva automazione
+        $('#automationForm').submit(function(e) {
+            e.preventDefault();
+            
+            const form = this;
+            if (!form.checkValidity()) {
+                form.classList.add('was-validated');
+                return;
+            }
+            
+            const formData = new FormData(form);
+            const data = Object.fromEntries(formData.entries());
+            
+            // Gestisci clienti selezionati per target specifici
+            if (data.target_clienti === 'specifici') {
+                const clientiSelezionati = [];
+                $('input[name="clienti_selezionati"]:checked').each(function() {
+                    clientiSelezionati.push($(this).val());
+                });
+                data.clienti_selezionati = clientiSelezionati;
+                
+                if (clientiSelezionati.length === 0) {
+                    Swal.fire({
+                        icon: 'warning',
+                        title: 'Attenzione',
+                        text: 'Seleziona almeno un cliente per l\'automazione'
+                    });
+                    return;
+                }
+            }
+            
+            $('#saveAutomation').prop('disabled', true).html('<i class="bi bi-hourglass-split"></i> Creazione...');
+            
+            $.ajax({
+                url: '/consulenze/automazioni/create',
+                method: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify(data),
+                success: function(response) {
+                    if (response.success) {
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Automazione Creata!',
+                            text: response.message,
+                            confirmButtonText: 'OK'
+                        }).then(() => {
+                            window.location.href = '/consulenze/automazioni';
+                        });
+                    } else {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Errore',
+                            text: response.message
+                        });
+                        $('#saveAutomation').prop('disabled', false).html('<i class="bi bi-save"></i> Crea Automazione');
+                    }
+                },
+                error: function() {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Errore',
+                        text: 'Errore durante la creazione dell\'automazione'
+                    });
+                    $('#saveAutomation').prop('disabled', false).html('<i class="bi bi-save"></i> Crea Automazione');
+                }
+            });
+        });
+    });
+</script>
+{% endblock %}

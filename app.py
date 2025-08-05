@@ -17,6 +17,8 @@ import csv
 from io import StringIO
 from flask_wtf.csrf import CSRFProtect
 import logging
+import threading
+import time
 
 # Inizializza l'applicazione Flask
 app = Flask(__name__, template_folder='app/templates', static_folder='app/static')
@@ -132,7 +134,8 @@ def get_db_connection():
         host=app.config.get('DB_HOST', 'localhost'),
         database=app.config.get('DB_NAME', 'insurance_management'),
         user=app.config.get('DB_USER', 'postgres'),
-        password=app.config.get('DB_PASSWORD', 'postgres')
+        password=app.config.get('DB_PASSWORD', 'admin'),
+        cursor_factory=psycopg2.extras.RealDictCursor
     )
     conn.autocommit = True
     return conn
@@ -1036,22 +1039,37 @@ def consulenze_email_texts():
         text_name = request.form.get('textName')
         text_content = request.form.get('textContent')
         
-        if text_id:
-            # Aggiorna testo esistente
-            cur.execute(
-                "UPDATE email_texts SET nome = %s, testo = %s WHERE id = %s",
-                (text_name, text_content, text_id)
-            )
-            flash('Testo email aggiornato con successo', 'success')
-        else:
-            # Crea nuovo testo
-            cur.execute(
-                "INSERT INTO email_texts (nome, testo) VALUES (%s, %s)",
-                (text_name, text_content)
-            )
-            flash('Testo email creato con successo', 'success')
-        
-        conn.commit()
+        try:
+            if text_id:
+                # Aggiorna testo esistente
+                cur.execute(
+                    "UPDATE email_texts SET nome = %s, testo = %s WHERE id = %s",
+                    (text_name, text_content, text_id)
+                )
+                message = 'Testo email aggiornato con successo'
+            else:
+                # Crea nuovo testo
+                cur.execute(
+                    "INSERT INTO email_texts (nome, testo) VALUES (%s, %s)",
+                    (text_name, text_content)
+                )
+                message = 'Testo email creato con successo'
+            
+            conn.commit()
+            flash(message, 'success')
+            
+            # Se è una richiesta AJAX, restituisci JSON
+            if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
+                return jsonify({'success': True, 'message': message})
+                
+        except Exception as e:
+            conn.rollback()
+            error_message = f'Errore durante il salvataggio: {str(e)}'
+            flash(error_message, 'danger')
+            
+            # Se è una richiesta AJAX, restituisci JSON di errore
+            if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
+                return jsonify({'success': False, 'message': error_message})
     
     # Ottieni tutti i testi email
     cur.execute("""
@@ -1508,6 +1526,12 @@ def consulenze_anagrafica():
         addetti = 'addetti' in request.form
         subappaltatori = 'subappaltatori' in request.form
         
+        # Nuovi campi polizza
+        compagnia_assicurativa = request.form.get('compagnia_assicurativa', '')
+        numero_polizza = request.form.get('numero_polizza', '')
+        tipo_polizza = request.form.get('tipo_polizza', '')
+        data_scadenza_polizza = request.form.get('data_scadenza_polizza') if request.form.get('data_scadenza_polizza') else None
+        
         # Gestione upload file
         documento_fronte = None
         documento_retro = None
@@ -1550,10 +1574,11 @@ def consulenze_anagrafica():
                 iscrizione_albo_data, iscrizione_albo_numero, residenza, domicilio_fiscale,
                 ubicazione_studio, fatturato_2024, stima_2025, dipendenti, addetti,
                 subappaltatori, documento_fronte, documento_retro, polizza_precedente,
-                questionario_inviato, nome_questionario_inviato, user_id
+                questionario_inviato, nome_questionario_inviato, user_id,
+                compagnia_assicurativa, numero_polizza, tipo_polizza, data_scadenza_polizza
             ) VALUES (
                 %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s,
-                %s, %s, %s, %s, %s, %s, %s, %s, %s
+                %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s
             ) RETURNING id
         """, (
             nome, cognome, data_nascita, luogo_nascita, codice_fiscale, partita_iva,
@@ -1561,7 +1586,8 @@ def consulenze_anagrafica():
             iscrizione_albo_data, iscrizione_albo_numero, residenza, domicilio_fiscale,
             ubicazione_studio, fatturato_2024, stima_2025, dipendenti, addetti,
             subappaltatori, documento_fronte, documento_retro, polizza_precedente,
-            False, None, session.get('user_id')
+            False, None, session.get('user_id'),
+            compagnia_assicurativa, numero_polizza, tipo_polizza, data_scadenza_polizza
         ))
         
         cliente_id = cur.fetchone()[0]
@@ -1802,9 +1828,28 @@ def consulenze_questionari():
     cur.execute("SELECT * FROM template_pdf")
     templates = cur.fetchall()
     
+    # Get all email templates
+    cur.execute("SELECT * FROM email_texts ORDER BY nome")
+    email_templates = cur.fetchall()
+    
+    # Get sent questionnaires for current user
+    cur.execute("""
+        SELECT qi.*, c.nome as cliente_nome, c.cognome as cliente_cognome, 
+               c.email as cliente_email, c.codice_fiscale, t.nome as template_nome,
+               et.nome as email_template_nome
+        FROM questionari_inviati qi
+        JOIN clienti_assicurativi c ON qi.cliente_id = c.id
+        JOIN template_pdf t ON qi.template_id = t.id
+        LEFT JOIN email_texts et ON qi.email_text_id = et.id
+        WHERE qi.user_id = %s OR qi.user_id IS NULL
+        ORDER BY qi.data_invio DESC
+    """, (session.get('user_id'),))
+    questionari_inviati = cur.fetchall()
+    
     if request.method == 'POST':
         cliente_id = request.form['cliente_id']
         template_id = request.form['template_id']
+        email_template_id = request.form.get('email_template_id')
         flags = request.form.getlist('flags')
         
         # Get client and template info (solo per l'utente corrente)
@@ -2073,12 +2118,37 @@ def consulenze_questionari():
                 smtp_config = cur.fetchone()
                 
                 if smtp_config:
+                    # Get email template
+                    email_text = ""
+                    if email_template_id:
+                        cur.execute("SELECT testo FROM email_texts WHERE id = %s", (email_template_id,))
+                        email_template = cur.fetchone()
+                        if email_template:
+                            email_text = email_template['testo']
+                    
+                    # If no template selected or found, use default
+                    if not email_text:
+                        cur.execute("SELECT testo FROM email_texts WHERE nome = 'Default' LIMIT 1")
+                        default_template = cur.fetchone()
+                        if default_template:
+                            email_text = default_template['testo']
+                        else:
+                            email_text = "Gentile {nome} {cognome},\n\nIn allegato il questionario assicurativo da compilare.\n\nCordiali saluti,\nIl tuo Consulente Assicurativo"
+                    
+                    # Replace placeholders with client data
+                    email_text = email_text.replace('{nome}', cliente['nome'] or '')
+                    email_text = email_text.replace('{cognome}', cliente['cognome'] or '')
+                    email_text = email_text.replace('{email}', cliente['email'] or '')
+                    email_text = email_text.replace('{codice_fiscale}', cliente['codice_fiscale'] or '')
+                    email_text = email_text.replace('{data_invio}', datetime.datetime.now().strftime('%d/%m/%Y'))
+                    email_text = email_text.replace('{mittente}', smtp_config['email'] or 'Consulente Assicurativo')
+                    
                     # Send email
                     msg = EmailMessage()
                     msg['Subject'] = f"Questionario Assicurativo - {cliente['nome']} {cliente['cognome']}"
                     msg['From'] = smtp_config['email']
                     msg['To'] = cliente['email']
-                    msg.set_content(smtp_config['testo'])
+                    msg.set_content(email_text)
                     
                     # Attach PDF
                     with open(output_path, 'rb') as f:
@@ -2097,15 +2167,42 @@ def consulenze_questionari():
                         (output_filename, cliente_id)
                     )
                     
+                    # Register the sent questionnaire
+                    cur.execute(
+                        """INSERT INTO questionari_inviati 
+                           (cliente_id, template_id, email_text_id, filename, flags, data_invio, user_id) 
+                           VALUES (%s, %s, %s, %s, %s, %s, %s)""",
+                        (cliente_id, template_id, email_template_id, output_filename, 
+                         ','.join(flags) if flags else None, datetime.datetime.now(), session.get('user_id'))
+                    )
+                    
+                    # Commit the transaction
+                    conn.commit()
+                    
                     flash('Email inviata con successo!', 'success')
+                    
+                    # Return success response with email sent info
+                    return jsonify({
+                        'success': True,
+                        'pdf_path': f"/pdf_preview/{output_filename}",
+                        'pdf_name': output_filename,
+                        'email_sent': True,
+                        'message': 'PDF generato e questionario inviato con successo!'
+                    })
                 else:
                     flash('Configurazione SMTP non trovata. Configura prima le impostazioni email.', 'danger')
+                    return jsonify({
+                        'success': False,
+                        'message': 'Configurazione SMTP non trovata. Configura prima le impostazioni email.'
+                    })
             
-            # Return PDF path for preview
+            # Return PDF path for preview (only PDF generation, no email)
             return jsonify({
                 'success': True,
                 'pdf_path': f"/pdf_preview/{output_filename}",
-                'pdf_name': output_filename
+                'pdf_name': output_filename,
+                'email_sent': False,
+                'message': 'PDF generato con successo!'
             })
         
         else:
@@ -2114,7 +2211,100 @@ def consulenze_questionari():
     cur.close()
     conn.close()
     
-    return render_template('tools/consulenze/questionari.html', clienti=clienti, templates=templates)
+    return render_template('tools/consulenze/questionari.html', 
+                          clienti=clienti, 
+                          templates=templates, 
+                          email_templates=email_templates,
+                          questionari_inviati=questionari_inviati)
+
+@app.route('/consulenze/questionari/resend/<int:questionario_id>', methods=['POST'])
+@login_required
+@has_package('manage_consulenze')
+def resend_questionario(questionario_id):
+    conn = get_db_connection()
+    cur = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
+    
+    try:
+        # Get questionnaire details
+        cur.execute("""
+            SELECT qi.*, c.nome as cliente_nome, c.cognome as cliente_cognome, 
+                   c.email as cliente_email, t.nome as template_nome,
+                   et.testo as email_text
+            FROM questionari_inviati qi
+            JOIN clienti_assicurativi c ON qi.cliente_id = c.id
+            JOIN template_pdf t ON qi.template_id = t.id
+            LEFT JOIN email_texts et ON qi.email_text_id = et.id
+            WHERE qi.id = %s AND (qi.user_id = %s OR qi.user_id IS NULL)
+        """, (questionario_id, session.get('user_id')))
+        
+        questionario = cur.fetchone()
+        
+        if not questionario:
+            return jsonify({'success': False, 'message': 'Questionario non trovato'}), 404
+        
+        # Get SMTP configuration
+        cur.execute("SELECT * FROM config_email LIMIT 1")
+        smtp_config = cur.fetchone()
+        
+        if not smtp_config:
+            return jsonify({'success': False, 'message': 'Configurazione SMTP non trovata'}), 400
+        
+        # Prepare email text
+        email_text = questionario['email_text'] or "Gentile {nome} {cognome},\n\nIn allegato il questionario assicurativo da compilare.\n\nCordiali saluti,\nIl tuo Consulente Assicurativo"
+        
+        # Replace placeholders
+        email_text = email_text.replace('{nome}', questionario['cliente_nome'] or '')
+        email_text = email_text.replace('{cognome}', questionario['cliente_cognome'] or '')
+        email_text = email_text.replace('{email}', questionario['cliente_email'] or '')
+        email_text = email_text.replace('{data_invio}', datetime.datetime.now().strftime('%d/%m/%Y'))
+        email_text = email_text.replace('{mittente}', smtp_config['email'] or 'Consulente Assicurativo')
+        
+        # Check if PDF file exists
+        pdf_path = os.path.join(app.config['PDF_GENERATI'], questionario['filename'])
+        if not os.path.exists(pdf_path):
+            return jsonify({'success': False, 'message': 'File PDF non trovato'}), 404
+        
+        # Send email
+        msg = EmailMessage()
+        msg['Subject'] = f"Questionario Assicurativo - {questionario['cliente_nome']} {questionario['cliente_cognome']}"
+        msg['From'] = smtp_config['email']
+        msg['To'] = questionario['cliente_email']
+        msg.set_content(email_text)
+        
+        # Attach PDF
+        with open(pdf_path, 'rb') as f:
+            file_data = f.read()
+        msg.add_attachment(file_data, maintype='application', subtype='pdf', filename=questionario['filename'])
+        
+        # Send email
+        context = ssl.create_default_context()
+        with smtplib.SMTP_SSL(smtp_config['smtp_server'], smtp_config['porta'], context=context) as server:
+            server.login(smtp_config['email'], smtp_config['password'])
+            server.send_message(msg)
+        
+        # Register the resend
+        cur.execute(
+            """INSERT INTO questionari_inviati 
+               (cliente_id, template_id, email_text_id, filename, flags, data_invio, user_id) 
+               VALUES (%s, %s, %s, %s, %s, %s, %s)""",
+            (questionario['cliente_id'], questionario['template_id'], questionario['email_text_id'], 
+             questionario['filename'], questionario['flags'], datetime.datetime.now(), session.get('user_id'))
+        )
+        
+        conn.commit()
+        
+        return jsonify({
+            'success': True, 
+            'message': 'Questionario reinviato con successo!'
+        })
+        
+    except Exception as e:
+        conn.rollback()
+        return jsonify({'success': False, 'message': f'Errore durante il reinvio: {str(e)}'}), 500
+    
+    finally:
+        cur.close()
+        conn.close()
 
 @app.route('/consulenze/email', methods=['GET', 'POST'])
 @login_required
@@ -2170,6 +2360,336 @@ def pdf_preview(filename):
 def serve_uploaded_file(filename):
     return send_from_directory(app.config['UPLOAD_FOLDER'], filename)
 
+@app.route('/consulenze/automazioni')
+@login_required
+@has_package('manage_consulenze')
+def consulenze_automazioni():
+    conn = get_db_connection()
+    cur = conn.cursor()
+    
+    # Recupera tutte le automazioni dell'utente
+    cur.execute("""
+        SELECT a.*, 
+               COUNT(CASE WHEN ae.stato = 'attivo' THEN 1 END) as invii_attivi,
+               COUNT(ae.id) as invii_totali,
+               MAX(ae.prossimo_invio) as prossimo_invio_globale
+        FROM automazioni a
+        LEFT JOIN automazioni_esecuzioni ae ON a.id = ae.automazione_id
+        WHERE a.user_id = %s
+        GROUP BY a.id
+        ORDER BY a.created_at DESC
+    """, (session['user_id'],))
+    automazioni = cur.fetchall()
+    
+    # Recupera i template PDF disponibili per l'utente
+    cur.execute("SELECT * FROM template_pdf WHERE user_id = %s ORDER BY nome", (session['user_id'],))
+    templates = cur.fetchall()
+    
+    # Recupera i template email disponibili per l'utente
+    cur.execute("SELECT * FROM email_texts WHERE user_id = %s ORDER BY nome", (session['user_id'],))
+    email_templates = cur.fetchall()
+    
+    # Recupera i clienti per il dropdown - usa DictCursor per avere i dati come dizionari
+    cur.execute("""
+        SELECT id, nome, cognome, email, codice_fiscale 
+        FROM clienti_assicurativi 
+        WHERE user_id = %s
+        ORDER BY cognome, nome
+    """, (session['user_id'],))
+    clienti = cur.fetchall()
+    
+    # Debug: stampa i clienti trovati nella route principale
+    print(f"DEBUG MAIN: Trovati {len(clienti)} clienti per user_id {session['user_id']}")
+    for i, cliente in enumerate(clienti):
+        print(f"DEBUG MAIN: Cliente {i+1} RAW: {cliente}")
+        print(f"DEBUG MAIN: Cliente {i+1} TYPE: {type(cliente)}")
+        if hasattr(cliente, 'keys'):
+            print(f"DEBUG MAIN: Cliente {i+1} KEYS: {list(cliente.keys())}")
+        else:
+            print(f"DEBUG MAIN: Cliente {i+1} è una tupla, non un dizionario")
+    
+    # Se non ci sono clienti con user_id specifico, prova anche con user_id NULL
+    if len(clienti) == 0:
+        print("DEBUG MAIN: Nessun cliente con user_id specifico, provo anche con user_id NULL")
+        cur.execute("""
+            SELECT id, nome, cognome, email, codice_fiscale 
+            FROM clienti_assicurativi 
+            WHERE user_id IS NULL
+            ORDER BY cognome, nome
+        """)
+        clienti_null = cur.fetchall()
+        print(f"DEBUG MAIN: Trovati {len(clienti_null)} clienti con user_id NULL")
+        clienti = clienti_null
+    
+    cur.close()
+    conn.close()
+    
+    return render_template('tools/consulenze/automazioni.html', 
+                         automazioni=automazioni, 
+                         templates=templates,
+                         email_templates=email_templates,
+                         clienti=clienti)
+
+@app.route('/consulenze/automazioni/crea')
+@login_required
+@has_package('manage_consulenze')
+def consulenze_automazioni_crea():
+    conn = get_db_connection()
+    cur = conn.cursor()
+    
+    # Recupera i template PDF disponibili per l'utente
+    cur.execute("SELECT * FROM template_pdf WHERE user_id = %s ORDER BY nome", (session['user_id'],))
+    templates = cur.fetchall()
+    
+    # Recupera i template email disponibili per l'utente
+    cur.execute("SELECT * FROM email_texts WHERE user_id = %s ORDER BY nome", (session['user_id'],))
+    email_templates = cur.fetchall()
+    
+    # Recupera i clienti per il dropdown
+    cur.execute("""
+        SELECT id, nome, cognome, email, codice_fiscale 
+        FROM clienti_assicurativi 
+        WHERE user_id = %s OR user_id IS NULL
+        ORDER BY cognome, nome
+    """, (session['user_id'],))
+    clienti = cur.fetchall()
+    
+    # Debug: stampa i clienti trovati
+    print(f"DEBUG: Trovati {len(clienti)} clienti per user_id {session['user_id']}")
+    for i, cliente in enumerate(clienti):
+        print(f"DEBUG: Cliente {i+1} RAW: {cliente}")
+        print(f"DEBUG: Cliente {i+1} FIELDS: ID={cliente[0]}, NOME={cliente[1]}, COGNOME={cliente[2]}, EMAIL={cliente[3]}, CF={cliente[4]}")
+    
+    cur.close()
+    conn.close()
+    
+    return render_template('tools/consulenze/crea_automazione.html', 
+                         templates=templates,
+                         email_templates=email_templates,
+                         clienti=clienti)
+
+@app.route('/consulenze/automazioni/create', methods=['POST'])
+@login_required
+@has_package('manage_consulenze')
+def create_automazione():
+    try:
+        data = request.get_json()
+        
+        conn = get_db_connection()
+        cur = conn.cursor()
+        
+        # Gestisci i campi in base al tipo di programmazione
+        tipo_programmazione = data.get('tipo_programmazione', 'frequenza')
+        frequenza_giorni = None
+        giorni_prima_scadenza = None
+        ora_invio = data['ora_invio']
+        
+        if tipo_programmazione == 'frequenza':
+            freq_val = data.get('frequenza_giorni')
+            frequenza_giorni = int(freq_val) if freq_val and freq_val != '' else None
+        else:
+            giorni_val = data.get('giorni_prima_scadenza')
+            giorni_prima_scadenza = int(giorni_val) if giorni_val and giorni_val != '' else None
+            ora_invio = data.get('ora_invio_scadenza', data['ora_invio'])
+        
+        # Gestisci i template ID (converti stringhe vuote in NULL)
+        template_pdf_id = data.get('template_pdf_id')
+        template_pdf_id = int(template_pdf_id) if template_pdf_id and template_pdf_id != '' else None
+        
+        email_template_id = data.get('email_template_id')
+        email_template_id = int(email_template_id) if email_template_id and email_template_id != '' else None
+        
+        # Inserisci la nuova automazione
+        cur.execute("""
+            INSERT INTO automazioni (
+                user_id, nome, descrizione, tipo_contenuto, template_pdf_id, 
+                email_template_id, testo_personalizzato, tipo_programmazione,
+                frequenza_giorni, giorni_prima_scadenza, ora_invio, 
+                ripeti_promemoria, attiva, target_clienti
+            ) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+            RETURNING id
+        """, (
+            session['user_id'],
+            data['nome'],
+            data.get('descrizione', ''),
+            data['tipo_contenuto'],
+            template_pdf_id,
+            email_template_id,
+            data.get('testo_personalizzato'),
+            tipo_programmazione,
+            frequenza_giorni,
+            giorni_prima_scadenza,
+            ora_invio,
+            data.get('ripeti_promemoria', False),
+            data.get('attiva', False),
+            data.get('target_clienti', 'tutti')
+        ))
+        
+        automazione_id = cur.fetchone()['id']
+        
+        # Se sono specificati clienti specifici, inseriscili
+        if data.get('target_clienti') == 'specifici' and data.get('clienti_selezionati'):
+            for cliente_id in data['clienti_selezionati']:
+                cur.execute("""
+                    INSERT INTO automazioni_clienti (automazione_id, cliente_id)
+                    VALUES (%s, %s)
+                """, (automazione_id, cliente_id))
+        
+        conn.commit()
+        cur.close()
+        conn.close()
+        
+        return jsonify({'success': True, 'message': 'Automazione creata con successo!'})
+        
+    except Exception as e:
+        return jsonify({'success': False, 'message': f'Errore: {str(e)}'})
+
+@app.route('/consulenze/automazioni/<int:automazione_id>/toggle', methods=['POST'])
+@login_required
+@has_package('manage_consulenze')
+def toggle_automazione(automazione_id):
+    try:
+        conn = get_db_connection()
+        cur = conn.cursor()
+        
+        # Verifica che l'automazione appartenga all'utente
+        cur.execute("""
+            SELECT attiva FROM automazioni 
+            WHERE id = %s AND user_id = %s
+        """, (automazione_id, session['user_id']))
+        
+        result = cur.fetchone()
+        if not result:
+            return jsonify({'success': False, 'message': 'Automazione non trovata'})
+        
+        nuovo_stato = not result[0]
+        
+        # Aggiorna lo stato
+        cur.execute("""
+            UPDATE automazioni 
+            SET attiva = %s, updated_at = CURRENT_TIMESTAMP
+            WHERE id = %s AND user_id = %s
+        """, (nuovo_stato, automazione_id, session['user_id']))
+        
+        # Se viene attivata, crea le esecuzioni per i clienti target
+        if nuovo_stato:
+            # Prima rimuovi eventuali esecuzioni esistenti
+            cur.execute("""
+                DELETE FROM automazioni_esecuzioni 
+                WHERE automazione_id = %s
+            """, (automazione_id,))
+            
+            # Recupera i dettagli dell'automazione
+            cur.execute("""
+                SELECT target_clienti, frequenza_giorni, ora_invio, tipo_programmazione, giorni_prima_scadenza
+                FROM automazioni 
+                WHERE id = %s
+            """, (automazione_id,))
+            
+            automazione = cur.fetchone()
+            
+            # Determina i clienti target
+            if automazione[0] == 'tutti':
+                if automazione[3] == 'scadenza_polizza':
+                    # Per promemoria scadenza, considera solo clienti con data scadenza
+                    cur.execute("""
+                        SELECT id, data_scadenza_polizza FROM clienti_assicurativi 
+                        WHERE user_id = %s AND data_scadenza_polizza IS NOT NULL
+                    """, (session['user_id'],))
+                else:
+                    cur.execute("""
+                        SELECT id, NULL as data_scadenza_polizza FROM clienti_assicurativi 
+                        WHERE user_id = %s
+                    """, (session['user_id'],))
+            else:
+                if automazione[3] == 'scadenza_polizza':
+                    cur.execute("""
+                        SELECT ac.cliente_id, ca.data_scadenza_polizza 
+                        FROM automazioni_clienti ac
+                        JOIN clienti_assicurativi ca ON ac.cliente_id = ca.id
+                        WHERE ac.automazione_id = %s AND ca.data_scadenza_polizza IS NOT NULL
+                    """, (automazione_id,))
+                else:
+                    cur.execute("""
+                        SELECT ac.cliente_id, NULL as data_scadenza_polizza 
+                        FROM automazioni_clienti ac
+                        WHERE ac.automazione_id = %s
+                    """, (automazione_id,))
+            
+            clienti_target = cur.fetchall()
+            
+            # Calcola il prossimo invio
+            from datetime import datetime, timedelta
+            ora_invio = datetime.strptime(str(automazione[2]), '%H:%M:%S').time()
+            
+            # Crea le esecuzioni per ogni cliente
+            for cliente in clienti_target:
+                if automazione[3] == 'scadenza_polizza':
+                    # Calcola la data di invio basata sulla scadenza polizza
+                    data_scadenza = cliente[1]
+                    giorni_prima = automazione[4] or 30
+                    data_invio = data_scadenza - timedelta(days=giorni_prima)
+                    prossimo_invio = datetime.combine(data_invio, ora_invio)
+                    
+                    # Se la data è nel passato, salta questo cliente
+                    if prossimo_invio <= datetime.now():
+                        continue
+                else:
+                    # Calcola la data di invio basata sulla frequenza
+                    prossimo_invio = datetime.combine(datetime.now().date(), ora_invio)
+                    
+                    # Se l'ora è già passata oggi, programma per domani
+                    if prossimo_invio <= datetime.now():
+                        prossimo_invio += timedelta(days=1)
+                
+                cur.execute("""
+                    INSERT INTO automazioni_esecuzioni (
+                        automazione_id, cliente_id, prossimo_invio, stato
+                    ) VALUES (%s, %s, %s, 'attivo')
+                """, (automazione_id, cliente[0], prossimo_invio))
+        
+        conn.commit()
+        cur.close()
+        conn.close()
+        
+        stato_text = 'attivata' if nuovo_stato else 'disattivata'
+        return jsonify({'success': True, 'message': f'Automazione {stato_text} con successo!'})
+        
+    except Exception as e:
+        return jsonify({'success': False, 'message': f'Errore: {str(e)}'})
+
+@app.route('/consulenze/automazioni/<int:automazione_id>/delete', methods=['DELETE'])
+@login_required
+@has_package('manage_consulenze')
+def delete_automazione(automazione_id):
+    try:
+        conn = get_db_connection()
+        cur = conn.cursor()
+        
+        # Verifica che l'automazione appartenga all'utente
+        cur.execute("""
+            SELECT id FROM automazioni 
+            WHERE id = %s AND user_id = %s
+        """, (automazione_id, session['user_id']))
+        
+        if not cur.fetchone():
+            return jsonify({'success': False, 'message': 'Automazione non trovata'})
+        
+        # Elimina l'automazione (le esecuzioni e clienti associati verranno eliminati per CASCADE)
+        cur.execute("""
+            DELETE FROM automazioni 
+            WHERE id = %s AND user_id = %s
+        """, (automazione_id, session['user_id']))
+        
+        conn.commit()
+        cur.close()
+        conn.close()
+        
+        return jsonify({'success': True, 'message': 'Automazione eliminata con successo!'})
+        
+    except Exception as e:
+        return jsonify({'success': False, 'message': f'Errore: {str(e)}'})
+
 @app.route('/template/add', methods=['POST'])
 @login_required
 @has_package('manage_consulenze')
@@ -2209,6 +2729,190 @@ def add_template():
         })
     
     return jsonify({'success': False, 'message': 'Errore durante il salvataggio del template'}), 500
+
+# Funzione per inviare email automatiche
+def check_and_send_automated_emails():
+    """Controlla e invia le email automatiche programmate"""
+    try:
+        conn = get_db_connection()
+        cur = conn.cursor()
+        
+        # Trova tutte le esecuzioni programmate che devono essere inviate ora
+        cur.execute("""
+            SELECT ae.id, ae.automazione_id, ae.cliente_id, ae.prossimo_invio,
+                   a.nome as automazione_nome, a.tipo_contenuto, a.template_pdf_id, 
+                   a.email_template_id, a.testo_personalizzato, a.tipo_programmazione,
+                   a.frequenza_giorni, a.giorni_prima_scadenza, a.ripeti_promemoria,
+                   c.nome, c.cognome, c.email, c.codice_fiscale
+            FROM automazioni_esecuzioni ae
+            JOIN automazioni a ON ae.automazione_id = a.id
+            JOIN clienti_assicurativi c ON ae.cliente_id = c.id
+            WHERE ae.stato = 'attivo' 
+            AND ae.prossimo_invio <= NOW()
+            AND a.attiva = true
+        """)
+        
+        esecuzioni = cur.fetchall()
+        
+        for esecuzione in esecuzioni:
+            try:
+                # Prepara i dati per l'email
+                cliente_nome = esecuzione['nome']
+                cliente_cognome = esecuzione['cognome']
+                cliente_email = esecuzione['email']
+                
+                # Determina il contenuto dell'email
+                if esecuzione['tipo_contenuto'] == 'template_email':
+                    # Usa template email
+                    cur.execute("SELECT testo FROM email_texts WHERE id = %s", (esecuzione['email_template_id'],))
+                    template_result = cur.fetchone()
+                    if template_result:
+                        testo_email = template_result['testo']
+                    else:
+                        testo_email = "Email automatica"
+                else:
+                    # Usa testo personalizzato
+                    testo_email = esecuzione['testo_personalizzato'] or "Email automatica"
+                
+                # Sostituisci i placeholder
+                testo_email = testo_email.replace('{nome}', cliente_nome or '')
+                testo_email = testo_email.replace('{cognome}', cliente_cognome or '')
+                testo_email = testo_email.replace('{codice_fiscale}', esecuzione['codice_fiscale'] or '')
+                
+                # Prepara l'email
+                subject = f"Promemoria automatico - {esecuzione['automazione_nome']}"
+                
+                # Ottieni configurazione SMTP dalla tabella config_email
+                cur.execute("SELECT * FROM config_email LIMIT 1")
+                smtp_config = cur.fetchone()
+                
+                if not smtp_config:
+                    print(f"ERRORE: Configurazione SMTP non trovata nel database")
+                    continue
+                
+                smtp_server = smtp_config['smtp_server']
+                smtp_port = smtp_config['porta']
+                smtp_username = smtp_config['email']
+                smtp_password = smtp_config['password']
+                
+                # Invia l'email
+                context = ssl.create_default_context()
+                with smtplib.SMTP(smtp_server, smtp_port) as server:
+                    server.starttls(context=context)
+                    server.login(smtp_username, smtp_password)
+                    
+                    msg = EmailMessage()
+                    msg['Subject'] = subject
+                    msg['From'] = smtp_username
+                    msg['To'] = cliente_email
+                    msg.set_content(testo_email)
+                    
+                    server.send_message(msg)
+                
+                print(f"Email inviata con successo a {cliente_email} per automazione {esecuzione['automazione_nome']}")
+                
+                # Aggiorna l'esecuzione
+                cur.execute("""
+                    UPDATE automazioni_esecuzioni 
+                    SET ultimo_invio = NOW(), tentativi_falliti = 0
+                    WHERE id = %s
+                """, (esecuzione['id'],))
+                
+                # Calcola il prossimo invio se necessario
+                if esecuzione['ripeti_promemoria'] and esecuzione['tipo_programmazione'] == 'frequenza':
+                    # Per automazioni con frequenza, calcola il prossimo invio
+                    frequenza_giorni = esecuzione['frequenza_giorni'] or 30
+                    prossimo_invio = esecuzione['prossimo_invio'] + timedelta(days=frequenza_giorni)
+                    
+                    cur.execute("""
+                        UPDATE automazioni_esecuzioni 
+                        SET prossimo_invio = %s
+                        WHERE id = %s
+                    """, (prossimo_invio, esecuzione['id']))
+                else:
+                    # Per promemoria scadenza, marca come completato
+                    cur.execute("""
+                        UPDATE automazioni_esecuzioni 
+                        SET stato = 'completato'
+                        WHERE id = %s
+                    """, (esecuzione['id'],))
+                
+            except Exception as e:
+                print(f"Errore nell'invio email per esecuzione {esecuzione['id']}: {str(e)}")
+                
+                # Incrementa i tentativi falliti
+                cur.execute("""
+                    UPDATE automazioni_esecuzioni 
+                    SET tentativi_falliti = tentativi_falliti + 1
+                    WHERE id = %s
+                """, (esecuzione['id'],))
+                
+                # Se troppi tentativi falliti, metti in errore
+                if esecuzione.get('tentativi_falliti', 0) >= 3:
+                    cur.execute("""
+                        UPDATE automazioni_esecuzioni 
+                        SET stato = 'errore'
+                        WHERE id = %s
+                    """, (esecuzione['id'],))
+        
+        conn.commit()
+        cur.close()
+        conn.close()
+        
+        if esecuzioni:
+            print(f"Processate {len(esecuzioni)} esecuzioni automatiche")
+        
+    except Exception as e:
+        print(f"Errore nel controllo email automatiche: {str(e)}")
+
+# Endpoint per testare manualmente l'invio automatico
+@app.route('/test-automated-emails')
+@login_required
+def test_automated_emails():
+    """Endpoint per testare manualmente l'invio delle email automatiche"""
+    check_and_send_automated_emails()
+    return jsonify({'success': True, 'message': 'Controllo email automatiche eseguito'})
+
+# Endpoint per verificare lo stato delle automazioni
+@app.route('/debug-automazioni')
+@login_required
+def debug_automazioni():
+    """Endpoint per verificare lo stato delle automazioni e esecuzioni"""
+    conn = get_db_connection()
+    cur = conn.cursor()
+    
+    # Verifica automazioni attive
+    cur.execute("""
+        SELECT id, nome, attiva, tipo_programmazione, giorni_prima_scadenza, 
+               frequenza_giorni, ora_invio, created_at
+        FROM automazioni 
+        WHERE user_id = %s
+        ORDER BY created_at DESC
+    """, (session['user_id'],))
+    automazioni = cur.fetchall()
+    
+    # Verifica esecuzioni programmate
+    cur.execute("""
+        SELECT ae.id, ae.automazione_id, ae.cliente_id, ae.prossimo_invio, 
+               ae.ultimo_invio, ae.stato, ae.tentativi_falliti,
+               a.nome as automazione_nome,
+               c.nome as cliente_nome, c.cognome as cliente_cognome, c.email as cliente_email
+        FROM automazioni_esecuzioni ae
+        JOIN automazioni a ON ae.automazione_id = a.id
+        JOIN clienti_assicurativi c ON ae.cliente_id = c.id
+        WHERE a.user_id = %s
+        ORDER BY ae.prossimo_invio ASC
+    """, (session['user_id'],))
+    esecuzioni = cur.fetchall()
+    
+    cur.close()
+    conn.close()
+    
+    return jsonify({
+        'automazioni': [dict(a) for a in automazioni],
+        'esecuzioni': [dict(e) for e in esecuzioni],
+        'ora_attuale': datetime.now().isoformat()
+    })
 
 # Initialize database tables
 def init_db():
@@ -2304,15 +3008,25 @@ def init_db():
         )
     ''')
     
+    # Aggiungi il campo data_scadenza_polizza se non esiste
+    add_column_if_not_exists('clienti_assicurativi', 'data_scadenza_polizza', 'DATE')
+    add_column_if_not_exists('clienti_assicurativi', 'compagnia_assicurativa', 'VARCHAR(255)')
+    add_column_if_not_exists('clienti_assicurativi', 'numero_polizza', 'VARCHAR(100)')
+    add_column_if_not_exists('clienti_assicurativi', 'tipo_polizza', 'VARCHAR(100)')
+    
     # Create template_pdf table
     cur.execute('''
         CREATE TABLE IF NOT EXISTS template_pdf (
             id SERIAL PRIMARY KEY,
             nome VARCHAR(100) NOT NULL,
             filename VARCHAR(255) NOT NULL,
+            user_id INTEGER REFERENCES users(id),
             created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
         )
     ''')
+    
+    # Aggiungi user_id alla tabella template_pdf se non esiste
+    add_column_if_not_exists('template_pdf', 'user_id', 'INTEGER REFERENCES users(id)')
     
     # Create config_email table
     cur.execute('''
@@ -2334,10 +3048,14 @@ def init_db():
             id SERIAL PRIMARY KEY,
             nome VARCHAR(100) NOT NULL,
             testo TEXT NOT NULL,
+            user_id INTEGER REFERENCES users(id),
             created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
             updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
         )
     ''')
+    
+    # Aggiungi user_id alla tabella email_texts se non esiste
+    add_column_if_not_exists('email_texts', 'user_id', 'INTEGER REFERENCES users(id)')
     
     # Create questionari_inviati table for tracking sent questionnaires
     cur.execute('''
@@ -2347,9 +3065,94 @@ def init_db():
             template_id INTEGER REFERENCES template_pdf(id),
             filename VARCHAR(255) NOT NULL,
             data_invio TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-            flags TEXT[],
+            flags TEXT,
             email_text_id INTEGER REFERENCES email_texts(id),
-            testo_email TEXT
+            testo_email TEXT,
+            user_id INTEGER REFERENCES users(id)
+        )
+    ''')
+    
+    # Add user_id column to questionari_inviati if it doesn't exist
+    add_column_if_not_exists('questionari_inviati', 'user_id', 'INTEGER REFERENCES users(id)')
+    
+    # Change flags column from TEXT[] to TEXT if needed
+    try:
+        cur.execute("ALTER TABLE questionari_inviati ALTER COLUMN flags TYPE TEXT")
+    except:
+        # Column might already be TEXT or table might not exist yet
+        pass
+    
+    # Create automazioni table for email automation
+    cur.execute('''
+        CREATE TABLE IF NOT EXISTS automazioni (
+            id SERIAL PRIMARY KEY,
+            user_id INTEGER REFERENCES users(id) NOT NULL,
+            nome VARCHAR(255) NOT NULL,
+            descrizione TEXT,
+            tipo_contenuto VARCHAR(50) NOT NULL CHECK (tipo_contenuto IN ('email_semplice', 'questionario_pdf', 'testo_personalizzato')),
+            template_pdf_id INTEGER REFERENCES template_pdf(id),
+            email_template_id INTEGER REFERENCES email_texts(id),
+            testo_personalizzato TEXT,
+            tipo_programmazione VARCHAR(20) DEFAULT 'frequenza' CHECK (tipo_programmazione IN ('frequenza', 'scadenza_polizza')),
+            frequenza_giorni INTEGER,
+            giorni_prima_scadenza INTEGER,
+            ora_invio TIME NOT NULL,
+            ripeti_promemoria BOOLEAN DEFAULT FALSE,
+            attiva BOOLEAN DEFAULT FALSE,
+            target_clienti VARCHAR(20) DEFAULT 'tutti' CHECK (target_clienti IN ('tutti', 'specifici')),
+            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+            updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+        )
+    ''')
+    
+    # Aggiungi le nuove colonne se non esistono
+    add_column_if_not_exists('automazioni', 'tipo_programmazione', "VARCHAR(20) DEFAULT 'frequenza' CHECK (tipo_programmazione IN ('frequenza', 'scadenza_polizza'))")
+    add_column_if_not_exists('automazioni', 'giorni_prima_scadenza', 'INTEGER')
+    add_column_if_not_exists('automazioni', 'ripeti_promemoria', 'BOOLEAN DEFAULT FALSE')
+    
+    # Rimuovi il constraint NOT NULL da frequenza_giorni se esiste
+    try:
+        cur.execute("ALTER TABLE automazioni ALTER COLUMN frequenza_giorni DROP NOT NULL")
+    except:
+        pass
+    
+    # Create automazioni_clienti table for specific client targeting
+    cur.execute('''
+        CREATE TABLE IF NOT EXISTS automazioni_clienti (
+            id SERIAL PRIMARY KEY,
+            automazione_id INTEGER REFERENCES automazioni(id) ON DELETE CASCADE,
+            cliente_id INTEGER REFERENCES clienti_assicurativi(id) ON DELETE CASCADE,
+            UNIQUE(automazione_id, cliente_id)
+        )
+    ''')
+    
+    # Create automazioni_esecuzioni table for tracking automation executions
+    cur.execute('''
+        CREATE TABLE IF NOT EXISTS automazioni_esecuzioni (
+            id SERIAL PRIMARY KEY,
+            automazione_id INTEGER REFERENCES automazioni(id) ON DELETE CASCADE,
+            cliente_id INTEGER REFERENCES clienti_assicurativi(id) ON DELETE CASCADE,
+            prossimo_invio TIMESTAMP NOT NULL,
+            ultimo_invio TIMESTAMP,
+            stato VARCHAR(20) DEFAULT 'attivo' CHECK (stato IN ('attivo', 'pausa', 'completato', 'errore')),
+            tentativi_falliti INTEGER DEFAULT 0,
+            messaggio_errore TEXT,
+            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+            updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+        )
+    ''')
+    
+    # Create automazioni_log table for logging automation activities
+    cur.execute('''
+        CREATE TABLE IF NOT EXISTS automazioni_log (
+            id SERIAL PRIMARY KEY,
+            automazione_id INTEGER REFERENCES automazioni(id) ON DELETE CASCADE,
+            cliente_id INTEGER REFERENCES clienti_assicurativi(id) ON DELETE CASCADE,
+            azione VARCHAR(50) NOT NULL,
+            dettagli TEXT,
+            esito VARCHAR(20) NOT NULL CHECK (esito IN ('successo', 'errore')),
+            messaggio_errore TEXT,
+            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
         )
     ''')
     
@@ -2374,8 +3177,8 @@ def init_db():
     ''')
     
     # Check if admin user exists, if not create one
-    cur.execute("SELECT COUNT(*) FROM users WHERE ruolo = 'admin'")
-    if cur.fetchone()[0] == 0:
+    cur.execute("SELECT COUNT(*) as count FROM users WHERE ruolo = 'admin'")
+    if cur.fetchone()['count'] == 0:
         admin_password = generate_password_hash('admin')
         cur.execute(
             "INSERT INTO users (username, password, ruolo, pacchetti) VALUES (%s, %s, %s, %s)",
@@ -2383,16 +3186,16 @@ def init_db():
         )
     
     # Create default email text if none exists
-    cur.execute("SELECT COUNT(*) FROM email_texts")
-    if cur.fetchone()[0] == 0:
+    cur.execute("SELECT COUNT(*) as count FROM email_texts")
+    if cur.fetchone()['count'] == 0:
         cur.execute(
             "INSERT INTO email_texts (nome, testo) VALUES (%s, %s)",
             ('Default', 'Gentile {nome} {cognome},\n\nIn allegato il questionario assicurativo da compilare.\n\nCordiali saluti,\nIl tuo Consulente Assicurativo')
         )
     
     # Create sample template PDF if none exists
-    cur.execute("SELECT COUNT(*) FROM template_pdf")
-    if cur.fetchone()[0] == 0:
+    cur.execute("SELECT COUNT(*) as count FROM template_pdf")
+    if cur.fetchone()['count'] == 0:
         cur.execute(
             "INSERT INTO template_pdf (nome, filename) VALUES (%s, %s)",
             ('Questionario Base', 'template_base.pdf')
@@ -2401,6 +3204,22 @@ def init_db():
     cur.close()
     conn.close()
 
+# Thread per il controllo automatico delle email
+def email_scheduler():
+    """Thread che controlla ogni minuto se ci sono email da inviare"""
+    while True:
+        try:
+            check_and_send_automated_emails()
+        except Exception as e:
+            print(f"Errore nel thread email scheduler: {str(e)}")
+        time.sleep(60)  # Controlla ogni minuto
+
 if __name__ == '__main__':
     init_db()
+    
+    # Avvia il thread per il controllo automatico delle email
+    email_thread = threading.Thread(target=email_scheduler, daemon=True)
+    email_thread.start()
+    print("Thread email scheduler avviato")
+    
     app.run(debug=True)

@@ -21,6 +21,45 @@
     .preview-container {
         display: none;
     }
+    
+    .avatar-circle {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-weight: bold;
+        font-size: 14px;
+        text-transform: uppercase;
+    }
+    
+    #questionariTable tbody tr:hover {
+        background-color: rgba(0, 123, 255, 0.05);
+    }
+    
+    .border-start {
+        border-left-width: 4px !important;
+    }
+    
+    .cliente-card {
+        transition: all 0.3s ease;
+        border: 1px solid #dee2e6;
+    }
+    
+    .cliente-card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 15px rgba(0, 123, 255, 0.15);
+        border-color: #007bff;
+    }
+    
+    .cliente-card .avatar-circle {
+        width: 50px;
+        height: 50px;
+        font-size: 16px;
+    }
 </style>
 {% endblock %}
 
@@ -63,6 +102,17 @@
                             </div>
                         </div>
                         
+                        <div class="mb-3">
+                            <label for="email_template_id" class="form-label">Template Email</label>
+                            <select class="form-select" id="email_template_id" name="email_template_id">
+                                <option value="">Usa template di default</option>
+                                {% for email_template in email_templates %}
+                                <option value="{{ email_template.id }}">{{ email_template.nome }}</option>
+                                {% endfor %}
+                            </select>
+                            <div class="form-text">Seleziona il template email da utilizzare per l'invio del questionario</div>
+                        </div>
+                        
                         <div class="mb-4 flag-container">
                             <label class="form-label">Flags (opzionali)</label>
                             <div class="row">
@@ -97,7 +147,7 @@
                             <button type="button" id="generatePdfBtn" class="btn btn-primary">
                                 <i class="bi bi-file-earmark-pdf"></i> Genera PDF
                             </button>
-                            <button type="submit" id="sendEmailBtn" name="send_email" value="1" class="btn btn-success" disabled>
+                            <button type="button" id="sendEmailBtn" class="btn btn-success" disabled>
                                 <i class="bi bi-envelope"></i> Invia Questionario
                             </button>
                         </div>
@@ -113,6 +163,81 @@
                 </div>
                 <div class="card-body">
                     <iframe id="pdfPreview" class="pdf-preview" src=""></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Sezione Questionari Inviati -->
+    <div class="row mt-5">
+        <div class="col-12">
+            <div class="card shadow-sm">
+                <div class="card-header bg-light d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0"><i class="bi bi-send-check"></i> Questionari Inviati</h5>
+                    <span class="badge bg-primary rounded-pill">{{ questionari_inviati|length }} invii</span>
+                </div>
+                <div class="card-body">
+                    {% if questionari_inviati %}
+                        <!-- Filtri e controlli -->
+                        <div class="row mb-4">
+                            <div class="col-md-6">
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="bi bi-search"></i></span>
+                                    <input type="text" class="form-control" id="searchCliente" 
+                                           placeholder="Cerca per nome, cognome o codice fiscale...">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <select class="form-select" id="sortCliente">
+                                    <option value="nome-asc">Nome A-Z</option>
+                                    <option value="nome-desc">Nome Z-A</option>
+                                    <option value="data-desc">Ultimo invio più recente</option>
+                                    <option value="data-asc">Ultimo invio meno recente</option>
+                                    <option value="count-desc">Più invii</option>
+                                    <option value="count-asc">Meno invii</option>
+                                </select>
+                            </div>
+                            <div class="col-md-2">
+                                <button class="btn btn-outline-secondary w-100" onclick="resetFiltri()">
+                                    <i class="bi bi-arrow-clockwise"></i> Reset
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <!-- Controlli carousel -->
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <div class="d-flex align-items-center">
+                                <span class="text-muted me-3" id="clientiInfo">Mostra clienti 1-9 di X</span>
+                                <div class="btn-group" role="group">
+                                    <button class="btn btn-outline-primary btn-sm" id="prevPage" onclick="cambiaPageCliente(-1)">
+                                        <i class="bi bi-chevron-left"></i>
+                                    </button>
+                                    <button class="btn btn-outline-primary btn-sm" id="nextPage" onclick="cambiaPageCliente(1)">
+                                        <i class="bi bi-chevron-right"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="text-muted">
+                                <small>Pagina <span id="currentPage">1</span> di <span id="totalPages">1</span></small>
+                            </div>
+                        </div>
+                        
+                        <!-- Vista riepilogo clienti (popolata dinamicamente) -->
+                        <div class="row" id="clientiRiepilogo">
+                            <!-- Le card dei clienti verranno inserite qui dal JavaScript -->
+                        </div>
+                        
+                        <!-- Container per i dettagli dinamici -->
+                        <div id="dettagliContainer">
+                            <!-- I dettagli dei clienti verranno inseriti qui dal JavaScript -->
+                        </div>
+                    {% else %}
+                        <div class="text-center py-5">
+                            <i class="bi bi-send text-muted" style="font-size: 3rem;"></i>
+                            <h5 class="mt-3 text-muted">Nessun questionario inviato</h5>
+                            <p class="text-muted">I questionari inviati appariranno qui dopo il primo invio.</p>
+                        </div>
+                    {% endif %}
                 </div>
             </div>
         </div>
@@ -150,6 +275,44 @@
 
 {% block extra_js %}
 <script>
+    // Dati dei clienti per il filtro e la paginazione
+    const clientiData = [
+        {% set clienti_grouped = questionari_inviati | groupby('cliente_id') %}
+        {% for cliente_id, questionari_cliente in clienti_grouped %}
+            {% set primo_questionario = questionari_cliente | first %}
+            {% set ultimo_questionario = questionari_cliente | list | last %}
+            {% set count_questionari = questionari_cliente | list | length %}
+            {
+                id: {{ cliente_id }},
+                nome: "{{ primo_questionario.cliente_nome }}",
+                cognome: "{{ primo_questionario.cliente_cognome }}",
+                codice_fiscale: "{{ primo_questionario.codice_fiscale }}",
+                count_questionari: {{ count_questionari }},
+                ultimo_invio: "{{ ultimo_questionario.data_invio.strftime('%d/%m/%Y') }}",
+                ultimo_invio_timestamp: {{ ultimo_questionario.data_invio.timestamp() }},
+                ultimo_questionario_id: {{ ultimo_questionario.id }},
+                questionari: [
+                    {% for questionario in questionari_cliente %}
+                    {
+                        id: {{ questionario.id }},
+                        template_nome: "{{ questionario.template_nome }}",
+                        email_template_nome: "{{ questionario.email_template_nome or 'Default' }}",
+                        data_invio: "{{ questionario.data_invio.strftime('%d/%m/%Y') }}",
+                        ora_invio: "{{ questionario.data_invio.strftime('%H:%M') }}",
+                        flags: "{{ questionario.flags or '' }}",
+                        filename: "{{ questionario.filename }}"
+                    }{% if not loop.last %},{% endif %}
+                    {% endfor %}
+                ]
+            }{% if not loop.last %},{% endif %}
+        {% endfor %}
+    ];
+    
+    // Variabili per la paginazione e filtri
+    let clientiFiltrati = [...clientiData];
+    let paginaCorrente = 1;
+    const clientiPerPagina = 9;
+    
     $(document).ready(function() {
         // Inizializza Select2 per il dropdown clienti
         $('#cliente_id').select2({
@@ -157,6 +320,21 @@
             placeholder: 'Seleziona cliente...',
             allowClear: true
         });
+        
+        // Inizializza la visualizzazione dei clienti
+        if (clientiData.length > 0) {
+            renderizzaClienti();
+            aggiornaInfoPaginazione();
+            
+            // Event listeners per filtri
+            $('#searchCliente').on('input', function() {
+                applicaFiltri();
+            });
+            
+            $('#sortCliente').on('change', function() {
+                applicaFiltri();
+            });
+        }
         
         // Genera PDF
         $('#generatePdfBtn').click(function() {
@@ -187,7 +365,7 @@
                         $('#sendEmailBtn').prop('disabled', false);
                         
                         // Mostra toast di conferma
-                        showToast('PDF generato con successo', 'success');
+                        showToast(response.message || 'PDF generato con successo', 'success');
                     } else {
                         showToast(response.message || 'Errore durante la generazione del PDF', 'danger');
                     }
@@ -198,6 +376,68 @@
                 complete: function() {
                     // Riabilita il pulsante
                     $('#generatePdfBtn').prop('disabled', false).html('<i class="bi bi-file-earmark-pdf"></i> Genera PDF');
+                }
+            });
+        });
+        
+        // Invia Questionario via Email
+        $('#sendEmailBtn').click(function(e) {
+            e.preventDefault(); // Previene il submit normale del form
+            
+            const form = $('#questionarioForm');
+            
+            // Verifica che i campi obbligatori siano compilati
+            if (!form[0].checkValidity()) {
+                form[0].reportValidity();
+                return;
+            }
+            
+            // Disabilita il pulsante durante l'invio
+            $(this).prop('disabled', true).html('<i class="bi bi-hourglass"></i> Invio in corso...');
+            
+            // Aggiungi il parametro send_email ai dati del form
+            let formData = form.serialize() + '&send_email=1';
+            
+            // Invia i dati al server
+            $.ajax({
+                url: form.attr('action'),
+                type: 'POST',
+                data: formData,
+                dataType: 'json',
+                success: function(response) {
+                    if (response.success) {
+                        // Mostra l'anteprima del PDF se non è già visibile
+                        if (!$('#previewContainer').is(':visible')) {
+                            $('#pdfPreview').attr('src', response.pdf_path);
+                            $('#previewContainer').show();
+                        }
+                        
+                        // Verifica se l'email è stata inviata
+                        if (response.email_sent) {
+                            // Mostra messaggio di successo per l'invio email
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'Email inviata!',
+                                text: 'Il questionario è stato generato e inviato con successo al cliente.',
+                                confirmButtonText: 'OK'
+                            });
+                            
+                            // Mostra anche toast di conferma
+                            showToast('Questionario inviato con successo via email!', 'success');
+                        } else {
+                            // Solo PDF generato, nessuna email inviata
+                            showToast(response.message || 'PDF generato con successo', 'success');
+                        }
+                    } else {
+                        showToast(response.message || 'Errore durante l\'invio del questionario', 'danger');
+                    }
+                },
+                error: function() {
+                    showToast('Errore durante l\'invio del questionario', 'danger');
+                },
+                complete: function() {
+                    // Riabilita il pulsante
+                    $('#sendEmailBtn').prop('disabled', false).html('<i class="bi bi-envelope"></i> Invia Questionario');
                 }
             });
         });
@@ -253,6 +493,368 @@
                 }
             });
         });
+        
+        // Funzioni per gestire i questionari inviati
+        window.viewPdf = function(filename) {
+            const pdfUrl = `/pdf_preview/${filename}`;
+            window.open(pdfUrl, '_blank');
+        };
+        
+        window.downloadPdf = function(filename) {
+            const downloadUrl = `/static/pdf_generati/${filename}`;
+            const link = document.createElement('a');
+            link.href = downloadUrl;
+            link.download = filename;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        };
+        
+        // Funzione per mostrare/nascondere i dettagli di un cliente
+        window.toggleDettagliCliente = function(clienteId) {
+            const dettagliContainer = document.getElementById('dettagliContainer');
+            const dettagliElement = document.getElementById(`dettagli-${clienteId}`);
+            
+            // Se il dettaglio esiste già, fai il toggle
+            if (dettagliElement) {
+                const isVisible = dettagliElement.classList.contains('show');
+                
+                // Chiudi tutti gli altri dettagli aperti
+                document.querySelectorAll('[id^="dettagli-"]').forEach(el => {
+                    if (el.id !== `dettagli-${clienteId}`) {
+                        el.classList.remove('show');
+                    }
+                });
+                
+                // Toggle del dettaglio corrente
+                if (isVisible) {
+                    dettagliElement.classList.remove('show');
+                } else {
+                    dettagliElement.classList.add('show');
+                    // Scroll smooth verso il dettaglio
+                    setTimeout(() => {
+                        dettagliElement.scrollIntoView({ 
+                            behavior: 'smooth', 
+                            block: 'nearest' 
+                        });
+                    }, 300);
+                }
+                return;
+            }
+            
+            // Se il dettaglio non esiste, crealo
+            const cliente = clientiData.find(c => c.id === clienteId);
+            if (!cliente) return;
+            
+            // Chiudi tutti gli altri dettagli aperti
+            document.querySelectorAll('[id^="dettagli-"]').forEach(el => {
+                el.classList.remove('show');
+            });
+            
+            // Crea il dettaglio dinamicamente
+            const dettaglioHtml = creaDettaglioCliente(cliente);
+            dettagliContainer.insertAdjacentHTML('beforeend', dettaglioHtml);
+            
+            // Mostra il dettaglio appena creato
+            const nuovoDettaglio = document.getElementById(`dettagli-${clienteId}`);
+            setTimeout(() => {
+                nuovoDettaglio.classList.add('show');
+                nuovoDettaglio.scrollIntoView({ 
+                    behavior: 'smooth', 
+                    block: 'nearest' 
+                });
+            }, 100);
+        };
+        
+        // Funzione per reinviare l'ultimo questionario di un cliente
+        window.reinviaUltimoQuestionario = function(questionarioId) {
+            resendQuestionario(questionarioId);
+        };
+        
+        window.resendQuestionario = function(questionarioId) {
+            Swal.fire({
+                title: 'Reinvia Questionario',
+                text: 'Sei sicuro di voler reinviare questo questionario?',
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonColor: '#28a745',
+                cancelButtonColor: '#6c757d',
+                confirmButtonText: 'Sì, reinvia!',
+                cancelButtonText: 'Annulla',
+                showLoaderOnConfirm: true,
+                preConfirm: () => {
+                    return fetch(`/consulenze/questionari/resend/${questionarioId}`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        }
+                    })
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Errore durante il reinvio');
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        if (!data.success) {
+                            throw new Error(data.message || 'Errore durante il reinvio');
+                        }
+                        return data;
+                    })
+                    .catch(error => {
+                        Swal.showValidationMessage(`Errore: ${error.message}`);
+                    });
+                },
+                allowOutsideClick: () => !Swal.isLoading()
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Questionario Reinviato!',
+                        text: 'Il questionario è stato reinviato con successo.',
+                        confirmButtonText: 'OK'
+                    }).then(() => {
+                        // Ricarica la pagina per aggiornare la lista
+                        location.reload();
+                    });
+                }
+            });
+        };
+        
+        // Funzioni per gestire filtri e paginazione
+        function applicaFiltri() {
+            const searchTerm = $('#searchCliente').val().toLowerCase();
+            const sortOption = $('#sortCliente').val();
+            
+            // Filtra i clienti
+            clientiFiltrati = clientiData.filter(cliente => {
+                const nomeCompleto = `${cliente.nome} ${cliente.cognome}`.toLowerCase();
+                const codiceFiscale = cliente.codice_fiscale.toLowerCase();
+                return nomeCompleto.includes(searchTerm) || codiceFiscale.includes(searchTerm);
+            });
+            
+            // Ordina i clienti
+            clientiFiltrati.sort((a, b) => {
+                switch(sortOption) {
+                    case 'nome-asc':
+                        return `${a.cognome} ${a.nome}`.localeCompare(`${b.cognome} ${b.nome}`);
+                    case 'nome-desc':
+                        return `${b.cognome} ${b.nome}`.localeCompare(`${a.cognome} ${a.nome}`);
+                    case 'data-desc':
+                        return b.ultimo_invio_timestamp - a.ultimo_invio_timestamp;
+                    case 'data-asc':
+                        return a.ultimo_invio_timestamp - b.ultimo_invio_timestamp;
+                    case 'count-desc':
+                        return b.count_questionari - a.count_questionari;
+                    case 'count-asc':
+                        return a.count_questionari - b.count_questionari;
+                    default:
+                        return 0;
+                }
+            });
+            
+            // Reset alla prima pagina
+            paginaCorrente = 1;
+            renderizzaClienti();
+            aggiornaInfoPaginazione();
+        }
+        
+        function renderizzaClienti() {
+            const container = $('#clientiRiepilogo');
+            container.empty();
+            
+            const startIndex = (paginaCorrente - 1) * clientiPerPagina;
+            const endIndex = startIndex + clientiPerPagina;
+            const clientiPagina = clientiFiltrati.slice(startIndex, endIndex);
+            
+            if (clientiPagina.length === 0) {
+                container.html(`
+                    <div class="col-12">
+                        <div class="text-center py-5">
+                            <i class="bi bi-search text-muted" style="font-size: 3rem;"></i>
+                            <h5 class="mt-3 text-muted">Nessun cliente trovato</h5>
+                            <p class="text-muted">Prova a modificare i criteri di ricerca.</p>
+                        </div>
+                    </div>
+                `);
+                return;
+            }
+            
+            clientiPagina.forEach(cliente => {
+                const cardHtml = `
+                    <div class="col-md-6 col-lg-4 mb-4">
+                        <div class="card h-100 cliente-card" data-cliente-id="${cliente.id}">
+                            <div class="card-body">
+                                <div class="d-flex align-items-start justify-content-between mb-3">
+                                    <div class="d-flex align-items-center">
+                                        <div class="avatar-circle me-3">
+                                            ${cliente.cognome.charAt(0)}${cliente.nome.charAt(0)}
+                                        </div>
+                                        <div>
+                                            <h6 class="card-title mb-1">${cliente.cognome} ${cliente.nome}</h6>
+                                            <small class="text-muted">${cliente.codice_fiscale}</small>
+                                        </div>
+                                    </div>
+                                    <span class="badge bg-primary rounded-pill">${cliente.count_questionari}</span>
+                                </div>
+                                
+                                <div class="mb-3">
+                                    <div class="row text-center">
+                                        <div class="col-6">
+                                            <div class="border-end">
+                                                <div class="h5 mb-0 text-primary">${cliente.count_questionari}</div>
+                                                <small class="text-muted">Invii totali</small>
+                                            </div>
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="h6 mb-0 text-success">${cliente.ultimo_invio}</div>
+                                            <small class="text-muted">Ultimo invio</small>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <button class="btn btn-outline-primary btn-sm" onclick="toggleDettagliCliente(${cliente.id})">
+                                        <i class="bi bi-eye"></i> Dettagli
+                                    </button>
+                                    <button class="btn btn-outline-success btn-sm" onclick="reinviaUltimoQuestionario(${cliente.ultimo_questionario_id})">
+                                        <i class="bi bi-arrow-repeat"></i> Reinvia
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                container.append(cardHtml);
+            });
+        }
+        
+        function aggiornaInfoPaginazione() {
+            const totalePagine = Math.ceil(clientiFiltrati.length / clientiPerPagina);
+            const startIndex = (paginaCorrente - 1) * clientiPerPagina + 1;
+            const endIndex = Math.min(startIndex + clientiPerPagina - 1, clientiFiltrati.length);
+            
+            $('#currentPage').text(paginaCorrente);
+            $('#totalPages').text(totalePagine);
+            $('#clientiInfo').text(`Mostra clienti ${startIndex}-${endIndex} di ${clientiFiltrati.length}`);
+            
+            // Aggiorna stato pulsanti navigazione
+            $('#prevPage').prop('disabled', paginaCorrente === 1);
+            $('#nextPage').prop('disabled', paginaCorrente === totalePagine || totalePagine === 0);
+        }
+        
+        window.cambiaPageCliente = function(direzione) {
+            const totalePagine = Math.ceil(clientiFiltrati.length / clientiPerPagina);
+            const nuovaPagina = paginaCorrente + direzione;
+            
+            if (nuovaPagina >= 1 && nuovaPagina <= totalePagine) {
+                paginaCorrente = nuovaPagina;
+                renderizzaClienti();
+                aggiornaInfoPaginazione();
+                
+                // Scroll smooth verso l'inizio della sezione
+                document.getElementById('clientiRiepilogo').scrollIntoView({ 
+                    behavior: 'smooth', 
+                    block: 'start' 
+                });
+            }
+        };
+        
+        window.resetFiltri = function() {
+            $('#searchCliente').val('');
+            $('#sortCliente').val('nome-asc');
+            applicaFiltri();
+        };
+        
+        // Funzione per creare il dettaglio di un cliente
+        function creaDettaglioCliente(cliente) {
+            let righeQuestionari = '';
+            
+            cliente.questionari.forEach(questionario => {
+                const flagsHtml = questionario.flags ? 
+                    questionario.flags.split(',').map(flag => 
+                        `<span class="badge bg-warning text-dark me-1">${flag.trim()}</span>`
+                    ).join('') : 
+                    '<span class="text-muted">-</span>';
+                
+                const emailTemplateHtml = questionario.email_template_nome !== 'Default' ?
+                    `<span class="badge bg-secondary">${questionario.email_template_nome}</span>` :
+                    `<span class="badge bg-light text-dark">Default</span>`;
+                
+                righeQuestionari += `
+                    <tr>
+                        <td>
+                            <span class="badge bg-info text-dark">${questionario.template_nome}</span>
+                        </td>
+                        <td>
+                            ${emailTemplateHtml}
+                        </td>
+                        <td>
+                            <div class="text-nowrap">
+                                <div>${questionario.data_invio}</div>
+                                <small class="text-muted">${questionario.ora_invio}</small>
+                            </div>
+                        </td>
+                        <td>
+                            ${flagsHtml}
+                        </td>
+                        <td>
+                            <div class="btn-group" role="group">
+                                <button type="button" class="btn btn-sm btn-outline-primary" 
+                                        onclick="viewPdf('${questionario.filename}')" 
+                                        title="Visualizza PDF">
+                                    <i class="bi bi-eye"></i>
+                                </button>
+                                <button type="button" class="btn btn-sm btn-outline-success" 
+                                        onclick="resendQuestionario(${questionario.id})" 
+                                        title="Reinvia Questionario">
+                                    <i class="bi bi-arrow-repeat"></i>
+                                </button>
+                                <button type="button" class="btn btn-sm btn-outline-info" 
+                                        onclick="downloadPdf('${questionario.filename}')" 
+                                        title="Scarica PDF">
+                                    <i class="bi bi-download"></i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                `;
+            });
+            
+            return `
+                <div class="collapse mt-4" id="dettagli-${cliente.id}">
+                    <div class="card border-primary">
+                        <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+                            <h6 class="mb-0">
+                                <i class="bi bi-person-circle"></i> 
+                                Dettagli invii - ${cliente.cognome} ${cliente.nome}
+                            </h6>
+                            <button class="btn btn-sm btn-outline-light" onclick="toggleDettagliCliente(${cliente.id})">
+                                <i class="bi bi-x"></i>
+                            </button>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-sm table-hover">
+                                    <thead class="table-light">
+                                        <tr>
+                                            <th><i class="bi bi-file-earmark-pdf"></i> Template</th>
+                                            <th><i class="bi bi-envelope"></i> Email Template</th>
+                                            <th><i class="bi bi-calendar"></i> Data Invio</th>
+                                            <th><i class="bi bi-flag"></i> Flags</th>
+                                            <th><i class="bi bi-gear"></i> Azioni</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        ${righeQuestionari}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
     });
 </script>
 {% endblock %}
