@@ -3034,3 +3034,1331 @@ DETAIL:  La chiave (codice_fiscale)=(RSSMRA80A01H501U) esiste già.
 2025-08-06 00:25:22,023 - werkzeug - INFO -  * Debugger PIN: 270-211-943
 2025-08-06 00:25:29,180 - werkzeug - INFO -  * Detected change in 'C:\\Users\\aless\\Desktop\\crm\\crm\\app.py', reloading
 2025-08-06 00:25:29,318 - werkzeug - INFO -  * Restarting with stat
+2025-08-06 00:25:30,011 - werkzeug - WARNING -  * Debugger is active!
+2025-08-06 00:25:30,013 - werkzeug - INFO -  * Debugger PIN: 270-211-943
+2025-08-06 00:32:00,390 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 00:32:00] "[32mGET /consulenze/automazioni HTTP/1.1[0m" 302 -
+2025-08-06 00:32:00,411 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 00:32:00] "GET /login HTTP/1.1" 200 -
+2025-08-06 00:32:00,676 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 00:32:00] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-06 00:32:00,750 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 00:32:00] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-06 00:32:05,878 - app - INFO - Login riuscito per l'utente stefano da IP 127.0.0.1
+2025-08-06 00:32:05,880 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 00:32:05] "[32mPOST /login HTTP/1.1[0m" 302 -
+2025-08-06 00:32:05,883 - app - INFO - Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-06 00:32:05,886 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 00:32:05] "GET /dashboard HTTP/1.1" 200 -
+2025-08-06 00:32:05,922 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 00:32:05] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-06 00:32:06,229 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 00:32:06] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-06 00:32:11,893 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-06 00:32:11,893 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-06 00:32:11,893 - app - INFO - consulenze_index: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-06 00:32:11,893 - app - INFO - consulenze_index: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-06 00:32:11,896 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 00:32:11] "GET /consulenze HTTP/1.1" 200 -
+2025-08-06 00:32:12,017 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 00:32:12] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-06 00:32:12,157 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 00:32:12] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-06 00:32:13,029 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-06 00:32:13,029 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-06 00:32:13,077 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 00:32:13] "GET /consulenze/automazioni HTTP/1.1" 200 -
+2025-08-06 00:32:13,340 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 00:32:13] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-06 00:32:13,418 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 00:32:13] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-06 00:32:25,001 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-06 00:32:25,002 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-06 00:32:25,037 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 00:32:25] "DELETE /consulenze/automazioni/3/delete HTTP/1.1" 200 -
+2025-08-06 00:32:26,323 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-06 00:32:26,323 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-06 00:32:26,360 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 00:32:26] "GET /consulenze/automazioni HTTP/1.1" 200 -
+2025-08-06 00:32:26,638 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 00:32:26] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-06 00:32:26,700 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 00:32:26] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-06 00:32:39,938 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-06 00:32:39,938 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-06 00:32:39,970 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 00:32:39] "POST /consulenze/automazioni/create HTTP/1.1" 200 -
+2025-08-06 00:32:41,383 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-06 00:32:41,383 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-06 00:32:41,424 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 00:32:41] "GET /consulenze/automazioni HTTP/1.1" 200 -
+2025-08-06 00:32:41,698 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 00:32:41] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-06 00:32:41,761 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 00:32:41] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-06 00:32:48,805 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-06 00:32:48,806 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-06 00:32:48,810 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 00:32:48] "GET /consulenze/import HTTP/1.1" 200 -
+2025-08-06 00:32:48,929 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 00:32:48] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-06 00:32:49,056 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 00:32:49] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-06 00:32:50,128 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-06 00:32:50,128 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-06 00:32:50,273 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 00:32:50] "GET /consulenze/automazioni HTTP/1.1" 200 -
+2025-08-06 00:32:50,438 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 00:32:50] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-06 00:32:50,610 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 00:32:50] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-06 00:32:51,293 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-06 00:32:51,293 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-06 00:32:51,332 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 00:32:51] "GET /consulenze/panoramica HTTP/1.1" 200 -
+2025-08-06 00:32:51,434 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 00:32:51] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-06 00:32:51,543 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 00:32:51] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-06 00:32:52,600 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-06 00:32:52,600 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-06 00:32:52,639 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 00:32:52] "GET /consulenze/questionari HTTP/1.1" 200 -
+2025-08-06 00:32:52,913 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 00:32:52] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-06 00:32:52,971 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 00:32:52] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-06 00:32:56,574 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-06 00:32:56,574 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-06 00:32:56,611 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 00:32:56] "GET /consulenze/automazioni HTTP/1.1" 200 -
+2025-08-06 00:32:56,702 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 00:32:56] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-06 00:32:56,828 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 00:32:56] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-06 00:33:55,181 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-06 00:33:55,181 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-06 00:33:55,218 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 00:33:55] "GET /consulenze/automazioni HTTP/1.1" 200 -
+2025-08-06 00:33:55,484 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 00:33:55] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-06 00:33:55,563 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 00:33:55] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-06 00:34:41,610 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-06 00:34:41,610 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-06 00:34:41,644 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 00:34:41] "GET /consulenze/automazioni HTTP/1.1" 200 -
+2025-08-06 00:34:41,673 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 00:34:41] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-06 00:34:41,877 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 00:34:41] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-06 00:36:23,660 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-06 00:36:23,660 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-06 00:36:23,695 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 00:36:23] "GET /consulenze/automazioni HTTP/1.1" 200 -
+2025-08-06 00:36:23,726 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 00:36:23] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-06 00:36:23,916 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 00:36:23] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-06 00:36:36,757 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-06 00:36:36,757 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-06 00:36:36,886 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 00:36:36] "POST /consulenze/automazioni/4/toggle HTTP/1.1" 200 -
+2025-08-06 00:36:39,678 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-06 00:36:39,678 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-06 00:36:39,811 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 00:36:39] "DELETE /consulenze/automazioni/4/delete HTTP/1.1" 200 -
+2025-08-06 00:36:42,126 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-06 00:36:42,128 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-06 00:36:42,159 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 00:36:42] "GET /consulenze/automazioni HTTP/1.1" 200 -
+2025-08-06 00:36:42,184 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 00:36:42] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-06 00:36:42,391 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 00:36:42] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-06 00:36:53,626 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-06 00:36:53,626 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-06 00:36:53,659 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 00:36:53] "POST /consulenze/automazioni/create HTTP/1.1" 200 -
+2025-08-06 00:36:54,715 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-06 00:36:54,715 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-06 00:36:54,852 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 00:36:54] "GET /consulenze/automazioni HTTP/1.1" 200 -
+2025-08-06 00:36:55,029 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 00:36:55] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-06 00:36:55,184 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 00:36:55] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-06 00:40:52,762 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-06 00:40:52,762 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-06 00:40:52,800 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 00:40:52] "GET /consulenze/calendar HTTP/1.1" 200 -
+2025-08-06 00:40:52,857 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 00:40:52] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-06 00:40:53,012 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 00:40:53] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-06 00:40:54,951 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-06 00:40:54,951 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-06 00:40:54,984 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 00:40:54] "GET /consulenze/automazioni HTTP/1.1" 200 -
+2025-08-06 00:40:55,260 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 00:40:55] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-06 00:40:55,317 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 00:40:55] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-06 00:45:02,883 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-06 00:45:02,883 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-06 00:45:02,931 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 00:45:02] "GET /consulenze/automazioni HTTP/1.1" 200 -
+2025-08-06 00:45:02,959 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 00:45:02] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-06 00:45:03,137 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 00:45:03] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-06 00:46:09,047 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-06 00:46:09,047 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-06 00:46:09,083 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 00:46:09] "GET /consulenze/automazioni HTTP/1.1" 200 -
+2025-08-06 00:46:09,114 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 00:46:09] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-06 00:46:09,314 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 00:46:09] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-06 00:50:18,828 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-06 00:50:18,828 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-06 00:50:18,860 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 00:50:18] "GET /consulenze/automazioni HTTP/1.1" 200 -
+2025-08-06 00:50:18,887 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 00:50:18] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-06 00:50:19,094 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 00:50:19] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-06 00:51:17,853 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 00:51:17] "[35m[1mGET /debug-automazioni HTTP/1.1[0m" 500 -
+2025-08-06 00:51:17,885 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 00:51:17] "GET /debug-automazioni?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+2025-08-06 00:51:18,085 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 00:51:18] "GET /debug-automazioni?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
+2025-08-06 00:51:18,413 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 00:51:18] "GET /debug-automazioni?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+2025-08-06 00:51:18,678 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 00:51:18] "[36mGET /debug-automazioni?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2025-08-06 00:51:29,174 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-06 00:51:29,174 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-06 00:51:29,210 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 00:51:29] "GET /consulenze/automazioni HTTP/1.1" 200 -
+2025-08-06 00:51:29,487 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 00:51:29] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-06 00:51:29,551 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 00:51:29] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-06 00:51:47,295 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 00:51:47] "GET /test-automated-emails HTTP/1.1" 200 -
+2025-08-06 00:54:03,928 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 00:54:03] "GET /test-automated-emails HTTP/1.1" 200 -
+2025-08-06 00:54:11,499 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-06 00:54:11,500 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-06 00:54:11,634 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 00:54:11] "DELETE /consulenze/automazioni/5/delete HTTP/1.1" 200 -
+2025-08-06 00:54:12,935 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-06 00:54:12,935 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-06 00:54:12,967 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 00:54:12] "GET /consulenze/automazioni HTTP/1.1" 200 -
+2025-08-06 00:54:12,992 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 00:54:12] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-06 00:54:13,185 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 00:54:13] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-06 00:54:27,950 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-06 00:54:27,950 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-06 00:54:27,981 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 00:54:27] "POST /consulenze/automazioni/create HTTP/1.1" 200 -
+2025-08-06 00:54:29,015 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-06 00:54:29,015 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-06 00:54:29,048 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 00:54:29] "GET /consulenze/automazioni HTTP/1.1" 200 -
+2025-08-06 00:54:29,323 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 00:54:29] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-06 00:54:29,384 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 00:54:29] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-06 00:55:02,014 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 00:55:02] "GET /test-automated-emails HTTP/1.1" 200 -
+2025-08-06 00:55:03,918 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 00:55:03] "GET /test-automated-emails HTTP/1.1" 200 -
+2025-08-06 00:55:06,408 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-06 00:55:06,408 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-06 00:55:06,438 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 00:55:06] "GET /consulenze/automazioni HTTP/1.1" 200 -
+2025-08-06 00:55:06,723 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 00:55:06] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-06 00:55:06,770 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 00:55:06] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-06 00:56:29,743 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 00:56:29] "GET /test-automated-emails HTTP/1.1" 200 -
+2025-08-06 00:56:59,649 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-06 00:56:59,649 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-06 00:56:59,684 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 00:56:59] "GET /consulenze/automazioni HTTP/1.1" 200 -
+2025-08-06 00:56:59,708 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 00:56:59] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-06 00:57:00,022 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 00:57:00] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-06 01:00:56,232 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-06 01:00:56,232 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-06 01:00:56,266 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 01:00:56] "GET /consulenze/automazioni HTTP/1.1" 200 -
+2025-08-06 01:00:56,303 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 01:00:56] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-06 01:00:56,515 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 01:00:56] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-06 01:24:03,835 - werkzeug - INFO -  * Detected change in 'C:\\Users\\aless\\Desktop\\crm\\crm\\app.py', reloading
+2025-08-06 01:24:03,942 - werkzeug - INFO -  * Restarting with stat
+2025-08-06 01:24:05,715 - werkzeug - WARNING -  * Debugger is active!
+2025-08-06 01:24:05,716 - werkzeug - INFO -  * Debugger PIN: 270-211-943
+2025-08-06 01:26:06,600 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 01:26:06] "[32mGET /consulenze/automazioni HTTP/1.1[0m" 302 -
+2025-08-06 01:26:06,657 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 01:26:06] "GET /login HTTP/1.1" 200 -
+2025-08-06 01:26:06,882 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 01:26:06] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-06 01:26:07,002 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 01:26:07] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-06 01:26:18,300 - app - INFO - Login riuscito per l'utente stefano da IP 127.0.0.1
+2025-08-06 01:26:18,300 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 01:26:18] "[32mPOST /login HTTP/1.1[0m" 302 -
+2025-08-06 01:26:18,304 - app - INFO - Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-06 01:26:18,327 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 01:26:18] "GET /dashboard HTTP/1.1" 200 -
+2025-08-06 01:26:18,353 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 01:26:18] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-06 01:26:18,665 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 01:26:18] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-06 01:26:24,290 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-06 01:26:24,290 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-06 01:26:24,290 - app - INFO - consulenze_index: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-06 01:26:24,290 - app - INFO - consulenze_index: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-06 01:26:24,306 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 01:26:24] "GET /consulenze HTTP/1.1" 200 -
+2025-08-06 01:26:24,385 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 01:26:24] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-06 01:26:24,556 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 01:26:24] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-06 01:26:26,083 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 01:26:26] "[35m[1mGET /debug-automazioni HTTP/1.1[0m" 500 -
+2025-08-06 01:26:26,111 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 01:26:26] "[36mGET /debug-automazioni?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2025-08-06 01:26:26,427 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 01:26:26] "[36mGET /debug-automazioni?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2025-08-06 01:26:26,738 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 01:26:26] "[36mGET /debug-automazioni?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2025-08-06 01:26:27,002 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 01:26:27] "[36mGET /debug-automazioni?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2025-08-06 23:30:14,719 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-08-06 23:30:14,719 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-08-06 23:30:14,720 - werkzeug - INFO -  * Restarting with stat
+2025-08-06 23:30:15,228 - werkzeug - WARNING -  * Debugger is active!
+2025-08-06 23:30:15,230 - werkzeug - INFO -  * Debugger PIN: 558-901-987
+2025-08-06 23:31:12,619 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 23:31:12] "[32mGET / HTTP/1.1[0m" 302 -
+2025-08-06 23:31:12,890 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 23:31:12] "GET /login HTTP/1.1" 200 -
+2025-08-06 23:31:12,949 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 23:31:12] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-06 23:31:13,225 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 23:31:13] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-06 23:31:13,233 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 23:31:13] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-08-06 23:31:18,070 - app - INFO - Login riuscito per l'utente stefano da IP 127.0.0.1
+2025-08-06 23:31:18,071 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 23:31:18] "[32mPOST /login HTTP/1.1[0m" 302 -
+2025-08-06 23:31:18,073 - app - INFO - Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-06 23:31:18,078 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 23:31:18] "GET /dashboard HTTP/1.1" 200 -
+2025-08-06 23:31:18,108 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 23:31:18] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-06 23:31:18,415 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 23:31:18] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-06 23:31:21,736 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-06 23:31:21,736 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-06 23:31:21,736 - app - INFO - consulenze_index: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-06 23:31:21,736 - app - INFO - consulenze_index: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-06 23:31:21,739 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 23:31:21] "GET /consulenze HTTP/1.1" 200 -
+2025-08-06 23:31:22,053 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 23:31:22] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-06 23:31:22,070 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 23:31:22] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-06 23:31:27,874 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-06 23:31:27,876 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-06 23:31:27,928 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 23:31:27] "GET /consulenze/automazioni HTTP/1.1" 200 -
+2025-08-06 23:31:27,971 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 23:31:27] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-06 23:31:28,143 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 23:31:28] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-06 23:31:50,950 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-06 23:31:50,950 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-06 23:31:50,987 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 23:31:50] "DELETE /consulenze/automazioni/6/delete HTTP/1.1" 200 -
+2025-08-06 23:31:53,313 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-06 23:31:53,313 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-06 23:31:53,347 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 23:31:53] "GET /consulenze/automazioni HTTP/1.1" 200 -
+2025-08-06 23:31:53,367 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 23:31:53] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-06 23:31:53,581 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 23:31:53] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-06 23:31:58,302 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-06 23:31:58,303 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-06 23:31:58,306 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 23:31:58] "GET /consulenze/anagrafica HTTP/1.1" 200 -
+2025-08-06 23:31:58,396 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 23:31:58] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-06 23:31:58,553 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 23:31:58] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-06 23:32:12,448 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-06 23:32:12,449 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-06 23:32:12,486 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 23:32:12] "[35m[1mPOST /consulenze/anagrafica HTTP/1.1[0m" 500 -
+2025-08-06 23:32:12,755 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 23:32:12] "GET /consulenze/anagrafica?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+2025-08-06 23:32:12,819 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 23:32:12] "GET /consulenze/anagrafica?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
+2025-08-06 23:32:13,149 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 23:32:13] "GET /consulenze/anagrafica?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+2025-08-06 23:32:13,415 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 23:32:13] "[36mGET /consulenze/anagrafica?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2025-08-06 23:32:46,262 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-06 23:32:46,263 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-06 23:32:46,263 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 23:32:46] "GET /consulenze/anagrafica HTTP/1.1" 200 -
+2025-08-06 23:32:57,223 - werkzeug - INFO -  * Detected change in 'C:\\Users\\aless\\Desktop\\crm\\crm\\app.py', reloading
+2025-08-06 23:32:57,308 - werkzeug - INFO -  * Restarting with stat
+2025-08-06 23:32:57,875 - werkzeug - WARNING -  * Debugger is active!
+2025-08-06 23:32:57,877 - werkzeug - INFO -  * Debugger PIN: 558-901-987
+2025-08-06 23:33:12,189 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 23:33:12] "[32mGET /consulenze/anagrafica HTTP/1.1[0m" 302 -
+2025-08-06 23:33:12,203 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 23:33:12] "GET /login HTTP/1.1" 200 -
+2025-08-06 23:33:12,460 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 23:33:12] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-06 23:33:12,537 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 23:33:12] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-06 23:33:17,523 - app - INFO - Login riuscito per l'utente stefano da IP 127.0.0.1
+2025-08-06 23:33:17,523 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 23:33:17] "[32mPOST /login HTTP/1.1[0m" 302 -
+2025-08-06 23:33:17,527 - app - INFO - Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-06 23:33:17,532 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 23:33:17] "GET /dashboard HTTP/1.1" 200 -
+2025-08-06 23:33:17,579 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 23:33:17] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-06 23:33:17,892 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 23:33:17] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-06 23:33:19,522 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-06 23:33:19,523 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-06 23:33:19,523 - app - INFO - consulenze_index: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-06 23:33:19,523 - app - INFO - consulenze_index: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-06 23:33:19,526 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 23:33:19] "GET /consulenze HTTP/1.1" 200 -
+2025-08-06 23:33:19,648 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 23:33:19] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-06 23:33:19,788 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 23:33:19] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-06 23:33:21,360 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-06 23:33:21,360 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-06 23:33:21,363 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 23:33:21] "GET /consulenze/anagrafica HTTP/1.1" 200 -
+2025-08-06 23:33:21,662 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 23:33:21] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-06 23:33:21,694 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 23:33:21] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-06 23:33:29,080 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-06 23:33:29,080 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-06 23:33:29,124 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 23:33:29] "[32mPOST /consulenze/anagrafica HTTP/1.1[0m" 302 -
+2025-08-06 23:33:29,130 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-06 23:33:29,130 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-06 23:33:29,175 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 23:33:29] "GET /consulenze/panoramica HTTP/1.1" 200 -
+2025-08-06 23:33:29,347 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 23:33:29] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-06 23:33:29,519 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 23:33:29] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-06 23:33:36,162 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-06 23:33:36,162 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-06 23:33:36,192 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 23:33:36] "GET /consulenze/cliente/5/details HTTP/1.1" 200 -
+2025-08-06 23:33:39,492 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-06 23:33:39,492 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-06 23:33:39,635 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 23:33:39] "GET /consulenze/cliente/4/details HTTP/1.1" 200 -
+2025-08-06 23:33:49,012 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-06 23:33:49,012 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-06 23:33:49,042 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 23:33:49] "GET /consulenze/cliente/4/details HTTP/1.1" 200 -
+2025-08-06 23:34:00,465 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-06 23:34:00,465 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-06 23:34:00,466 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 23:34:00] "GET /consulenze/anagrafica HTTP/1.1" 200 -
+2025-08-06 23:34:00,767 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 23:34:00] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-06 23:34:00,798 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 23:34:00] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-06 23:34:07,785 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-06 23:34:07,785 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-06 23:34:07,817 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 23:34:07] "[32mPOST /consulenze/anagrafica HTTP/1.1[0m" 302 -
+2025-08-06 23:34:07,821 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-06 23:34:07,821 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-06 23:34:07,853 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 23:34:07] "GET /consulenze/panoramica HTTP/1.1" 200 -
+2025-08-06 23:34:08,052 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 23:34:08] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-06 23:34:08,207 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 23:34:08] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-06 23:35:27,224 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-06 23:35:27,224 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-06 23:35:27,254 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 23:35:27] "GET /consulenze/cliente/7/details HTTP/1.1" 200 -
+2025-08-06 23:35:30,048 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-06 23:35:30,048 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-06 23:35:30,088 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 23:35:30] "GET /consulenze/automazioni HTTP/1.1" 200 -
+2025-08-06 23:35:30,365 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 23:35:30] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-06 23:35:30,418 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 23:35:30] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-06 23:35:46,849 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-06 23:35:46,849 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-06 23:35:46,850 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 23:35:46] "GET /consulenze/anagrafica HTTP/1.1" 200 -
+2025-08-06 23:35:46,963 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 23:35:46] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-06 23:35:47,121 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 23:35:47] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-06 23:35:48,890 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-06 23:35:48,890 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-06 23:35:48,920 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 23:35:48] "GET /consulenze/panoramica HTTP/1.1" 200 -
+2025-08-06 23:35:49,202 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 23:35:49] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-06 23:35:49,264 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 23:35:49] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-06 23:35:58,446 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-06 23:35:58,446 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-06 23:35:58,479 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 23:35:58] "GET /consulenze/automazioni HTTP/1.1" 200 -
+2025-08-06 23:35:58,588 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 23:35:58] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-06 23:35:58,698 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 23:35:58] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-06 23:36:25,568 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-06 23:36:25,568 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-06 23:36:25,570 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 23:36:25] "GET /consulenze/anagrafica HTTP/1.1" 200 -
+2025-08-06 23:36:25,879 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 23:36:25] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-06 23:36:25,909 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 23:36:25] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-06 23:36:27,867 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-06 23:36:27,867 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-06 23:36:27,896 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 23:36:27] "GET /consulenze/panoramica HTTP/1.1" 200 -
+2025-08-06 23:36:27,991 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 23:36:27] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-06 23:36:28,132 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 23:36:28] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-06 23:36:35,307 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-06 23:36:35,308 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-06 23:36:35,337 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 23:36:35] "PUT /consulenze/cliente/7 HTTP/1.1" 200 -
+2025-08-06 23:36:37,723 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-06 23:36:37,725 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-06 23:36:37,757 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 23:36:37] "GET /consulenze/automazioni HTTP/1.1" 200 -
+2025-08-06 23:36:37,834 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 23:36:37] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-06 23:36:37,974 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 23:36:37] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-06 23:36:58,974 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-06 23:36:58,974 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-06 23:36:59,124 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 23:36:59] "POST /consulenze/automazioni/create HTTP/1.1" 200 -
+2025-08-06 23:37:01,762 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-06 23:37:01,762 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-06 23:37:01,801 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 23:37:01] "GET /consulenze/automazioni HTTP/1.1" 200 -
+2025-08-06 23:37:01,821 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 23:37:01] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-06 23:37:02,028 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 23:37:02] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-06 23:38:07,334 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-06 23:38:07,334 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-06 23:38:07,369 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 23:38:07] "GET /consulenze/automazioni HTTP/1.1" 200 -
+2025-08-06 23:38:07,397 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 23:38:07] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-06 23:38:07,605 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 23:38:07] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-06 23:39:33,920 - werkzeug - INFO -  * Detected change in 'C:\\Users\\aless\\Desktop\\crm\\crm\\app.py', reloading
+2025-08-06 23:39:34,083 - werkzeug - INFO -  * Restarting with stat
+2025-08-06 23:39:34,673 - werkzeug - WARNING -  * Debugger is active!
+2025-08-06 23:39:34,675 - werkzeug - INFO -  * Debugger PIN: 558-901-987
+2025-08-06 23:39:34,845 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 23:39:34] "[32mGET / HTTP/1.1[0m" 302 -
+2025-08-06 23:39:35,115 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 23:39:35] "GET /login HTTP/1.1" 200 -
+2025-08-06 23:39:35,172 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 23:39:35] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-06 23:39:35,461 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 23:39:35] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-06 23:39:36,233 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 23:39:36] "[32mGET /debug-automazioni HTTP/1.1[0m" 302 -
+2025-08-06 23:39:36,242 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 23:39:36] "GET /login HTTP/1.1" 200 -
+2025-08-06 23:39:36,497 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 23:39:36] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-06 23:39:36,620 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 23:39:36] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-06 23:39:41,444 - app - INFO - Login riuscito per l'utente stefano da IP 127.0.0.1
+2025-08-06 23:39:41,445 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 23:39:41] "[32mPOST /login HTTP/1.1[0m" 302 -
+2025-08-06 23:39:41,447 - app - INFO - Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-06 23:39:41,451 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 23:39:41] "GET /dashboard HTTP/1.1" 200 -
+2025-08-06 23:39:41,483 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 23:39:41] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-06 23:39:41,785 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 23:39:41] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-06 23:39:57,183 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 23:39:57] "[35m[1mGET /debug-automazioni HTTP/1.1[0m" 500 -
+2025-08-06 23:39:57,201 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 23:39:57] "[36mGET /debug-automazioni?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2025-08-06 23:39:57,392 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 23:39:57] "[36mGET /debug-automazioni?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2025-08-06 23:39:57,704 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 23:39:57] "[36mGET /debug-automazioni?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2025-08-06 23:41:47,012 - werkzeug - INFO -  * Detected change in 'C:\\Users\\aless\\Desktop\\crm\\crm\\app.py', reloading
+2025-08-06 23:41:47,180 - werkzeug - INFO -  * Restarting with stat
+2025-08-06 23:41:47,736 - werkzeug - WARNING -  * Debugger is active!
+2025-08-06 23:41:47,737 - werkzeug - INFO -  * Debugger PIN: 558-901-987
+2025-08-06 23:42:05,055 - werkzeug - INFO -  * Detected change in 'C:\\Users\\aless\\Desktop\\crm\\crm\\app.py', reloading
+2025-08-06 23:42:05,123 - werkzeug - INFO -  * Restarting with stat
+2025-08-06 23:42:05,681 - werkzeug - WARNING -  * Debugger is active!
+2025-08-06 23:42:05,682 - werkzeug - INFO -  * Debugger PIN: 558-901-987
+2025-08-06 23:42:09,785 - werkzeug - INFO -  * Detected change in 'C:\\Users\\aless\\Desktop\\crm\\crm\\app.py', reloading
+2025-08-06 23:42:09,855 - werkzeug - INFO -  * Restarting with stat
+2025-08-06 23:42:10,509 - werkzeug - WARNING -  * Debugger is active!
+2025-08-06 23:42:10,511 - werkzeug - INFO -  * Debugger PIN: 558-901-987
+2025-08-06 23:42:17,461 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 23:42:17] "[32mGET /debug-automazioni HTTP/1.1[0m" 302 -
+2025-08-06 23:42:17,476 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 23:42:17] "GET /login HTTP/1.1" 200 -
+2025-08-06 23:42:17,727 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 23:42:17] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-06 23:42:17,804 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 23:42:17] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-06 23:42:23,399 - app - INFO - Login riuscito per l'utente stefano da IP 127.0.0.1
+2025-08-06 23:42:23,399 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 23:42:23] "[32mPOST /login HTTP/1.1[0m" 302 -
+2025-08-06 23:42:23,402 - app - INFO - Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-06 23:42:23,405 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 23:42:23] "GET /dashboard HTTP/1.1" 200 -
+2025-08-06 23:42:23,431 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 23:42:23] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-06 23:42:23,749 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 23:42:23] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-06 23:42:26,775 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 23:42:26] "[32mGET / HTTP/1.1[0m" 302 -
+2025-08-06 23:42:27,095 - app - INFO - Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-06 23:42:27,095 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 23:42:27] "GET /dashboard HTTP/1.1" 200 -
+2025-08-06 23:42:27,345 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 23:42:27] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-06 23:42:27,439 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 23:42:27] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-06 23:42:31,350 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 23:42:31] "[35m[1mGET /debug-automazioni HTTP/1.1[0m" 500 -
+2025-08-06 23:42:31,620 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 23:42:31] "[36mGET /debug-automazioni?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2025-08-06 23:42:31,681 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 23:42:31] "[36mGET /debug-automazioni?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2025-08-06 23:42:31,992 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 23:42:31] "[36mGET /debug-automazioni?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2025-08-06 23:42:32,258 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 23:42:32] "[36mGET /debug-automazioni?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2025-08-06 23:42:41,839 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-06 23:42:41,839 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-06 23:42:41,882 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 23:42:41] "GET /consulenze/automazioni HTTP/1.1" 200 -
+2025-08-06 23:42:42,142 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 23:42:42] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-06 23:42:42,215 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 23:42:42] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-06 23:42:49,314 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-06 23:42:49,314 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-06 23:42:49,347 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 23:42:49] "GET /consulenze/automazioni HTTP/1.1" 200 -
+2025-08-06 23:42:49,367 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 23:42:49] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-06 23:42:49,567 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 23:42:49] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-06 23:42:51,806 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-06 23:42:51,806 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-06 23:42:51,810 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 23:42:51] "GET /consulenze/anagrafica HTTP/1.1" 200 -
+2025-08-06 23:42:51,930 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 23:42:51] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-06 23:42:52,056 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 23:42:52] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-06 23:42:53,576 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-06 23:42:53,576 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-06 23:42:53,608 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 23:42:53] "GET /consulenze/automazioni HTTP/1.1" 200 -
+2025-08-06 23:42:53,881 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 23:42:53] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-06 23:42:53,943 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 23:42:53] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-06 23:43:48,235 - werkzeug - INFO -  * Detected change in 'C:\\Users\\aless\\Desktop\\crm\\crm\\app.py', reloading
+2025-08-06 23:43:48,313 - werkzeug - INFO -  * Restarting with stat
+2025-08-06 23:43:48,868 - werkzeug - WARNING -  * Debugger is active!
+2025-08-06 23:43:48,870 - werkzeug - INFO -  * Debugger PIN: 558-901-987
+2025-08-06 23:44:04,460 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 23:44:04] "[32mGET /debug-automazioni HTTP/1.1[0m" 302 -
+2025-08-06 23:44:04,473 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 23:44:04] "GET /login HTTP/1.1" 200 -
+2025-08-06 23:44:04,744 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 23:44:04] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-06 23:44:04,805 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 23:44:04] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-06 23:44:07,631 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 23:44:07] "[32mGET /consulenze/automazioni HTTP/1.1[0m" 302 -
+2025-08-06 23:44:07,634 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 23:44:07] "GET /login HTTP/1.1" 200 -
+2025-08-06 23:44:07,898 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 23:44:07] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-06 23:44:07,992 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 23:44:07] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-06 23:44:12,732 - app - INFO - Login riuscito per l'utente stefano da IP 127.0.0.1
+2025-08-06 23:44:12,733 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 23:44:12] "[32mPOST /login HTTP/1.1[0m" 302 -
+2025-08-06 23:44:12,735 - app - INFO - Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-06 23:44:12,740 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 23:44:12] "GET /dashboard HTTP/1.1" 200 -
+2025-08-06 23:44:12,780 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 23:44:12] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-06 23:44:13,090 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 23:44:13] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-06 23:44:15,913 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 23:44:15] "GET /debug-automazioni HTTP/1.1" 200 -
+2025-08-06 23:44:44,240 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-06 23:44:44,240 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-06 23:44:44,241 - app - INFO - consulenze_index: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-06 23:44:44,241 - app - INFO - consulenze_index: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-06 23:44:44,244 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 23:44:44] "GET /consulenze HTTP/1.1" 200 -
+2025-08-06 23:44:44,270 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 23:44:44] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-06 23:44:44,573 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 23:44:44] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-06 23:44:46,133 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-06 23:44:46,133 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-06 23:44:46,283 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 23:44:46] "GET /consulenze/automazioni HTTP/1.1" 200 -
+2025-08-06 23:44:46,305 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 23:44:46] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-06 23:44:46,379 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 23:44:46] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-06 23:44:49,992 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-06 23:44:49,992 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-06 23:44:50,026 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 23:44:50] "DELETE /consulenze/automazioni/7/delete HTTP/1.1" 200 -
+2025-08-06 23:44:52,048 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-06 23:44:52,048 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-06 23:44:52,089 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 23:44:52] "GET /consulenze/automazioni HTTP/1.1" 200 -
+2025-08-06 23:44:52,356 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 23:44:52] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-06 23:44:52,418 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 23:44:52] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-06 23:45:04,960 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-06 23:45:04,960 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-06 23:45:05,099 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 23:45:05] "POST /consulenze/automazioni/create HTTP/1.1" 200 -
+2025-08-06 23:45:06,287 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-06 23:45:06,287 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-06 23:45:06,322 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 23:45:06] "GET /consulenze/automazioni HTTP/1.1" 200 -
+2025-08-06 23:45:06,601 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 23:45:06] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-06 23:45:06,649 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 23:45:06] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-06 23:45:21,918 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 23:45:21] "GET /debug-automazioni HTTP/1.1" 200 -
+2025-08-06 23:45:31,914 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 23:45:31] "GET /debug-automazioni HTTP/1.1" 200 -
+2025-08-06 23:46:47,170 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-06 23:46:47,170 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-06 23:46:47,202 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 23:46:47] "GET /consulenze/automazioni HTTP/1.1" 200 -
+2025-08-06 23:46:47,228 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 23:46:47] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-06 23:46:47,434 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 23:46:47] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-06 23:48:06,567 - werkzeug - INFO -  * Detected change in 'C:\\Users\\aless\\Desktop\\crm\\crm\\app.py', reloading
+2025-08-06 23:48:06,654 - werkzeug - INFO -  * Restarting with stat
+2025-08-06 23:48:07,245 - werkzeug - WARNING -  * Debugger is active!
+2025-08-06 23:48:07,246 - werkzeug - INFO -  * Debugger PIN: 558-901-987
+2025-08-06 23:48:13,383 - werkzeug - INFO -  * Detected change in 'C:\\Users\\aless\\Desktop\\crm\\crm\\app.py', reloading
+2025-08-06 23:48:13,522 - werkzeug - INFO -  * Restarting with stat
+2025-08-06 23:48:14,290 - werkzeug - WARNING -  * Debugger is active!
+2025-08-06 23:48:14,291 - werkzeug - INFO -  * Debugger PIN: 558-901-987
+2025-08-06 23:48:21,021 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 23:48:21] "[32mPOST /consulenze/automazioni/8/toggle HTTP/1.1[0m" 302 -
+2025-08-06 23:48:21,297 - werkzeug - INFO - 127.0.0.1 - - [06/Aug/2025 23:48:21] "GET /login HTTP/1.1" 200 -
+2025-08-06 23:48:22,487 - werkzeug - INFO -  * Detected change in 'C:\\Users\\aless\\Desktop\\crm\\crm\\app.py', reloading
+2025-08-06 23:48:22,725 - werkzeug - INFO -  * Restarting with stat
+2025-08-06 23:48:23,627 - werkzeug - WARNING -  * Debugger is active!
+2025-08-06 23:48:23,629 - werkzeug - INFO -  * Debugger PIN: 558-901-987
+2025-08-06 23:48:30,797 - werkzeug - INFO -  * Detected change in 'C:\\Users\\aless\\Desktop\\crm\\crm\\app.py', reloading
+2025-08-06 23:48:30,890 - werkzeug - INFO -  * Restarting with stat
+2025-08-06 23:48:31,477 - werkzeug - WARNING -  * Debugger is active!
+2025-08-06 23:48:31,480 - werkzeug - INFO -  * Debugger PIN: 558-901-987
+2025-08-07 01:16:44,703 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 01:16:44] "[32mGET /consulenze/automazioni HTTP/1.1[0m" 302 -
+2025-08-07 01:16:44,737 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 01:16:44] "GET /login HTTP/1.1" 200 -
+2025-08-07 01:16:44,989 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 01:16:44] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-07 01:16:45,072 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 01:16:45] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-07 01:16:50,411 - app - INFO - Login riuscito per l'utente stefano da IP 127.0.0.1
+2025-08-07 01:16:50,412 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 01:16:50] "[32mPOST /login HTTP/1.1[0m" 302 -
+2025-08-07 01:16:50,416 - app - INFO - Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-07 01:16:50,424 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 01:16:50] "GET /dashboard HTTP/1.1" 200 -
+2025-08-07 01:16:50,457 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 01:16:50] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-07 01:16:50,761 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 01:16:50] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-07 01:16:52,488 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-07 01:16:52,488 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-07 01:16:52,488 - app - INFO - consulenze_index: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-07 01:16:52,489 - app - INFO - consulenze_index: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-07 01:16:52,496 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 01:16:52] "GET /consulenze HTTP/1.1" 200 -
+2025-08-07 01:16:52,563 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 01:16:52] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-07 01:16:52,739 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 01:16:52] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-07 22:10:47,223 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-08-07 22:10:47,224 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-08-07 22:10:47,225 - werkzeug - INFO -  * Restarting with stat
+2025-08-07 22:10:47,788 - werkzeug - WARNING -  * Debugger is active!
+2025-08-07 22:10:47,789 - werkzeug - INFO -  * Debugger PIN: 135-846-870
+2025-08-07 22:10:52,910 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:10:52] "[32mGET / HTTP/1.1[0m" 302 -
+2025-08-07 22:10:53,183 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:10:53] "GET /login HTTP/1.1" 200 -
+2025-08-07 22:10:53,251 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:10:53] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-07 22:10:53,527 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:10:53] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-07 22:10:53,852 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:10:53] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-08-07 22:11:28,081 - app - INFO - Login riuscito per l'utente stefano da IP 127.0.0.1
+2025-08-07 22:11:28,082 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:11:28] "[32mPOST /login HTTP/1.1[0m" 302 -
+2025-08-07 22:11:28,132 - app - INFO - Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-07 22:11:28,137 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:11:28] "GET /dashboard HTTP/1.1" 200 -
+2025-08-07 22:11:28,476 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:11:28] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-07 22:11:28,476 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:11:28] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-07 22:11:30,356 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-07 22:11:30,356 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-07 22:11:30,356 - app - INFO - consulenze_index: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-07 22:11:30,357 - app - INFO - consulenze_index: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-07 22:11:30,360 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:11:30] "GET /consulenze HTTP/1.1" 200 -
+2025-08-07 22:11:30,668 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:11:30] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-07 22:11:30,699 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:11:30] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-07 22:11:32,960 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-07 22:11:32,961 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-07 22:11:33,010 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:11:33] "GET /consulenze/automazioni HTTP/1.1" 200 -
+2025-08-07 22:11:33,103 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:11:33] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-07 22:11:33,228 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:11:33] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-07 22:12:04,175 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-07 22:12:04,176 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-07 22:12:04,214 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:12:04] "DELETE /consulenze/automazioni/8/delete HTTP/1.1" 200 -
+2025-08-07 22:12:06,545 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-07 22:12:06,545 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-07 22:12:06,679 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:12:06] "GET /consulenze/automazioni HTTP/1.1" 200 -
+2025-08-07 22:12:06,704 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:12:06] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-07 22:12:06,812 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:12:06] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-07 22:12:11,175 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-07 22:12:11,175 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-07 22:12:11,180 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:12:11] "GET /consulenze/anagrafica HTTP/1.1" 200 -
+2025-08-07 22:12:11,254 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:12:11] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-07 22:12:11,438 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:12:11] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-07 22:12:11,739 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-07 22:12:11,739 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-07 22:12:11,781 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:12:11] "GET /consulenze/panoramica HTTP/1.1" 200 -
+2025-08-07 22:12:12,047 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:12:12] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-07 22:12:12,125 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:12:12] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-07 22:12:16,948 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-07 22:12:16,948 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-07 22:12:16,981 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:12:16] "GET /consulenze/cliente/7/details HTTP/1.1" 200 -
+2025-08-07 22:12:24,988 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-07 22:12:24,988 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-07 22:12:24,990 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:12:24] "GET /consulenze/anagrafica HTTP/1.1" 200 -
+2025-08-07 22:12:25,296 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:12:25] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-07 22:12:25,328 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:12:25] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-07 22:12:32,262 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-07 22:12:32,262 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-07 22:12:32,298 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:12:32] "[32mPOST /consulenze/anagrafica HTTP/1.1[0m" 302 -
+2025-08-07 22:12:32,301 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-07 22:12:32,301 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-07 22:12:32,334 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:12:32] "GET /consulenze/panoramica HTTP/1.1" 200 -
+2025-08-07 22:12:32,527 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:12:32] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-07 22:12:32,683 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:12:32] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-07 22:12:34,035 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-07 22:12:34,035 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-07 22:12:34,172 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:12:34] "GET /consulenze/automazioni HTTP/1.1" 200 -
+2025-08-07 22:12:34,197 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:12:34] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-07 22:12:34,303 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:12:34] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-07 22:12:59,383 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-07 22:12:59,383 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-07 22:12:59,525 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:12:59] "POST /consulenze/automazioni/create HTTP/1.1" 200 -
+2025-08-07 22:13:02,788 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-07 22:13:02,788 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-07 22:13:02,821 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:13:02] "GET /consulenze/automazioni HTTP/1.1" 200 -
+2025-08-07 22:13:03,099 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:13:03] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-07 22:13:03,159 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:13:03] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-07 22:13:16,579 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-07 22:13:16,579 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-07 22:13:16,616 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:13:16] "DELETE /consulenze/automazioni/9/delete HTTP/1.1" 200 -
+2025-08-07 22:13:17,481 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-07 22:13:17,482 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-07 22:13:17,520 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:13:17] "GET /consulenze/automazioni HTTP/1.1" 200 -
+2025-08-07 22:13:17,798 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:13:17] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-07 22:13:17,860 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:13:17] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-07 22:13:35,329 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-07 22:13:35,329 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-07 22:13:35,366 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:13:35] "POST /consulenze/automazioni/create HTTP/1.1" 200 -
+2025-08-07 22:13:36,418 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-07 22:13:36,420 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-07 22:13:36,457 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:13:36] "GET /consulenze/automazioni HTTP/1.1" 200 -
+2025-08-07 22:13:36,732 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:13:36] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-07 22:13:36,794 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:13:36] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-07 22:13:45,778 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:13:45] "[32mGET / HTTP/1.1[0m" 302 -
+2025-08-07 22:13:46,035 - app - INFO - Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-07 22:13:46,035 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:13:46] "GET /dashboard HTTP/1.1" 200 -
+2025-08-07 22:13:46,083 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:13:46] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-07 22:13:46,382 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:13:46] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-07 22:15:20,039 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-07 22:15:20,039 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-07 22:15:20,072 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:15:20] "POST /consulenze/automazioni/10/toggle HTTP/1.1" 200 -
+2025-08-07 22:15:43,759 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-07 22:15:43,760 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-07 22:15:43,792 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:15:43] "POST /consulenze/automazioni/10/toggle HTTP/1.1" 200 -
+2025-08-07 22:16:18,465 - werkzeug - INFO -  * Detected change in 'C:\\Users\\aless\\Desktop\\crm\\crm\\app.py', reloading
+2025-08-07 22:16:18,628 - werkzeug - INFO -  * Restarting with stat
+2025-08-07 22:16:19,445 - werkzeug - WARNING -  * Debugger is active!
+2025-08-07 22:16:19,447 - werkzeug - INFO -  * Debugger PIN: 135-846-870
+2025-08-07 22:16:25,613 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:16:25] "[32mGET /consulenze/automazioni HTTP/1.1[0m" 302 -
+2025-08-07 22:16:25,626 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:16:25] "GET /login HTTP/1.1" 200 -
+2025-08-07 22:16:25,883 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:16:25] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-07 22:16:25,957 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:16:25] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-07 22:16:30,455 - app - INFO - Login riuscito per l'utente stefano da IP 127.0.0.1
+2025-08-07 22:16:30,456 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:16:30] "[32mPOST /login HTTP/1.1[0m" 302 -
+2025-08-07 22:16:30,459 - app - INFO - Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-07 22:16:30,463 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:16:30] "GET /dashboard HTTP/1.1" 200 -
+2025-08-07 22:16:30,513 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:16:30] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-07 22:16:30,795 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:16:30] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-07 22:16:32,477 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-07 22:16:32,479 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-07 22:16:32,479 - app - INFO - consulenze_index: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-07 22:16:32,479 - app - INFO - consulenze_index: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-07 22:16:32,482 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:16:32] "GET /consulenze HTTP/1.1" 200 -
+2025-08-07 22:16:32,588 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:16:32] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-07 22:16:32,745 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:16:32] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-07 22:16:33,595 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-07 22:16:33,595 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-07 22:16:33,643 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:16:33] "GET /consulenze/automazioni HTTP/1.1" 200 -
+2025-08-07 22:16:33,901 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:16:33] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-07 22:16:33,977 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:16:33] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-07 22:16:37,079 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-07 22:16:37,080 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-07 22:16:37,223 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:16:37] "POST /consulenze/automazioni/10/toggle HTTP/1.1" 200 -
+2025-08-07 22:17:00,187 - werkzeug - INFO -  * Detected change in 'C:\\Users\\aless\\Desktop\\crm\\crm\\app.py', reloading
+2025-08-07 22:17:00,257 - werkzeug - INFO -  * Restarting with stat
+2025-08-07 22:17:00,835 - werkzeug - WARNING -  * Debugger is active!
+2025-08-07 22:17:00,837 - werkzeug - INFO -  * Debugger PIN: 135-846-870
+2025-08-07 22:17:09,014 - werkzeug - INFO -  * Detected change in 'C:\\Users\\aless\\Desktop\\crm\\crm\\app.py', reloading
+2025-08-07 22:17:09,102 - werkzeug - INFO -  * Restarting with stat
+2025-08-07 22:17:09,725 - werkzeug - WARNING -  * Debugger is active!
+2025-08-07 22:17:09,727 - werkzeug - INFO -  * Debugger PIN: 135-846-870
+2025-08-07 22:17:13,828 - werkzeug - INFO -  * Detected change in 'C:\\Users\\aless\\Desktop\\crm\\crm\\app.py', reloading
+2025-08-07 22:17:13,903 - werkzeug - INFO -  * Restarting with stat
+2025-08-07 22:17:14,463 - werkzeug - WARNING -  * Debugger is active!
+2025-08-07 22:17:14,465 - werkzeug - INFO -  * Debugger PIN: 135-846-870
+2025-08-07 22:17:22,634 - werkzeug - INFO -  * Detected change in 'C:\\Users\\aless\\Desktop\\crm\\crm\\app.py', reloading
+2025-08-07 22:17:22,712 - werkzeug - INFO -  * Restarting with stat
+2025-08-07 22:17:23,317 - werkzeug - WARNING -  * Debugger is active!
+2025-08-07 22:17:23,319 - werkzeug - INFO -  * Debugger PIN: 135-846-870
+2025-08-07 22:17:30,262 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:17:30] "[32mGET /consulenze/automazioni HTTP/1.1[0m" 302 -
+2025-08-07 22:17:30,275 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:17:30] "GET /login HTTP/1.1" 200 -
+2025-08-07 22:17:30,512 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:17:30] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-07 22:17:30,611 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:17:30] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-07 22:17:35,114 - app - INFO - Login riuscito per l'utente stefano da IP 127.0.0.1
+2025-08-07 22:17:35,114 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:17:35] "[32mPOST /login HTTP/1.1[0m" 302 -
+2025-08-07 22:17:35,119 - app - INFO - Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-07 22:17:35,123 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:17:35] "GET /dashboard HTTP/1.1" 200 -
+2025-08-07 22:17:35,151 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:17:35] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-07 22:17:35,466 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:17:35] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-07 22:17:38,450 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-07 22:17:38,450 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-07 22:17:38,450 - app - INFO - consulenze_index: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-07 22:17:38,450 - app - INFO - consulenze_index: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-07 22:17:38,454 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:17:38] "GET /consulenze HTTP/1.1" 200 -
+2025-08-07 22:17:38,766 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:17:38] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-07 22:17:38,797 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:17:38] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-07 22:17:40,238 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-07 22:17:40,238 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-07 22:17:40,281 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:17:40] "GET /consulenze/automazioni HTTP/1.1" 200 -
+2025-08-07 22:17:40,356 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:17:40] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-07 22:17:40,494 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:17:40] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-07 22:17:42,279 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-07 22:17:42,279 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-07 22:17:42,419 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:17:42] "POST /consulenze/automazioni/10/toggle HTTP/1.1" 200 -
+2025-08-07 22:17:43,977 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-07 22:17:43,977 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-07 22:17:44,012 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:17:44] "GET /consulenze/automazioni HTTP/1.1" 200 -
+2025-08-07 22:17:44,034 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:17:44] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-07 22:17:44,232 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:17:44] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-07 22:17:47,853 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-07 22:17:47,853 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-07 22:17:47,893 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:17:47] "POST /consulenze/automazioni/10/toggle HTTP/1.1" 200 -
+2025-08-07 22:17:49,911 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-07 22:17:49,911 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-07 22:17:49,946 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:17:49] "GET /consulenze/automazioni HTTP/1.1" 200 -
+2025-08-07 22:17:50,218 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:17:50] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-07 22:17:50,280 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:17:50] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-07 22:18:56,448 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-07 22:18:56,448 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-07 22:18:56,485 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:18:56] "DELETE /consulenze/automazioni/10/delete HTTP/1.1" 200 -
+2025-08-07 22:18:57,322 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-07 22:18:57,322 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-07 22:18:57,358 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:18:57] "GET /consulenze/automazioni HTTP/1.1" 200 -
+2025-08-07 22:18:57,631 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:18:57] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-07 22:18:57,693 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:18:57] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-07 22:19:09,758 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-07 22:19:09,758 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-07 22:19:09,793 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:19:09] "POST /consulenze/automazioni/create HTTP/1.1" 200 -
+2025-08-07 22:19:10,754 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-07 22:19:10,754 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-07 22:19:10,791 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:19:10] "GET /consulenze/automazioni HTTP/1.1" 200 -
+2025-08-07 22:19:11,069 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:19:11] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-07 22:19:11,131 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:19:11] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-07 22:19:34,512 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-07 22:19:34,512 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-07 22:19:34,555 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:19:34] "POST /consulenze/automazioni/11/toggle HTTP/1.1" 200 -
+2025-08-07 22:19:36,369 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-07 22:19:36,370 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-07 22:19:36,407 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:19:36] "GET /consulenze/automazioni HTTP/1.1" 200 -
+2025-08-07 22:19:36,688 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:19:36] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-07 22:19:36,751 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:19:36] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-07 22:19:39,180 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-07 22:19:39,181 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-07 22:19:39,220 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:19:39] "POST /consulenze/automazioni/11/toggle HTTP/1.1" 200 -
+2025-08-07 22:19:39,986 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-07 22:19:39,986 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-07 22:19:40,024 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:19:40] "GET /consulenze/automazioni HTTP/1.1" 200 -
+2025-08-07 22:19:40,299 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:19:40] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-07 22:19:40,361 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:19:40] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-07 22:20:04,903 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-07 22:20:04,903 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-07 22:20:04,941 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:20:04] "GET /consulenze/panoramica HTTP/1.1" 200 -
+2025-08-07 22:20:05,024 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:20:05] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-07 22:20:05,163 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:20:05] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-07 22:20:13,654 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-07 22:20:13,655 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-07 22:20:13,683 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:20:13] "GET /consulenze/cliente/8/details HTTP/1.1" 200 -
+2025-08-07 22:20:18,297 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-07 22:20:18,297 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-07 22:20:18,331 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:20:18] "GET /consulenze/cliente/7/details HTTP/1.1" 200 -
+2025-08-07 22:20:33,215 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-07 22:20:33,215 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-07 22:20:33,354 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:20:33] "GET /consulenze/cliente/4/details HTTP/1.1" 200 -
+2025-08-07 22:20:38,263 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-07 22:20:38,263 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-07 22:20:38,298 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:20:38] "GET /consulenze/cliente/7/details HTTP/1.1" 200 -
+2025-08-07 22:20:43,990 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-07 22:20:43,990 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-07 22:20:44,030 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:20:44] "PUT /consulenze/cliente/7 HTTP/1.1" 200 -
+2025-08-07 22:20:54,330 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-07 22:20:54,331 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-07 22:20:54,360 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:20:54] "GET /consulenze/panoramica HTTP/1.1" 200 -
+2025-08-07 22:20:54,441 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:20:54] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-07 22:20:54,596 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:20:54] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-07 22:20:57,884 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-07 22:20:57,884 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-07 22:20:57,917 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:20:57] "GET /consulenze/automazioni HTTP/1.1" 200 -
+2025-08-07 22:20:58,196 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:20:58] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-07 22:20:58,250 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:20:58] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-07 22:21:16,274 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-07 22:21:16,274 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-07 22:21:16,408 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:21:16] "GET /consulenze/automazioni HTTP/1.1" 200 -
+2025-08-07 22:21:16,428 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:21:16] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-07 22:21:16,524 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:21:16] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-07 22:21:25,323 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-07 22:21:25,324 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-07 22:21:25,354 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:21:25] "DELETE /consulenze/automazioni/11/delete HTTP/1.1" 200 -
+2025-08-07 22:21:26,121 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-07 22:21:26,122 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-07 22:21:26,269 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:21:26] "GET /consulenze/automazioni HTTP/1.1" 200 -
+2025-08-07 22:21:26,431 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:21:26] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-07 22:21:26,603 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:21:26] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-07 22:21:43,113 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-07 22:21:43,113 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-07 22:21:43,149 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:21:43] "POST /consulenze/automazioni/create HTTP/1.1" 200 -
+2025-08-07 22:21:44,755 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-07 22:21:44,755 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-07 22:21:44,790 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:21:44] "GET /consulenze/automazioni HTTP/1.1" 200 -
+2025-08-07 22:21:45,062 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:21:45] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-07 22:21:45,123 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:21:45] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-07 22:21:52,819 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-07 22:21:52,820 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-07 22:21:52,858 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:21:52] "POST /consulenze/automazioni/12/toggle HTTP/1.1" 200 -
+2025-08-07 22:21:53,593 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-07 22:21:53,593 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-07 22:21:53,627 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:21:53] "GET /consulenze/automazioni HTTP/1.1" 200 -
+2025-08-07 22:21:53,909 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:21:53] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-07 22:21:53,956 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:21:53] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-07 22:21:55,639 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-07 22:21:55,639 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-07 22:21:55,671 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:21:55] "POST /consulenze/automazioni/12/toggle HTTP/1.1" 200 -
+2025-08-07 22:21:57,441 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-07 22:21:57,442 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-07 22:21:57,578 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:21:57] "GET /consulenze/automazioni HTTP/1.1" 200 -
+2025-08-07 22:21:57,758 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:21:57] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-07 22:21:57,902 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:21:57] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-07 22:24:08,265 - werkzeug - INFO -  * Detected change in 'C:\\Users\\aless\\Desktop\\crm\\crm\\app.py', reloading
+2025-08-07 22:24:08,343 - werkzeug - INFO -  * Restarting with stat
+2025-08-07 22:24:08,899 - werkzeug - WARNING -  * Debugger is active!
+2025-08-07 22:24:08,900 - werkzeug - INFO -  * Debugger PIN: 135-846-870
+2025-08-07 22:25:31,563 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:25:31] "[32mGET /consulenze/automazioni HTTP/1.1[0m" 302 -
+2025-08-07 22:25:31,581 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:25:31] "GET /login HTTP/1.1" 200 -
+2025-08-07 22:25:31,847 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:25:31] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-07 22:25:31,920 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:25:31] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-07 22:25:37,641 - app - INFO - Login riuscito per l'utente stefano da IP 127.0.0.1
+2025-08-07 22:25:37,641 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:25:37] "[32mPOST /login HTTP/1.1[0m" 302 -
+2025-08-07 22:25:37,645 - app - INFO - Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-07 22:25:37,650 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:25:37] "GET /dashboard HTTP/1.1" 200 -
+2025-08-07 22:25:37,673 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:25:37] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-07 22:25:37,989 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:25:37] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-07 22:25:39,727 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-07 22:25:39,727 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-07 22:25:39,727 - app - INFO - consulenze_index: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-07 22:25:39,727 - app - INFO - consulenze_index: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-07 22:25:39,730 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:25:39] "GET /consulenze HTTP/1.1" 200 -
+2025-08-07 22:25:39,833 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:25:39] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-07 22:25:39,990 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:25:39] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-07 22:25:43,243 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-07 22:25:43,243 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-07 22:25:43,286 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:25:43] "GET /consulenze/automazioni HTTP/1.1" 200 -
+2025-08-07 22:25:43,546 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:25:43] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-07 22:25:43,611 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:25:43] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-07 22:25:43,918 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-07 22:25:43,920 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-07 22:25:43,952 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:25:43] "GET /api/automazioni/status HTTP/1.1" 200 -
+2025-08-07 22:25:49,246 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-07 22:25:49,246 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-07 22:25:49,278 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:25:49] "GET /api/automazioni/status HTTP/1.1" 200 -
+2025-08-07 22:25:51,026 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-07 22:25:51,026 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-07 22:25:51,058 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:25:51] "GET /api/automazioni/status HTTP/1.1" 200 -
+2025-08-07 22:25:59,311 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-07 22:25:59,311 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-07 22:25:59,347 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:25:59] "DELETE /consulenze/automazioni/12/delete HTTP/1.1" 200 -
+2025-08-07 22:26:00,741 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-07 22:26:00,741 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-07 22:26:00,773 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:26:00] "GET /consulenze/automazioni HTTP/1.1" 200 -
+2025-08-07 22:26:00,793 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:26:00] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-07 22:26:01,007 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:26:01] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-07 22:26:01,319 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-07 22:26:01,319 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-07 22:26:01,356 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:26:01] "GET /api/automazioni/status HTTP/1.1" 200 -
+2025-08-07 22:26:02,111 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-07 22:26:02,111 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-07 22:26:02,140 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:26:02] "GET /api/automazioni/status HTTP/1.1" 200 -
+2025-08-07 22:26:04,917 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-07 22:26:04,917 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-07 22:26:04,948 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:26:04] "GET /api/automazioni/status HTTP/1.1" 200 -
+2025-08-07 22:26:17,431 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-07 22:26:17,432 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-07 22:26:17,461 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:26:17] "POST /consulenze/automazioni/create HTTP/1.1" 200 -
+2025-08-07 22:26:18,745 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-07 22:26:18,746 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-07 22:26:18,795 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:26:18] "GET /consulenze/automazioni HTTP/1.1" 200 -
+2025-08-07 22:26:18,827 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:26:18] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-07 22:26:19,013 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:26:19] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-07 22:26:19,325 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-07 22:26:19,325 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-07 22:26:19,471 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:26:19] "GET /api/automazioni/status HTTP/1.1" 200 -
+2025-08-07 22:26:20,574 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-07 22:26:20,574 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-07 22:26:20,605 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:26:20] "GET /api/automazioni/status HTTP/1.1" 200 -
+2025-08-07 22:26:34,188 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-07 22:26:34,188 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-07 22:26:34,216 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:26:34] "GET /api/automazioni/status HTTP/1.1" 200 -
+2025-08-07 22:26:48,558 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-07 22:26:48,558 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-07 22:26:48,590 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:26:48] "GET /api/automazioni/status HTTP/1.1" 200 -
+2025-08-07 22:26:49,331 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-07 22:26:49,331 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-07 22:26:49,362 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:26:49] "GET /api/automazioni/status HTTP/1.1" 200 -
+2025-08-07 22:26:54,551 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-07 22:26:54,551 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-07 22:26:54,593 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:26:54] "POST /consulenze/automazioni/13/toggle HTTP/1.1" 200 -
+2025-08-07 22:26:55,685 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-07 22:26:55,685 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-07 22:26:55,718 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:26:55] "GET /consulenze/automazioni HTTP/1.1" 200 -
+2025-08-07 22:26:55,751 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:26:55] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-07 22:26:55,946 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:26:55] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-07 22:26:56,258 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-07 22:26:56,259 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-07 22:26:56,290 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:26:56] "GET /api/automazioni/status HTTP/1.1" 200 -
+2025-08-07 22:26:57,159 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-07 22:26:57,159 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-07 22:26:57,302 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:26:57] "POST /consulenze/automazioni/13/toggle HTTP/1.1" 200 -
+2025-08-07 22:26:58,847 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-07 22:26:58,847 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-07 22:26:58,880 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:26:58] "GET /consulenze/automazioni HTTP/1.1" 200 -
+2025-08-07 22:26:58,901 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:26:58] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-07 22:26:59,115 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:26:59] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-07 22:26:59,426 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-07 22:26:59,426 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-07 22:26:59,459 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:26:59] "GET /api/automazioni/status HTTP/1.1" 200 -
+2025-08-07 22:27:10,878 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-07 22:27:10,878 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-07 22:27:10,908 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:27:10] "GET /api/automazioni/status HTTP/1.1" 200 -
+2025-08-07 22:27:14,900 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-07 22:27:14,900 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-07 22:27:14,930 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:27:14] "GET /api/automazioni/status HTTP/1.1" 200 -
+2025-08-07 22:27:23,198 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-07 22:27:23,198 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-07 22:27:23,228 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:27:23] "GET /api/automazioni/status HTTP/1.1" 200 -
+2025-08-07 22:27:24,306 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-07 22:27:24,307 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-07 22:27:24,336 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:27:24] "GET /api/automazioni/status HTTP/1.1" 200 -
+2025-08-07 22:27:29,224 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-07 22:27:29,224 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-07 22:27:29,371 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:27:29] "GET /api/automazioni/status HTTP/1.1" 200 -
+2025-08-07 22:27:56,129 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-07 22:27:56,129 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-07 22:27:56,162 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:27:56] "GET /api/automazioni/status HTTP/1.1" 200 -
+2025-08-07 22:27:59,136 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-07 22:27:59,136 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-07 22:27:59,167 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:27:59] "GET /api/automazioni/status HTTP/1.1" 200 -
+2025-08-07 22:28:29,430 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-07 22:28:29,430 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-07 22:28:29,469 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:28:29] "GET /api/automazioni/status HTTP/1.1" 200 -
+2025-08-07 22:28:44,646 - werkzeug - INFO -  * Detected change in 'C:\\Users\\aless\\Desktop\\crm\\crm\\app.py', reloading
+2025-08-07 22:28:44,714 - werkzeug - INFO -  * Restarting with stat
+2025-08-07 22:28:45,279 - werkzeug - WARNING -  * Debugger is active!
+2025-08-07 22:28:45,281 - werkzeug - INFO -  * Debugger PIN: 135-846-870
+2025-08-07 22:28:51,003 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:28:51] "[32mGET /api/automazioni/status HTTP/1.1[0m" 302 -
+2025-08-07 22:28:51,276 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:28:51] "GET /login HTTP/1.1" 200 -
+2025-08-07 22:28:52,599 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:28:52] "[32mGET /api/automazioni/status HTTP/1.1[0m" 302 -
+2025-08-07 22:28:52,911 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:28:52] "GET /login HTTP/1.1" 200 -
+2025-08-07 22:28:59,225 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:28:59] "[32mGET /api/automazioni/status HTTP/1.1[0m" 302 -
+2025-08-07 22:28:59,534 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:28:59] "GET /login HTTP/1.1" 200 -
+2025-08-07 22:29:08,078 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:29:08] "[32mGET /api/automazioni/status HTTP/1.1[0m" 302 -
+2025-08-07 22:29:08,384 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:29:08] "GET /login HTTP/1.1" 200 -
+2025-08-07 22:29:12,000 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:29:12] "[32mDELETE /consulenze/automazioni/13/delete HTTP/1.1[0m" 302 -
+2025-08-07 22:29:12,317 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:29:12] "[31m[1mDELETE /login HTTP/1.1[0m" 405 -
+2025-08-07 22:29:18,040 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:29:18] "[32mGET /consulenze/automazioni HTTP/1.1[0m" 302 -
+2025-08-07 22:29:18,351 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:29:18] "GET /login HTTP/1.1" 200 -
+2025-08-07 22:29:18,709 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:29:18] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-07 22:29:18,709 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:29:18] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-07 22:29:23,239 - app - INFO - Login riuscito per l'utente stefano da IP 127.0.0.1
+2025-08-07 22:29:23,239 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:29:23] "[32mPOST /login HTTP/1.1[0m" 302 -
+2025-08-07 22:29:23,289 - app - INFO - Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-07 22:29:23,293 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:29:23] "GET /dashboard HTTP/1.1" 200 -
+2025-08-07 22:29:23,633 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:29:23] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-07 22:29:23,634 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:29:23] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-07 22:29:26,346 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-07 22:29:26,346 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-07 22:29:26,346 - app - INFO - consulenze_index: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-07 22:29:26,346 - app - INFO - consulenze_index: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-07 22:29:26,349 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:29:26] "GET /consulenze HTTP/1.1" 200 -
+2025-08-07 22:29:26,660 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:29:26] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-07 22:29:26,691 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:29:26] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-07 22:29:27,768 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-07 22:29:27,768 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-07 22:29:27,805 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:29:27] "GET /consulenze/panoramica HTTP/1.1" 200 -
+2025-08-07 22:29:27,877 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:29:27] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-07 22:29:28,016 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:29:28] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-07 22:29:29,763 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-07 22:29:29,764 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-07 22:29:29,807 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:29:29] "GET /consulenze/automazioni HTTP/1.1" 200 -
+2025-08-07 22:29:30,076 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:29:30] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-07 22:29:30,138 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:29:30] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-07 22:29:30,450 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-07 22:29:30,450 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-07 22:29:30,491 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:29:30] "GET /api/automazioni/status HTTP/1.1" 200 -
+2025-08-07 22:29:34,496 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-07 22:29:34,496 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-07 22:29:34,645 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:29:34] "DELETE /consulenze/automazioni/13/delete HTTP/1.1" 200 -
+2025-08-07 22:29:36,217 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-07 22:29:36,219 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-07 22:29:36,250 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:29:36] "GET /consulenze/automazioni HTTP/1.1" 200 -
+2025-08-07 22:29:36,272 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:29:36] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-07 22:29:36,485 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:29:36] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-07 22:29:36,795 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-07 22:29:36,795 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-07 22:29:36,826 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:29:36] "GET /api/automazioni/status HTTP/1.1" 200 -
+2025-08-07 22:30:06,506 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-07 22:30:06,506 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-07 22:30:06,537 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:30:06] "GET /api/automazioni/status HTTP/1.1" 200 -
+2025-08-07 22:30:36,799 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-07 22:30:36,799 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-07 22:30:36,829 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:30:36] "GET /api/automazioni/status HTTP/1.1" 200 -
+2025-08-07 22:31:04,567 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-07 22:31:04,567 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-07 22:31:04,599 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:31:04] "POST /consulenze/automazioni/create HTTP/1.1" 200 -
+2025-08-07 22:31:06,068 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-07 22:31:06,068 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-07 22:31:06,100 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:31:06] "GET /consulenze/automazioni HTTP/1.1" 200 -
+2025-08-07 22:31:06,127 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:31:06] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-07 22:31:06,332 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:31:06] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-07 22:31:06,641 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-07 22:31:06,642 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-07 22:31:06,672 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:31:06] "GET /api/automazioni/status HTTP/1.1" 200 -
+2025-08-07 22:31:36,346 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-07 22:31:36,347 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-07 22:31:36,487 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:31:36] "GET /api/automazioni/status HTTP/1.1" 200 -
+2025-08-07 22:32:06,652 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-07 22:32:06,652 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-07 22:32:06,783 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:32:06] "GET /api/automazioni/status HTTP/1.1" 200 -
+2025-08-07 22:32:36,353 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-07 22:32:36,353 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-07 22:32:36,386 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:32:36] "GET /api/automazioni/status HTTP/1.1" 200 -
+2025-08-07 22:32:45,381 - werkzeug - INFO -  * Detected change in 'C:\\Users\\aless\\Desktop\\crm\\crm\\app.py', reloading
+2025-08-07 22:32:45,451 - werkzeug - INFO -  * Restarting with stat
+2025-08-07 22:32:46,011 - werkzeug - WARNING -  * Debugger is active!
+2025-08-07 22:32:46,013 - werkzeug - INFO -  * Debugger PIN: 135-846-870
+2025-08-07 22:32:56,514 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:32:56] "[32mGET /api/automazioni/status HTTP/1.1[0m" 302 -
+2025-08-07 22:32:56,771 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:32:56] "GET /login HTTP/1.1" 200 -
+2025-08-07 22:33:06,342 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:33:06] "[32mGET /api/automazioni/status HTTP/1.1[0m" 302 -
+2025-08-07 22:33:06,652 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:33:06] "GET /login HTTP/1.1" 200 -
+2025-08-07 22:33:07,390 - werkzeug - INFO -  * Detected change in 'C:\\Users\\aless\\Desktop\\crm\\crm\\app.py', reloading
+2025-08-07 22:33:07,530 - werkzeug - INFO -  * Restarting with stat
+2025-08-07 22:33:08,134 - werkzeug - WARNING -  * Debugger is active!
+2025-08-07 22:33:08,136 - werkzeug - INFO -  * Debugger PIN: 135-846-870
+2025-08-07 22:33:36,661 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:33:36] "[32mGET /api/automazioni/status HTTP/1.1[0m" 302 -
+2025-08-07 22:33:36,936 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:33:36] "GET /login HTTP/1.1" 200 -
+2025-08-07 22:33:44,165 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:33:44] "[32mGET /api/automazioni/status HTTP/1.1[0m" 302 -
+2025-08-07 22:33:44,473 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:33:44] "GET /login HTTP/1.1" 200 -
+2025-08-07 22:34:06,351 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:34:06] "[32mGET /api/automazioni/status HTTP/1.1[0m" 302 -
+2025-08-07 22:34:06,661 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:34:06] "GET /login HTTP/1.1" 200 -
+2025-08-07 22:34:12,270 - werkzeug - INFO -  * Detected change in 'C:\\Users\\aless\\Desktop\\crm\\crm\\app.py', reloading
+2025-08-07 22:34:12,358 - werkzeug - INFO -  * Restarting with stat
+2025-08-07 22:34:12,908 - werkzeug - WARNING -  * Debugger is active!
+2025-08-07 22:34:12,909 - werkzeug - INFO -  * Debugger PIN: 135-846-870
+2025-08-07 22:34:30,681 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:34:30] "[32mGET /consulenze/automazioni HTTP/1.1[0m" 302 -
+2025-08-07 22:34:30,700 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:34:30] "GET /login HTTP/1.1" 200 -
+2025-08-07 22:34:30,961 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:34:30] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-07 22:34:31,036 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:34:31] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-07 22:34:38,195 - app - INFO - Login riuscito per l'utente stefano da IP 127.0.0.1
+2025-08-07 22:34:38,195 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:34:38] "[32mPOST /login HTTP/1.1[0m" 302 -
+2025-08-07 22:34:38,198 - app - INFO - Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-07 22:34:38,201 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:34:38] "GET /dashboard HTTP/1.1" 200 -
+2025-08-07 22:34:38,229 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:34:38] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-07 22:34:38,537 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:34:38] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-07 22:34:40,074 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-07 22:34:40,074 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-07 22:34:40,074 - app - INFO - consulenze_index: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-07 22:34:40,074 - app - INFO - consulenze_index: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-07 22:34:40,077 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:34:40] "GET /consulenze HTTP/1.1" 200 -
+2025-08-07 22:34:40,376 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:34:40] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-07 22:34:40,408 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:34:40] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-07 22:34:43,763 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-07 22:34:43,763 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-07 22:34:43,809 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:34:43] "GET /consulenze/automazioni HTTP/1.1" 200 -
+2025-08-07 22:34:43,878 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:34:43] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-07 22:34:44,018 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:34:44] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-07 22:34:44,140 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-07 22:34:44,140 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-07 22:34:44,272 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:34:44] "GET /api/automazioni/status HTTP/1.1" 200 -
+2025-08-07 22:34:49,590 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-07 22:34:49,591 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-07 22:34:49,632 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:34:49] "DELETE /consulenze/automazioni/14/delete HTTP/1.1" 200 -
+2025-08-07 22:34:51,404 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-07 22:34:51,404 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-07 22:34:51,445 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:34:51] "GET /consulenze/automazioni HTTP/1.1" 200 -
+2025-08-07 22:34:51,470 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:34:51] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-07 22:34:51,651 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:34:51] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-07 22:34:51,962 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-07 22:34:51,962 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-07 22:34:51,998 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:34:51] "GET /api/automazioni/status HTTP/1.1" 200 -
+2025-08-07 22:35:02,455 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-07 22:35:02,455 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-07 22:35:02,491 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:35:02] "POST /consulenze/automazioni/create HTTP/1.1" 200 -
+2025-08-07 22:35:03,959 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-07 22:35:03,959 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-07 22:35:04,091 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:35:04] "GET /consulenze/automazioni HTTP/1.1" 200 -
+2025-08-07 22:35:04,111 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:35:04] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-07 22:35:04,214 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:35:04] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-07 22:35:04,533 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-07 22:35:04,533 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-07 22:35:04,564 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:35:04] "GET /api/automazioni/status HTTP/1.1" 200 -
+2025-08-07 22:35:27,528 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-07 22:35:27,528 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-07 22:35:27,573 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:35:27] "DELETE /consulenze/automazioni/15/delete HTTP/1.1" 200 -
+2025-08-07 22:35:28,894 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-07 22:35:28,894 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-07 22:35:28,939 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:35:28] "GET /consulenze/automazioni HTTP/1.1" 200 -
+2025-08-07 22:35:28,965 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:35:28] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-07 22:35:29,161 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:35:29] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-07 22:35:29,472 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-07 22:35:29,478 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-07 22:35:29,511 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:35:29] "GET /api/automazioni/status HTTP/1.1" 200 -
+2025-08-07 22:35:37,302 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-07 22:35:37,303 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-07 22:35:37,351 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:35:37] "POST /consulenze/automazioni/create HTTP/1.1" 200 -
+2025-08-07 22:35:38,971 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-07 22:35:38,972 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-07 22:35:39,007 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:35:39] "GET /consulenze/automazioni HTTP/1.1" 200 -
+2025-08-07 22:35:39,028 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:35:39] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-07 22:35:39,237 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:35:39] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-07 22:35:39,547 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-07 22:35:39,547 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-07 22:35:39,579 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:35:39] "GET /api/automazioni/status HTTP/1.1" 200 -
+2025-08-07 22:36:09,254 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-07 22:36:09,255 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-07 22:36:09,286 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:36:09] "GET /api/automazioni/status HTTP/1.1" 200 -
+2025-08-07 22:36:19,982 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-07 22:36:19,982 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-07 22:36:20,014 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:36:20] "GET /api/automazioni/status HTTP/1.1" 200 -
+2025-08-07 22:36:39,248 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-07 22:36:39,248 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-07 22:36:39,278 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:36:39] "GET /api/automazioni/status HTTP/1.1" 200 -
+2025-08-07 22:37:03,260 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-07 22:37:03,260 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-07 22:37:03,303 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:37:03] "DELETE /consulenze/automazioni/16/delete HTTP/1.1" 200 -
+2025-08-07 22:37:05,321 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-07 22:37:05,321 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-07 22:37:05,361 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:37:05] "GET /consulenze/automazioni HTTP/1.1" 200 -
+2025-08-07 22:37:05,630 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:37:05] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-07 22:37:05,708 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:37:05] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-07 22:37:06,018 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-07 22:37:06,018 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-07 22:37:06,150 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:37:06] "GET /api/automazioni/status HTTP/1.1" 200 -
+2025-08-07 22:37:16,095 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-07 22:37:16,095 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-07 22:37:16,139 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:37:16] "POST /consulenze/automazioni/create HTTP/1.1" 200 -
+2025-08-07 22:37:17,503 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-07 22:37:17,503 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-07 22:37:17,533 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:37:17] "GET /consulenze/automazioni HTTP/1.1" 200 -
+2025-08-07 22:37:17,554 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:37:17] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-07 22:37:17,751 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:37:17] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-07 22:37:18,078 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-07 22:37:18,078 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-07 22:37:18,214 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:37:18] "GET /api/automazioni/status HTTP/1.1" 200 -
+2025-08-07 22:37:20,809 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-07 22:37:20,810 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-07 22:37:20,813 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:37:20] "GET /consulenze/anagrafica HTTP/1.1" 200 -
+2025-08-07 22:37:21,115 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:37:21] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-07 22:37:21,146 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:37:21] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-07 22:37:23,226 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-07 22:37:23,226 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-07 22:37:23,264 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:37:23] "GET /consulenze/panoramica HTTP/1.1" 200 -
+2025-08-07 22:37:23,331 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:37:23] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-07 22:37:23,487 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:37:23] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-07 22:37:27,622 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-07 22:37:27,622 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-07 22:37:27,648 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:37:27] "GET /consulenze/cliente/1/details HTTP/1.1" 200 -
+2025-08-07 22:37:33,903 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-07 22:37:33,904 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-07 22:37:33,941 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:37:33] "PUT /consulenze/cliente/1 HTTP/1.1" 200 -
+2025-08-07 22:37:36,011 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-07 22:37:36,011 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-07 22:37:36,044 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:37:36] "GET /consulenze/automazioni HTTP/1.1" 200 -
+2025-08-07 22:37:36,318 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:37:36] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-07 22:37:36,380 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:37:36] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-07 22:37:36,692 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-07 22:37:36,692 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-07 22:37:36,736 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:37:36] "GET /api/automazioni/status HTTP/1.1" 200 -
+2025-08-07 22:37:38,446 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-07 22:37:38,446 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-07 22:37:38,477 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:37:38] "GET /api/automazioni/status HTTP/1.1" 200 -
+2025-08-07 22:38:06,698 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-07 22:38:06,698 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-07 22:38:06,726 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:38:06] "GET /api/automazioni/status HTTP/1.1" 200 -
+2025-08-07 22:38:36,398 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-07 22:38:36,398 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-07 22:38:36,428 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:38:36] "GET /api/automazioni/status HTTP/1.1" 200 -
+2025-08-07 22:39:06,705 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-07 22:39:06,705 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-07 22:39:06,737 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:39:06] "GET /api/automazioni/status HTTP/1.1" 200 -
+2025-08-07 22:39:36,394 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-07 22:39:36,394 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-07 22:39:36,425 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:39:36] "GET /api/automazioni/status HTTP/1.1" 200 -
+2025-08-07 22:40:00,911 - werkzeug - INFO -  * Detected change in 'C:\\Users\\aless\\Desktop\\crm\\crm\\app.py', reloading
+2025-08-07 22:40:01,090 - werkzeug - INFO -  * Restarting with stat
+2025-08-07 22:40:01,821 - werkzeug - WARNING -  * Debugger is active!
+2025-08-07 22:40:01,823 - werkzeug - INFO -  * Debugger PIN: 135-846-870
+2025-08-07 22:40:06,712 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:40:06] "[32mGET /api/automazioni/status HTTP/1.1[0m" 302 -
+2025-08-07 22:40:06,980 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:40:06] "GET /login HTTP/1.1" 200 -
+2025-08-07 22:40:11,070 - werkzeug - INFO -  * Detected change in 'C:\\Users\\aless\\Desktop\\crm\\crm\\app.py', reloading
+2025-08-07 22:40:11,328 - werkzeug - INFO -  * Restarting with stat
+2025-08-07 22:40:11,964 - werkzeug - WARNING -  * Debugger is active!
+2025-08-07 22:40:11,966 - werkzeug - INFO -  * Debugger PIN: 135-846-870
+2025-08-07 22:40:15,686 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:40:15] "[32mGET /api/automazioni/status HTTP/1.1[0m" 302 -
+2025-08-07 22:40:15,959 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:40:15] "GET /login HTTP/1.1" 200 -
+2025-08-07 22:40:17,174 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:40:17] "[32mGET /api/automazioni/status HTTP/1.1[0m" 302 -
+2025-08-07 22:40:17,479 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:40:17] "GET /login HTTP/1.1" 200 -
+2025-08-07 22:40:36,388 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:40:36] "[32mGET /api/automazioni/status HTTP/1.1[0m" 302 -
+2025-08-07 22:40:36,701 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:40:36] "GET /login HTTP/1.1" 200 -
+2025-08-07 22:40:55,780 - werkzeug - INFO -  * Detected change in 'C:\\Users\\aless\\Desktop\\crm\\crm\\app.py', reloading
+2025-08-07 22:40:55,881 - werkzeug - INFO -  * Restarting with stat
+2025-08-07 22:40:56,488 - werkzeug - WARNING -  * Debugger is active!
+2025-08-07 22:40:56,490 - werkzeug - INFO -  * Debugger PIN: 135-846-870
+2025-08-07 22:41:06,706 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:41:06] "[32mGET /api/automazioni/status HTTP/1.1[0m" 302 -
+2025-08-07 22:41:06,984 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:41:06] "GET /login HTTP/1.1" 200 -
+2025-08-07 22:41:09,737 - werkzeug - INFO -  * Detected change in 'C:\\Users\\aless\\Desktop\\crm\\crm\\app.py', reloading
+2025-08-07 22:41:09,824 - werkzeug - INFO -  * Restarting with stat
+2025-08-07 22:41:10,410 - werkzeug - WARNING -  * Debugger is active!
+2025-08-07 22:41:10,412 - werkzeug - INFO -  * Debugger PIN: 135-846-870
+2025-08-07 22:41:20,332 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:41:20] "[32mGET /consulenze/automazioni HTTP/1.1[0m" 302 -
+2025-08-07 22:41:20,347 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:41:20] "GET /login HTTP/1.1" 200 -
+2025-08-07 22:41:20,599 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:41:20] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-07 22:41:20,675 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:41:20] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-07 22:41:25,158 - app - INFO - Login riuscito per l'utente stefano da IP 127.0.0.1
+2025-08-07 22:41:25,158 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:41:25] "[32mPOST /login HTTP/1.1[0m" 302 -
+2025-08-07 22:41:25,161 - app - INFO - Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-07 22:41:25,165 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:41:25] "GET /dashboard HTTP/1.1" 200 -
+2025-08-07 22:41:25,197 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:41:25] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-07 22:41:25,505 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:41:25] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-07 22:41:26,994 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-07 22:41:26,995 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-07 22:41:26,995 - app - INFO - consulenze_index: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-07 22:41:26,995 - app - INFO - consulenze_index: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-07 22:41:26,999 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:41:26] "GET /consulenze HTTP/1.1" 200 -
+2025-08-07 22:41:27,300 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:41:27] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-07 22:41:27,331 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:41:27] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-07 22:41:29,690 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-07 22:41:29,690 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-07 22:41:29,741 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:41:29] "GET /consulenze/automazioni HTTP/1.1" 200 -
+2025-08-07 22:41:29,807 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:41:29] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-07 22:41:29,946 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:41:29] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-07 22:41:30,071 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-07 22:41:30,071 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-07 22:41:30,102 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:41:30] "GET /api/automazioni/status HTTP/1.1" 200 -
+2025-08-07 22:41:47,063 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-07 22:41:47,063 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-07 22:41:47,107 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:41:47] "DELETE /consulenze/automazioni/17/delete HTTP/1.1" 200 -
+2025-08-07 22:41:49,027 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-07 22:41:49,027 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-07 22:41:49,063 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:41:49] "GET /consulenze/automazioni HTTP/1.1" 200 -
+2025-08-07 22:41:49,089 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:41:49] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-07 22:41:49,275 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:41:49] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-07 22:41:49,585 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-07 22:41:49,586 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-07 22:41:49,618 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:41:49] "GET /api/automazioni/status HTTP/1.1" 200 -
+2025-08-07 22:42:12,415 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-07 22:42:12,415 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-07 22:42:12,449 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:42:12] "POST /consulenze/automazioni/create HTTP/1.1" 200 -
+2025-08-07 22:42:13,897 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-07 22:42:13,897 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-07 22:42:13,934 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:42:13] "GET /consulenze/automazioni HTTP/1.1" 200 -
+2025-08-07 22:42:13,955 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:42:13] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-07 22:42:14,160 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:42:14] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-07 22:42:14,486 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-07 22:42:14,487 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-07 22:42:14,544 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:42:14] "GET /api/automazioni/status HTTP/1.1" 200 -
+2025-08-07 22:42:21,963 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-07 22:42:21,963 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-07 22:42:21,999 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:42:21] "GET /consulenze/panoramica HTTP/1.1" 200 -
+2025-08-07 22:42:22,278 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:42:22] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-07 22:42:22,341 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:42:22] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-07 22:42:25,236 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-07 22:42:25,236 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-07 22:42:25,268 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:42:25] "GET /consulenze/cliente/4/details HTTP/1.1" 200 -
+2025-08-07 22:42:31,405 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-07 22:42:31,405 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-07 22:42:31,438 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:42:31] "PUT /consulenze/cliente/4 HTTP/1.1" 200 -
+2025-08-07 22:42:36,851 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-07 22:42:36,851 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-07 22:42:36,886 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:42:36] "GET /consulenze/automazioni HTTP/1.1" 200 -
+2025-08-07 22:42:36,950 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:42:36] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-07 22:42:37,105 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:42:37] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-07 22:42:37,214 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-07 22:42:37,215 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-07 22:42:37,246 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:42:37] "GET /api/automazioni/status HTTP/1.1" 200 -
+2025-08-07 22:42:41,226 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-07 22:42:41,226 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-07 22:42:41,231 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:42:41] "GET /consulenze/anagrafica HTTP/1.1" 200 -
+2025-08-07 22:42:41,538 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:42:41] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-07 22:42:41,569 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:42:41] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-07 22:42:51,155 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-07 22:42:51,155 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-07 22:42:51,190 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:42:51] "[32mPOST /consulenze/anagrafica HTTP/1.1[0m" 302 -
+2025-08-07 22:42:51,193 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-07 22:42:51,194 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-07 22:42:51,228 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:42:51] "GET /consulenze/panoramica HTTP/1.1" 200 -
+2025-08-07 22:42:51,420 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:42:51] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-07 22:42:51,574 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:42:51] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-07 22:42:53,334 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-07 22:42:53,335 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-07 22:42:53,368 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:42:53] "GET /consulenze/automazioni HTTP/1.1" 200 -
+2025-08-07 22:42:53,430 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:42:53] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-07 22:42:53,584 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:42:53] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-07 22:42:53,709 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-07 22:42:53,709 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-07 22:42:53,737 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:42:53] "GET /api/automazioni/status HTTP/1.1" 200 -
+2025-08-07 22:43:20,089 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-07 22:43:20,089 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-07 22:43:20,118 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:43:20] "POST /api/automazioni/sync HTTP/1.1" 200 -
+2025-08-07 22:43:20,429 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-07 22:43:20,429 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-07 22:43:20,461 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:43:20] "GET /api/automazioni/status HTTP/1.1" 200 -
+2025-08-07 22:43:23,333 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-07 22:43:23,334 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-07 22:43:23,365 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:43:23] "POST /api/automazioni/sync HTTP/1.1" 200 -
+2025-08-07 22:43:23,683 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-07 22:43:23,683 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-07 22:43:23,714 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:43:23] "GET /api/automazioni/status HTTP/1.1" 200 -
+2025-08-07 22:43:23,947 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-07 22:43:23,947 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-07 22:43:23,977 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:43:23] "GET /api/automazioni/status HTTP/1.1" 200 -
+2025-08-07 22:43:53,605 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-07 22:43:53,606 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-07 22:43:53,638 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:43:53] "GET /api/automazioni/status HTTP/1.1" 200 -
+2025-08-07 22:44:23,911 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-07 22:44:23,911 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-07 22:44:23,942 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:44:23] "GET /api/automazioni/status HTTP/1.1" 200 -
+2025-08-07 22:44:53,604 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-07 22:44:53,604 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-07 22:44:53,634 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:44:53] "GET /api/automazioni/status HTTP/1.1" 200 -
+2025-08-07 22:45:23,913 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-07 22:45:23,913 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-07 22:45:23,945 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:45:23] "GET /api/automazioni/status HTTP/1.1" 200 -
+2025-08-07 22:45:36,221 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-07 22:45:36,221 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-07 22:45:36,255 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:45:36] "GET /api/automazioni/status HTTP/1.1" 200 -
+2025-08-07 22:45:53,915 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-07 22:45:53,916 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-07 22:45:53,944 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:45:53] "GET /api/automazioni/status HTTP/1.1" 200 -
+2025-08-07 22:46:23,605 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-07 22:46:23,605 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-07 22:46:23,635 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:46:23] "GET /api/automazioni/status HTTP/1.1" 200 -
+2025-08-07 22:46:28,070 - werkzeug - INFO -  * Detected change in 'C:\\Users\\aless\\Desktop\\crm\\crm\\app.py', reloading
+2025-08-07 22:46:28,176 - werkzeug - INFO -  * Restarting with stat
+2025-08-07 22:46:28,805 - werkzeug - WARNING -  * Debugger is active!
+2025-08-07 22:46:28,807 - werkzeug - INFO -  * Debugger PIN: 135-846-870
+2025-08-07 22:46:53,274 - werkzeug - INFO -  * Detected change in 'C:\\Users\\aless\\Desktop\\crm\\crm\\app.py', reloading
+2025-08-07 22:46:53,394 - werkzeug - INFO -  * Restarting with stat
+2025-08-07 22:46:54,074 - werkzeug - WARNING -  * Debugger is active!
+2025-08-07 22:46:54,076 - werkzeug - INFO -  * Debugger PIN: 135-846-870
+2025-08-07 22:46:54,097 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:46:54] "[32mGET /api/automazioni/status HTTP/1.1[0m" 302 -
+2025-08-07 22:46:54,187 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:46:54] "GET /login HTTP/1.1" 200 -

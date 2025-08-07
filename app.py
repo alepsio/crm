@@ -1590,7 +1590,23 @@ def consulenze_anagrafica():
             compagnia_assicurativa, numero_polizza, tipo_polizza, data_scadenza_polizza
         ))
         
-        cliente_id = cur.fetchone()[0]
+        cliente_id = cur.fetchone()['id']
+        
+        # Se il nuovo cliente ha una data di scadenza polizza, sincronizza le automazioni
+        if data_scadenza_polizza:
+            print(f"[DEBUG] Nuovo cliente {cliente_id} con data scadenza polizza, sincronizzando automazioni...")
+            # Trova tutte le automazioni attive dell'utente per scadenza polizza
+            cur.execute("""
+                SELECT id FROM automazioni 
+                WHERE user_id = %s AND attiva = true AND tipo_programmazione = 'scadenza_polizza'
+            """, (session['user_id'],))
+            
+            automazioni_attive = cur.fetchall()
+            for automazione in automazioni_attive:
+                sync_automazione_esecuzioni(cur, automazione['id'], session['user_id'])
+            
+            conn.commit()
+        
         cur.close()
         conn.close()
         
@@ -1792,6 +1808,22 @@ def consulenze_cliente(cliente_id):
                     value = 0
                 
             cur.execute(f"UPDATE clienti_assicurativi SET {field} = %s WHERE id = %s", (value, cliente_id))
+            
+            # Se è stata modificata la data di scadenza polizza, sincronizza le automazioni
+            if field == 'data_scadenza_polizza':
+                print(f"[DEBUG] Data scadenza polizza modificata per cliente {cliente_id}, sincronizzando automazioni...")
+                # Trova tutte le automazioni attive dell'utente
+                cur.execute("""
+                    SELECT id FROM automazioni 
+                    WHERE user_id = %s AND attiva = true AND tipo_programmazione = 'scadenza_polizza'
+                """, (session['user_id'],))
+                
+                automazioni_attive = cur.fetchall()
+                for automazione in automazioni_attive:
+                    sync_automazione_esecuzioni(cur, automazione['id'], session['user_id'])
+                
+                conn.commit()
+            
             cur.close()
             conn.close()
             return jsonify({'success': True, 'message': 'Campo aggiornato con successo'})
@@ -2468,6 +2500,257 @@ def consulenze_automazioni_crea():
                          email_templates=email_templates,
                          clienti=clienti)
 
+def sync_automazione_esecuzioni(cur, automazione_id, user_id):
+    """Sincronizza le esecuzioni per un'automazione attiva (aggiunge nuove, rimuove obsolete)"""
+    print(f"[DEBUG] Sincronizzando esecuzioni per automazione {automazione_id}")
+    
+    # Recupera i dettagli dell'automazione
+    cur.execute("""
+        SELECT target_clienti, frequenza_giorni, ora_invio, tipo_programmazione, giorni_prima_scadenza, attiva
+        FROM automazioni 
+        WHERE id = %s
+    """, (automazione_id,))
+    
+    automazione = cur.fetchone()
+    if not automazione or not automazione['attiva']:
+        print(f"[DEBUG] Automazione {automazione_id} non attiva o non trovata")
+        return
+    
+    print(f"[DEBUG] Dettagli automazione: {dict(automazione)}")
+    
+    # Determina i clienti target che DOVREBBERO avere esecuzioni
+    if automazione['target_clienti'] == 'tutti':
+        if automazione['tipo_programmazione'] == 'scadenza_polizza':
+            cur.execute("""
+                SELECT id, data_scadenza_polizza FROM clienti_assicurativi 
+                WHERE user_id = %s AND data_scadenza_polizza IS NOT NULL
+            """, (user_id,))
+        else:
+            cur.execute("""
+                SELECT id, NULL as data_scadenza_polizza FROM clienti_assicurativi 
+                WHERE user_id = %s
+            """, (user_id,))
+    else:
+        if automazione['tipo_programmazione'] == 'scadenza_polizza':
+            cur.execute("""
+                SELECT ac.cliente_id, ca.data_scadenza_polizza 
+                FROM automazioni_clienti ac
+                JOIN clienti_assicurativi ca ON ac.cliente_id = ca.id
+                WHERE ac.automazione_id = %s AND ca.data_scadenza_polizza IS NOT NULL
+            """, (automazione_id,))
+        else:
+            cur.execute("""
+                SELECT ac.cliente_id, NULL as data_scadenza_polizza 
+                FROM automazioni_clienti ac
+                WHERE ac.automazione_id = %s
+            """, (automazione_id,))
+    
+    clienti_target = cur.fetchall()
+    clienti_target_ids = set()
+    
+    # Calcola le esecuzioni che dovrebbero esistere
+    from datetime import datetime, timedelta
+    ora_invio = datetime.strptime(str(automazione['ora_invio']), '%H:%M:%S').time()
+    
+    esecuzioni_da_creare = []
+    
+    for cliente in clienti_target:
+        cliente_id = cliente['cliente_id'] if 'cliente_id' in cliente else cliente['id']
+        clienti_target_ids.add(cliente_id)
+        
+        if automazione['tipo_programmazione'] == 'scadenza_polizza':
+            data_scadenza = cliente['data_scadenza_polizza']
+            giorni_prima = automazione['giorni_prima_scadenza'] or 30
+            data_invio = data_scadenza - timedelta(days=giorni_prima)
+            prossimo_invio = datetime.combine(data_invio, ora_invio)
+            
+            # Per automazioni di scadenza, controlla se doveva essere inviata oggi
+            oggi = datetime.now().date()
+            ora_attuale = datetime.now().time()
+            
+            if data_invio == oggi:
+                # Doveva essere inviata oggi
+                if ora_attuale >= ora_invio:
+                    # L'orario è già passato, invia subito (con un piccolo ritardo per evitare conflitti)
+                    prossimo_invio = datetime.now() + timedelta(minutes=1)
+                    print(f"[DEBUG] Cliente {cliente_id}: doveva ricevere email oggi alle {ora_invio}, programmando invio immediato")
+                else:
+                    # L'orario non è ancora arrivato, mantieni l'orario originale
+                    prossimo_invio = datetime.combine(data_invio, ora_invio)
+            elif prossimo_invio <= datetime.now():
+                # La data è nel passato, salta questo cliente
+                print(f"[DEBUG] Cliente {cliente_id}: data invio nel passato ({prossimo_invio}), saltando")
+                continue
+        else:
+            # Per automazioni ricorrenti
+            oggi = datetime.now().date()
+            ora_attuale = datetime.now().time()
+            prossimo_invio = datetime.combine(oggi, ora_invio)
+            
+            if ora_attuale >= ora_invio:
+                # L'orario di oggi è già passato, programma per domani
+                prossimo_invio += timedelta(days=1)
+                print(f"[DEBUG] Cliente {cliente_id}: orario di oggi già passato, programmando per domani")
+            else:
+                print(f"[DEBUG] Cliente {cliente_id}: programmando per oggi alle {ora_invio}")
+        
+        esecuzioni_da_creare.append((cliente_id, prossimo_invio))
+    
+    # Recupera le esecuzioni esistenti
+    cur.execute("""
+        SELECT cliente_id, prossimo_invio FROM automazioni_esecuzioni 
+        WHERE automazione_id = %s AND stato = 'attivo'
+    """, (automazione_id,))
+    esecuzioni_esistenti = cur.fetchall()
+    
+    # Trova esecuzioni da rimuovere (clienti che non dovrebbero più averle)
+    clienti_esistenti = {e['cliente_id'] for e in esecuzioni_esistenti}
+    clienti_da_rimuovere = clienti_esistenti - clienti_target_ids
+    
+    if clienti_da_rimuovere:
+        print(f"[DEBUG] Rimuovendo esecuzioni per clienti: {clienti_da_rimuovere}")
+        cur.execute("""
+            DELETE FROM automazioni_esecuzioni 
+            WHERE automazione_id = %s AND cliente_id = ANY(%s)
+        """, (automazione_id, list(clienti_da_rimuovere)))
+    
+    # Trova esecuzioni da aggiungere (nuovi clienti)
+    clienti_da_aggiungere = clienti_target_ids - clienti_esistenti
+    
+    if clienti_da_aggiungere:
+        print(f"[DEBUG] Aggiungendo esecuzioni per nuovi clienti: {clienti_da_aggiungere}")
+        for cliente_id, prossimo_invio in esecuzioni_da_creare:
+            if cliente_id in clienti_da_aggiungere:
+                cur.execute("""
+                    INSERT INTO automazioni_esecuzioni (
+                        automazione_id, cliente_id, prossimo_invio, stato
+                    ) VALUES (%s, %s, %s, 'attivo')
+                """, (automazione_id, cliente_id, prossimo_invio))
+    
+    # Aggiorna le date per i clienti esistenti (in caso di cambio data scadenza)
+    if automazione['tipo_programmazione'] == 'scadenza_polizza':
+        for cliente_id, prossimo_invio in esecuzioni_da_creare:
+            if cliente_id in clienti_esistenti:
+                cur.execute("""
+                    UPDATE automazioni_esecuzioni 
+                    SET prossimo_invio = %s
+                    WHERE automazione_id = %s AND cliente_id = %s AND stato = 'attivo'
+                    AND prossimo_invio != %s
+                """, (prossimo_invio, automazione_id, cliente_id, prossimo_invio))
+    
+    print(f"[DEBUG] Sincronizzazione completata per automazione {automazione_id}")
+
+def create_automazione_esecuzioni(cur, automazione_id, user_id):
+    """Crea le esecuzioni per un'automazione attiva (rimuove tutte e ricrea)"""
+    print(f"[DEBUG] Creando esecuzioni per automazione {automazione_id}")
+    
+    # Prima rimuovi eventuali esecuzioni esistenti
+    cur.execute("""
+        DELETE FROM automazioni_esecuzioni 
+        WHERE automazione_id = %s
+    """, (automazione_id,))
+    print(f"[DEBUG] Rimosse esecuzioni esistenti")
+    
+    # Recupera i dettagli dell'automazione
+    cur.execute("""
+        SELECT target_clienti, frequenza_giorni, ora_invio, tipo_programmazione, giorni_prima_scadenza
+        FROM automazioni 
+        WHERE id = %s
+    """, (automazione_id,))
+    
+    automazione = cur.fetchone()
+    print(f"[DEBUG] Dettagli automazione: {dict(automazione)}")
+    
+    # Determina i clienti target
+    if automazione['target_clienti'] == 'tutti':
+        if automazione['tipo_programmazione'] == 'scadenza_polizza':
+            # Per promemoria scadenza, considera solo clienti con data scadenza
+            cur.execute("""
+                SELECT id, data_scadenza_polizza FROM clienti_assicurativi 
+                WHERE user_id = %s AND data_scadenza_polizza IS NOT NULL
+            """, (user_id,))
+        else:
+            cur.execute("""
+                SELECT id, NULL as data_scadenza_polizza FROM clienti_assicurativi 
+                WHERE user_id = %s
+            """, (user_id,))
+    else:
+        if automazione['tipo_programmazione'] == 'scadenza_polizza':
+            cur.execute("""
+                SELECT ac.cliente_id, ca.data_scadenza_polizza 
+                FROM automazioni_clienti ac
+                JOIN clienti_assicurativi ca ON ac.cliente_id = ca.id
+                WHERE ac.automazione_id = %s AND ca.data_scadenza_polizza IS NOT NULL
+            """, (automazione_id,))
+        else:
+            cur.execute("""
+                SELECT ac.cliente_id, NULL as data_scadenza_polizza 
+                FROM automazioni_clienti ac
+                WHERE ac.automazione_id = %s
+            """, (automazione_id,))
+    
+    clienti_target = cur.fetchall()
+    print(f"[DEBUG] Clienti target trovati: {len(clienti_target)}")
+    for i, cliente in enumerate(clienti_target):
+        print(f"[DEBUG] Cliente {i+1}: {dict(cliente)}")
+    
+    # Calcola il prossimo invio
+    from datetime import datetime, timedelta
+    ora_invio = datetime.strptime(str(automazione['ora_invio']), '%H:%M:%S').time()
+    print(f"[DEBUG] Ora invio: {ora_invio}")
+    
+    # Crea le esecuzioni per ogni cliente
+    for cliente in clienti_target:
+        if automazione['tipo_programmazione'] == 'scadenza_polizza':
+            # Calcola la data di invio basata sulla scadenza polizza
+            data_scadenza = cliente['data_scadenza_polizza']
+            giorni_prima = automazione['giorni_prima_scadenza'] or 30
+            data_invio = data_scadenza - timedelta(days=giorni_prima)
+            prossimo_invio = datetime.combine(data_invio, ora_invio)
+            
+            # Per automazioni di scadenza, controlla se doveva essere inviata oggi
+            oggi = datetime.now().date()
+            ora_attuale = datetime.now().time()
+            
+            print(f"[DEBUG] Cliente: data_scadenza={data_scadenza}, giorni_prima={giorni_prima}, data_invio={data_invio}")
+            print(f"[DEBUG] Ora attuale: {datetime.now()}, ora_invio: {ora_invio}")
+            
+            if data_invio == oggi:
+                # Doveva essere inviata oggi
+                if ora_attuale >= ora_invio:
+                    # L'orario è già passato, invia subito (con un piccolo ritardo per evitare conflitti)
+                    prossimo_invio = datetime.now() + timedelta(minutes=1)
+                    print(f"[DEBUG] Cliente: doveva ricevere email oggi alle {ora_invio}, programmando invio immediato")
+                else:
+                    # L'orario non è ancora arrivato, mantieni l'orario originale
+                    prossimo_invio = datetime.combine(data_invio, ora_invio)
+                    print(f"[DEBUG] Cliente: programmando per oggi alle {ora_invio}")
+            elif prossimo_invio <= datetime.now():
+                # La data è nel passato, salta questo cliente
+                print(f"[DEBUG] Cliente: data invio nel passato ({prossimo_invio}), saltando")
+                continue
+        else:
+            # Per automazioni ricorrenti
+            oggi = datetime.now().date()
+            ora_attuale = datetime.now().time()
+            prossimo_invio = datetime.combine(oggi, ora_invio)
+            
+            if ora_attuale >= ora_invio:
+                # L'orario di oggi è già passato, programma per domani
+                prossimo_invio += timedelta(days=1)
+                print(f"[DEBUG] Cliente: orario di oggi già passato, programmando per domani")
+            else:
+                print(f"[DEBUG] Cliente: programmando per oggi alle {ora_invio}")
+        
+        cliente_id = cliente['cliente_id'] if 'cliente_id' in cliente else cliente['id']
+        print(f"[DEBUG] Inserendo esecuzione: automazione_id={automazione_id}, cliente_id={cliente_id}, prossimo_invio={prossimo_invio}")
+        
+        cur.execute("""
+            INSERT INTO automazioni_esecuzioni (
+                automazione_id, cliente_id, prossimo_invio, stato
+            ) VALUES (%s, %s, %s, 'attivo')
+        """, (automazione_id, cliente_id, prossimo_invio))
+
 @app.route('/consulenze/automazioni/create', methods=['POST'])
 @login_required
 @has_package('manage_consulenze')
@@ -2535,6 +2818,11 @@ def create_automazione():
                     VALUES (%s, %s)
                 """, (automazione_id, cliente_id))
         
+        # Se l'automazione è attiva, crea le esecuzioni
+        if data.get('attiva', False):
+            print(f"[DEBUG] Creando esecuzioni per nuova automazione {automazione_id}")
+            create_automazione_esecuzioni(cur, automazione_id, session['user_id'])
+        
         conn.commit()
         cur.close()
         conn.close()
@@ -2562,7 +2850,7 @@ def toggle_automazione(automazione_id):
         if not result:
             return jsonify({'success': False, 'message': 'Automazione non trovata'})
         
-        nuovo_stato = not result[0]
+        nuovo_stato = not result['attiva']
         
         # Aggiorna lo stato
         cur.execute("""
@@ -2573,80 +2861,8 @@ def toggle_automazione(automazione_id):
         
         # Se viene attivata, crea le esecuzioni per i clienti target
         if nuovo_stato:
-            # Prima rimuovi eventuali esecuzioni esistenti
-            cur.execute("""
-                DELETE FROM automazioni_esecuzioni 
-                WHERE automazione_id = %s
-            """, (automazione_id,))
-            
-            # Recupera i dettagli dell'automazione
-            cur.execute("""
-                SELECT target_clienti, frequenza_giorni, ora_invio, tipo_programmazione, giorni_prima_scadenza
-                FROM automazioni 
-                WHERE id = %s
-            """, (automazione_id,))
-            
-            automazione = cur.fetchone()
-            
-            # Determina i clienti target
-            if automazione[0] == 'tutti':
-                if automazione[3] == 'scadenza_polizza':
-                    # Per promemoria scadenza, considera solo clienti con data scadenza
-                    cur.execute("""
-                        SELECT id, data_scadenza_polizza FROM clienti_assicurativi 
-                        WHERE user_id = %s AND data_scadenza_polizza IS NOT NULL
-                    """, (session['user_id'],))
-                else:
-                    cur.execute("""
-                        SELECT id, NULL as data_scadenza_polizza FROM clienti_assicurativi 
-                        WHERE user_id = %s
-                    """, (session['user_id'],))
-            else:
-                if automazione[3] == 'scadenza_polizza':
-                    cur.execute("""
-                        SELECT ac.cliente_id, ca.data_scadenza_polizza 
-                        FROM automazioni_clienti ac
-                        JOIN clienti_assicurativi ca ON ac.cliente_id = ca.id
-                        WHERE ac.automazione_id = %s AND ca.data_scadenza_polizza IS NOT NULL
-                    """, (automazione_id,))
-                else:
-                    cur.execute("""
-                        SELECT ac.cliente_id, NULL as data_scadenza_polizza 
-                        FROM automazioni_clienti ac
-                        WHERE ac.automazione_id = %s
-                    """, (automazione_id,))
-            
-            clienti_target = cur.fetchall()
-            
-            # Calcola il prossimo invio
-            from datetime import datetime, timedelta
-            ora_invio = datetime.strptime(str(automazione[2]), '%H:%M:%S').time()
-            
-            # Crea le esecuzioni per ogni cliente
-            for cliente in clienti_target:
-                if automazione[3] == 'scadenza_polizza':
-                    # Calcola la data di invio basata sulla scadenza polizza
-                    data_scadenza = cliente[1]
-                    giorni_prima = automazione[4] or 30
-                    data_invio = data_scadenza - timedelta(days=giorni_prima)
-                    prossimo_invio = datetime.combine(data_invio, ora_invio)
-                    
-                    # Se la data è nel passato, salta questo cliente
-                    if prossimo_invio <= datetime.now():
-                        continue
-                else:
-                    # Calcola la data di invio basata sulla frequenza
-                    prossimo_invio = datetime.combine(datetime.now().date(), ora_invio)
-                    
-                    # Se l'ora è già passata oggi, programma per domani
-                    if prossimo_invio <= datetime.now():
-                        prossimo_invio += timedelta(days=1)
-                
-                cur.execute("""
-                    INSERT INTO automazioni_esecuzioni (
-                        automazione_id, cliente_id, prossimo_invio, stato
-                    ) VALUES (%s, %s, %s, 'attivo')
-                """, (automazione_id, cliente[0], prossimo_invio))
+            print(f"[DEBUG] Attivando automazione {automazione_id}")
+            create_automazione_esecuzioni(cur, automazione_id, session['user_id'])
         
         conn.commit()
         cur.close()
@@ -2656,7 +2872,10 @@ def toggle_automazione(automazione_id):
         return jsonify({'success': True, 'message': f'Automazione {stato_text} con successo!'})
         
     except Exception as e:
-        return jsonify({'success': False, 'message': f'Errore: {str(e)}'})
+        import traceback
+        error_details = traceback.format_exc()
+        print(f"[ERROR] Errore nell'attivazione automazione: {error_details}")
+        return jsonify({'success': False, 'message': f'Errore: {str(e)}', 'details': error_details})
 
 @app.route('/consulenze/automazioni/<int:automazione_id>/delete', methods=['DELETE'])
 @login_required
@@ -2734,8 +2953,19 @@ def add_template():
 def check_and_send_automated_emails():
     """Controlla e invia le email automatiche programmate"""
     try:
+        print(f"[{datetime.datetime.now()}] Controllo email automatiche...")
         conn = get_db_connection()
         cur = conn.cursor()
+        
+        # Prima verifica quante automazioni attive ci sono
+        cur.execute("SELECT COUNT(*) as count FROM automazioni WHERE attiva = true")
+        automazioni_attive = cur.fetchone()['count']
+        print(f"Automazioni attive trovate: {automazioni_attive}")
+        
+        # Verifica quante esecuzioni ci sono in totale
+        cur.execute("SELECT COUNT(*) as count FROM automazioni_esecuzioni")
+        esecuzioni_totali = cur.fetchone()['count']
+        print(f"Esecuzioni totali nel database: {esecuzioni_totali}")
         
         # Trova tutte le esecuzioni programmate che devono essere inviate ora
         cur.execute("""
@@ -2753,6 +2983,27 @@ def check_and_send_automated_emails():
         """)
         
         esecuzioni = cur.fetchall()
+        print(f"Esecuzioni da processare ora: {len(esecuzioni)}")
+        
+        # Mostra anche le esecuzioni future per debug
+        cur.execute("""
+            SELECT ae.id, ae.prossimo_invio, ae.stato,
+                   a.nome as automazione_nome,
+                   c.nome as cliente_nome, c.cognome as cliente_cognome
+            FROM automazioni_esecuzioni ae
+            JOIN automazioni a ON ae.automazione_id = a.id
+            JOIN clienti_assicurativi c ON ae.cliente_id = c.id
+            WHERE a.attiva = true
+            ORDER BY ae.prossimo_invio ASC
+            LIMIT 5
+        """)
+        
+        prossime_esecuzioni = cur.fetchall()
+        print("Prossime 5 esecuzioni programmate:")
+        for exec in prossime_esecuzioni:
+            print(f"  - {exec['automazione_nome']} per {exec['cliente_nome']} {exec['cliente_cognome']}: {exec['prossimo_invio']} (stato: {exec['stato']})")
+        
+        print(f"Ora attuale: {datetime.datetime.now()}")
         
         for esecuzione in esecuzioni:
             try:
@@ -2797,17 +3048,37 @@ def check_and_send_automated_emails():
                 
                 # Invia l'email
                 context = ssl.create_default_context()
-                with smtplib.SMTP(smtp_server, smtp_port) as server:
-                    server.starttls(context=context)
-                    server.login(smtp_username, smtp_password)
-                    
-                    msg = EmailMessage()
-                    msg['Subject'] = subject
-                    msg['From'] = smtp_username
-                    msg['To'] = cliente_email
-                    msg.set_content(testo_email)
-                    
-                    server.send_message(msg)
+                
+                # Prova prima con SMTP_SSL (porta 465), poi con SMTP + STARTTLS (porta 587)
+                try:
+                    if smtp_port == 465:
+                        # SSL diretto
+                        with smtplib.SMTP_SSL(smtp_server, smtp_port, context=context) as server:
+                            server.login(smtp_username, smtp_password)
+                            
+                            msg = EmailMessage()
+                            msg['Subject'] = subject
+                            msg['From'] = smtp_username
+                            msg['To'] = cliente_email
+                            msg.set_content(testo_email)
+                            
+                            server.send_message(msg)
+                    else:
+                        # STARTTLS (porta 587)
+                        with smtplib.SMTP(smtp_server, smtp_port) as server:
+                            server.starttls(context=context)
+                            server.login(smtp_username, smtp_password)
+                            
+                            msg = EmailMessage()
+                            msg['Subject'] = subject
+                            msg['From'] = smtp_username
+                            msg['To'] = cliente_email
+                            msg.set_content(testo_email)
+                            
+                            server.send_message(msg)
+                except Exception as smtp_error:
+                    print(f"Errore SMTP specifico: {smtp_error}")
+                    raise smtp_error
                 
                 print(f"Email inviata con successo a {cliente_email} per automazione {esecuzione['automazione_nome']}")
                 
@@ -2874,6 +3145,148 @@ def test_automated_emails():
     return jsonify({'success': True, 'message': 'Controllo email automatiche eseguito'})
 
 # Endpoint per verificare lo stato delle automazioni
+@app.route('/api/automazioni/sync', methods=['POST'])
+@login_required
+@has_package('manage_consulenze')
+def sync_all_automazioni():
+    """Sincronizza tutte le automazioni attive dell'utente"""
+    try:
+        conn = get_db_connection()
+        cur = conn.cursor()
+        
+        # Trova tutte le automazioni attive dell'utente
+        cur.execute("""
+            SELECT id FROM automazioni 
+            WHERE user_id = %s AND attiva = true
+        """, (session['user_id'],))
+        
+        automazioni_attive = cur.fetchall()
+        
+        for automazione in automazioni_attive:
+            sync_automazione_esecuzioni(cur, automazione['id'], session['user_id'])
+        
+        conn.commit()
+        cur.close()
+        conn.close()
+        
+        return jsonify({
+            'success': True, 
+            'message': f'Sincronizzate {len(automazioni_attive)} automazioni',
+            'count': len(automazioni_attive)
+        })
+        
+    except Exception as e:
+        return jsonify({'success': False, 'error': str(e)})
+
+@app.route('/api/automazioni/status')
+@login_required
+@has_package('manage_consulenze')
+def get_automazioni_status():
+    """Endpoint per ottenere lo stato delle automazioni in tempo reale"""
+    try:
+        conn = get_db_connection()
+        cur = conn.cursor()
+        
+        # Conta automazioni attive
+        cur.execute("""
+            SELECT COUNT(*) as count FROM automazioni 
+            WHERE user_id = %s AND attiva = true
+        """, (session['user_id'],))
+        automazioni_attive = cur.fetchone()['count']
+        
+        # Conta esecuzioni totali
+        cur.execute("""
+            SELECT COUNT(*) as count FROM automazioni_esecuzioni ae
+            JOIN automazioni a ON ae.automazione_id = a.id
+            WHERE a.user_id = %s
+        """, (session['user_id'],))
+        esecuzioni_totali = cur.fetchone()['count']
+        
+        # Conta esecuzioni da processare ora
+        cur.execute("""
+            SELECT COUNT(*) as count FROM automazioni_esecuzioni ae
+            JOIN automazioni a ON ae.automazione_id = a.id
+            WHERE a.user_id = %s AND ae.stato = 'attivo' 
+            AND ae.prossimo_invio <= NOW()
+        """, (session['user_id'],))
+        esecuzioni_ora = cur.fetchone()['count']
+        
+        # Prossime 5 esecuzioni
+        cur.execute("""
+            SELECT ae.id, ae.prossimo_invio, ae.stato, ae.tentativi_falliti,
+                   a.nome as automazione_nome,
+                   c.nome as cliente_nome, c.cognome as cliente_cognome
+            FROM automazioni_esecuzioni ae
+            JOIN automazioni a ON ae.automazione_id = a.id
+            JOIN clienti_assicurativi c ON ae.cliente_id = c.id
+            WHERE a.user_id = %s AND ae.stato = 'attivo'
+            ORDER BY ae.prossimo_invio ASC
+            LIMIT 5
+        """, (session['user_id'],))
+        prossime_esecuzioni = cur.fetchall()
+        
+        # Ultime esecuzioni completate/fallite
+        cur.execute("""
+            SELECT ae.id, ae.ultimo_invio, ae.stato, ae.tentativi_falliti,
+                   a.nome as automazione_nome,
+                   c.nome as cliente_nome, c.cognome as cliente_cognome
+            FROM automazioni_esecuzioni ae
+            JOIN automazioni a ON ae.automazione_id = a.id
+            JOIN clienti_assicurativi c ON ae.cliente_id = c.id
+            WHERE a.user_id = %s AND ae.stato IN ('completato', 'fallito')
+            ORDER BY ae.ultimo_invio DESC
+            LIMIT 5
+        """, (session['user_id'],))
+        ultime_esecuzioni = cur.fetchall()
+        
+        cur.close()
+        conn.close()
+        
+        # Converti per JSON
+        def convert_datetime_to_string(obj):
+            if hasattr(obj, 'isoformat'):
+                return obj.isoformat()
+            elif hasattr(obj, 'strftime'):
+                return obj.strftime('%H:%M:%S') if hasattr(obj, 'hour') else str(obj)
+            else:
+                return str(obj)
+        
+        prossime_json = []
+        for e in prossime_esecuzioni:
+            e_dict = {}
+            for key, value in dict(e).items():
+                if value is None:
+                    e_dict[key] = None
+                elif hasattr(value, 'isoformat') or hasattr(value, 'strftime'):
+                    e_dict[key] = convert_datetime_to_string(value)
+                else:
+                    e_dict[key] = value
+            prossime_json.append(e_dict)
+        
+        ultime_json = []
+        for e in ultime_esecuzioni:
+            e_dict = {}
+            for key, value in dict(e).items():
+                if value is None:
+                    e_dict[key] = None
+                elif hasattr(value, 'isoformat') or hasattr(value, 'strftime'):
+                    e_dict[key] = convert_datetime_to_string(value)
+                else:
+                    e_dict[key] = value
+            ultime_json.append(e_dict)
+        
+        return jsonify({
+            'automazioni_attive': automazioni_attive,
+            'esecuzioni_totali': esecuzioni_totali,
+            'esecuzioni_da_processare': esecuzioni_ora,
+            'prossime_esecuzioni': prossime_json,
+            'ultime_esecuzioni': ultime_json,
+            'ora_attuale': datetime.datetime.now().isoformat()
+        })
+        
+    except Exception as e:
+        return jsonify({'error': str(e)})
+
 @app.route('/debug-automazioni')
 @login_required
 def debug_automazioni():
@@ -2908,10 +3321,44 @@ def debug_automazioni():
     cur.close()
     conn.close()
     
+    # Funzione helper per convertire oggetti datetime/time/date in stringhe
+    def convert_datetime_to_string(obj):
+        if hasattr(obj, 'isoformat'):
+            return obj.isoformat()
+        elif hasattr(obj, 'strftime'):
+            return obj.strftime('%H:%M:%S') if hasattr(obj, 'hour') else str(obj)
+        else:
+            return str(obj)
+    
+    # Converti i dati per JSON
+    automazioni_json = []
+    for a in automazioni:
+        a_dict = {}
+        for key, value in dict(a).items():
+            if value is None:
+                a_dict[key] = None
+            elif hasattr(value, 'isoformat') or hasattr(value, 'strftime'):
+                a_dict[key] = convert_datetime_to_string(value)
+            else:
+                a_dict[key] = value
+        automazioni_json.append(a_dict)
+    
+    esecuzioni_json = []
+    for e in esecuzioni:
+        e_dict = {}
+        for key, value in dict(e).items():
+            if value is None:
+                e_dict[key] = None
+            elif hasattr(value, 'isoformat') or hasattr(value, 'strftime'):
+                e_dict[key] = convert_datetime_to_string(value)
+            else:
+                e_dict[key] = value
+        esecuzioni_json.append(e_dict)
+    
     return jsonify({
-        'automazioni': [dict(a) for a in automazioni],
-        'esecuzioni': [dict(e) for e in esecuzioni],
-        'ora_attuale': datetime.now().isoformat()
+        'automazioni': automazioni_json,
+        'esecuzioni': esecuzioni_json,
+        'ora_attuale': datetime.datetime.now().isoformat()
     })
 
 # Initialize database tables
