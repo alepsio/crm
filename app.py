@@ -48,6 +48,29 @@ logging.basicConfig(
 # Abilita l'escape automatico di Jinja2 per prevenire XSS
 app.jinja_env.autoescape = True
 
+# Filtri personalizzati per Jinja2
+@app.template_filter('count_users_with_package')
+def count_users_with_package(users, package_name):
+    """Conta gli utenti che hanno un determinato pacchetto"""
+    count = 0
+    for user in users:
+        if user.get('pacchetti'):
+            # Gestisce diversi formati di pacchetti
+            packages = user['pacchetti']
+            if isinstance(packages, str):
+                try:
+                    import json
+                    packages = json.loads(packages)
+                except:
+                    if packages.startswith('{') and packages.endswith('}'):
+                        packages = packages.strip('{}').split(',')
+                    else:
+                        packages = [packages]
+            
+            if isinstance(packages, list) and package_name in packages:
+                count += 1
+    return count
+
 # Inizializza la protezione CSRF
 csrf = CSRFProtect(app)
 
@@ -1306,177 +1329,7 @@ def manage_events():
     
     return jsonify({'success': False, 'message': 'Metodo non supportato'}), 405
 
-@app.route('/consulenze/history')
-@login_required
-@has_package('manage_consulenze')
-def consulenze_history():
-    conn = get_db_connection()
-    cur = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
-    
-    # Ottieni parametri di filtro
-    cliente_id = request.args.get('cliente')
-    template_id = request.args.get('template')
-    data_da = request.args.get('data_da')
-    data_a = request.args.get('data_a')
-    page = int(request.args.get('page', 1))
-    per_page = 20
-    
-    # Costruisci query con filtri
-    query = """
-        SELECT qi.*, c.nome as cliente_nome, c.cognome as cliente_cognome, 
-               c.email, t.nome as template_nome
-        FROM questionari_inviati qi
-        JOIN clienti_assicurativi c ON qi.cliente_id = c.id
-        JOIN template_pdf t ON qi.template_id = t.id
-        WHERE 1=1
-    """
-    
-    params = []
-    filters = {}
-    
-    if cliente_id:
-        query += " AND qi.cliente_id = %s"
-        params.append(cliente_id)
-        filters['cliente'] = cliente_id
-    
-    if template_id:
-        query += " AND qi.template_id = %s"
-        params.append(template_id)
-        filters['template'] = template_id
-    
-    if data_da:
-        query += " AND qi.data_invio >= %s"
-        params.append(data_da)
-        filters['data_da'] = data_da
-    
-    if data_a:
-        query += " AND qi.data_invio <= %s"
-        params.append(data_a)
-        filters['data_a'] = data_a
-    
-    # Aggiungi ordinamento
-    query += " ORDER BY qi.data_invio DESC"
-    
-    # Esegui query per conteggio totale
-    count_query = f"SELECT COUNT(*) FROM ({query}) as count_query"
-    cur.execute(count_query, params)
-    total_count = cur.fetchone()[0]
-    
-    # Aggiungi paginazione
-    query += " LIMIT %s OFFSET %s"
-    offset = (page - 1) * per_page
-    params.extend([per_page, offset])
-    
-    # Esegui query principale
-    cur.execute(query, params)
-    history = cur.fetchall()
-    
-    # Ottieni clienti e template per i filtri (solo per l'utente corrente)
-    cur.execute("SELECT id, nome, cognome FROM clienti_assicurativi WHERE user_id = %s OR user_id IS NULL ORDER BY cognome, nome",
-                (session.get('user_id'),))
-    clienti = cur.fetchall()
-    
-    cur.execute("SELECT id, nome FROM template_pdf ORDER BY nome")
-    templates = cur.fetchall()
-    
-    cur.close()
-    conn.close()
-    
-    # Calcola informazioni di paginazione
-    total_pages = (total_count + per_page - 1) // per_page
-    pagination = {
-        'current_page': page,
-        'total_pages': total_pages,
-        'total_count': total_count,
-        'per_page': per_page
-    }
-    
-    return render_template('tools/consulenze/history.html',
-                          history=history,
-                          clienti=clienti,
-                          templates=templates,
-                          filters=filters,
-                          pagination=pagination if total_pages > 1 else None)
 
-@app.route('/consulenze/export-history')
-@login_required
-@has_package('manage_consulenze')
-def export_history():
-    conn = get_db_connection()
-    cur = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
-    
-    # Ottieni parametri di filtro
-    cliente_id = request.args.get('cliente')
-    template_id = request.args.get('template')
-    data_da = request.args.get('data_da')
-    data_a = request.args.get('data_a')
-    
-    # Costruisci query con filtri
-    query = """
-        SELECT qi.data_invio, c.nome as cliente_nome, c.cognome as cliente_cognome, 
-               c.email, t.nome as template_nome, qi.flags, qi.filename
-        FROM questionari_inviati qi
-        JOIN clienti_assicurativi c ON qi.cliente_id = c.id
-        JOIN template_pdf t ON qi.template_id = t.id
-        WHERE 1=1
-    """
-    
-    params = []
-    
-    if cliente_id:
-        query += " AND qi.cliente_id = %s"
-        params.append(cliente_id)
-    
-    if template_id:
-        query += " AND qi.template_id = %s"
-        params.append(template_id)
-    
-    if data_da:
-        query += " AND qi.data_invio >= %s"
-        params.append(data_da)
-    
-    if data_a:
-        query += " AND qi.data_invio <= %s"
-        params.append(data_a)
-    
-    # Aggiungi ordinamento
-    query += " ORDER BY qi.data_invio DESC"
-    
-    # Esegui query
-    cur.execute(query, params)
-    results = cur.fetchall()
-    
-    cur.close()
-    conn.close()
-    
-    # Crea CSV
-    output = StringIO()
-    writer = csv.writer(output)
-    
-    # Intestazioni
-    writer.writerow(['Data Invio', 'Nome', 'Cognome', 'Email', 'Template', 'Flags', 'Filename'])
-    
-    # Dati
-    for row in results:
-        writer.writerow([
-            row['data_invio'].strftime('%d/%m/%Y %H:%M'),
-            row['cliente_nome'],
-            row['cliente_cognome'],
-            row['email'],
-            row['template_nome'],
-            ', '.join(row['flags']) if row['flags'] else '',
-            row['filename']
-        ])
-    
-    # Prepara la risposta
-    output.seek(0)
-    timestamp = datetime.datetime.now().strftime('%Y%m%d%H%M%S')
-    
-    return jsonify({
-        'success': True,
-        'data': output.getvalue(),
-        'filename': f'storico_invii_{timestamp}.csv'
-    })
 
 @app.route('/consulenze/anagrafica', methods=['GET', 'POST'])
 @login_required
