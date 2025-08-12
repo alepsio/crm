@@ -1,0 +1,95 @@
+{% extends 'base.html' %}
+
+{% block title %}Strumenti Avanzati - Editor Template PDF{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h1 class="h4"><i class="bi bi-filetype-pdf me-2"></i>Editor Template PDF</h1>
+    <a href="{{ url_for('consulenze_questionari') }}" class="btn btn-outline-secondary"><i class="bi bi-arrow-left"></i> Torna ai Questionari</a>
+  </div>
+
+  <div class="row g-3">
+    <div class="col-md-4">
+      <div class="card shadow-sm">
+        <div class="card-header bg-light">Gestisci Template</div>
+        <div class="card-body">
+          <form id="uploadForm" enctype="multipart/form-data">
+            <div class="mb-3">
+              <label class="form-label">Seleziona Template esistente</label>
+              <select id="existTemplate" class="form-select">
+                <option value="">-- Seleziona --</option>
+                {% for t in templates %}
+                  <option value="{{ t.id }}" data-filename="{{ t.filename }}">{{ t.nome }}</option>
+                {% endfor %}
+              </select>
+            </div>
+            <div class="mb-3 text-center text-muted">oppure</div>
+            <div class="mb-3">
+              <label class="form-label">Carica nuovo PDF</label>
+              <input type="text" id="newTemplateName" class="form-control mb-2" placeholder="Nome template" />
+              <input type="file" id="newTemplateFile" class="form-control" accept="application/pdf" />
+              <div class="form-text">File con campi compilabili (AcroForm) o semplice PDF.</div>
+            </div>
+            <div class="d-grid gap-2">
+              <button class="btn btn-primary" type="button" id="createOrOpen">Apri Editor</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-8">
+      <div class="card shadow-sm">
+        <div class="card-header bg-light">Come funziona</div>
+        <div class="card-body">
+          <ol>
+            <li>Seleziona un template esistente o carica un nuovo PDF.</li>
+            <li>Nell'editor potrai posizionare i campi sul PDF e associare i dati del cliente.</li>
+            <li>Durante la generazione del questionario, i dati verranno compilati automaticamente.</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+  document.getElementById('createOrOpen').addEventListener('click', async () => {
+    const existId = document.getElementById('existTemplate').value;
+    const name = document.getElementById('newTemplateName').value.trim();
+    const file = document.getElementById('newTemplateFile').files[0];
+
+    if (existId) {
+      window.location = `/consulenze/questionari/template-editor/${existId}`;
+      return;
+    }
+
+    if (!name || !file) {
+      alert('Inserisci nome e seleziona un file PDF');
+      return;
+    }
+
+    const formData = new FormData();
+    formData.append('template_name', name);
+    formData.append('template_file', file);
+
+    try {
+      const res = await fetch(`{{ url_for('add_template') }}`, {
+        method: 'POST',
+        body: formData
+      });
+      const data = await res.json();
+      if (data.success) {
+        window.location = `/consulenze/questionari/template-editor/${data.template.id}`;
+      } else {
+        alert(data.message || 'Errore durante il caricamento');
+      }
+    } catch (e) {
+      alert('Errore di rete: ' + e.message);
+    }
+  });
+</script>
+{% endblock %}

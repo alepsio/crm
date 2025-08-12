@@ -18,10 +18,10 @@ PDF_GENERATI = 'app/static/pdf_generati'
 MAX_CONTENT_LENGTH = 16 * 1024 * 1024  # 16MB max upload
 
 # Configurazioni del database
-DB_HOST = os.environ.get('DB_HOST', 'localhost')
-DB_NAME = os.environ.get('DB_NAME', 'insurance_management')
-DB_USER = os.environ.get('DB_USER', 'postgres')
-DB_PASSWORD = os.environ.get('DB_PASSWORD', 'admin')
+DB_HOST = os.environ.get('DB_HOST', 'ep-flat-block-a2hh7ea3-pooler.eu-central-1.aws.neon.tech')
+DB_NAME = os.environ.get('DB_NAME', 'neondb')
+DB_USER = os.environ.get('DB_USER', 'neondb_owner')
+DB_PASSWORD = os.environ.get('DB_PASSWORD', 'npg_pgflG01ZiVPk')
 
 # Configurazioni di logging
 LOG_LEVEL = os.environ.get('LOG_LEVEL', 'INFO')

@@ -1,168 +1,230 @@
 {% extends 'base.html' %}
 
-{% block title %}Pannello Amministrazione - Gestione Consulenze Assicurative{% endblock %}
+{% block title %}Dashboard Amministrazione - CRM Assicurativo{% endblock %}
 
 {% block content %}
 <div class="container-fluid">
+    <!-- Header Section -->
     <div class="d-flex justify-content-between align-items-center mb-4 animate__animated animate__fadeIn">
-        <h1 class="h3"><i class="bi bi-gear"></i> Pannello Amministrazione</h1>
         <div>
-            <button class="btn btn-outline-danger me-2" id="resetSmtpBtn">
-                <i class="bi bi-arrow-counterclockwise"></i> Reset SMTP
+            <h1 class="h2 mb-1">
+                <i class="bi bi-speedometer2 text-primary me-2"></i>
+                Dashboard Amministrazione
+            </h1>
+            <p class="text-muted mb-0">Benvenuto nel pannello di controllo del sistema</p>
+        </div>
+        <div class="d-flex gap-2">
+            <button class="btn btn-outline-secondary" id="refreshBtn" title="Aggiorna dati">
+                <i class="bi bi-arrow-clockwise"></i>
             </button>
             <a href="{{ url_for('admin_add_user') }}" class="btn btn-primary">
-                <i class="bi bi-person-plus"></i> Nuovo Utente
+                <i class="bi bi-person-plus me-1"></i> Nuovo Utente
             </a>
         </div>
     </div>
     
-    <!-- Dashboard Cards -->
-    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4 mb-4 animate__animated animate__fadeInUp">
-        <div class="col">
-            <div class="card bg-primary text-white h-100">
+    <!-- Quick Stats Cards -->
+    <div class="row g-4 mb-5">
+        <div class="col-xl-3 col-md-6">
+            <div class="card border-0 shadow-sm h-100 animate__animated animate__fadeInUp" style="animation-delay: 0.1s">
                 <div class="card-body">
-                    <div class="d-flex justify-content-between align-items-center">
-                        <div>
-                            <h6 class="text-white-50">Utenti Totali</h6>
-                            <h2 class="display-4 fw-bold">{{ users|length }}</h2>
+                    <div class="d-flex align-items-center">
+                        <div class="flex-shrink-0">
+                            <div class="bg-primary bg-gradient rounded-3 p-3">
+                                <i class="bi bi-people-fill text-white" style="font-size: 1.5rem;"></i>
+                            </div>
                         </div>
-                        <i class="bi bi-people-fill" style="font-size: 3rem; opacity: 0.5;"></i>
+                        <div class="flex-grow-1 ms-3">
+                            <div class="text-muted small">Utenti Registrati</div>
+                            <div class="h4 mb-0 fw-bold">{{ users|length }}</div>
+                            <div class="text-success small">
+                                <i class="bi bi-arrow-up"></i> Attivi
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="card-footer d-flex align-items-center justify-content-between">
-                    <span>Dettagli</span>
-                    <i class="bi bi-chevron-right"></i>
                 </div>
             </div>
         </div>
         
-        <div class="col">
-            <div class="card bg-success text-white h-100">
+        <div class="col-xl-3 col-md-6">
+            <div class="card border-0 shadow-sm h-100 animate__animated animate__fadeInUp" style="animation-delay: 0.2s">
                 <div class="card-body">
-                    <div class="d-flex justify-content-between align-items-center">
-                        <div>
-                            <h6 class="text-white-50">Questionari Generati</h6>
-                            <h2 class="display-4 fw-bold">{{ questionari_count|default(0) }}</h2>
+                    <div class="d-flex align-items-center">
+                        <div class="flex-shrink-0">
+                            <div class="bg-success bg-gradient rounded-3 p-3">
+                                <i class="bi bi-file-earmark-pdf-fill text-white" style="font-size: 1.5rem;"></i>
+                            </div>
                         </div>
-                        <i class="bi bi-file-earmark-pdf" style="font-size: 3rem; opacity: 0.5;"></i>
+                        <div class="flex-grow-1 ms-3">
+                            <div class="text-muted small">Questionari Generati</div>
+                            <div class="h4 mb-0 fw-bold">{{ questionari_count|default(0) }}</div>
+                            <div class="text-info small">
+                                <i class="bi bi-graph-up"></i> Totali
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="card-footer d-flex align-items-center justify-content-between">
-                    <span>Dettagli</span>
-                    <i class="bi bi-chevron-right"></i>
                 </div>
             </div>
         </div>
         
-        <div class="col">
-            <div class="card bg-info text-white h-100">
+        <div class="col-xl-3 col-md-6">
+            <div class="card border-0 shadow-sm h-100 animate__animated animate__fadeInUp" style="animation-delay: 0.3s">
                 <div class="card-body">
-                    <div class="d-flex justify-content-between align-items-center">
-                        <div>
-                            <h6 class="text-white-50">Questionari Inviati</h6>
-                            <h2 class="display-4 fw-bold">{{ questionari_inviati|default(0) }}</h2>
+                    <div class="d-flex align-items-center">
+                        <div class="flex-shrink-0">
+                            <div class="bg-info bg-gradient rounded-3 p-3">
+                                <i class="bi bi-envelope-check-fill text-white" style="font-size: 1.5rem;"></i>
+                            </div>
                         </div>
-                        <i class="bi bi-envelope-check" style="font-size: 3rem; opacity: 0.5;"></i>
+                        <div class="flex-grow-1 ms-3">
+                            <div class="text-muted small">Email Inviate</div>
+                            <div class="h4 mb-0 fw-bold">{{ questionari_inviati|default(0) }}</div>
+                            <div class="text-success small">
+                                <i class="bi bi-check-circle"></i> Consegnate
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="card-footer d-flex align-items-center justify-content-between">
-                    <span>Dettagli</span>
-                    <i class="bi bi-chevron-right"></i>
                 </div>
             </div>
         </div>
         
-        <div class="col">
-            <div class="card bg-warning text-white h-100">
+        <div class="col-xl-3 col-md-6">
+            <div class="card border-0 shadow-sm h-100 animate__animated animate__fadeInUp" style="animation-delay: 0.4s">
                 <div class="card-body">
-                    <div class="d-flex justify-content-between align-items-center">
-                        <div>
-                            <h6 class="text-white-50">Configurazione SMTP</h6>
-                            <h2 class="display-4 fw-bold">{{ smtp_configured|default(0) }}%</h2>
+                    <div class="d-flex align-items-center">
+                        <div class="flex-shrink-0">
+                            <div class="bg-{% if smtp_configured == 100 %}success{% else %}warning{% endif %} bg-gradient rounded-3 p-3">
+                                <i class="bi bi-envelope-gear-fill text-white" style="font-size: 1.5rem;"></i>
+                            </div>
                         </div>
-                        <i class="bi bi-envelope-paper" style="font-size: 3rem; opacity: 0.5;"></i>
+                        <div class="flex-grow-1 ms-3">
+                            <div class="text-muted small">Configurazione Email</div>
+                            <div class="h4 mb-0 fw-bold">
+                                {% if smtp_configured == 100 %}
+                                    <span class="text-success">Configurata</span>
+                                {% else %}
+                                    <span class="text-warning">Da Configurare</span>
+                                {% endif %}
+                            </div>
+                            <div class="{% if smtp_configured == 100 %}text-success{% else %}text-warning{% endif %} small">
+                                <i class="bi bi-{% if smtp_configured == 100 %}check-circle{% else %}exclamation-triangle{% endif %}"></i> 
+                                {% if smtp_configured == 100 %}Pronta{% else %}Richiesta{% endif %}
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="card-footer d-flex align-items-center justify-content-between">
-                    <span>Configura</span>
-                    <i class="bi bi-chevron-right"></i>
                 </div>
             </div>
         </div>
     </div>
     
-    <!-- Tabs for Admin Functions -->
-    <div class="card shadow-sm animate__animated animate__fadeIn" style="animation-delay: 0.3s">
-        <div class="card-header bg-light">
-            <ul class="nav nav-tabs card-header-tabs" id="adminTabs" role="tablist">
+    <!-- Main Content Tabs -->
+    <div class="card border-0 shadow-sm animate__animated animate__fadeIn" style="animation-delay: 0.5s">
+        <div class="card-header bg-white border-bottom">
+            <ul class="nav nav-pills nav-fill" id="adminTabs" role="tablist">
                 <li class="nav-item" role="presentation">
-                    <button class="nav-link active" id="users-tab" data-bs-toggle="tab" data-bs-target="#users" type="button" role="tab" aria-controls="users" aria-selected="true">
+                    <button class="nav-link active rounded-pill mx-1" id="users-tab" data-bs-toggle="tab" data-bs-target="#users" type="button" role="tab">
                         <i class="bi bi-people me-2"></i>Gestione Utenti
                     </button>
                 </li>
                 <li class="nav-item" role="presentation">
-                    <button class="nav-link" id="packages-tab" data-bs-toggle="tab" data-bs-target="#packages" type="button" role="tab" aria-controls="packages" aria-selected="false">
-                        <i class="bi bi-box me-2"></i>Pacchetti
+                    <button class="nav-link rounded-pill mx-1" id="system-tab" data-bs-toggle="tab" data-bs-target="#system" type="button" role="tab">
+                        <i class="bi bi-gear me-2"></i>Configurazione Sistema
                     </button>
                 </li>
                 <li class="nav-item" role="presentation">
-                    <button class="nav-link" id="system-tab" data-bs-toggle="tab" data-bs-target="#system" type="button" role="tab" aria-controls="system" aria-selected="false">
-                        <i class="bi bi-gear me-2"></i>Sistema
+                    <button class="nav-link rounded-pill mx-1" id="packages-tab" data-bs-toggle="tab" data-bs-target="#packages" type="button" role="tab">
+                        <i class="bi bi-box me-2"></i>Pacchetti & Moduli
                     </button>
                 </li>
             </ul>
         </div>
-        <div class="card-body">
+        
+        <div class="card-body p-4">
             <div class="tab-content" id="adminTabsContent">
-                <!-- Users Tab -->
-                <div class="tab-pane fade show active" id="users" role="tabpanel" aria-labelledby="users-tab">
-                    <div class="mb-3">
-                        <div class="input-group">
-                            <span class="input-group-text"><i class="bi bi-search"></i></span>
-                            <input type="text" class="form-control" id="userSearch" placeholder="Cerca utente...">
+                <!-- Users Management Tab -->
+                <div class="tab-pane fade show active" id="users" role="tabpanel">
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <h5 class="mb-0">
+                            <i class="bi bi-people text-primary me-2"></i>
+                            Utenti del Sistema
+                        </h5>
+                        <div class="d-flex gap-2">
+                            <div class="input-group" style="width: 300px;">
+                                <span class="input-group-text bg-light border-end-0">
+                                    <i class="bi bi-search text-muted"></i>
+                                </span>
+                                <input type="text" class="form-control border-start-0" id="userSearch" placeholder="Cerca utente...">
+                            </div>
                         </div>
                     </div>
                     
                     <div class="table-responsive">
-                        <table class="table table-striped table-hover" id="usersTable">
-                            <thead>
+                        <table class="table table-hover align-middle" id="usersTable">
+                            <thead class="table-light">
                                 <tr>
-                                    <th>ID</th>
-                                    <th>Username</th>
-                                    <th>Ruolo</th>
-                                    <th>Pacchetti</th>
-                                    <th>Stato</th>
-                                    <th>Azioni</th>
+                                    <th class="border-0 fw-semibold">Utente</th>
+                                    <th class="border-0 fw-semibold">Ruolo</th>
+                                    <th class="border-0 fw-semibold">Moduli Attivi</th>
+                                    <th class="border-0 fw-semibold">Stato</th>
+                                    <th class="border-0 fw-semibold text-center">Azioni</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 {% for user in users %}
                                 <tr>
-                                    <td>{{ user.id }}</td>
-                                    <td>{{ user.username }}</td>
                                     <td>
-                                        <span class="badge {% if user.ruolo == 'admin' %}bg-danger{% else %}bg-secondary{% endif %}">
-                                            {{ user.ruolo }}
+                                        <div class="d-flex align-items-center">
+                                            <div class="avatar-sm bg-primary bg-gradient rounded-circle d-flex align-items-center justify-content-center me-3">
+                                                <span class="text-white fw-bold">{{ user.username[0]|upper }}</span>
+                                            </div>
+                                            <div>
+                                                <div class="fw-semibold">{{ user.username }}</div>
+                                                <div class="text-muted small">ID: {{ user.id }}</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <span class="badge {% if user.ruolo == 'admin' %}bg-danger{% else %}bg-secondary{% endif %} rounded-pill">
+                                            <i class="bi bi-{% if user.ruolo == 'admin' %}shield-check{% else %}person{% endif %} me-1"></i>
+                                            {{ 'Amministratore' if user.ruolo == 'admin' else 'Utente Standard' }}
                                         </span>
                                     </td>
                                     <td>
-                                        {% for package in user.pacchetti %}
-                                        <span class="badge bg-info">{{ package }}</span>
-                                        {% endfor %}
+                                        <div class="d-flex flex-wrap gap-1">
+                                            {% for package in user.pacchetti %}
+                                            <span class="badge bg-info bg-gradient rounded-pill">
+                                                <i class="bi bi-{% if package == 'manage_consulenze' %}file-earmark-text{% elif package == 'manage_drivers' %}truck{% else %}box{% endif %} me-1"></i>
+                                                {% if package == 'manage_consulenze' %}
+                                                    Consulenze
+                                                {% elif package == 'manage_drivers' %}
+                                                    Autisti
+                                                {% else %}
+                                                    {{ package }}
+                                                {% endif %}
+                                            </span>
+                                            {% endfor %}
+                                            {% if not user.pacchetti %}
+                                            <span class="text-muted small">Nessun modulo</span>
+                                            {% endif %}
+                                        </div>
                                     </td>
                                     <td>
                                         <div class="form-check form-switch">
                                             <input class="form-check-input" type="checkbox" role="switch" id="userStatus{{ user.id }}" checked>
-                                            <label class="form-check-label" for="userStatus{{ user.id }}">Attivo</label>
+                                            <label class="form-check-label text-success fw-semibold" for="userStatus{{ user.id }}">
+                                                <i class="bi bi-check-circle me-1"></i>Attivo
+                                            </label>
                                         </div>
                                     </td>
-                                    <td>
-                                        <button class="btn btn-sm btn-outline-primary me-1" onclick="editUser({{ user.id }})">
-                                            <i class="bi bi-pencil"></i>
-                                        </button>
-                                        <button class="btn btn-sm btn-outline-danger" onclick="deleteUser({{ user.id }})">
-                                            <i class="bi bi-trash"></i>
-                                        </button>
+                                    <td class="text-center">
+                                        <div class="btn-group" role="group">
+                                            <button class="btn btn-sm btn-outline-primary" onclick="editUser({{ user.id }})" title="Modifica utente">
+                                                <i class="bi bi-pencil"></i>
+                                            </button>
+                                            <button class="btn btn-sm btn-outline-danger" onclick="deleteUser({{ user.id }})" title="Elimina utente">
+                                                <i class="bi bi-trash"></i>
+                                            </button>
+                                        </div>
                                     </td>
                                 </tr>
                                 {% endfor %}
@@ -171,165 +233,251 @@
                     </div>
                 </div>
                 
+                <!-- System Configuration Tab -->
+                <div class="tab-pane fade" id="system" role="tabpanel">
+                    <h5 class="mb-4">
+                        <i class="bi bi-gear text-primary me-2"></i>
+                        Configurazione Sistema
+                    </h5>
+                    
+                    <div class="row g-4">
+                        <!-- Email Configuration -->
+                        <div class="col-lg-6">
+                            <div class="card border-0 bg-light h-100">
+                                <div class="card-body">
+                                    <div class="d-flex align-items-center mb-3">
+                                        <div class="bg-primary bg-gradient rounded-3 p-2 me-3">
+                                            <i class="bi bi-envelope-gear text-white"></i>
+                                        </div>
+                                        <div>
+                                            <h6 class="mb-0">Configurazione Email SMTP</h6>
+                                            <small class="text-muted">Imposta il server per l'invio delle email</small>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="mb-3">
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <span>Stato configurazione:</span>
+                                            <span class="badge {% if smtp_configured == 100 %}bg-success{% else %}bg-warning{% endif %} rounded-pill">
+                                                {% if smtp_configured == 100 %}
+                                                    <i class="bi bi-check-circle me-1"></i>Configurato
+                                                {% else %}
+                                                    <i class="bi bi-exclamation-triangle me-1"></i>Da configurare
+                                                {% endif %}
+                                            </span>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="d-grid gap-2">
+                                        <a href="{{ url_for('consulenze_email') }}" class="btn btn-primary">
+                                            <i class="bi bi-gear me-1"></i> Configura SMTP
+                                        </a>
+                                        <button class="btn btn-outline-danger" id="resetSmtpBtn">
+                                            <i class="bi bi-arrow-counterclockwise me-1"></i> Reset Configurazione
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Email Templates -->
+                        <div class="col-lg-6">
+                            <div class="card border-0 bg-light h-100">
+                                <div class="card-body">
+                                    <div class="d-flex align-items-center mb-3">
+                                        <div class="bg-info bg-gradient rounded-3 p-2 me-3">
+                                            <i class="bi bi-chat-text text-white"></i>
+                                        </div>
+                                        <div>
+                                            <h6 class="mb-0">Modelli Email</h6>
+                                            <small class="text-muted">Gestisci i template per le email</small>
+                                        </div>
+                                    </div>
+                                    
+                                    <p class="text-muted small mb-3">
+                                        Crea e modifica i modelli di testo per le email automatiche del sistema.
+                                    </p>
+                                    
+                                    <div class="d-grid">
+                                        <a href="{{ url_for('consulenze_email_texts') }}" class="btn btn-info">
+                                            <i class="bi bi-chat-text me-1"></i> Gestisci Template
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Database Management -->
+                        <div class="col-lg-6">
+                            <div class="card border-0 bg-light h-100">
+                                <div class="card-body">
+                                    <div class="d-flex align-items-center mb-3">
+                                        <div class="bg-success bg-gradient rounded-3 p-2 me-3">
+                                            <i class="bi bi-database text-white"></i>
+                                        </div>
+                                        <div>
+                                            <h6 class="mb-0">Gestione Database</h6>
+                                            <small class="text-muted">Backup e ottimizzazione</small>
+                                        </div>
+                                    </div>
+                                    
+                                    <p class="text-muted small mb-3">
+                                        Esegui backup del database e operazioni di manutenzione.
+                                    </p>
+                                    
+                                    <div class="d-grid gap-2">
+                                        <button class="btn btn-success" id="backupDbBtn">
+                                            <i class="bi bi-download me-1"></i> Backup Database
+                                        </button>
+                                        <button class="btn btn-outline-warning" id="optimizeDbBtn">
+                                            <i class="bi bi-lightning me-1"></i> Ottimizza Database
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Calendar Management -->
+                        <div class="col-lg-6">
+                            <div class="card border-0 bg-light h-100">
+                                <div class="card-body">
+                                    <div class="d-flex align-items-center mb-3">
+                                        <div class="bg-warning bg-gradient rounded-3 p-2 me-3">
+                                            <i class="bi bi-calendar-check text-white"></i>
+                                        </div>
+                                        <div>
+                                            <h6 class="mb-0">Agenda Scadenze</h6>
+                                            <small class="text-muted">Calendario e promemoria</small>
+                                        </div>
+                                    </div>
+                                    
+                                    <p class="text-muted small mb-3">
+                                        Visualizza e gestisci scadenze, appuntamenti e promemoria automatici.
+                                    </p>
+                                    
+                                    <div class="d-grid">
+                                        <a href="{{ url_for('consulenze_calendar') }}" class="btn btn-warning">
+                                            <i class="bi bi-calendar me-1"></i> Apri Agenda
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
                 <!-- Packages Tab -->
-                <div class="tab-pane fade" id="packages" role="tabpanel" aria-labelledby="packages-tab">
-                    <div class="d-flex justify-content-between align-items-center mb-3">
-                        <h5 class="mb-0">Pacchetti Disponibili</h5>
-                        <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#addPackageModal">
-                            <i class="bi bi-plus-circle me-1"></i> Nuovo Pacchetto
+                <div class="tab-pane fade" id="packages" role="tabpanel">
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <h5 class="mb-0">
+                            <i class="bi bi-box text-primary me-2"></i>
+                            Moduli del Sistema
+                        </h5>
+                        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addPackageModal">
+                            <i class="bi bi-plus-circle me-1"></i> Nuovo Modulo
                         </button>
                     </div>
                     
-                    <div class="row row-cols-1 row-cols-md-3 g-4">
-                        <div class="col">
-                            <div class="card h-100">
+                    <div class="row g-4">
+                        <!-- Consulenze Module -->
+                        <div class="col-lg-6">
+                            <div class="card border-0 shadow-sm h-100">
                                 <div class="card-body">
-                                    <h5 class="card-title">
-                                        <i class="bi bi-file-earmark-text text-primary me-2"></i>
-                                        manage_consulenze
-                                    </h5>
-                                    <p class="card-text">Gestione Consulenze Assicurative</p>
-                                    <ul class="list-unstyled">
-                                        <li><i class="bi bi-check-circle-fill text-success me-2"></i>Anagrafica Clienti</li>
-                                        <li><i class="bi bi-check-circle-fill text-success me-2"></i>Questionari PDF</li>
-                                        <li><i class="bi bi-check-circle-fill text-success me-2"></i>Invio Email</li>
-                                    </ul>
-                                </div>
-                                <div class="card-footer d-flex justify-content-between align-items-center">
-                                    <small class="text-muted">Utenti: {{ users|count_users_with_package('manage_consulenze') }}</small>
-                                    <div>
-                                        <button class="btn btn-sm btn-outline-primary me-1">
-                                            <i class="bi bi-pencil"></i>
+                                    <div class="d-flex align-items-center mb-3">
+                                        <div class="bg-primary bg-gradient rounded-3 p-3 me-3">
+                                            <i class="bi bi-file-earmark-text text-white" style="font-size: 1.5rem;"></i>
+                                        </div>
+                                        <div>
+                                            <h5 class="mb-0">Gestione Consulenze</h5>
+                                            <small class="text-muted">Modulo principale per consulenze assicurative</small>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="mb-3">
+                                        <h6 class="text-muted small mb-2">FUNZIONALITÀ INCLUSE:</h6>
+                                        <ul class="list-unstyled mb-0">
+                                            <li class="mb-1">
+                                                <i class="bi bi-check-circle-fill text-success me-2"></i>
+                                                <span class="small">Anagrafica clienti completa</span>
+                                            </li>
+                                            <li class="mb-1">
+                                                <i class="bi bi-check-circle-fill text-success me-2"></i>
+                                                <span class="small">Generazione questionari PDF</span>
+                                            </li>
+                                            <li class="mb-1">
+                                                <i class="bi bi-check-circle-fill text-success me-2"></i>
+                                                <span class="small">Invio email automatico</span>
+                                            </li>
+                                            <li class="mb-1">
+                                                <i class="bi bi-check-circle-fill text-success me-2"></i>
+                                                <span class="small">Automazioni e promemoria</span>
+                                            </li>
+                                            <li class="mb-1">
+                                                <i class="bi bi-check-circle-fill text-success me-2"></i>
+                                                <span class="small">Importazione da Excel</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div>
+                                            <span class="badge bg-primary rounded-pill">
+                                                {{ users|count_users_with_package('manage_consulenze') }} utenti attivi
+                                            </span>
+                                        </div>
+                                        <button class="btn btn-sm btn-outline-primary">
+                                            <i class="bi bi-gear"></i> Configura
                                         </button>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         
-                        <div class="col">
-                            <div class="card h-100">
+                        <!-- Drivers Module -->
+                        <div class="col-lg-6">
+                            <div class="card border-0 shadow-sm h-100">
                                 <div class="card-body">
-                                    <h5 class="card-title">
-                                        <i class="bi bi-truck text-success me-2"></i>
-                                        manage_drivers
-                                    </h5>
-                                    <p class="card-text">Gestione Autisti</p>
-                                    <ul class="list-unstyled">
-                                        <li><i class="bi bi-check-circle-fill text-success me-2"></i>Anagrafica Autisti</li>
-                                        <li><i class="bi bi-check-circle-fill text-success me-2"></i>Gestione Veicoli</li>
-                                        <li><i class="bi bi-check-circle-fill text-success me-2"></i>Documenti di Trasporto</li>
-                                    </ul>
-                                </div>
-                                <div class="card-footer d-flex justify-content-between align-items-center">
-                                    <small class="text-muted">Utenti: {{ users|count_users_with_package('manage_drivers') }}</small>
-                                    <div>
-                                        <button class="btn btn-sm btn-outline-primary me-1">
-                                            <i class="bi bi-pencil"></i>
+                                    <div class="d-flex align-items-center mb-3">
+                                        <div class="bg-success bg-gradient rounded-3 p-3 me-3">
+                                            <i class="bi bi-truck text-white" style="font-size: 1.5rem;"></i>
+                                        </div>
+                                        <div>
+                                            <h5 class="mb-0">Gestione Autisti</h5>
+                                            <small class="text-muted">Modulo per la gestione di autisti e trasporti</small>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="mb-3">
+                                        <h6 class="text-muted small mb-2">FUNZIONALITÀ INCLUSE:</h6>
+                                        <ul class="list-unstyled mb-0">
+                                            <li class="mb-1">
+                                                <i class="bi bi-check-circle-fill text-success me-2"></i>
+                                                <span class="small">Anagrafica autisti</span>
+                                            </li>
+                                            <li class="mb-1">
+                                                <i class="bi bi-check-circle-fill text-success me-2"></i>
+                                                <span class="small">Gestione veicoli</span>
+                                            </li>
+                                            <li class="mb-1">
+                                                <i class="bi bi-check-circle-fill text-success me-2"></i>
+                                                <span class="small">Documenti di trasporto</span>
+                                            </li>
+                                            <li class="mb-1">
+                                                <i class="bi bi-check-circle-fill text-success me-2"></i>
+                                                <span class="small">Tracking spedizioni</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div>
+                                            <span class="badge bg-success rounded-pill">
+                                                {{ users|count_users_with_package('manage_drivers') }} utenti attivi
+                                            </span>
+                                        </div>
+                                        <button class="btn btn-sm btn-outline-success">
+                                            <i class="bi bi-gear"></i> Configura
                                         </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- System Tab -->
-                <div class="tab-pane fade" id="system" role="tabpanel" aria-labelledby="system-tab">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="card mb-4">
-                                <div class="card-header">
-                                    <h5 class="mb-0"><i class="bi bi-envelope me-2"></i>Configurazione Email</h5>
-                                </div>
-                                <div class="card-body">
-                                    <p>Configura le impostazioni SMTP per l'invio delle email.</p>
-                                    <a href="{{ url_for('consulenze_email') }}" class="btn btn-primary">
-                                        <i class="bi bi-gear me-1"></i> Configura SMTP
-                                    </a>
-                                    <button class="btn btn-outline-danger ms-2" id="resetSmtpBtnInner">
-                                        <i class="bi bi-arrow-counterclockwise me-1"></i> Reset Configurazione
-                                    </button>
-                                </div>
-                            </div>
-                            
-                            <div class="card mb-4">
-                                <div class="card-header">
-                                    <h5 class="mb-0"><i class="bi bi-chat-text me-2"></i>Testi Email</h5>
-                                </div>
-                                <div class="card-body">
-                                    <p>Gestisci i modelli di testo per le email.</p>
-                                    <a href="{{ url_for('consulenze_email_texts') }}" class="btn btn-primary">
-                                        <i class="bi bi-chat-text me-1"></i> Gestisci Testi
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="col-md-6">
-                            <div class="card mb-4">
-                                <div class="card-header">
-                                    <h5 class="mb-0"><i class="bi bi-database me-2"></i>Database</h5>
-                                </div>
-                                <div class="card-body">
-                                    <p>Gestisci il database dell'applicazione.</p>
-                                    <button class="btn btn-primary" id="backupDbBtn">
-                                        <i class="bi bi-download me-1"></i> Backup Database
-                                    </button>
-                                    <button class="btn btn-outline-warning ms-2" id="optimizeDbBtn">
-                                        <i class="bi bi-lightning me-1"></i> Ottimizza
-                                    </button>
-                                </div>
-                            </div>
-                            
-                            <div class="card mb-4">
-                                <div class="card-header">
-                                    <h5 class="mb-0"><i class="bi bi-calendar-check me-2"></i>Agenda</h5>
-                                </div>
-                                <div class="card-body">
-                                    <p>Gestisci scadenze e appuntamenti.</p>
-                                    <a href="{{ url_for('consulenze_calendar') }}" class="btn btn-primary">
-                                        <i class="bi bi-calendar me-1"></i> Vai all'Agenda
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="card">
-                        <div class="card-header">
-                            <h5 class="mb-0"><i class="bi bi-info-circle me-2"></i>Informazioni Sistema</h5>
-                        </div>
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <p><strong>Versione Applicazione:</strong> 1.1.0</p>
-                                    <p><strong>Database:</strong> PostgreSQL</p>
-                                    <p><strong>Framework:</strong> Flask</p>
-                                </div>
-                                <div class="col-md-6">
-                                    <p><strong>Ultimo Aggiornamento:</strong> {{ now.strftime('%d/%m/%Y') }}</p>
-                                    <p><strong>Utenti Registrati:</strong> {{ users|length }}</p>
-                                    <p><strong>Stato Sistema:</strong> <span class="badge bg-success">Attivo</span></p>
-                                </div>
-                            </div>
-                            
-                            <div class="mt-4">
-                                <h6>Statistiche</h6>
-                                <div class="progress mb-3">
-                                    {% set percentage = (questionari_inviati / questionari_count * 100) if questionari_count > 0 else 0 %}
-                                    <div class="progress-bar bg-success" role="progressbar" 
-                                         style="width: {{ percentage }}%" 
-                                         aria-valuenow="{{ percentage }}" 
-                                         aria-valuemin="0" aria-valuemax="100">
-                                        {{ questionari_inviati }} / {{ questionari_count }} Questionari Inviati
-                                    </div>
-                                </div>
-                                
-                                <div class="progress">
-                                    <div class="progress-bar bg-warning" role="progressbar" 
-                                         style="width: {{ smtp_configured }}%" 
-                                         aria-valuenow="{{ smtp_configured }}" aria-valuemin="0" aria-valuemax="100">
-                                        Configurazione SMTP: {{ "Completata" if smtp_configured == 100 else "Non configurata" }}
                                     </div>
                                 </div>
                             </div>
@@ -341,320 +489,190 @@
     </div>
 </div>
 
-<!-- Modal per aggiungere pacchetto -->
-<div class="modal fade" id="addPackageModal" tabindex="-1" aria-hidden="true">
+<!-- Add Package Modal -->
+<div class="modal fade" id="addPackageModal" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Aggiungi Nuovo Pacchetto</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <h5 class="modal-title">
+                    <i class="bi bi-plus-circle me-2"></i>Nuovo Modulo
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
             <div class="modal-body">
-                <form id="packageForm">
+                <form id="addPackageForm">
                     <div class="mb-3">
-                        <label for="packageName" class="form-label">Nome Pacchetto</label>
+                        <label for="packageName" class="form-label">Nome Modulo</label>
                         <input type="text" class="form-control" id="packageName" required>
-                        <div class="form-text">Usa formato: manage_nome (es. manage_fatture)</div>
                     </div>
                     <div class="mb-3">
                         <label for="packageDescription" class="form-label">Descrizione</label>
-                        <input type="text" class="form-control" id="packageDescription" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="packageIcon" class="form-label">Icona</label>
-                        <select class="form-select" id="packageIcon">
-                            <option value="file-earmark-text">Documento</option>
-                            <option value="truck">Veicolo</option>
-                            <option value="receipt">Fattura</option>
-                            <option value="calendar">Calendario</option>
-                            <option value="graph-up">Grafico</option>
-                            <option value="people">Persone</option>
-                        </select>
-                    </div>
-                    <div class="mb-3">
-                        <label for="packageColor" class="form-label">Colore</label>
-                        <select class="form-select" id="packageColor">
-                            <option value="primary">Blu</option>
-                            <option value="success">Verde</option>
-                            <option value="danger">Rosso</option>
-                            <option value="warning">Giallo</option>
-                            <option value="info">Azzurro</option>
-                        </select>
+                        <textarea class="form-control" id="packageDescription" rows="3"></textarea>
                     </div>
                 </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annulla</button>
-                <button type="button" class="btn btn-primary" id="savePackage">Salva Pacchetto</button>
+                <button type="button" class="btn btn-primary" onclick="addPackage()">
+                    <i class="bi bi-plus-circle me-1"></i>Crea Modulo
+                </button>
             </div>
         </div>
     </div>
 </div>
 
-<!-- Modal per modificare utente -->
-<div class="modal fade" id="editUserModal" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Modifica Utente</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <form id="editUserForm">
-                    <input type="hidden" id="editUserId">
-                    <div class="mb-3">
-                        <label for="editUsername" class="form-label">Username</label>
-                        <input type="text" class="form-control" id="editUsername" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="editPassword" class="form-label">Nuova Password (lasciare vuoto per non modificare)</label>
-                        <input type="password" class="form-control" id="editPassword">
-                    </div>
-                    <div class="mb-3">
-                        <label for="editRole" class="form-label">Ruolo</label>
-                        <select class="form-select" id="editRole">
-                            <option value="user">Utente</option>
-                            <option value="admin">Amministratore</option>
-                        </select>
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">Pacchetti</label>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="manage_consulenze" id="editPackageConsulenze" name="editPackages">
-                            <label class="form-check-label" for="editPackageConsulenze">
-                                Gestione Consulenze Assicurative
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="manage_drivers" id="editPackageDrivers" name="editPackages">
-                            <label class="form-check-label" for="editPackageDrivers">
-                                Gestione Autisti
-                            </label>
-                        </div>
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annulla</button>
-                <button type="button" class="btn btn-primary" id="saveEditUser">Salva Modifiche</button>
-            </div>
-        </div>
-    </div>
-</div>
-{% endblock %}
+<style>
+.avatar-sm {
+    width: 40px;
+    height: 40px;
+}
 
-{% block extra_js %}
+.hover-card {
+    transition: all 0.3s ease;
+}
+
+.hover-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+}
+
+.nav-pills .nav-link {
+    transition: all 0.3s ease;
+}
+
+.nav-pills .nav-link:hover {
+    background-color: rgba(13, 110, 253, 0.1);
+}
+
+.table-hover tbody tr:hover {
+    background-color: rgba(13, 110, 253, 0.05);
+}
+
+.btn-group .btn {
+    transition: all 0.2s ease;
+}
+
+.card {
+    transition: all 0.3s ease;
+}
+
+.card:hover {
+    box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.1);
+}
+</style>
+
 <script>
-    // Ricerca utenti
-    document.getElementById('userSearch').addEventListener('keyup', function() {
-        const searchValue = this.value.toLowerCase();
-        const table = document.getElementById('usersTable');
-        const rows = table.getElementsByTagName('tr');
-        
-        for (let i = 1; i < rows.length; i++) {
-            const username = rows[i].getElementsByTagName('td')[1].textContent.toLowerCase();
-            if (username.includes(searchValue)) {
-                rows[i].style.display = '';
-            } else {
-                rows[i].style.display = 'none';
-            }
-        }
+$(document).ready(function() {
+    // Search functionality
+    $('#userSearch').on('keyup', function() {
+        var value = $(this).val().toLowerCase();
+        $('#usersTable tbody tr').filter(function() {
+            $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
+        });
     });
     
-    // Eliminazione utente
-    function deleteUser(userId) {
+    // Refresh button
+    $('#refreshBtn').click(function() {
+        location.reload();
+    });
+    
+    // Reset SMTP configuration
+    $('#resetSmtpBtn').click(function() {
         Swal.fire({
-            title: 'Sei sicuro?',
-            text: "Questa azione non può essere annullata!",
+            title: 'Conferma Reset',
+            text: 'Sei sicuro di voler resettare la configurazione SMTP?',
             icon: 'warning',
-            iconColor: '#dc3545',
             showCancelButton: true,
             confirmButtonColor: '#dc3545',
             cancelButtonColor: '#6c757d',
-            confirmButtonText: 'Sì, elimina!',
-            cancelButtonText: 'Annulla',
-            background: '#fff',
-            backdrop: `rgba(0,0,0,0.4)`,
-            showClass: {
-                popup: 'animate__animated animate__fadeInDown'
-            },
-            hideClass: {
-                popup: 'animate__animated animate__fadeOutUp'
-            }
-        }).then((result) => {
-            if (result.isConfirmed) {
-                // Qui andrebbe la chiamata AJAX per eliminare l'utente
-                // Per ora mostriamo solo un messaggio di successo
-                Swal.fire({
-                    title: 'Eliminato!',
-                    text: 'L\'utente è stato eliminato.',
-                    icon: 'success',
-                    confirmButtonColor: '#0d6efd'
-                }).then(() => {
-                    location.reload();
-                });
-            }
-        });
-    }
-    
-    // Modifica utente
-    function editUser(userId) {
-        // Qui andrebbe la chiamata AJAX per ottenere i dati dell'utente
-        // Per ora impostiamo valori di esempio
-        document.getElementById('editUserId').value = userId;
-        document.getElementById('editUsername').value = 'user' + userId;
-        document.getElementById('editRole').value = 'user';
-        document.getElementById('editPackageConsulenze').checked = true;
-        document.getElementById('editPackageDrivers').checked = false;
-        
-        const editUserModal = new bootstrap.Modal(document.getElementById('editUserModal'));
-        editUserModal.show();
-    }
-    
-    // Salva modifiche utente
-    document.getElementById('saveEditUser').addEventListener('click', function() {
-        // Qui andrebbe la chiamata AJAX per salvare le modifiche
-        Swal.fire({
-            position: 'top-end',
-            icon: 'success',
-            title: 'Modifiche salvate!',
-            showConfirmButton: false,
-            timer: 1500,
-            timerProgressBar: true,
-            toast: true
-        });
-        
-        bootstrap.Modal.getInstance(document.getElementById('editUserModal')).hide();
-    });
-    
-    // Salva nuovo pacchetto
-    document.getElementById('savePackage').addEventListener('click', function() {
-        // Qui andrebbe la chiamata AJAX per salvare il nuovo pacchetto
-        Swal.fire({
-            position: 'top-end',
-            icon: 'success',
-            title: 'Pacchetto aggiunto!',
-            showConfirmButton: false,
-            timer: 1500,
-            timerProgressBar: true,
-            toast: true
-        });
-        
-        bootstrap.Modal.getInstance(document.getElementById('addPackageModal')).hide();
-    });
-    
-    // Reset configurazione SMTP
-    document.getElementById('resetSmtpBtn').addEventListener('click', resetSmtp);
-    document.getElementById('resetSmtpBtnInner').addEventListener('click', resetSmtp);
-    
-    function resetSmtp() {
-        Swal.fire({
-            title: 'Reset Configurazione SMTP',
-            text: "Sei sicuro di voler resettare la configurazione SMTP?",
-            icon: 'question',
-            showCancelButton: true,
-            confirmButtonColor: '#dc3545',
-            cancelButtonColor: '#6c757d',
-            confirmButtonText: 'Sì, resetta!',
+            confirmButtonText: 'Sì, resetta',
             cancelButtonText: 'Annulla'
         }).then((result) => {
             if (result.isConfirmed) {
-                // Chiamata AJAX per resettare la configurazione SMTP
-                fetch('/admin/reset-smtp', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'X-Requested-With': 'XMLHttpRequest'
-                    }
-                })
-                .then(response => response.json())
-                .then(data => {
+                $.post('/admin/reset-smtp')
+                .done(function(data) {
                     if (data.success) {
-                        Swal.fire(
-                            'Configurazione Resettata!',
-                            data.message,
-                            'success'
-                        ).then(() => {
-                            // Aggiorna la pagina per riflettere le modifiche
-                            location.reload();
-                        });
+                        Swal.fire('Successo!', 'Configurazione SMTP resettata.', 'success')
+                        .then(() => location.reload());
                     } else {
-                        Swal.fire(
-                            'Errore!',
-                            data.message,
-                            'error'
-                        );
+                        Swal.fire('Errore!', data.message, 'error');
                     }
                 })
-                .catch(error => {
-                    console.error('Error:', error);
-                    Swal.fire(
-                        'Errore!',
-                        'Si è verificato un errore durante il reset della configurazione.',
-                        'error'
-                    );
+                .fail(function() {
+                    Swal.fire('Errore!', 'Errore di connessione.', 'error');
                 });
             }
         });
+    });
+    
+    // Database operations
+    $('#backupDbBtn').click(function() {
+        Swal.fire({
+            title: 'Backup Database',
+            text: 'Vuoi creare un backup del database?',
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonColor: '#198754',
+            cancelButtonColor: '#6c757d',
+            confirmButtonText: 'Sì, crea backup',
+            cancelButtonText: 'Annulla'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire('Info', 'Funzionalità in sviluppo', 'info');
+            }
+        });
+    });
+    
+    $('#optimizeDbBtn').click(function() {
+        Swal.fire({
+            title: 'Ottimizza Database',
+            text: 'Vuoi ottimizzare il database? Questa operazione potrebbe richiedere alcuni minuti.',
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonColor: '#ffc107',
+            cancelButtonColor: '#6c757d',
+            confirmButtonText: 'Sì, ottimizza',
+            cancelButtonText: 'Annulla'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire('Info', 'Funzionalità in sviluppo', 'info');
+            }
+        });
+    });
+});
+
+function editUser(userId) {
+    Swal.fire('Info', 'Funzionalità di modifica utente in sviluppo', 'info');
+}
+
+function deleteUser(userId) {
+    Swal.fire({
+        title: 'Elimina Utente',
+        text: 'Sei sicuro di voler eliminare questo utente? Questa azione non può essere annullata.',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#dc3545',
+        cancelButtonColor: '#6c757d',
+        confirmButtonText: 'Sì, elimina',
+        cancelButtonText: 'Annulla'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            Swal.fire('Info', 'Funzionalità di eliminazione utente in sviluppo', 'info');
+        }
+    });
+}
+
+function addPackage() {
+    const name = $('#packageName').val();
+    const description = $('#packageDescription').val();
+    
+    if (!name) {
+        Swal.fire('Errore', 'Il nome del modulo è obbligatorio', 'error');
+        return;
     }
     
-    // Backup database
-    document.getElementById('backupDbBtn').addEventListener('click', function() {
-        Swal.fire({
-            title: 'Backup in corso...',
-            html: 'Creazione backup del database',
-            timerProgressBar: true,
-            didOpen: () => {
-                Swal.showLoading();
-                
-                // Simulazione del backup
-                setTimeout(() => {
-                    Swal.fire({
-                        title: 'Backup Completato!',
-                        text: 'Il backup del database è stato creato con successo.',
-                        icon: 'success',
-                        confirmButtonColor: '#0d6efd'
-                    });
-                }, 2000);
-            }
-        });
-    });
-    
-    // Ottimizzazione database
-    document.getElementById('optimizeDbBtn').addEventListener('click', function() {
-        Swal.fire({
-            title: 'Ottimizzazione in corso...',
-            html: 'Ottimizzazione del database',
-            timerProgressBar: true,
-            didOpen: () => {
-                Swal.showLoading();
-                
-                // Simulazione dell'ottimizzazione
-                setTimeout(() => {
-                    Swal.fire({
-                        title: 'Ottimizzazione Completata!',
-                        text: 'Il database è stato ottimizzato con successo.',
-                        icon: 'success',
-                        confirmButtonColor: '#0d6efd'
-                    });
-                }, 2000);
-            }
-        });
-    });
-    
-    // Animazioni per i tab
-    document.querySelectorAll('button[data-bs-toggle="tab"]').forEach(function(tab) {
-        tab.addEventListener('shown.bs.tab', function(e) {
-            const targetId = e.target.getAttribute('data-bs-target');
-            const targetPane = document.querySelector(targetId);
-            
-            targetPane.classList.add('animate__animated', 'animate__fadeIn');
-            
-            // Rimuovi le classi di animazione dopo che è terminata
-            setTimeout(function() {
-                targetPane.classList.remove('animate__animated', 'animate__fadeIn');
-            }, 500);
-        });
-    });
+    Swal.fire('Info', 'Funzionalità di aggiunta modulo in sviluppo', 'info');
+    $('#addPackageModal').modal('hide');
+}
 </script>
 {% endblock %}

@@ -206,12 +206,7 @@
                                 <i class="bi bi-file-earmark-excel"></i> Importazione Excel
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link {% if request.path == '/consulenze/history' %}active{% endif %}" 
-                               href="{{ url_for('consulenze_history') }}">
-                                <i class="bi bi-clock-history"></i> Storico Invii
-                            </a>
-                        </li>
+
                         <li class="nav-item">
                             <a class="nav-link {% if request.path == '/consulenze/calendar' %}active{% endif %}" 
                                href="{{ url_for('consulenze_calendar') }}">
@@ -222,6 +217,12 @@
                             <a class="nav-link {% if request.path == '/consulenze/email-texts' %}active{% endif %}" 
                                href="{{ url_for('consulenze_email_texts') }}">
                                 <i class="bi bi-chat-text"></i> Testi Email
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {% if request.path.startswith('/consulenze/template-tools') %}active{% endif %}" 
+                               href="{{ url_for('template_tools_home') }}">
+                                <i class="bi bi-filetype-pdf"></i> Editor Template PDF
                             </a>
                         </li>
                     </ul>

@@ -4362,3 +4362,1051 @@ DETAIL:  La chiave (codice_fiscale)=(RSSMRA80A01H501U) esiste già.
 2025-08-07 22:46:54,076 - werkzeug - INFO -  * Debugger PIN: 135-846-870
 2025-08-07 22:46:54,097 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:46:54] "[32mGET /api/automazioni/status HTTP/1.1[0m" 302 -
 2025-08-07 22:46:54,187 - werkzeug - INFO - 127.0.0.1 - - [07/Aug/2025 22:46:54] "GET /login HTTP/1.1" 200 -
+2025-08-12 14:22:52,830 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-08-12 14:22:52,830 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-08-12 14:22:52,830 - werkzeug - INFO -  * Restarting with stat
+2025-08-12 14:22:55,417 - werkzeug - WARNING -  * Debugger is active!
+2025-08-12 14:22:55,418 - werkzeug - INFO -  * Debugger PIN: 141-459-794
+2025-08-12 14:23:30,834 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 14:23:30] "[32mGET / HTTP/1.1[0m" 302 -
+2025-08-12 14:23:31,018 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 14:23:31] "GET /login HTTP/1.1" 200 -
+2025-08-12 14:23:31,228 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 14:23:31] "GET /static/css/custom.css HTTP/1.1" 200 -
+2025-08-12 14:23:31,479 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 14:23:31] "GET /static/js/custom.js HTTP/1.1" 200 -
+2025-08-12 14:23:31,962 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 14:23:31] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-08-12 14:23:36,308 - app - WARNING - Tentativo di login fallito per l'utente stefano da IP 127.0.0.1
+2025-08-12 14:23:36,308 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 14:23:36] "POST /login HTTP/1.1" 200 -
+2025-08-12 14:23:36,392 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 14:23:36] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-12 14:23:36,694 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 14:23:36] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-12 14:23:41,688 - app - INFO - Login riuscito per l'utente admin da IP 127.0.0.1
+2025-08-12 14:23:41,688 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 14:23:41] "[32mPOST /login HTTP/1.1[0m" 302 -
+2025-08-12 14:23:41,695 - app - INFO - Pacchetti per l'utente admin: ['manage_consulenze', 'manage_drivers'], tipo: <class 'list'>
+2025-08-12 14:23:41,742 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 14:23:41] "GET /dashboard HTTP/1.1" 200 -
+2025-08-12 14:23:41,962 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 14:23:41] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-12 14:23:42,372 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 14:23:42] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-12 14:23:49,214 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 14:23:49] "GET /admin HTTP/1.1" 200 -
+2025-08-12 14:23:49,254 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 14:23:49] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-12 14:23:49,571 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 14:23:49] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-12 14:24:16,322 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 14:24:16] "GET /admin/users/add HTTP/1.1" 200 -
+2025-08-12 14:24:16,613 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 14:24:16] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-12 14:24:16,687 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 14:24:16] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-12 14:24:25,125 - app - INFO - Pacchetti per il nuovo utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-12 14:24:26,235 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 14:24:26] "[35m[1mPOST /admin/users/add HTTP/1.1[0m" 500 -
+2025-08-12 14:24:26,407 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 14:24:26] "GET /admin/users/add?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+2025-08-12 14:24:26,415 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 14:24:26] "GET /admin/users/add?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
+2025-08-12 14:24:26,767 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 14:24:26] "GET /admin/users/add?__debugger__=yes&cmd=resource&f=console.png&s=zi0JAExe9Fa79s754VXw HTTP/1.1" 200 -
+2025-08-12 14:24:27,033 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 14:24:27] "GET /admin/users/add?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+2025-08-12 14:26:40,811 - werkzeug - INFO -  * Detected change in 'C:\\Users\\User\\Desktop\\Nuova cartella\\crm\\app.py', reloading
+2025-08-12 14:26:41,074 - werkzeug - INFO -  * Restarting with stat
+2025-08-12 14:26:44,171 - werkzeug - WARNING -  * Debugger is active!
+2025-08-12 14:26:44,175 - werkzeug - INFO -  * Debugger PIN: 141-459-794
+2025-08-12 14:26:46,974 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 14:26:46] "[32mGET /admin/users/add HTTP/1.1[0m" 302 -
+2025-08-12 14:26:47,066 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 14:26:47] "GET /login HTTP/1.1" 200 -
+2025-08-12 14:26:47,353 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 14:26:47] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-12 14:26:47,659 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 14:26:47] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-12 14:26:51,857 - app - INFO - Login riuscito per l'utente admin da IP 127.0.0.1
+2025-08-12 14:26:51,858 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 14:26:51] "[32mPOST /login HTTP/1.1[0m" 302 -
+2025-08-12 14:26:51,864 - app - INFO - Pacchetti per l'utente admin: ['manage_consulenze', 'manage_drivers'], tipo: <class 'list'>
+2025-08-12 14:26:51,917 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 14:26:51] "GET /dashboard HTTP/1.1" 200 -
+2025-08-12 14:26:52,131 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 14:26:52] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-12 14:26:52,471 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 14:26:52] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-12 14:26:55,447 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 14:26:55] "GET /admin HTTP/1.1" 200 -
+2025-08-12 14:26:55,496 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 14:26:55] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-12 14:26:55,804 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 14:26:55] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-12 14:26:59,218 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 14:26:59] "GET /admin/users/add HTTP/1.1" 200 -
+2025-08-12 14:26:59,322 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 14:26:59] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-12 14:26:59,479 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 14:26:59] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-12 14:27:09,411 - app - INFO - Pacchetti per il nuovo utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-12 14:27:10,507 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 14:27:10] "[35m[1mPOST /admin/users/add HTTP/1.1[0m" 500 -
+2025-08-12 14:27:10,546 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 14:27:10] "[36mGET /admin/users/add?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2025-08-12 14:27:10,861 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 14:27:10] "[36mGET /admin/users/add?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2025-08-12 14:27:11,190 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 14:27:11] "GET /admin/users/add?__debugger__=yes&cmd=resource&f=console.png&s=qBPRTcWki4PSyE8M2cs6 HTTP/1.1" 200 -
+2025-08-12 14:27:11,437 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 14:27:11] "[36mGET /admin/users/add?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2025-08-12 14:30:15,380 - werkzeug - INFO -  * Detected change in 'C:\\Users\\User\\Desktop\\Nuova cartella\\crm\\app.py', reloading
+2025-08-12 14:30:15,489 - werkzeug - INFO -  * Restarting with stat
+2025-08-12 14:30:18,163 - werkzeug - WARNING -  * Debugger is active!
+2025-08-12 14:30:18,166 - werkzeug - INFO -  * Debugger PIN: 141-459-794
+2025-08-12 14:32:34,173 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 14:32:34] "[32mGET /admin/users/add HTTP/1.1[0m" 302 -
+2025-08-12 14:32:34,195 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 14:32:34] "GET /login HTTP/1.1" 200 -
+2025-08-12 14:32:34,503 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 14:32:34] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-12 14:32:34,857 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 14:32:34] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-12 14:32:38,266 - app - INFO - Login riuscito per l'utente admin da IP 127.0.0.1
+2025-08-12 14:32:38,271 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 14:32:38] "[32mPOST /login HTTP/1.1[0m" 302 -
+2025-08-12 14:32:38,276 - app - INFO - Pacchetti per l'utente admin: ['manage_consulenze', 'manage_drivers'], tipo: <class 'list'>
+2025-08-12 14:32:38,294 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 14:32:38] "GET /dashboard HTTP/1.1" 200 -
+2025-08-12 14:32:38,738 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 14:32:38] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-12 14:32:38,806 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 14:32:38] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-12 14:32:41,720 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 14:32:41] "GET /admin HTTP/1.1" 200 -
+2025-08-12 14:32:41,763 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 14:32:41] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-12 14:32:42,071 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 14:32:42] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-12 14:32:48,369 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 14:32:48] "GET /admin/users/add HTTP/1.1" 200 -
+2025-08-12 14:32:48,466 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 14:32:48] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-12 14:32:48,630 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 14:32:48] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-12 14:32:54,447 - app - INFO - Pacchetti per il nuovo utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-12 14:32:55,699 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 14:32:55] "[32mPOST /admin/users/add HTTP/1.1[0m" 302 -
+2025-08-12 14:32:56,165 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 14:32:56] "GET /admin HTTP/1.1" 200 -
+2025-08-12 14:32:56,205 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 14:32:56] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-12 14:32:56,530 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 14:32:56] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-12 14:33:05,210 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 14:33:05] "[32mGET /logout HTTP/1.1[0m" 302 -
+2025-08-12 14:33:05,524 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 14:33:05] "GET /login HTTP/1.1" 200 -
+2025-08-12 14:33:05,883 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 14:33:05] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-12 14:33:05,883 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 14:33:05] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-12 14:33:11,675 - app - INFO - Login riuscito per l'utente stefano da IP 127.0.0.1
+2025-08-12 14:33:11,676 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 14:33:11] "[32mPOST /login HTTP/1.1[0m" 302 -
+2025-08-12 14:33:11,682 - app - INFO - Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-12 14:33:11,683 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 14:33:11] "GET /dashboard HTTP/1.1" 200 -
+2025-08-12 14:33:12,059 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 14:33:12] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-12 14:33:12,059 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 14:33:12] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-12 14:33:22,618 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-12 14:33:22,618 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-12 14:33:22,619 - app - INFO - consulenze_index: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-12 14:33:22,619 - app - INFO - consulenze_index: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-12 14:33:22,628 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 14:33:22] "GET /consulenze HTTP/1.1" 200 -
+2025-08-12 14:33:22,929 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 14:33:22] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-12 14:33:22,992 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 14:33:22] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-12 14:33:26,278 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-12 14:33:26,278 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-12 14:33:26,609 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 14:33:26] "GET /consulenze/email-texts HTTP/1.1" 200 -
+2025-08-12 14:33:26,677 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 14:33:26] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-12 14:33:26,677 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 14:33:26] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-12 14:33:28,378 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-12 14:33:28,378 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-12 14:33:28,822 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 14:33:28] "GET /consulenze/calendar HTTP/1.1" 200 -
+2025-08-12 14:33:28,870 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 14:33:28] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-12 14:33:28,873 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 14:33:28] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-12 14:34:10,039 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-12 14:34:10,039 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-12 14:34:10,522 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 14:34:10] "GET /consulenze/questionari HTTP/1.1" 200 -
+2025-08-12 14:34:10,601 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 14:34:10] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-12 14:34:10,602 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 14:34:10] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-12 14:46:35,416 - werkzeug - INFO -  * Detected change in 'C:\\Users\\User\\Desktop\\Nuova cartella\\crm\\app.py', reloading
+2025-08-12 14:46:35,855 - werkzeug - INFO -  * Restarting with stat
+2025-08-12 14:46:38,833 - werkzeug - WARNING -  * Debugger is active!
+2025-08-12 14:46:38,849 - werkzeug - INFO -  * Debugger PIN: 141-459-794
+2025-08-12 14:47:51,263 - werkzeug - INFO -  * Detected change in 'C:\\Users\\User\\Desktop\\Nuova cartella\\crm\\app.py', reloading
+2025-08-12 14:47:51,566 - werkzeug - INFO -  * Restarting with stat
+2025-08-12 14:47:54,318 - werkzeug - WARNING -  * Debugger is active!
+2025-08-12 14:47:54,323 - werkzeug - INFO -  * Debugger PIN: 141-459-794
+2025-08-12 14:48:36,089 - werkzeug - INFO -  * Detected change in 'C:\\Users\\User\\Desktop\\Nuova cartella\\crm\\app.py', reloading
+2025-08-12 14:48:36,223 - werkzeug - INFO -  * Restarting with stat
+2025-08-12 14:48:38,646 - werkzeug - WARNING -  * Debugger is active!
+2025-08-12 14:48:38,646 - werkzeug - INFO -  * Debugger PIN: 141-459-794
+2025-08-12 14:50:42,186 - werkzeug - INFO -  * Detected change in 'C:\\Users\\User\\Desktop\\Nuova cartella\\crm\\app.py', reloading
+2025-08-12 14:50:42,538 - werkzeug - INFO -  * Restarting with stat
+2025-08-12 14:50:45,065 - werkzeug - WARNING -  * Debugger is active!
+2025-08-12 14:50:45,068 - werkzeug - INFO -  * Debugger PIN: 141-459-794
+2025-08-12 14:51:45,341 - werkzeug - INFO -  * Detected change in 'C:\\Users\\User\\Desktop\\Nuova cartella\\crm\\app.py', reloading
+2025-08-12 14:51:45,458 - werkzeug - INFO -  * Restarting with stat
+2025-08-12 14:51:47,790 - werkzeug - WARNING -  * Debugger is active!
+2025-08-12 14:51:47,793 - werkzeug - INFO -  * Debugger PIN: 141-459-794
+2025-08-12 14:58:34,085 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 14:58:34] "[32mGET /dashboard HTTP/1.1[0m" 302 -
+2025-08-12 14:58:34,199 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 14:58:34] "GET /login HTTP/1.1" 200 -
+2025-08-12 14:58:34,521 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 14:58:34] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-12 14:58:34,750 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 14:58:34] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-12 14:58:40,349 - app - INFO - Login riuscito per l'utente stefano da IP 127.0.0.1
+2025-08-12 14:58:40,349 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 14:58:40] "[32mPOST /login HTTP/1.1[0m" 302 -
+2025-08-12 14:58:40,356 - app - INFO - Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-12 14:58:40,367 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 14:58:40] "GET /dashboard HTTP/1.1" 200 -
+2025-08-12 14:58:40,578 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 14:58:40] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-12 14:58:41,001 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 14:58:41] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-12 14:58:42,929 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-12 14:58:42,930 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-12 14:58:42,930 - app - INFO - consulenze_index: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-12 14:58:42,930 - app - INFO - consulenze_index: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-12 14:58:42,936 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 14:58:42] "GET /consulenze HTTP/1.1" 200 -
+2025-08-12 14:58:43,232 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 14:58:43] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-12 14:58:43,312 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 14:58:43] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-12 14:58:45,482 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-12 14:58:45,483 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-12 14:58:45,994 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 14:58:45] "GET /consulenze/questionari HTTP/1.1" 200 -
+2025-08-12 14:58:46,083 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 14:58:46] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-12 14:58:46,083 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 14:58:46] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-12 14:58:58,222 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 14:58:58] "[32mGET /logout HTTP/1.1[0m" 302 -
+2025-08-12 14:58:58,278 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 14:58:58] "GET /login HTTP/1.1" 200 -
+2025-08-12 14:58:58,467 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 14:58:58] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-12 14:58:58,873 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 14:58:58] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-12 14:59:03,171 - app - INFO - Login riuscito per l'utente admin da IP 127.0.0.1
+2025-08-12 14:59:03,172 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 14:59:03] "[32mPOST /login HTTP/1.1[0m" 302 -
+2025-08-12 14:59:03,178 - app - INFO - Pacchetti per l'utente admin: ['manage_consulenze', 'manage_drivers'], tipo: <class 'list'>
+2025-08-12 14:59:03,179 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 14:59:03] "GET /dashboard HTTP/1.1" 200 -
+2025-08-12 14:59:03,602 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 14:59:03] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-12 14:59:03,659 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 14:59:03] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-12 14:59:07,649 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 14:59:07] "GET /admin HTTP/1.1" 200 -
+2025-08-12 14:59:07,703 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 14:59:07] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-12 14:59:08,004 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 14:59:08] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-12 14:59:11,883 - app - INFO - Pacchetti per l'utente admin: ['manage_consulenze', 'manage_drivers'], tipo: <class 'list'>
+2025-08-12 14:59:11,885 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 14:59:11] "GET /dashboard HTTP/1.1" 200 -
+2025-08-12 14:59:12,015 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 14:59:12] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-12 14:59:12,132 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 14:59:12] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-12 14:59:16,713 - app - INFO - has_package: Pacchetti per l'utente admin: ['manage_consulenze', 'manage_drivers'], tipo: <class 'list'>
+2025-08-12 14:59:16,714 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze', 'manage_drivers']: True
+2025-08-12 14:59:16,714 - app - INFO - consulenze_index: Pacchetti per l'utente admin: ['manage_consulenze', 'manage_drivers'], tipo: <class 'list'>
+2025-08-12 14:59:16,714 - app - INFO - consulenze_index: Verifica se 'manage_consulenze' è in ['manage_consulenze', 'manage_drivers']: True
+2025-08-12 14:59:16,715 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 14:59:16] "GET /consulenze HTTP/1.1" 200 -
+2025-08-12 14:59:17,037 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 14:59:17] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-12 14:59:17,083 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 14:59:17] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-12 14:59:18,631 - app - INFO - has_package: Pacchetti per l'utente admin: ['manage_consulenze', 'manage_drivers'], tipo: <class 'list'>
+2025-08-12 14:59:18,631 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze', 'manage_drivers']: True
+2025-08-12 14:59:19,129 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 14:59:19] "GET /consulenze/questionari HTTP/1.1" 200 -
+2025-08-12 14:59:19,228 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 14:59:19] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-12 14:59:19,229 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 14:59:19] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-12 14:59:28,877 - app - INFO - has_package: Pacchetti per l'utente admin: ['manage_consulenze', 'manage_drivers'], tipo: <class 'list'>
+2025-08-12 14:59:28,878 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze', 'manage_drivers']: True
+2025-08-12 14:59:29,322 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 14:59:29] "GET /consulenze/questionari/template-editor/1 HTTP/1.1" 200 -
+2025-08-12 14:59:29,388 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 14:59:29] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-12 14:59:29,701 - app - INFO - has_package: Pacchetti per l'utente admin: ['manage_consulenze', 'manage_drivers'], tipo: <class 'list'>
+2025-08-12 14:59:29,704 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze', 'manage_drivers']: True
+2025-08-12 14:59:29,708 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 14:59:29] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-12 14:59:29,713 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 14:59:29] "GET /pdf_template/template_base.pdf HTTP/1.1" 200 -
+2025-08-12 14:59:31,633 - app - INFO - has_package: Pacchetti per l'utente admin: ['manage_consulenze', 'manage_drivers'], tipo: <class 'list'>
+2025-08-12 14:59:31,633 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze', 'manage_drivers']: True
+2025-08-12 14:59:32,090 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 14:59:32] "GET /consulenze/questionari HTTP/1.1" 200 -
+2025-08-12 14:59:32,157 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 14:59:32] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-12 14:59:32,158 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 14:59:32] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-12 14:59:41,151 - app - INFO - has_package: Pacchetti per l'utente admin: ['manage_consulenze', 'manage_drivers'], tipo: <class 'list'>
+2025-08-12 14:59:41,151 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze', 'manage_drivers']: True
+2025-08-12 14:59:41,632 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 14:59:41] "GET /consulenze/questionari/template-editor/1 HTTP/1.1" 200 -
+2025-08-12 14:59:41,690 - app - INFO - has_package: Pacchetti per l'utente admin: ['manage_consulenze', 'manage_drivers'], tipo: <class 'list'>
+2025-08-12 14:59:41,691 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze', 'manage_drivers']: True
+2025-08-12 14:59:41,693 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 14:59:41] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-12 14:59:41,695 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 14:59:41] "[36mGET /pdf_template/template_base.pdf HTTP/1.1[0m" 304 -
+2025-08-12 14:59:42,000 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 14:59:42] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-12 14:59:51,486 - app - INFO - has_package: Pacchetti per l'utente admin: ['manage_consulenze', 'manage_drivers'], tipo: <class 'list'>
+2025-08-12 14:59:51,487 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze', 'manage_drivers']: True
+2025-08-12 14:59:52,027 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 14:59:52] "GET /consulenze/questionari HTTP/1.1" 200 -
+2025-08-12 14:59:52,109 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 14:59:52] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-12 14:59:52,178 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 14:59:52] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-12 14:59:54,710 - app - INFO - has_package: Pacchetti per l'utente admin: ['manage_consulenze', 'manage_drivers'], tipo: <class 'list'>
+2025-08-12 14:59:54,710 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze', 'manage_drivers']: True
+2025-08-12 14:59:55,167 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 14:59:55] "GET /consulenze/questionari/template-editor/1 HTTP/1.1" 200 -
+2025-08-12 14:59:55,228 - app - INFO - has_package: Pacchetti per l'utente admin: ['manage_consulenze', 'manage_drivers'], tipo: <class 'list'>
+2025-08-12 14:59:55,229 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze', 'manage_drivers']: True
+2025-08-12 14:59:55,230 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 14:59:55] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-12 14:59:55,232 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 14:59:55] "[36mGET /pdf_template/template_base.pdf HTTP/1.1[0m" 304 -
+2025-08-12 14:59:55,537 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 14:59:55] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-12 15:00:09,885 - app - INFO - has_package: Pacchetti per l'utente admin: ['manage_consulenze', 'manage_drivers'], tipo: <class 'list'>
+2025-08-12 15:00:09,885 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze', 'manage_drivers']: True
+2025-08-12 15:00:10,335 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:00:10] "GET /consulenze/email HTTP/1.1" 200 -
+2025-08-12 15:00:10,395 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:00:10] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-12 15:00:10,396 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:00:10] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-12 15:00:23,894 - app - INFO - has_package: Pacchetti per l'utente admin: ['manage_consulenze', 'manage_drivers'], tipo: <class 'list'>
+2025-08-12 15:00:23,894 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze', 'manage_drivers']: True
+2025-08-12 15:00:24,379 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:00:24] "GET /consulenze/questionari HTTP/1.1" 200 -
+2025-08-12 15:00:24,464 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:00:24] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-12 15:00:24,464 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:00:24] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-12 15:00:32,235 - app - INFO - has_package: Pacchetti per l'utente admin: ['manage_consulenze', 'manage_drivers'], tipo: <class 'list'>
+2025-08-12 15:00:32,236 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze', 'manage_drivers']: True
+2025-08-12 15:00:32,673 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:00:32] "GET /consulenze/questionari/template-editor/1 HTTP/1.1" 200 -
+2025-08-12 15:00:32,732 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:00:32] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-12 15:00:33,046 - app - INFO - has_package: Pacchetti per l'utente admin: ['manage_consulenze', 'manage_drivers'], tipo: <class 'list'>
+2025-08-12 15:00:33,049 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze', 'manage_drivers']: True
+2025-08-12 15:00:33,052 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:00:33] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-12 15:00:33,057 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:00:33] "[36mGET /pdf_template/template_base.pdf HTTP/1.1[0m" 304 -
+2025-08-12 15:00:39,275 - app - INFO - has_package: Pacchetti per l'utente admin: ['manage_consulenze', 'manage_drivers'], tipo: <class 'list'>
+2025-08-12 15:00:39,275 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze', 'manage_drivers']: True
+2025-08-12 15:00:39,636 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:00:39] "POST /consulenze/questionari/template-editor/save HTTP/1.1" 200 -
+2025-08-12 15:00:42,351 - app - INFO - has_package: Pacchetti per l'utente admin: ['manage_consulenze', 'manage_drivers'], tipo: <class 'list'>
+2025-08-12 15:00:42,351 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze', 'manage_drivers']: True
+2025-08-12 15:00:42,779 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:00:42] "GET /consulenze/questionari HTTP/1.1" 200 -
+2025-08-12 15:00:42,919 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:00:42] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-12 15:00:43,284 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:00:43] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-12 15:01:39,376 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-08-12 15:01:39,376 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-08-12 15:01:39,378 - werkzeug - INFO -  * Restarting with stat
+2025-08-12 15:01:42,185 - werkzeug - WARNING -  * Debugger is active!
+2025-08-12 15:01:42,189 - werkzeug - INFO -  * Debugger PIN: 141-459-794
+2025-08-12 15:02:14,798 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:02:14] "[32mGET /consulenze/questionari/template-editor/1 HTTP/1.1[0m" 302 -
+2025-08-12 15:02:14,887 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:02:14] "GET /login HTTP/1.1" 200 -
+2025-08-12 15:02:15,236 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:02:15] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-12 15:02:15,469 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:02:15] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-12 15:02:22,156 - app - INFO - Login riuscito per l'utente stefano da IP 127.0.0.1
+2025-08-12 15:02:22,158 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:02:22] "[32mPOST /login HTTP/1.1[0m" 302 -
+2025-08-12 15:02:22,164 - app - INFO - Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-12 15:02:22,176 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:02:22] "GET /dashboard HTTP/1.1" 200 -
+2025-08-12 15:02:22,254 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:02:22] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-12 15:02:22,567 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:02:22] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-12 15:02:24,484 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-12 15:02:24,484 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-12 15:02:24,490 - app - INFO - consulenze_index: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-12 15:02:24,490 - app - INFO - consulenze_index: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-12 15:02:24,511 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:02:24] "GET /consulenze HTTP/1.1" 200 -
+2025-08-12 15:02:24,582 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:02:24] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-12 15:02:24,744 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:02:24] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-12 15:02:26,436 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-12 15:02:26,437 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-12 15:02:27,009 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:02:27] "GET /consulenze/questionari HTTP/1.1" 200 -
+2025-08-12 15:02:27,076 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:02:27] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-12 15:02:27,077 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:02:27] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-12 15:02:32,431 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-12 15:02:32,431 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-12 15:02:32,923 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:02:32] "GET /consulenze/questionari/template-editor/1 HTTP/1.1" 200 -
+2025-08-12 15:02:32,979 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:02:32] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-12 15:02:33,283 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-12 15:02:33,286 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-12 15:02:33,295 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:02:33] "[36mGET /pdf_template/template_base.pdf HTTP/1.1[0m" 304 -
+2025-08-12 15:02:33,295 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:02:33] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-12 15:02:36,461 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-12 15:02:36,461 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-12 15:02:36,912 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:02:36] "GET /consulenze/questionari HTTP/1.1" 200 -
+2025-08-12 15:02:36,976 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:02:36] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-12 15:02:36,976 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:02:36] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-12 15:02:39,460 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-12 15:02:39,460 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-12 15:02:39,917 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:02:39] "GET /consulenze/questionari/template-editor/1 HTTP/1.1" 200 -
+2025-08-12 15:02:39,991 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-12 15:02:39,992 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-12 15:02:39,993 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:02:39] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-12 15:02:39,995 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:02:39] "[36mGET /pdf_template/template_base.pdf HTTP/1.1[0m" 304 -
+2025-08-12 15:02:40,303 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:02:40] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-12 15:05:09,864 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-12 15:05:09,864 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-12 15:05:11,681 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:05:11] "GET /consulenze/questionari/template-editor/1 HTTP/1.1" 200 -
+2025-08-12 15:05:11,771 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-12 15:05:11,772 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-12 15:05:11,773 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:05:11] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-12 15:05:11,775 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:05:11] "[36mGET /pdf_template/template_base.pdf HTTP/1.1[0m" 304 -
+2025-08-12 15:05:12,084 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:05:12] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-12 15:06:10,203 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-12 15:06:10,203 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-12 15:06:10,669 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:06:10] "GET /consulenze/questionari/template-editor/1 HTTP/1.1" 200 -
+2025-08-12 15:06:10,740 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:06:10] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-12 15:06:10,744 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:06:10] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-12 15:06:11,167 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-12 15:06:11,168 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-12 15:06:11,169 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:06:11] "[36mGET /pdf_template/template_base.pdf HTTP/1.1[0m" 304 -
+2025-08-12 15:06:13,040 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-12 15:06:13,041 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-12 15:06:13,547 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:06:13] "GET /consulenze/questionari HTTP/1.1" 200 -
+2025-08-12 15:06:13,606 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:06:13] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-12 15:06:13,910 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:06:13] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-12 15:06:16,983 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-12 15:06:16,983 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-12 15:06:17,431 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:06:17] "GET /consulenze/questionari/template-editor/1 HTTP/1.1" 200 -
+2025-08-12 15:06:17,492 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:06:17] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-12 15:06:17,507 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:06:17] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-12 15:06:17,962 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-12 15:06:17,962 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-12 15:06:17,963 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:06:17] "[36mGET /pdf_template/template_base.pdf HTTP/1.1[0m" 304 -
+2025-08-12 15:06:34,463 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-12 15:06:34,463 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-12 15:06:34,970 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:06:34] "GET /consulenze/questionari HTTP/1.1" 200 -
+2025-08-12 15:06:35,035 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:06:35] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-12 15:06:35,341 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:06:35] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-12 15:11:49,911 - werkzeug - INFO -  * Detected change in 'C:\\Users\\User\\Desktop\\Nuova cartella\\crm\\app.py', reloading
+2025-08-12 15:11:50,027 - werkzeug - INFO -  * Restarting with stat
+2025-08-12 15:11:53,466 - werkzeug - WARNING -  * Debugger is active!
+2025-08-12 15:11:53,478 - werkzeug - INFO -  * Debugger PIN: 141-459-794
+2025-08-12 15:14:20,753 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:14:20] "[32mGET /consulenze/questionari HTTP/1.1[0m" 302 -
+2025-08-12 15:14:20,802 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:14:20] "GET /login HTTP/1.1" 200 -
+2025-08-12 15:14:21,184 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:14:21] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-12 15:14:21,419 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:14:21] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-12 15:14:26,982 - app - INFO - Login riuscito per l'utente stefano da IP 127.0.0.1
+2025-08-12 15:14:26,982 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:14:26] "[32mPOST /login HTTP/1.1[0m" 302 -
+2025-08-12 15:14:26,982 - app - INFO - Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-12 15:14:27,002 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:14:27] "GET /dashboard HTTP/1.1" 200 -
+2025-08-12 15:14:27,229 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:14:27] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-12 15:14:27,575 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:14:27] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-12 15:14:29,721 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-12 15:14:29,721 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-12 15:14:29,721 - app - INFO - consulenze_index: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-12 15:14:29,721 - app - INFO - consulenze_index: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-12 15:14:29,749 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:14:29] "GET /consulenze HTTP/1.1" 200 -
+2025-08-12 15:14:29,867 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:14:29] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-12 15:14:29,984 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:14:29] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-12 15:14:32,125 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-12 15:14:32,126 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-12 15:14:32,493 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:14:32] "GET /consulenze/template-tools HTTP/1.1" 200 -
+2025-08-12 15:14:32,554 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:14:32] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-12 15:14:32,867 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:14:32] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-12 15:17:49,767 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-12 15:17:49,767 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-12 15:17:50,107 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:17:50] "POST /template/add HTTP/1.1" 200 -
+2025-08-12 15:17:50,146 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-12 15:17:50,146 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-12 15:17:50,602 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:17:50] "GET /consulenze/questionari/template-editor/2 HTTP/1.1" 200 -
+2025-08-12 15:17:50,670 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:17:50] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-12 15:17:50,982 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:17:50] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-12 15:17:51,317 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-12 15:17:51,317 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-12 15:17:51,353 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:17:51] "GET /pdf_template/Incarico_Brokeraggio_Giuridico_319f8c04-0402-49a9-b339-fe010d461ec5.pdf HTTP/1.1" 200 -
+2025-08-12 15:18:34,676 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-12 15:18:34,676 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-12 15:18:35,092 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:18:35] "POST /consulenze/questionari/template-editor/save HTTP/1.1" 200 -
+2025-08-12 15:18:37,309 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-12 15:18:37,310 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-12 15:18:37,825 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:18:37] "GET /consulenze/questionari HTTP/1.1" 200 -
+2025-08-12 15:18:37,908 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:18:37] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-12 15:18:37,914 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:18:37] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-12 15:18:44,589 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-12 15:18:44,590 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-12 15:18:44,606 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:18:44] "GET /consulenze/anagrafica HTTP/1.1" 200 -
+2025-08-12 15:18:44,671 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:18:44] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-12 15:18:44,852 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:18:44] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-12 15:18:53,435 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-12 15:18:53,435 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-12 15:18:53,780 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:18:53] "[32mPOST /consulenze/anagrafica HTTP/1.1[0m" 302 -
+2025-08-12 15:18:53,790 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-12 15:18:53,790 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-12 15:18:54,117 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:18:54] "GET /consulenze/panoramica HTTP/1.1" 200 -
+2025-08-12 15:18:54,499 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:18:54] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-12 15:18:54,499 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:18:54] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-12 15:18:56,621 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-12 15:18:56,622 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-12 15:18:57,122 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:18:57] "GET /consulenze/questionari HTTP/1.1" 200 -
+2025-08-12 15:18:57,188 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:18:57] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-12 15:18:57,494 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:18:57] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-12 15:19:01,019 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-12 15:19:01,020 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-12 15:19:02,576 - PyPDF2._writer - WARNING - No fields to update on this page
+2025-08-12 15:19:02,576 - PyPDF2._writer - WARNING - No fields to update on this page
+2025-08-12 15:19:02,577 - PyPDF2._writer - WARNING - No fields to update on this page
+2025-08-12 15:19:02,625 - app - WARNING - Impossibile applicare overlay custom dei campi: No module named 'reportlab'
+2025-08-12 15:19:02,632 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:19:02] "POST /consulenze/questionari HTTP/1.1" 200 -
+2025-08-12 15:19:02,656 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-12 15:19:02,660 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-12 15:19:02,702 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:19:02] "GET /pdf_preview/OOG8L8HX4LJIALOF_Incarico%20Brokeraggio%20Giuridico_20250812151902.pdf HTTP/1.1" 200 -
+2025-08-12 15:19:21,053 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-12 15:19:21,053 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-12 15:19:21,394 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:19:21] "GET /consulenze/template-tools HTTP/1.1" 200 -
+2025-08-12 15:19:21,472 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:19:21] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-12 15:19:21,472 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:19:21] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-12 15:19:30,576 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-12 15:19:30,577 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-12 15:19:30,996 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:19:30] "GET /consulenze/questionari/template-editor/2 HTTP/1.1" 200 -
+2025-08-12 15:19:31,057 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:19:31] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-12 15:19:31,059 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:19:31] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-12 15:19:31,416 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-12 15:19:31,417 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-12 15:19:31,419 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:19:31] "[36mGET /pdf_template/Incarico_Brokeraggio_Giuridico_319f8c04-0402-49a9-b339-fe010d461ec5.pdf HTTP/1.1[0m" 304 -
+2025-08-12 15:19:44,007 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-12 15:19:44,007 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-12 15:19:44,423 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:19:44] "POST /consulenze/questionari/template-editor/save HTTP/1.1" 200 -
+2025-08-12 15:19:47,347 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-12 15:19:47,349 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-12 15:19:47,838 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:19:47] "GET /consulenze/questionari HTTP/1.1" 200 -
+2025-08-12 15:19:47,926 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:19:47] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-12 15:19:47,926 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:19:47] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-12 15:19:51,970 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-12 15:19:51,971 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-12 15:19:52,563 - PyPDF2._writer - WARNING - No fields to update on this page
+2025-08-12 15:19:52,563 - PyPDF2._writer - WARNING - No fields to update on this page
+2025-08-12 15:19:52,563 - PyPDF2._writer - WARNING - No fields to update on this page
+2025-08-12 15:19:52,604 - app - WARNING - Impossibile applicare overlay custom dei campi: No module named 'reportlab'
+2025-08-12 15:19:52,604 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:19:52] "POST /consulenze/questionari HTTP/1.1" 200 -
+2025-08-12 15:19:52,627 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-12 15:19:52,628 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-12 15:19:52,656 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:19:52] "GET /pdf_preview/OOG8L8HX4LJIALOF_Incarico%20Brokeraggio%20Giuridico_20250812151952.pdf HTTP/1.1" 200 -
+2025-08-12 15:20:04,373 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-12 15:20:04,374 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-12 15:20:04,706 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:20:04] "GET /consulenze/template-tools HTTP/1.1" 200 -
+2025-08-12 15:20:04,797 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:20:04] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-12 15:20:04,798 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:20:04] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-12 15:20:11,616 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-12 15:20:11,616 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-12 15:20:12,118 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:20:12] "GET /consulenze/questionari/template-editor/2 HTTP/1.1" 200 -
+2025-08-12 15:20:12,177 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:20:12] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-12 15:20:12,177 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:20:12] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-12 15:20:12,973 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-12 15:20:12,973 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-12 15:20:12,974 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:20:12] "[36mGET /pdf_template/Incarico_Brokeraggio_Giuridico_319f8c04-0402-49a9-b339-fe010d461ec5.pdf HTTP/1.1[0m" 304 -
+2025-08-12 15:20:22,037 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-12 15:20:22,037 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-12 15:20:22,419 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:20:22] "POST /consulenze/questionari/template-editor/save HTTP/1.1" 200 -
+2025-08-12 15:20:25,686 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-12 15:20:25,687 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-12 15:20:25,998 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:20:25] "GET /consulenze/template-tools HTTP/1.1" 200 -
+2025-08-12 15:20:26,103 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:20:26] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-12 15:20:26,109 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:20:26] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-12 15:20:28,437 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-12 15:20:28,437 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-12 15:20:28,868 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:20:28] "GET /consulenze/questionari/template-editor/2 HTTP/1.1" 200 -
+2025-08-12 15:20:28,925 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:20:28] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-12 15:20:28,925 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:20:28] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-12 15:20:29,520 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-12 15:20:29,520 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-12 15:20:29,520 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:20:29] "[36mGET /pdf_template/Incarico_Brokeraggio_Giuridico_319f8c04-0402-49a9-b339-fe010d461ec5.pdf HTTP/1.1[0m" 304 -
+2025-08-12 15:21:35,984 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-12 15:21:35,984 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-12 15:21:36,316 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:21:36] "POST /consulenze/questionari/template-editor/save HTTP/1.1" 200 -
+2025-08-12 15:21:38,223 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-12 15:21:38,223 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-12 15:21:38,566 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:21:38] "GET /consulenze/template-tools HTTP/1.1" 200 -
+2025-08-12 15:21:38,639 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:21:38] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-12 15:21:38,941 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:21:38] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-12 15:21:41,066 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-12 15:21:41,066 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-12 15:21:41,464 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:21:41] "GET /consulenze/questionari/template-editor/2 HTTP/1.1" 200 -
+2025-08-12 15:21:41,538 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:21:41] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-12 15:21:41,539 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:21:41] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-12 15:21:42,098 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-12 15:21:42,098 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-12 15:21:42,098 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:21:42] "[36mGET /pdf_template/Incarico_Brokeraggio_Giuridico_319f8c04-0402-49a9-b339-fe010d461ec5.pdf HTTP/1.1[0m" 304 -
+2025-08-12 15:21:59,372 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-12 15:21:59,372 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-12 15:21:59,888 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:21:59] "POST /consulenze/questionari/template-editor/save HTTP/1.1" 200 -
+2025-08-12 15:22:03,505 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-12 15:22:03,506 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-12 15:22:03,979 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:22:03] "GET /consulenze/questionari HTTP/1.1" 200 -
+2025-08-12 15:22:04,061 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:22:04] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-12 15:22:04,077 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:22:04] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-12 15:22:07,468 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-12 15:22:07,468 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-12 15:22:08,125 - PyPDF2._writer - WARNING - No fields to update on this page
+2025-08-12 15:22:08,125 - PyPDF2._writer - WARNING - No fields to update on this page
+2025-08-12 15:22:08,126 - PyPDF2._writer - WARNING - No fields to update on this page
+2025-08-12 15:22:08,178 - app - WARNING - Impossibile applicare overlay custom dei campi: No module named 'reportlab'
+2025-08-12 15:22:08,184 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:22:08] "POST /consulenze/questionari HTTP/1.1" 200 -
+2025-08-12 15:22:08,195 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-12 15:22:08,195 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-12 15:22:08,220 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:22:08] "GET /pdf_preview/OOG8L8HX4LJIALOF_Incarico%20Brokeraggio%20Giuridico_20250812152208.pdf HTTP/1.1" 200 -
+2025-08-12 15:22:15,636 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-12 15:22:15,636 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-12 15:22:15,971 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:22:15] "GET /consulenze/template-tools HTTP/1.1" 200 -
+2025-08-12 15:22:16,039 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:22:16] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-12 15:22:16,044 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:22:16] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-12 15:22:39,303 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-12 15:22:39,303 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-12 15:22:39,728 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:22:39] "GET /consulenze/questionari/template-editor/2 HTTP/1.1" 200 -
+2025-08-12 15:22:39,772 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:22:39] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-12 15:22:39,787 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:22:39] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-12 15:22:40,416 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-12 15:22:40,416 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-12 15:22:40,416 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:22:40] "[36mGET /pdf_template/Incarico_Brokeraggio_Giuridico_319f8c04-0402-49a9-b339-fe010d461ec5.pdf HTTP/1.1[0m" 304 -
+2025-08-12 15:24:57,265 - werkzeug - INFO -  * Detected change in 'C:\\Users\\User\\Desktop\\Nuova cartella\\crm\\app.py', reloading
+2025-08-12 15:24:57,430 - werkzeug - INFO -  * Restarting with stat
+2025-08-12 15:25:00,672 - werkzeug - WARNING -  * Debugger is active!
+2025-08-12 15:25:00,678 - werkzeug - INFO -  * Debugger PIN: 141-459-794
+2025-08-12 15:26:24,571 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:26:24] "[32mGET /consulenze/questionari/template-editor/2 HTTP/1.1[0m" 302 -
+2025-08-12 15:26:24,629 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:26:24] "GET /login HTTP/1.1" 200 -
+2025-08-12 15:26:24,944 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:26:24] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-12 15:26:25,052 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:26:25] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-12 15:26:30,944 - app - INFO - Login riuscito per l'utente stefano da IP 127.0.0.1
+2025-08-12 15:26:30,951 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:26:30] "[32mPOST /login HTTP/1.1[0m" 302 -
+2025-08-12 15:26:30,985 - app - INFO - Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-12 15:26:31,012 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:26:31] "GET /dashboard HTTP/1.1" 200 -
+2025-08-12 15:26:31,130 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:26:31] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-12 15:26:31,442 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:26:31] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-12 15:26:33,416 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-12 15:26:33,416 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-12 15:26:33,416 - app - INFO - consulenze_index: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-12 15:26:33,416 - app - INFO - consulenze_index: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-12 15:26:33,424 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:26:33] "GET /consulenze HTTP/1.1" 200 -
+2025-08-12 15:26:33,535 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:26:33] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-12 15:26:33,685 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:26:33] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-12 15:26:34,854 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-12 15:26:34,855 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-12 15:26:36,168 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:26:36] "GET /consulenze/template-tools HTTP/1.1" 200 -
+2025-08-12 15:26:36,238 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:26:36] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-12 15:26:36,567 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:26:36] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-12 15:26:38,954 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-12 15:26:38,955 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-12 15:26:39,347 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:26:39] "GET /consulenze/questionari/template-editor/2 HTTP/1.1" 200 -
+2025-08-12 15:26:39,407 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:26:39] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-12 15:26:39,719 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:26:39] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-12 15:26:40,229 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-12 15:26:40,229 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-12 15:26:40,229 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:26:40] "[36mGET /pdf_template/Incarico_Brokeraggio_Giuridico_319f8c04-0402-49a9-b339-fe010d461ec5.pdf HTTP/1.1[0m" 304 -
+2025-08-12 15:27:24,360 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-12 15:27:24,360 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-12 15:27:25,838 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:27:25] "POST /consulenze/questionari/template-editor/save HTTP/1.1" 200 -
+2025-08-12 15:27:32,810 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-12 15:27:32,810 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-12 15:27:33,271 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:27:33] "GET /consulenze/questionari HTTP/1.1" 200 -
+2025-08-12 15:27:33,367 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:27:33] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-12 15:27:33,688 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:27:33] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-12 15:27:38,251 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-12 15:27:38,251 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-12 15:27:38,813 - PyPDF2._writer - WARNING - No fields to update on this page
+2025-08-12 15:27:38,813 - PyPDF2._writer - WARNING - No fields to update on this page
+2025-08-12 15:27:38,813 - PyPDF2._writer - WARNING - No fields to update on this page
+2025-08-12 15:27:38,854 - app - WARNING - Impossibile applicare overlay custom dei campi: No module named 'reportlab'
+2025-08-12 15:27:38,857 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:27:38] "POST /consulenze/questionari HTTP/1.1" 200 -
+2025-08-12 15:27:38,866 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-12 15:27:38,867 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-12 15:27:38,892 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:27:38] "GET /pdf_preview/OOG8L8HX4LJIALOF_Incarico%20Brokeraggio%20Giuridico_20250812152738.pdf HTTP/1.1" 200 -
+2025-08-12 15:28:58,995 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-12 15:28:58,995 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-12 15:28:59,359 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:28:59] "GET /consulenze/template-tools HTTP/1.1" 200 -
+2025-08-12 15:28:59,774 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:28:59] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-12 15:28:59,775 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:28:59] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-12 15:29:01,888 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-12 15:29:01,888 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-12 15:29:02,311 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:29:02] "GET /consulenze/questionari/template-editor/2 HTTP/1.1" 200 -
+2025-08-12 15:29:02,373 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:29:02] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-12 15:29:02,701 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:29:02] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-12 15:29:02,945 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-12 15:29:02,946 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-12 15:29:02,947 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:29:02] "[36mGET /pdf_template/Incarico_Brokeraggio_Giuridico_319f8c04-0402-49a9-b339-fe010d461ec5.pdf HTTP/1.1[0m" 304 -
+2025-08-12 15:30:31,287 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-12 15:30:31,287 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-12 15:30:31,297 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:30:31] "GET /consulenze/anagrafica HTTP/1.1" 200 -
+2025-08-12 15:30:31,393 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:30:31] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-12 15:30:31,544 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:30:31] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-12 15:30:32,640 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-12 15:30:32,640 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-12 15:30:33,023 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:30:33] "GET /consulenze/panoramica HTTP/1.1" 200 -
+2025-08-12 15:30:33,096 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:30:33] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-12 15:30:33,400 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:30:33] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-12 15:30:34,089 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-12 15:30:34,100 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-12 15:30:34,520 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:30:34] "GET /consulenze/questionari HTTP/1.1" 200 -
+2025-08-12 15:30:34,880 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:30:34] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-12 15:30:34,890 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:30:34] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-12 15:30:39,417 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-12 15:30:39,418 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-12 15:30:39,723 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:30:39] "GET /consulenze/template-tools HTTP/1.1" 200 -
+2025-08-12 15:30:39,794 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:30:39] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-12 15:30:40,095 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:30:40] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-12 15:30:55,401 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-12 15:30:55,401 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-12 15:30:56,289 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:30:56] "GET /consulenze/questionari/template-editor/2 HTTP/1.1" 200 -
+2025-08-12 15:30:56,381 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:30:56] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-12 15:30:56,381 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:30:56] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-12 15:30:57,067 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-12 15:30:57,068 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-12 15:30:57,069 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:30:57] "[36mGET /pdf_template/Incarico_Brokeraggio_Giuridico_319f8c04-0402-49a9-b339-fe010d461ec5.pdf HTTP/1.1[0m" 304 -
+2025-08-12 15:31:21,957 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-12 15:31:21,957 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-12 15:31:22,376 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:31:22] "GET /consulenze/calendar HTTP/1.1" 200 -
+2025-08-12 15:31:22,451 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:31:22] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-12 15:31:22,451 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:31:22] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-12 15:31:24,437 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-12 15:31:24,437 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-12 15:31:24,447 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:31:24] "GET /consulenze/import HTTP/1.1" 200 -
+2025-08-12 15:31:24,543 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:31:24] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-12 15:31:24,692 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:31:24] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-12 15:31:27,011 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-12 15:31:27,011 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-12 15:31:27,463 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:31:27] "GET /consulenze/automazioni HTTP/1.1" 200 -
+2025-08-12 15:31:27,523 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:31:27] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-12 15:31:27,852 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:31:27] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-12 15:31:28,103 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-12 15:31:28,104 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-12 15:31:28,624 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:31:28] "GET /api/automazioni/status HTTP/1.1" 200 -
+2025-08-12 15:31:45,233 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-12 15:31:45,233 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-12 15:31:45,552 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:31:45] "GET /consulenze/email HTTP/1.1" 200 -
+2025-08-12 15:31:45,610 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:31:45] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-12 15:31:45,610 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:31:45] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-12 15:31:47,844 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-12 15:31:47,844 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-12 15:31:48,320 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:31:48] "GET /consulenze/questionari HTTP/1.1" 200 -
+2025-08-12 15:31:48,398 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:31:48] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-12 15:31:48,400 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:31:48] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-12 15:31:49,935 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-12 15:31:49,936 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-12 15:31:50,309 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:31:50] "GET /consulenze/panoramica HTTP/1.1" 200 -
+2025-08-12 15:31:50,367 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:31:50] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-12 15:31:50,381 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:31:50] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-12 15:31:53,842 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-12 15:31:53,842 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-12 15:31:53,843 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:31:53] "GET /consulenze/anagrafica HTTP/1.1" 200 -
+2025-08-12 15:31:53,915 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:31:53] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-12 15:31:54,095 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:31:54] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-12 15:32:04,185 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-12 15:32:04,185 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-12 15:32:04,185 - app - INFO - consulenze_index: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-12 15:32:04,185 - app - INFO - consulenze_index: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-12 15:32:04,185 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:32:04] "GET /consulenze HTTP/1.1" 200 -
+2025-08-12 15:32:04,299 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:32:04] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-12 15:32:04,440 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:32:04] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-12 15:32:12,347 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-12 15:32:12,348 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-12 15:32:12,714 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:32:12] "GET /consulenze/template-tools HTTP/1.1" 200 -
+2025-08-12 15:32:12,780 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:32:12] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-12 15:32:13,095 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:32:13] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-12 15:32:17,378 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-12 15:32:17,379 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-12 15:32:17,932 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:32:17] "GET /consulenze/questionari/template-editor/2 HTTP/1.1" 200 -
+2025-08-12 15:32:17,977 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:32:17] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-12 15:32:18,000 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:32:18] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-12 15:32:18,567 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-12 15:32:18,567 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-12 15:32:18,573 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:32:18] "[36mGET /pdf_template/Incarico_Brokeraggio_Giuridico_319f8c04-0402-49a9-b339-fe010d461ec5.pdf HTTP/1.1[0m" 304 -
+2025-08-12 15:59:28,760 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-08-12 15:59:28,761 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-08-12 15:59:28,763 - werkzeug - INFO -  * Restarting with stat
+2025-08-12 15:59:32,049 - werkzeug - WARNING -  * Debugger is active!
+2025-08-12 15:59:32,052 - werkzeug - INFO -  * Debugger PIN: 141-459-794
+2025-08-12 15:59:41,305 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:59:41] "[32mGET /consulenze/questionari/template-editor/2 HTTP/1.1[0m" 302 -
+2025-08-12 15:59:41,406 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:59:41] "GET /login HTTP/1.1" 200 -
+2025-08-12 15:59:41,634 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:59:41] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-12 15:59:41,805 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:59:41] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-12 15:59:42,155 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:59:42] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-08-12 15:59:47,106 - app - INFO - Login riuscito per l'utente stefano da IP 127.0.0.1
+2025-08-12 15:59:47,108 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:59:47] "[32mPOST /login HTTP/1.1[0m" 302 -
+2025-08-12 15:59:47,114 - app - INFO - Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-12 15:59:47,125 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:59:47] "GET /dashboard HTTP/1.1" 200 -
+2025-08-12 15:59:47,503 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:59:47] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-12 15:59:47,507 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:59:47] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-12 15:59:49,643 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-12 15:59:49,644 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-12 15:59:49,644 - app - INFO - consulenze_index: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-12 15:59:49,644 - app - INFO - consulenze_index: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-12 15:59:49,653 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:59:49] "GET /consulenze HTTP/1.1" 200 -
+2025-08-12 15:59:49,951 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:59:49] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-12 15:59:50,048 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:59:50] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-12 15:59:51,586 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-12 15:59:51,586 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-12 15:59:51,949 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:59:51] "GET /consulenze/template-tools HTTP/1.1" 200 -
+2025-08-12 15:59:52,007 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:59:52] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-12 15:59:52,008 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 15:59:52] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-12 16:00:52,363 - werkzeug - INFO -  * Detected change in 'C:\\Users\\User\\Desktop\\Nuova cartella\\crm\\app.py', reloading
+2025-08-12 16:00:52,665 - werkzeug - INFO -  * Restarting with stat
+2025-08-12 16:00:55,452 - werkzeug - WARNING -  * Debugger is active!
+2025-08-12 16:00:55,457 - werkzeug - INFO -  * Debugger PIN: 141-459-794
+2025-08-12 16:01:03,698 - werkzeug - INFO -  * Detected change in 'C:\\Users\\User\\Desktop\\Nuova cartella\\crm\\app.py', reloading
+2025-08-12 16:01:03,866 - werkzeug - INFO -  * Restarting with stat
+2025-08-12 16:01:06,597 - werkzeug - WARNING -  * Debugger is active!
+2025-08-12 16:01:06,597 - werkzeug - INFO -  * Debugger PIN: 141-459-794
+2025-08-12 16:01:43,279 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 16:01:43] "[32mGET /consulenze/template-tools HTTP/1.1[0m" 302 -
+2025-08-12 16:01:43,318 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 16:01:43] "GET /login HTTP/1.1" 200 -
+2025-08-12 16:01:43,588 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 16:01:43] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-12 16:01:43,841 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 16:01:43] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-12 16:04:00,239 - app - INFO - Login riuscito per l'utente stefano da IP 127.0.0.1
+2025-08-12 16:04:00,241 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 16:04:00] "[32mPOST /login HTTP/1.1[0m" 302 -
+2025-08-12 16:04:00,255 - app - INFO - Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-12 16:04:00,271 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 16:04:00] "GET /dashboard HTTP/1.1" 200 -
+2025-08-12 16:04:00,443 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 16:04:00] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-12 16:04:00,839 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 16:04:00] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-12 16:04:02,592 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-12 16:04:02,592 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-12 16:04:02,592 - app - INFO - consulenze_index: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-12 16:04:02,592 - app - INFO - consulenze_index: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-12 16:04:02,599 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 16:04:02] "GET /consulenze HTTP/1.1" 200 -
+2025-08-12 16:04:02,907 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 16:04:02] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-12 16:04:02,972 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 16:04:02] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-12 16:04:08,793 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-12 16:04:08,794 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-12 16:04:09,149 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 16:04:09] "GET /consulenze/template-tools HTTP/1.1" 200 -
+2025-08-12 16:04:09,208 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 16:04:09] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-12 16:04:09,209 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 16:04:09] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-12 16:04:11,787 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-12 16:04:11,787 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-12 16:04:12,271 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 16:04:12] "GET /consulenze/questionari/template-editor/2 HTTP/1.1" 200 -
+2025-08-12 16:04:12,315 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 16:04:12] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-12 16:04:12,332 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 16:04:12] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-12 16:04:12,930 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-12 16:04:12,930 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-12 16:04:12,933 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 16:04:12] "[36mGET /pdf_template/Incarico_Brokeraggio_Giuridico_319f8c04-0402-49a9-b339-fe010d461ec5.pdf HTTP/1.1[0m" 304 -
+2025-08-12 16:04:19,116 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-12 16:04:19,117 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-12 16:04:19,633 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 16:04:19] "GET /consulenze/questionari HTTP/1.1" 200 -
+2025-08-12 16:04:19,694 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 16:04:19] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-12 16:04:20,002 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 16:04:20] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-12 16:04:24,029 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-12 16:04:24,030 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-12 16:04:24,645 - PyPDF2._writer - WARNING - No fields to update on this page
+2025-08-12 16:04:24,646 - PyPDF2._writer - WARNING - No fields to update on this page
+2025-08-12 16:04:24,646 - PyPDF2._writer - WARNING - No fields to update on this page
+2025-08-12 16:04:24,825 - app - WARNING - Impossibile applicare overlay custom (PyMuPDF): save to original must be incremental
+2025-08-12 16:04:24,826 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 16:04:24] "POST /consulenze/questionari HTTP/1.1" 200 -
+2025-08-12 16:04:24,833 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-12 16:04:24,833 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-12 16:04:24,835 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 16:04:24] "GET /pdf_preview/OOG8L8HX4LJIALOF_Incarico%20Brokeraggio%20Giuridico_20250812160424.pdf HTTP/1.1" 200 -
+2025-08-12 16:04:32,890 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-12 16:04:32,890 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-12 16:04:33,608 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 16:04:33] "POST /consulenze/questionari HTTP/1.1" 200 -
+2025-08-12 16:04:33,617 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-12 16:04:33,617 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-12 16:04:33,643 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 16:04:33] "GET /pdf_preview/OOG8L8HX4LJIALOF_Questionario%20Base_20250812160433.pdf HTTP/1.1" 200 -
+2025-08-12 16:21:37,821 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-12 16:21:37,821 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-12 16:21:38,400 - PyPDF2._writer - WARNING - No fields to update on this page
+2025-08-12 16:21:38,400 - PyPDF2._writer - WARNING - No fields to update on this page
+2025-08-12 16:21:38,401 - PyPDF2._writer - WARNING - No fields to update on this page
+2025-08-12 16:21:38,474 - app - WARNING - Impossibile applicare overlay custom (PyMuPDF): save to original must be incremental
+2025-08-12 16:21:38,475 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 16:21:38] "POST /consulenze/questionari HTTP/1.1" 200 -
+2025-08-12 16:21:38,485 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-12 16:21:38,485 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-12 16:21:38,487 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 16:21:38] "GET /pdf_preview/OOG8L8HX4LJIALOF_Incarico%20Brokeraggio%20Giuridico_20250812162138.pdf HTTP/1.1" 200 -
+2025-08-12 16:28:04,176 - werkzeug - INFO -  * Detected change in 'C:\\Users\\User\\Desktop\\Nuova cartella\\crm\\app.py', reloading
+2025-08-12 16:28:04,445 - werkzeug - INFO -  * Restarting with stat
+2025-08-12 16:28:07,203 - werkzeug - WARNING -  * Debugger is active!
+2025-08-12 16:28:07,215 - werkzeug - INFO -  * Debugger PIN: 141-459-794
+2025-08-12 16:28:30,965 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 16:28:30] "[32mGET /consulenze/template-tools HTTP/1.1[0m" 302 -
+2025-08-12 16:28:31,084 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 16:28:31] "GET /login HTTP/1.1" 200 -
+2025-08-12 16:28:31,503 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 16:28:31] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-12 16:28:31,655 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 16:28:31] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-12 16:28:37,922 - app - INFO - Login riuscito per l'utente stefano da IP 127.0.0.1
+2025-08-12 16:28:37,932 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 16:28:37] "[32mPOST /login HTTP/1.1[0m" 302 -
+2025-08-12 16:28:37,946 - app - INFO - Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-12 16:28:37,961 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 16:28:37] "GET /dashboard HTTP/1.1" 200 -
+2025-08-12 16:28:38,052 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 16:28:38] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-12 16:28:38,377 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 16:28:38] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-12 16:28:40,091 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-12 16:28:40,092 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-12 16:28:40,092 - app - INFO - consulenze_index: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-12 16:28:40,093 - app - INFO - consulenze_index: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-12 16:28:40,106 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 16:28:40] "GET /consulenze HTTP/1.1" 200 -
+2025-08-12 16:28:40,257 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 16:28:40] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-12 16:28:40,354 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 16:28:40] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-12 16:28:41,639 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-12 16:28:41,639 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-12 16:28:42,029 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 16:28:42] "GET /consulenze/template-tools HTTP/1.1" 200 -
+2025-08-12 16:28:42,117 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 16:28:42] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-12 16:28:42,426 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 16:28:42] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-12 16:28:44,644 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-12 16:28:44,645 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-12 16:28:45,093 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 16:28:45] "GET /consulenze/questionari/template-editor/2 HTTP/1.1" 200 -
+2025-08-12 16:28:45,161 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 16:28:45] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-12 16:28:45,165 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 16:28:45] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-12 16:28:45,879 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-12 16:28:45,879 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-12 16:28:45,881 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 16:28:45] "[36mGET /pdf_template/Incarico_Brokeraggio_Giuridico_319f8c04-0402-49a9-b339-fe010d461ec5.pdf HTTP/1.1[0m" 304 -
+2025-08-12 16:28:57,327 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-12 16:28:57,327 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-12 16:28:57,627 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 16:28:57] "GET /consulenze/template-tools HTTP/1.1" 200 -
+2025-08-12 16:28:57,699 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 16:28:57] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-12 16:28:57,700 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 16:28:57] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-12 16:29:10,570 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-12 16:29:10,570 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-12 16:29:10,944 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 16:29:10] "POST /template/add HTTP/1.1" 200 -
+2025-08-12 16:29:10,977 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-12 16:29:10,978 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-12 16:29:11,451 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 16:29:11] "GET /consulenze/questionari/template-editor/3 HTTP/1.1" 200 -
+2025-08-12 16:29:11,511 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 16:29:11] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-12 16:29:11,828 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 16:29:11] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-12 16:29:12,255 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-12 16:29:12,255 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-12 16:29:12,282 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 16:29:12] "GET /pdf_template/Incarico_Brokeraggio_5ee04bb7-9b10-49c2-ab14-59d8057c399c.pdf HTTP/1.1" 200 -
+2025-08-12 16:29:52,351 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-12 16:29:52,351 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-12 16:29:52,803 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 16:29:52] "POST /consulenze/questionari/template-editor/save HTTP/1.1" 200 -
+2025-08-12 16:29:55,298 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-12 16:29:55,298 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-12 16:29:55,836 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 16:29:55] "GET /consulenze/questionari HTTP/1.1" 200 -
+2025-08-12 16:29:55,933 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 16:29:55] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-12 16:29:55,934 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 16:29:55] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-12 16:30:00,996 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-12 16:30:00,996 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-12 16:30:01,710 - PyPDF2._writer - WARNING - No fields to update on this page
+2025-08-12 16:30:01,710 - PyPDF2._writer - WARNING - No fields to update on this page
+2025-08-12 16:30:01,710 - PyPDF2._writer - WARNING - No fields to update on this page
+2025-08-12 16:30:01,920 - app - WARNING - Impossibile creare/aggiornare i campi modulo (PyMuPDF): save to original must be incremental
+2025-08-12 16:30:01,920 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 16:30:01] "POST /consulenze/questionari HTTP/1.1" 200 -
+2025-08-12 16:30:01,932 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-12 16:30:01,932 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-12 16:30:01,933 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 16:30:01] "GET /pdf_preview/OOG8L8HX4LJIALOF_Incarico%20Brokeraggio_20250812163001.pdf HTTP/1.1" 200 -
+2025-08-12 16:37:14,934 - werkzeug - INFO -  * Detected change in 'C:\\Users\\User\\Desktop\\Nuova cartella\\crm\\app.py', reloading
+2025-08-12 16:37:15,352 - werkzeug - INFO -  * Restarting with stat
+2025-08-12 16:37:18,615 - werkzeug - WARNING -  * Debugger is active!
+2025-08-12 16:37:18,623 - werkzeug - INFO -  * Debugger PIN: 141-459-794
+2025-08-12 16:38:19,886 - werkzeug - INFO -  * Detected change in 'C:\\Users\\User\\Desktop\\Nuova cartella\\crm\\app.py', reloading
+2025-08-12 16:38:20,284 - werkzeug - INFO -  * Restarting with stat
+2025-08-12 16:38:23,339 - werkzeug - WARNING -  * Debugger is active!
+2025-08-12 16:38:23,346 - werkzeug - INFO -  * Debugger PIN: 141-459-794
+2025-08-12 16:55:50,297 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 16:55:50] "[32mGET /consulenze/template-tools HTTP/1.1[0m" 302 -
+2025-08-12 16:55:50,464 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 16:55:50] "GET /login HTTP/1.1" 200 -
+2025-08-12 16:55:50,650 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 16:55:50] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-12 16:55:50,862 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 16:55:50] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-12 16:55:56,373 - app - INFO - Login riuscito per l'utente stefano da IP 127.0.0.1
+2025-08-12 16:55:56,376 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 16:55:56] "[32mPOST /login HTTP/1.1[0m" 302 -
+2025-08-12 16:55:56,389 - app - INFO - Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-12 16:55:56,444 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 16:55:56] "GET /dashboard HTTP/1.1" 200 -
+2025-08-12 16:55:57,052 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 16:55:57] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-12 16:55:57,053 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 16:55:57] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-12 16:55:59,065 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-12 16:55:59,065 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-12 16:55:59,065 - app - INFO - consulenze_index: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-12 16:55:59,066 - app - INFO - consulenze_index: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-12 16:55:59,087 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 16:55:59] "GET /consulenze HTTP/1.1" 200 -
+2025-08-12 16:55:59,378 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 16:55:59] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-12 16:55:59,463 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 16:55:59] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-12 16:58:16,215 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-12 16:58:16,216 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-12 16:58:16,611 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 16:58:16] "GET /consulenze/template-tools HTTP/1.1" 200 -
+2025-08-12 16:58:16,692 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 16:58:16] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-12 16:58:16,692 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 16:58:16] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-12 16:58:43,798 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-12 16:58:43,798 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-12 16:58:44,344 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 16:58:44] "GET /consulenze/questionari/template-editor/3 HTTP/1.1" 200 -
+2025-08-12 16:58:44,397 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 16:58:44] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-12 16:58:44,399 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 16:58:44] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-12 16:58:45,078 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-12 16:58:45,079 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-12 16:58:45,110 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 16:58:45] "[36mGET /pdf_template/Incarico_Brokeraggio_5ee04bb7-9b10-49c2-ab14-59d8057c399c.pdf HTTP/1.1[0m" 304 -
+2025-08-12 16:58:53,099 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-12 16:58:53,099 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-12 16:58:53,916 - app - ERROR - apply_template_fields_pdf error: save to original must be incremental
+2025-08-12 16:58:53,919 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 16:58:53] "[35m[1mPOST /consulenze/questionari/template-editor/apply-to-pdf HTTP/1.1[0m" 500 -
+2025-08-12 16:59:00,490 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-12 16:59:00,490 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-12 16:59:00,831 - app - ERROR - apply_template_fields_pdf error: save to original must be incremental
+2025-08-12 16:59:00,833 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 16:59:00] "[35m[1mPOST /consulenze/questionari/template-editor/apply-to-pdf HTTP/1.1[0m" 500 -
+2025-08-12 16:59:07,690 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-12 16:59:07,690 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-12 16:59:08,095 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 16:59:08] "POST /consulenze/questionari/template-editor/apply-to-pdf HTTP/1.1" 200 -
+2025-08-12 16:59:37,327 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-12 16:59:37,327 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-12 16:59:37,698 - app - ERROR - apply_template_fields_pdf error: save to original must be incremental
+2025-08-12 16:59:37,701 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 16:59:37] "[35m[1mPOST /consulenze/questionari/template-editor/apply-to-pdf HTTP/1.1[0m" 500 -
+2025-08-12 16:59:42,747 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-12 16:59:42,747 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-12 16:59:43,103 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 16:59:43] "POST /consulenze/questionari/template-editor/apply-to-pdf HTTP/1.1" 200 -
+2025-08-12 16:59:49,566 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-12 16:59:49,566 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-12 16:59:49,949 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 16:59:49] "GET /consulenze/template-tools HTTP/1.1" 200 -
+2025-08-12 16:59:50,020 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 16:59:50] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-12 16:59:50,021 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 16:59:50] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-12 16:59:53,332 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-12 16:59:53,333 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-12 16:59:53,758 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 16:59:53] "GET /consulenze/questionari/template-editor/3 HTTP/1.1" 200 -
+2025-08-12 16:59:53,819 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 16:59:53] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-12 16:59:53,819 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 16:59:53] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-12 16:59:54,374 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-12 16:59:54,374 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-12 16:59:54,374 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 16:59:54] "[36mGET /pdf_template/Incarico_Brokeraggio_5ee04bb7-9b10-49c2-ab14-59d8057c399c.pdf HTTP/1.1[0m" 304 -
+2025-08-12 16:59:58,714 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-12 16:59:58,714 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-12 16:59:59,062 - app - ERROR - apply_template_fields_pdf error: save to original must be incremental
+2025-08-12 16:59:59,062 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 16:59:59] "[35m[1mPOST /consulenze/questionari/template-editor/apply-to-pdf HTTP/1.1[0m" 500 -
+2025-08-12 17:00:02,107 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-12 17:00:02,107 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-12 17:00:02,478 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 17:00:02] "POST /consulenze/questionari/template-editor/save HTTP/1.1" 200 -
+2025-08-12 17:00:04,494 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-12 17:00:04,494 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-12 17:00:04,879 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 17:00:04] "POST /consulenze/questionari/template-editor/apply-to-pdf HTTP/1.1" 200 -
+2025-08-12 17:00:14,272 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-12 17:00:14,272 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-12 17:00:14,674 - app - ERROR - apply_template_fields_pdf error: save to original must be incremental
+2025-08-12 17:00:14,674 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 17:00:14] "[35m[1mPOST /consulenze/questionari/template-editor/apply-to-pdf HTTP/1.1[0m" 500 -
+2025-08-12 17:00:31,535 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-12 17:00:31,535 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-12 17:00:31,951 - app - ERROR - apply_template_fields_pdf error: save to original must be incremental
+2025-08-12 17:00:31,951 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 17:00:31] "[35m[1mPOST /consulenze/questionari/template-editor/apply-to-pdf HTTP/1.1[0m" 500 -
+2025-08-12 17:02:14,463 - werkzeug - INFO -  * Detected change in 'C:\\Users\\User\\Desktop\\Nuova cartella\\crm\\app.py', reloading
+2025-08-12 17:02:14,863 - werkzeug - INFO -  * Restarting with stat
+2025-08-12 17:02:21,186 - werkzeug - WARNING -  * Debugger is active!
+2025-08-12 17:02:21,195 - werkzeug - INFO -  * Debugger PIN: 141-459-794
+2025-08-12 17:02:29,030 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 17:02:29] "[32mGET /consulenze/questionari/template-editor/3 HTTP/1.1[0m" 302 -
+2025-08-12 17:02:29,106 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 17:02:29] "GET /login HTTP/1.1" 200 -
+2025-08-12 17:02:29,409 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 17:02:29] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-12 17:02:29,520 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 17:02:29] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-12 17:02:40,228 - app - INFO - Login riuscito per l'utente stefano da IP 127.0.0.1
+2025-08-12 17:02:40,229 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 17:02:40] "[32mPOST /login HTTP/1.1[0m" 302 -
+2025-08-12 17:02:40,235 - app - INFO - Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-12 17:02:40,248 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 17:02:40] "GET /dashboard HTTP/1.1" 200 -
+2025-08-12 17:02:40,365 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 17:02:40] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-12 17:02:40,758 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 17:02:40] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-12 17:02:42,420 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-12 17:02:42,421 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-12 17:02:42,421 - app - INFO - consulenze_index: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-12 17:02:42,421 - app - INFO - consulenze_index: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-12 17:02:42,427 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 17:02:42] "GET /consulenze HTTP/1.1" 200 -
+2025-08-12 17:02:42,742 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 17:02:42] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-12 17:02:42,801 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 17:02:42] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-12 17:02:43,867 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-12 17:02:43,868 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-12 17:02:44,317 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 17:02:44] "GET /consulenze/template-tools HTTP/1.1" 200 -
+2025-08-12 17:02:44,439 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 17:02:44] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-12 17:02:44,439 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 17:02:44] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-12 17:02:46,813 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-12 17:02:46,813 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-12 17:02:47,315 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 17:02:47] "GET /consulenze/questionari/template-editor/3 HTTP/1.1" 200 -
+2025-08-12 17:02:47,697 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 17:02:47] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-12 17:02:47,699 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 17:02:47] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-12 17:02:47,947 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-12 17:02:47,947 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-12 17:02:47,947 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 17:02:47] "[36mGET /pdf_template/Incarico_Brokeraggio_5ee04bb7-9b10-49c2-ab14-59d8057c399c.pdf HTTP/1.1[0m" 304 -
+2025-08-12 17:02:55,394 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-12 17:02:55,394 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-12 17:02:55,876 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 17:02:55] "POST /consulenze/questionari/template-editor/apply-to-pdf HTTP/1.1" 200 -
+2025-08-12 17:03:10,515 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-12 17:03:10,516 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-12 17:03:11,002 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 17:03:11] "GET /consulenze/questionari HTTP/1.1" 200 -
+2025-08-12 17:03:11,076 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 17:03:11] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-12 17:03:11,079 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 17:03:11] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-12 17:03:16,416 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-12 17:03:16,416 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-12 17:03:16,969 - PyPDF2._writer - WARNING - No fields to update on this page
+2025-08-12 17:03:16,970 - PyPDF2._writer - WARNING - No fields to update on this page
+2025-08-12 17:03:17,016 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 17:03:17] "POST /consulenze/questionari HTTP/1.1" 200 -
+2025-08-12 17:03:17,029 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-12 17:03:17,029 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-12 17:03:17,047 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 17:03:17] "GET /pdf_preview/OOG8L8HX4LJIALOF_Incarico%20Brokeraggio_20250812170316.pdf HTTP/1.1" 200 -
+2025-08-12 17:03:26,895 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-12 17:03:26,900 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-12 17:03:27,271 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 17:03:27] "GET /consulenze/template-tools HTTP/1.1" 200 -
+2025-08-12 17:03:27,337 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 17:03:27] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-12 17:03:27,356 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 17:03:27] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-12 17:03:29,876 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-12 17:03:29,876 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-12 17:03:30,275 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 17:03:30] "GET /consulenze/questionari/template-editor/3 HTTP/1.1" 200 -
+2025-08-12 17:03:30,345 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 17:03:30] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-12 17:03:30,346 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 17:03:30] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-12 17:03:30,894 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-12 17:03:30,895 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-12 17:03:30,899 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 17:03:30] "GET /pdf_template/Incarico_Brokeraggio_5ee04bb7-9b10-49c2-ab14-59d8057c399c.pdf HTTP/1.1" 200 -
+2025-08-12 17:05:01,028 - werkzeug - INFO -  * Detected change in 'C:\\Users\\User\\Desktop\\Nuova cartella\\crm\\app.py', reloading
+2025-08-12 17:05:01,190 - werkzeug - INFO -  * Restarting with stat
+2025-08-12 17:05:04,018 - werkzeug - WARNING -  * Debugger is active!
+2025-08-12 17:05:04,028 - werkzeug - INFO -  * Debugger PIN: 141-459-794
+2025-08-12 17:05:26,541 - werkzeug - INFO -  * Detected change in 'C:\\Users\\User\\Desktop\\Nuova cartella\\crm\\app.py', reloading
+2025-08-12 17:05:26,651 - werkzeug - INFO -  * Restarting with stat
+2025-08-12 17:05:29,219 - werkzeug - WARNING -  * Debugger is active!
+2025-08-12 17:05:29,234 - werkzeug - INFO -  * Debugger PIN: 141-459-794
+2025-08-12 17:05:34,359 - werkzeug - INFO -  * Detected change in 'C:\\Users\\User\\Desktop\\Nuova cartella\\crm\\app.py', reloading
+2025-08-12 17:05:34,676 - werkzeug - INFO -  * Restarting with stat
+2025-08-12 17:05:37,851 - werkzeug - WARNING -  * Debugger is active!
+2025-08-12 17:05:37,851 - werkzeug - INFO -  * Debugger PIN: 141-459-794
+2025-08-12 17:09:21,306 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 17:09:21] "[32mGET /consulenze/questionari/template-editor/3 HTTP/1.1[0m" 302 -
+2025-08-12 17:09:21,327 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 17:09:21] "GET /login HTTP/1.1" 200 -
+2025-08-12 17:09:21,730 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 17:09:21] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-12 17:09:21,964 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 17:09:21] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-12 17:10:18,311 - app - INFO - Login riuscito per l'utente stefano da IP 127.0.0.1
+2025-08-12 17:10:18,311 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 17:10:18] "[32mPOST /login HTTP/1.1[0m" 302 -
+2025-08-12 17:10:18,628 - app - INFO - Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-12 17:10:18,628 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 17:10:18] "GET /dashboard HTTP/1.1" 200 -
+2025-08-12 17:10:18,883 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 17:10:18] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-12 17:10:18,998 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 17:10:18] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-12 17:10:20,757 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-12 17:10:20,758 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-12 17:10:20,758 - app - INFO - consulenze_index: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-12 17:10:20,758 - app - INFO - consulenze_index: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-12 17:10:20,763 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 17:10:20] "GET /consulenze HTTP/1.1" 200 -
+2025-08-12 17:10:21,065 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 17:10:21] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-12 17:10:21,122 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 17:10:21] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-12 17:10:23,695 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-12 17:10:23,695 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-12 17:10:24,077 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 17:10:24] "GET /consulenze/template-tools HTTP/1.1" 200 -
+2025-08-12 17:10:24,124 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 17:10:24] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-12 17:10:24,124 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 17:10:24] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-12 17:10:29,142 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-12 17:10:29,142 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-12 17:10:29,591 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 17:10:29] "GET /consulenze/questionari/template-editor/3 HTTP/1.1" 200 -
+2025-08-12 17:10:29,638 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 17:10:29] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-12 17:10:29,644 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 17:10:29] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-12 17:10:30,186 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-12 17:10:30,187 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-12 17:10:30,191 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 17:10:30] "[36mGET /pdf_template/Incarico_Brokeraggio_5ee04bb7-9b10-49c2-ab14-59d8057c399c.pdf HTTP/1.1[0m" 304 -
+2025-08-12 17:11:09,015 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-12 17:11:09,015 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-12 17:11:09,461 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 17:11:09] "POST /consulenze/questionari/template-editor/apply-to-pdf HTTP/1.1" 200 -
+2025-08-12 17:11:12,096 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-12 17:11:12,096 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-12 17:11:12,437 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 17:11:12] "GET /consulenze/template-tools HTTP/1.1" 200 -
+2025-08-12 17:11:12,526 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 17:11:12] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-12 17:11:12,835 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 17:11:12] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-12 17:11:16,568 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-12 17:11:16,568 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-12 17:11:16,988 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 17:11:16] "GET /consulenze/questionari/template-editor/3 HTTP/1.1" 200 -
+2025-08-12 17:11:17,051 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 17:11:17] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-12 17:11:17,052 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 17:11:17] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-12 17:11:17,600 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-12 17:11:17,600 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-12 17:11:17,619 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 17:11:17] "GET /pdf_template/Incarico_Brokeraggio_5ee04bb7-9b10-49c2-ab14-59d8057c399c.pdf HTTP/1.1" 200 -
+2025-08-12 17:11:25,731 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-12 17:11:25,731 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-12 17:11:26,330 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 17:11:26] "GET /consulenze/questionari HTTP/1.1" 200 -
+2025-08-12 17:11:26,442 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 17:11:26] "[36mGET /static/css/custom.css HTTP/1.1[0m" 304 -
+2025-08-12 17:11:26,511 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 17:11:26] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2025-08-12 17:11:30,662 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-12 17:11:30,662 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-12 17:11:31,741 - PyPDF2._writer - WARNING - No fields to update on this page
+2025-08-12 17:11:31,741 - PyPDF2._writer - WARNING - No fields to update on this page
+2025-08-12 17:11:31,801 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 17:11:31] "POST /consulenze/questionari HTTP/1.1" 200 -
+2025-08-12 17:11:31,810 - app - INFO - has_package: Pacchetti per l'utente stefano: ['manage_consulenze'], tipo: <class 'list'>
+2025-08-12 17:11:31,811 - app - INFO - has_package: Verifica se 'manage_consulenze' è in ['manage_consulenze']: True
+2025-08-12 17:11:31,822 - werkzeug - INFO - 127.0.0.1 - - [12/Aug/2025 17:11:31] "GET /pdf_preview/OOG8L8HX4LJIALOF_Incarico%20Brokeraggio_20250812171131.pdf HTTP/1.1" 200 -

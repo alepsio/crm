@@ -1,0 +1,317 @@
+{% extends 'base.html' %}
+
+{% block title %}Editor Template PDF{% endblock %}
+
+{% block extra_css %}
+<style>
+  .editor-container { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .pdf-canvas-wrapper { position: relative; border:1px solid #dee2e6; border-radius: 4px; }
+  canvas#pdfCanvas { width: 100%; height: auto; }
+  .field-dot { position: absolute; width: 10px; height: 10px; background: #0d6efd; border-radius: 50%; transform: translate(-50%, -50%); cursor: pointer; }
+  .field-label { position: absolute; background: rgba(13,110,253,.1); color: #0d6efd; padding: 2px 6px; border-radius: 3px; font-size: 12px; transform: translate(-50%, -120%); white-space: nowrap; }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h1 class="h4"><i class="bi bi-ui-radios-grid me-2"></i>Editor Template PDF</h1>
+    <div>
+      <a href="{{ url_for('consulenze_questionari') }}" class="btn btn-outline-secondary"><i class="bi bi-arrow-left"></i> Torna</a>
+    </div>
+  </div>
+
+  <div class="row g-3">
+    <div class="col-md-4">
+      <div class="card shadow-sm">
+        <div class="card-header bg-light">Impostazioni</div>
+        <div class="card-body">
+          <form id="settingsForm" onsubmit="return false;">
+            <div class="mb-3">
+              <label class="form-label">Template</label>
+              <select id="templateSelect" class="form-select">
+                {% for t in templates %}
+                  <option value="{{ t.id }}" data-filename="{{ t.filename }}" {% if t.id == template.id %}selected{% endif %}>{{ t.nome }}</option>
+                {% endfor %}
+              </select>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Campo</label>
+              <input id="fieldName" class="form-control" placeholder="Nome campo (es: email)">
+              <div class="form-text">Usa lo stesso nome di mappatura dei dati (es. nome, cognome, cf, email...).</div>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Chiave di mappatura (opz.)</label>
+              <input id="mappingKey" class="form-control" placeholder="Se diverso dal nome">
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Pagina</label>
+              <input id="pageNumber" type="number" min="1" value="1" class="form-control">
+            </div>
+            <div class="d-grid gap-2">
+              <button id="addFieldBtn" class="btn btn-primary" type="button"><i class="bi bi-plus-circle"></i> Aggiungi Campo</button>
+              <button id="saveBtn" class="btn btn-success" type="button"><i class="bi bi-save"></i> Salva</button>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="card shadow-sm mt-3">
+        <div class="card-header bg-light">Campi definiti</div>
+        <div class="card-body">
+          <div class="mb-2 d-flex gap-2 align-items-end">
+            <div class="flex-grow-1">
+              <label class="form-label">Mappa a campo cliente (guida)</label>
+              <select id="fieldCatalog" class="form-select form-select-sm">
+                <option value="">-- seleziona suggerimento --</option>
+                {% for f in available_fields %}
+                  <option value="{{ f.key }}">{{ f.label }} ({{ f.key }})</option>
+                {% endfor %}
+              </select>
+              <div class="form-text">Scegli una chiave per riempire "Chiave di mappatura" oppure per creare campi coerenti coi dati cliente.</div>
+            </div>
+            <div>
+              <button id="applyToPdfBtn" class="btn btn-outline-primary btn-sm" type="button">
+                <i class="bi bi-filetype-pdf"></i> Scrivi campi nel PDF
+              </button>
+            </div>
+          </div>
+          <ul id="fieldsList" class="list-group small"></ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-8">
+      <div class="card shadow-sm">
+        <div class="card-header bg-light d-flex justify-content-between align-items-center">
+          <div>Anteprima PDF</div>
+          <div>
+            <button id="toggleCoords" class="btn btn-sm btn-outline-secondary">Mostra coordinate</button>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="pdf-canvas-wrapper" id="canvasWrapper" style="position: relative;">
+            <canvas id="pdfCanvas" style="display:block; width:100%; height:auto;"></canvas>
+            <canvas id="overlayCanvas" style="position:absolute; left:0; top:0; width:100%; height:100%;"></canvas>
+          </div>
+          <div class="text-muted small mt-2" id="coordsInfo" style="display:none;">x: <span id="cx">-</span>% | y: <span id="cy">-</span>% (click per posizionare il campo)</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.10.111/pdf.min.js"></script>
+<script>
+  if (window['pdfjsLib']) {
+    pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.10.111/pdf.worker.min.js';
+  }
+</script>
+<script>
+  const templateId = {{ template.id }};
+  const filename = {{ template.filename|tojson }};
+  let fields = {{ fields|tojson }};
+
+  const bgCanvas = document.getElementById('pdfCanvas');
+  const bgCtx = bgCanvas.getContext('2d');
+  const overlay = document.getElementById('overlayCanvas');
+  const oCtx = overlay.getContext('2d');
+  const wrapper = document.getElementById('canvasWrapper');
+  const coordsInfo = document.getElementById('coordsInfo');
+  let showCoords = false;
+
+  // Disegna la prima pagina del PDF con PDF.js per avere un'anteprima fedele
+  async function drawPdfFirstPage() {
+    if (!window['pdfjsLib']) {
+      // Fallback: background grigio A4
+      const w = wrapper.clientWidth;
+      const h = Math.round(w * 1.414);
+      bgCanvas.width = w; bgCanvas.height = h; overlay.width = w; overlay.height = h;
+      bgCtx.fillStyle = '#f8f9fa'; bgCtx.fillRect(0,0,w,h);
+      return;
+    }
+    const url = `{{ url_for('pdf_template', filename=template.filename) }}`;
+    const pdf = await pdfjsLib.getDocument(url).promise;
+    const page = await pdf.getPage(1);
+
+    const desiredWidth = wrapper.clientWidth;
+    const viewport = page.getViewport({ scale: 1 });
+    const scale = desiredWidth / viewport.width;
+    const scaledViewport = page.getViewport({ scale });
+
+    bgCanvas.width = scaledViewport.width;
+    bgCanvas.height = scaledViewport.height;
+    overlay.width = scaledViewport.width;
+    overlay.height = scaledViewport.height;
+
+    const renderContext = { canvasContext: bgCtx, viewport: scaledViewport };
+    await page.render(renderContext).promise;
+  }
+
+  function drawOverlay() {
+    oCtx.clearRect(0,0,overlay.width, overlay.height);
+    for (const f of fields) {
+      const x = f.perc_x * overlay.width;
+      const y = (1 - f.perc_y) * overlay.height; // origin bottom-left
+      // draw handle
+      oCtx.fillStyle = '#0d6efd';
+      oCtx.beginPath();
+      oCtx.arc(x, y, 5, 0, Math.PI*2);
+      oCtx.fill();
+      // name label
+      oCtx.fillStyle = 'rgba(13,110,253,.9)';
+      oCtx.font = '12px sans-serif';
+      oCtx.fillText(f.name, x + 8, y - 8);
+    }
+  }
+
+  // drag & drop of points
+  let draggingIndex = null;
+  overlay.addEventListener('mousedown', (e) => {
+    const rect = overlay.getBoundingClientRect();
+    const mx = e.clientX - rect.left;
+    const my = e.clientY - rect.top;
+    // find nearest handle within 10px
+    for (let i = fields.length - 1; i >= 0; i--) {
+      const hx = fields[i].perc_x * overlay.width;
+      const hy = (1 - fields[i].perc_y) * overlay.height;
+      const dx = mx - hx; const dy = my - hy;
+      if (dx*dx + dy*dy <= 100) { // 10px radius
+        draggingIndex = i;
+        break;
+      }
+    }
+  });
+  overlay.addEventListener('mousemove', (e) => {
+    if (draggingIndex === null) return;
+    const rect = overlay.getBoundingClientRect();
+    const px = (e.clientX - rect.left) / rect.width; // 0..1
+    const py_canvas = (e.clientY - rect.top) / rect.height; // 0..1 from top
+    fields[draggingIndex].perc_x = Math.min(1, Math.max(0, px));
+    fields[draggingIndex].perc_y = Math.min(1, Math.max(0, 1 - py_canvas));
+    drawOverlay();
+    renderFieldsList();
+  });
+  window.addEventListener('mouseup', () => { draggingIndex = null; });
+
+  async function resizeAndRedraw() {
+    await drawPdfFirstPage();
+    drawOverlay();
+  }
+
+  wrapper.addEventListener('mousemove', (e) => {
+    if (!showCoords) return;
+    const rect = overlay.getBoundingClientRect();
+    const px = (e.clientX - rect.left) / rect.width; // 0..1
+    const py = 1 - (e.clientY - rect.top) / rect.height; // 0..1 from bottom
+    document.getElementById('cx').textContent = (px*100).toFixed(2);
+    document.getElementById('cy').textContent = (py*100).toFixed(2);
+  });
+
+  wrapper.addEventListener('click', (e) => {
+    const rect = overlay.getBoundingClientRect();
+    const px = (e.clientX - rect.left) / rect.width; // 0..1
+    const py = 1 - (e.clientY - rect.top) / rect.height; // 0..1 from bottom
+    const name = document.getElementById('fieldName').value.trim();
+    if (!name) { alert('Inserisci un nome campo'); return; }
+    const mappingKey = document.getElementById('mappingKey').value.trim();
+    const page = parseInt(document.getElementById('pageNumber').value || '1');
+    const f = { name, mapping_key: mappingKey || null, page, perc_x: px, perc_y: py };
+    fields.push(f);
+    renderFieldsList();
+    drawOverlay();
+  });
+
+  function renderFieldsList() {
+    const ul = document.getElementById('fieldsList');
+    ul.innerHTML = '';
+    fields.forEach((f, i) => {
+      const li = document.createElement('li');
+      li.className = 'list-group-item d-flex justify-content-between align-items-center';
+      li.innerHTML = `<span style="cursor:pointer" title="Clicca per modificare" data-i="${i}"><strong>${f.name || '(senza nome)'} </strong> ${f.mapping_key? '('+f.mapping_key+')':''} - pag ${f.page} - x ${(f.perc_x*100).toFixed(1)}% y ${(f.perc_y*100).toFixed(1)}%</span>
+                      <div class="btn-group">
+                        <button class="btn btn-sm btn-outline-secondary" data-action="edit" data-i="${i}"><i class="bi bi-pencil"></i></button>
+                        <button class="btn btn-sm btn-outline-danger" data-action="del" data-i="${i}"><i class="bi bi-trash"></i></button>
+                      </div>`;
+      li.querySelector('button[data-action="del"]').onclick = (ev) => {
+        const idx = parseInt(ev.currentTarget.getAttribute('data-i'));
+        fields.splice(idx, 1);
+        renderFieldsList();
+        drawOverlay();
+      };
+      li.querySelector('button[data-action="edit"]').onclick = (ev) => {
+        const idx = parseInt(ev.currentTarget.getAttribute('data-i'));
+        editField(idx);
+      };
+      li.querySelector('span').onclick = (ev) => {
+        const idx = parseInt(ev.currentTarget.getAttribute('data-i'));
+        editField(idx);
+      };
+      ul.appendChild(li);
+    });
+  }
+
+  document.getElementById('saveBtn').addEventListener('click', async () => {
+    const res = await fetch("{{ url_for('save_template_fields') }}", {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ template_id: templateId, fields })
+    });
+    const data = await res.json();
+    if (data.success) {
+      alert('Salvato!');
+    } else {
+      alert('Errore: ' + (data.message || ''));
+    }
+  });
+
+  // Guida: catalogo chiavi → riempi input mappingKey
+  document.getElementById('fieldCatalog').addEventListener('change', (e) => {
+    const v = e.target.value;
+    if (v) {
+      document.getElementById('mappingKey').value = v;
+    }
+  });
+
+  function editField(i) {
+    const f = fields[i];
+    document.getElementById('fieldName').value = f.name || '';
+    document.getElementById('mappingKey').value = f.mapping_key || '';
+    document.getElementById('pageNumber').value = f.page || 1;
+  }
+
+  document.getElementById('templateSelect').addEventListener('change', (e) => {
+    const id = e.target.value;
+    window.location = `{{ url_for('template_editor', template_id=0) }}`.replace('/0', '/' + id);
+  });
+
+  // Scrivi i campi direttamente nel PDF (AcroForm) come Sejda
+  document.getElementById('applyToPdfBtn').addEventListener('click', async () => {
+    try {
+      const res = await fetch("{{ url_for('apply_template_fields_pdf') }}", {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ template_id: templateId, fields })
+      });
+      const data = await res.json();
+      if (data.success) {
+        alert('Campi scritti nel PDF! Riapri/aggiorna l\'anteprima per vederli come caselle compilabili.');
+      } else {
+        alert('Errore: ' + (data.message || '')); 
+      }
+    } catch (e) {
+      alert('Errore: ' + e.message);
+    }
+  });
+
+  document.getElementById('toggleCoords').addEventListener('click', () => {
+    showCoords = !showCoords;
+    coordsInfo.style.display = showCoords ? 'block' : 'none';
+  });
+
+  window.addEventListener('resize', resizeAndRedraw);
+  resizeAndRedraw();
+  renderFieldsList();
+</script>
+{% endblock %}

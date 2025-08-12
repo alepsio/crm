@@ -96,9 +96,12 @@
                                     <option value="{{ template.id }}">{{ template.nome }}</option>
                                     {% endfor %}
                                 </select>
-                                <button class="btn btn-outline-secondary" type="button" data-bs-toggle="modal" data-bs-target="#addTemplateModal">
+                                <button class="btn btn-outline-secondary" type="button" data-bs-toggle="modal" data-bs-target="#addTemplateModal" title="Carica nuovo template PDF">
                                     <i class="bi bi-plus-circle"></i>
                                 </button>
+                                <a class="btn btn-outline-primary" id="editTemplateBtn" title="Apri editor campi" href="#" onclick="apriEditorTemplate()">
+                                    <i class="bi bi-pencil-square"></i>
+                                </a>
                             </div>
                         </div>
                         
@@ -275,6 +278,13 @@
 
 {% block extra_js %}
 <script>
+    function apriEditorTemplate() {
+        const sel = document.getElementById('template_id');
+        const id = sel.value;
+        if (!id) { alert('Seleziona prima un template'); return; }
+        window.location = `/consulenze/questionari/template-editor/${id}`;
+    }
+
     // Dati dei clienti per il filtro e la paginazione
     const clientiData = [
         {% set clienti_grouped = questionari_inviati | groupby('cliente_id') %}

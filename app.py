@@ -48,6 +48,29 @@ logging.basicConfig(
 # Abilita l'escape automatico di Jinja2 per prevenire XSS
 app.jinja_env.autoescape = True
 
+# Filtri personalizzati per Jinja2
+@app.template_filter('count_users_with_package')
+def count_users_with_package(users, package_name):
+    """Conta gli utenti che hanno un determinato pacchetto"""
+    count = 0
+    for user in users:
+        if user.get('pacchetti'):
+            # Gestisce diversi formati di pacchetti
+            packages = user['pacchetti']
+            if isinstance(packages, str):
+                try:
+                    import json
+                    packages = json.loads(packages)
+                except:
+                    if packages.startswith('{') and packages.endswith('}'):
+                        packages = packages.strip('{}').split(',')
+                    else:
+                        packages = [packages]
+            
+            if isinstance(packages, list) and package_name in packages:
+                count += 1
+    return count
+
 # Inizializza la protezione CSRF
 csrf = CSRFProtect(app)
 
@@ -478,12 +501,13 @@ def admin_add_user():
         hashed_password = generate_password_hash(password, method='pbkdf2:sha256', salt_length=16)
         
         conn = get_db_connection()
-        cur = conn.cursor()
+        cur = conn.cursor()  # di default RealDictCursor (vedi get_db_connection)
         
         try:
             # Verifica se l'username esiste già
-            cur.execute("SELECT COUNT(*) FROM users WHERE username = %s", (username,))
-            if cur.fetchone()[0] > 0:
+            cur.execute("SELECT COUNT(*) AS cnt FROM users WHERE username = %s", (username,))
+            row = cur.fetchone()
+            if row and row.get('cnt', 0) > 0:
                 flash('Username già in uso. Scegli un altro username.', 'danger')
                 return render_template('admin/add_user.html')
             
@@ -1306,177 +1330,7 @@ def manage_events():
     
     return jsonify({'success': False, 'message': 'Metodo non supportato'}), 405
 
-@app.route('/consulenze/history')
-@login_required
-@has_package('manage_consulenze')
-def consulenze_history():
-    conn = get_db_connection()
-    cur = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
-    
-    # Ottieni parametri di filtro
-    cliente_id = request.args.get('cliente')
-    template_id = request.args.get('template')
-    data_da = request.args.get('data_da')
-    data_a = request.args.get('data_a')
-    page = int(request.args.get('page', 1))
-    per_page = 20
-    
-    # Costruisci query con filtri
-    query = """
-        SELECT qi.*, c.nome as cliente_nome, c.cognome as cliente_cognome, 
-               c.email, t.nome as template_nome
-        FROM questionari_inviati qi
-        JOIN clienti_assicurativi c ON qi.cliente_id = c.id
-        JOIN template_pdf t ON qi.template_id = t.id
-        WHERE 1=1
-    """
-    
-    params = []
-    filters = {}
-    
-    if cliente_id:
-        query += " AND qi.cliente_id = %s"
-        params.append(cliente_id)
-        filters['cliente'] = cliente_id
-    
-    if template_id:
-        query += " AND qi.template_id = %s"
-        params.append(template_id)
-        filters['template'] = template_id
-    
-    if data_da:
-        query += " AND qi.data_invio >= %s"
-        params.append(data_da)
-        filters['data_da'] = data_da
-    
-    if data_a:
-        query += " AND qi.data_invio <= %s"
-        params.append(data_a)
-        filters['data_a'] = data_a
-    
-    # Aggiungi ordinamento
-    query += " ORDER BY qi.data_invio DESC"
-    
-    # Esegui query per conteggio totale
-    count_query = f"SELECT COUNT(*) FROM ({query}) as count_query"
-    cur.execute(count_query, params)
-    total_count = cur.fetchone()[0]
-    
-    # Aggiungi paginazione
-    query += " LIMIT %s OFFSET %s"
-    offset = (page - 1) * per_page
-    params.extend([per_page, offset])
-    
-    # Esegui query principale
-    cur.execute(query, params)
-    history = cur.fetchall()
-    
-    # Ottieni clienti e template per i filtri (solo per l'utente corrente)
-    cur.execute("SELECT id, nome, cognome FROM clienti_assicurativi WHERE user_id = %s OR user_id IS NULL ORDER BY cognome, nome",
-                (session.get('user_id'),))
-    clienti = cur.fetchall()
-    
-    cur.execute("SELECT id, nome FROM template_pdf ORDER BY nome")
-    templates = cur.fetchall()
-    
-    cur.close()
-    conn.close()
-    
-    # Calcola informazioni di paginazione
-    total_pages = (total_count + per_page - 1) // per_page
-    pagination = {
-        'current_page': page,
-        'total_pages': total_pages,
-        'total_count': total_count,
-        'per_page': per_page
-    }
-    
-    return render_template('tools/consulenze/history.html',
-                          history=history,
-                          clienti=clienti,
-                          templates=templates,
-                          filters=filters,
-                          pagination=pagination if total_pages > 1 else None)
 
-@app.route('/consulenze/export-history')
-@login_required
-@has_package('manage_consulenze')
-def export_history():
-    conn = get_db_connection()
-    cur = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
-    
-    # Ottieni parametri di filtro
-    cliente_id = request.args.get('cliente')
-    template_id = request.args.get('template')
-    data_da = request.args.get('data_da')
-    data_a = request.args.get('data_a')
-    
-    # Costruisci query con filtri
-    query = """
-        SELECT qi.data_invio, c.nome as cliente_nome, c.cognome as cliente_cognome, 
-               c.email, t.nome as template_nome, qi.flags, qi.filename
-        FROM questionari_inviati qi
-        JOIN clienti_assicurativi c ON qi.cliente_id = c.id
-        JOIN template_pdf t ON qi.template_id = t.id
-        WHERE 1=1
-    """
-    
-    params = []
-    
-    if cliente_id:
-        query += " AND qi.cliente_id = %s"
-        params.append(cliente_id)
-    
-    if template_id:
-        query += " AND qi.template_id = %s"
-        params.append(template_id)
-    
-    if data_da:
-        query += " AND qi.data_invio >= %s"
-        params.append(data_da)
-    
-    if data_a:
-        query += " AND qi.data_invio <= %s"
-        params.append(data_a)
-    
-    # Aggiungi ordinamento
-    query += " ORDER BY qi.data_invio DESC"
-    
-    # Esegui query
-    cur.execute(query, params)
-    results = cur.fetchall()
-    
-    cur.close()
-    conn.close()
-    
-    # Crea CSV
-    output = StringIO()
-    writer = csv.writer(output)
-    
-    # Intestazioni
-    writer.writerow(['Data Invio', 'Nome', 'Cognome', 'Email', 'Template', 'Flags', 'Filename'])
-    
-    # Dati
-    for row in results:
-        writer.writerow([
-            row['data_invio'].strftime('%d/%m/%Y %H:%M'),
-            row['cliente_nome'],
-            row['cliente_cognome'],
-            row['email'],
-            row['template_nome'],
-            ', '.join(row['flags']) if row['flags'] else '',
-            row['filename']
-        ])
-    
-    # Prepara la risposta
-    output.seek(0)
-    timestamp = datetime.datetime.now().strftime('%Y%m%d%H%M%S')
-    
-    return jsonify({
-        'success': True,
-        'data': output.getvalue(),
-        'filename': f'storico_invii_{timestamp}.csv'
-    })
 
 @app.route('/consulenze/anagrafica', methods=['GET', 'POST'])
 @login_required
@@ -2138,10 +1992,103 @@ def consulenze_questionari():
                         except:
                             # Se il campo non esiste in questa pagina, ignora l'errore
                             pass
+
+            # Overlay opzionale: recupero definizioni campi per overlay testo (da applicare con PyMuPDF dopo il salvataggio)
+            field_defs_for_overlay = []
+            try:
+                cur2 = conn.cursor(cursor_factory=psycopg2.extras.RealDictCursor)
+                cur2.execute("SELECT * FROM template_fields WHERE template_id = %s ORDER BY page, id", (template_id,))
+                field_defs_for_overlay = cur2.fetchall() or []
+                cur2.close()
+            except Exception as e:
+                app.logger.warning(f"Errore nel recupero dei campi template dal DB: {e}")
             
-            # Save the filled PDF
+            # Save the filled PDF (AcroForm) prima
             with open(output_path, "wb") as output_file:
                 writer.write(output_file)
+
+            # Applica campi AcroForm (widget) e opzionalmente testo con PyMuPDF
+            try:
+                if field_defs_for_overlay:
+                    import fitz  # PyMuPDF
+                    doc = fitz.open(output_path)
+
+                    # Raccogli i nomi dei campi esistenti per evitare duplicati
+                    existing_names = set()
+                    for p in range(len(doc)):
+                        w = doc[p].first_widget
+                        while w:
+                            if w.field_name:
+                                existing_names.add(w.field_name)
+                            w = w.next
+
+                    # Helper per aggiunta compatibile con versioni diverse
+                    def add_widget_compat(page, widget):
+                        add_fn = getattr(page, 'add_widget', None) or getattr(page, 'addWidget', None)
+                        if not add_fn:
+                            raise RuntimeError('API PyMuPDF: add_widget / addWidget non disponibile')
+                        return add_fn(widget)
+
+                    any_changes = False
+
+                    for page_index in range(len(doc)):
+                        page = doc[page_index]
+                        page_w = float(page.rect.width)
+                        page_h = float(page.rect.height)
+
+                        # Crea i widget se mancanti
+                        for fd in field_defs_for_overlay:
+                            fd_page = int((fd.get('page') or 1)) - 1
+                            if fd_page != page_index:
+                                continue
+
+                            field_name = (fd.get('mapping_key') or fd.get('name') or '').strip()
+                            if not field_name:
+                                continue
+
+                            # Dimensioni predefinite del campo testo (in punti)
+                            perc_x = float(fd.get('perc_x'))
+                            perc_y = float(fd.get('perc_y'))
+                            x = perc_x * page_w
+                            y = perc_y * page_h
+                            width = max(120.0, 0.25 * page_w)  # 25% della pagina, minimo 120pt
+                            height = 18.0
+
+                            if field_name not in existing_names:
+                                widget = fitz.Widget()
+                                widget.field_type = getattr(fitz, 'PDF_WIDGET_TYPE_TEXT', getattr(fitz, 'ANNOT_WG_TEXT', 0))
+                                widget.field_name = field_name
+                                # Valore iniziale se disponibile
+                                widget.field_value = form_data.get(field_name, "")
+                                widget.rect = fitz.Rect(x, y, x + width, y + height)
+                                widget.text_font = "Helv"
+                                widget.text_fontsize = 10
+                                widget.text_color = [0, 0, 0]
+                                widget.border_width = 0  # niente bordo
+                                widget.border_color = None
+                                widget.fill_color = None  # trasparente
+                                add_widget_compat(page, widget)
+                                any_changes = True
+
+                        # Aggiorna i valori dei widget esistenti se abbiamo dati
+                        w = page.first_widget
+                        while w:
+                            try:
+                                fname = (w.field_name or '').strip()
+                                if fname and form_data.get(fname):
+                                    w.field_value = str(form_data[fname])
+                                    w.update()
+                                    any_changes = True
+                            except Exception:
+                                pass
+                            w = w.next
+
+                    if any_changes:
+                        # clean=True per consolidare le risorse /DR dei widget
+                        doc.save(output_path, incremental=False, deflate=True, clean=True)
+                    doc.close()
+            except Exception as e:
+                app.logger.warning(f"Impossibile creare/aggiornare i campi modulo (PyMuPDF): {e}")
             
             # If "Invia questionario" was clicked
             if 'send_email' in request.form:
@@ -2386,11 +2333,278 @@ def consulenze_email():
 def pdf_preview(filename):
     return send_from_directory(app.config['PDF_GENERATI'], filename)
 
+# Serve i file PDF template originali per l'anteprima nell'editor
+@app.route('/pdf_template/<filename>')
+@login_required
+@has_package('manage_consulenze')
+def pdf_template(filename):
+    return send_from_directory(app.config['PDF_TEMPLATES'], filename)
+
 @app.route('/upload/<filename>')
 @login_required
 @has_package('manage_consulenze')
 def serve_uploaded_file(filename):
     return send_from_directory(app.config['UPLOAD_FOLDER'], filename)
+
+# Editor dei template PDF: posizionamento campi
+@app.route('/consulenze/questionari/template-editor/<int:template_id>')
+@login_required
+@has_package('manage_consulenze')
+def template_editor(template_id):
+    conn = get_db_connection()
+    cur = conn.cursor()
+    cur.execute("SELECT * FROM template_pdf WHERE id = %s", (template_id,))
+    template = cur.fetchone()
+    if not template:
+        cur.close(); conn.close()
+        flash('Template non trovato', 'danger')
+        return redirect(url_for('consulenze_questionari'))
+    cur.execute("SELECT * FROM template_pdf WHERE user_id = %s ORDER BY nome", (session.get('user_id'),))
+    templates = cur.fetchall()
+    cur2 = conn.cursor(cursor_factory=psycopg2.extras.RealDictCursor)
+    cur2.execute("SELECT id, name, mapping_key, page, perc_x, perc_y FROM template_fields WHERE template_id = %s ORDER BY page, id", (template_id,))
+    fields = cur2.fetchall()
+
+    # Elenco chiavi disponibili per mappatura (coerenti con form_data in generazione)
+    available_fields = [
+        # Dati personali
+        { 'key': 'nome', 'label': 'Nome' },
+        { 'key': 'cognome', 'label': 'Cognome' },
+        { 'key': 'cf', 'label': 'Codice Fiscale (cf)' },
+        { 'key': 'codice_fiscale', 'label': 'Codice Fiscale (codice_fiscale)' },
+        { 'key': 'data_nascita', 'label': 'Data di nascita (dd/mm/yyyy)' },
+        { 'key': 'luogo_nascita', 'label': 'Luogo di nascita' },
+        { 'key': 'sesso', 'label': 'Sesso (M/F)' },
+        { 'key': 'prov_nascita', 'label': 'Provincia di nascita' },
+        { 'key': 'nazione', 'label': 'Nazione' },
+
+        # Contatti personali
+        { 'key': 'email', 'label': 'Email' },
+        { 'key': 'pec', 'label': 'PEC' },
+        { 'key': 'cellulare', 'label': 'Cellulare' },
+
+        # Dati professionali
+        { 'key': 'att_prof', 'label': 'Attività professionale' },
+        { 'key': 'ambito_prof', 'label': 'Ambito professionale' },
+        { 'key': 'univoco', 'label': 'Codice Univoco' },
+
+        # Dati aziendali
+        { 'key': 'denominazione', 'label': 'Denominazione' },
+        { 'key': 'piva_azienda', 'label': 'Partita IVA (azienda)' },
+
+        # Indirizzo residenza
+        { 'key': 'indirizzo_residenza', 'label': 'Indirizzo residenza' },
+        { 'key': 'comune_residenza', 'label': 'Comune residenza' },
+        { 'key': 'cap_residenza', 'label': 'CAP residenza' },
+        { 'key': 'prov_residenza', 'label': 'Provincia residenza' },
+
+        # Indirizzo domicilio fiscale
+        { 'key': 'indirizzo_domicilio', 'label': 'Indirizzo domicilio' },
+        { 'key': 'comune_domicilio', 'label': 'Comune domicilio' },
+        { 'key': 'cap_domicilio', 'label': 'CAP domicilio' },
+        { 'key': 'prov_domicilio', 'label': 'Provincia domicilio' },
+
+        # Indirizzo studio/azienda
+        { 'key': 'indirizzo_azienda', 'label': 'Indirizzo azienda/studio' },
+        { 'key': 'citta_azienda', 'label': 'Città azienda/studio' },
+        { 'key': 'cap_azienda', 'label': 'CAP azienda/studio' },
+        { 'key': 'prov_azienda', 'label': 'Provincia azienda/studio' },
+
+        # Contatti aziendali
+        { 'key': 'telefono_azienda', 'label': 'Telefono azienda' },
+        { 'key': 'cellulare_azienda', 'label': 'Cellulare azienda' },
+        { 'key': 'email_azienda', 'label': 'Email azienda' },
+        { 'key': 'pec_azienda', 'label': 'PEC azienda' },
+        { 'key': 'attivita_azienda', 'label': 'Attività azienda' },
+        { 'key': 'ambito_azienda', 'label': 'Ambito azienda' },
+        { 'key': 'univoco_azienda', 'label': 'Codice Univoco azienda' },
+
+        # Data compilazione
+        { 'key': 'data', 'label': 'Data (compilazione)' },
+
+        # Alternative mappings accettati
+        { 'key': 'residenza', 'label': 'Residenza (alternativo)' },
+        { 'key': 'domicilio', 'label': 'Domicilio (alternativo)' },
+        { 'key': 'studio', 'label': 'Ubicazione studio (alternativo)' },
+        { 'key': 'telefono_cellulare', 'label': 'Telefono cellulare (alternativo)' },
+        { 'key': 'mail', 'label': 'Mail (alternativo)' },
+        { 'key': 'email_pec', 'label': 'Email PEC (alternativo)' },
+        { 'key': 'partita_iva', 'label': 'Partita IVA (alternativo)' },
+        { 'key': 'piva', 'label': 'P.IVA (alternativo)' },
+        { 'key': 'attivita', 'label': 'Attività (alternativo)' },
+        { 'key': 'professione', 'label': 'Professione (alternativo)' },
+        { 'key': 'codice_univoco', 'label': 'Codice Univoco (alternativo)' },
+        { 'key': 'data_compilazione', 'label': 'Data compilazione (alternativo)' },
+    ]
+
+    cur2.close(); cur.close(); conn.close()
+    return render_template('tools/consulenze/template_editor.html', template=template, templates=templates, fields=fields, available_fields=available_fields)
+
+# Salvataggio dei campi template
+@app.route('/consulenze/questionari/template-editor/save', methods=['POST'])
+@login_required
+@has_package('manage_consulenze')
+@csrf.exempt
+def save_template_fields():
+    data = request.get_json(force=True)
+    template_id = data.get('template_id')
+    fields = data.get('fields', [])
+    if not template_id:
+        return jsonify({ 'success': False, 'message': 'template_id mancante' }), 400
+    conn = get_db_connection()
+    cur = conn.cursor()
+    try:
+        # Sostituisci interamente le definizioni per semplicità
+        cur.execute("DELETE FROM template_fields WHERE template_id = %s", (template_id,))
+        for f in fields:
+            cur.execute(
+                """
+                INSERT INTO template_fields (template_id, name, mapping_key, page, perc_x, perc_y)
+                VALUES (%s, %s, %s, %s, %s, %s)
+                """,
+                (
+                    template_id,
+                    f.get('name'),
+                    f.get('mapping_key'),
+                    int(f.get('page') or 1),
+                    float(f.get('perc_x') or 0.0),
+                    float(f.get('perc_y') or 0.0)
+                )
+            )
+        conn.commit()
+        return jsonify({ 'success': True })
+    except Exception as e:
+        conn.rollback()
+        return jsonify({ 'success': False, 'message': str(e) })
+    finally:
+        cur.close(); conn.close()
+
+@app.route('/consulenze/questionari/template-editor/apply-to-pdf', methods=['POST'])
+@login_required
+@has_package('manage_consulenze')
+@csrf.exempt
+def apply_template_fields_pdf():
+    """Crea/aggiorna text fields (AcroForm) direttamente nel PDF del template, come Sejda."""
+    data = request.get_json(force=True)
+    template_id = data.get('template_id')
+    fields = data.get('fields', [])
+    if not template_id:
+        return jsonify({ 'success': False, 'message': 'template_id mancante' }), 400
+
+    conn = get_db_connection()
+    cur = conn.cursor(cursor_factory=psycopg2.extras.RealDictCursor)
+    try:
+        cur.execute("SELECT * FROM template_pdf WHERE id = %s", (template_id,))
+        template = cur.fetchone()
+        if not template:
+            return jsonify({ 'success': False, 'message': 'Template non trovato' }), 404
+        # Ownership check basilare se presente user_id
+        if template.get('user_id') and template['user_id'] != session.get('user_id'):
+            return jsonify({ 'success': False, 'message': 'Non autorizzato' }), 403
+
+        # Percorso file template
+        template_path = os.path.join(pdf_templates, template['filename'])
+        if not os.path.exists(template_path):
+            return jsonify({ 'success': False, 'message': 'File template PDF non trovato' }), 404
+
+        import fitz  # PyMuPDF
+        doc = fitz.open(template_path)
+
+        # Mappa nomi widget esistenti per pagina
+        existing_by_name = {}
+        for p in range(len(doc)):
+            w = doc[p].first_widget
+            while w:
+                if w.field_name:
+                    existing_by_name.setdefault((p, w.field_name), []).append(w)
+                w = w.next
+
+        # Funzione di aggiunta compatibile
+        def add_widget_compat(page, widget):
+            add_fn = getattr(page, 'add_widget', None) or getattr(page, 'addWidget', None)
+            if not add_fn:
+                raise RuntimeError('API PyMuPDF: add_widget / addWidget non disponibile')
+            return add_fn(widget)
+
+        any_changes = False
+        for f in fields:
+            try:
+                page_index = max(0, int((f.get('page') or 1)) - 1)
+                if page_index >= len(doc):
+                    continue
+                page = doc[page_index]
+                page_w = float(page.rect.width)
+                page_h = float(page.rect.height)
+
+                field_name = (f.get('mapping_key') or f.get('name') or '').strip()
+                if not field_name:
+                    continue
+
+                perc_x = float(f.get('perc_x') or 0.0)
+                perc_y = float(f.get('perc_y') or 0.0)
+                x = perc_x * page_w
+                # perc_y è salvato con origine TOP (editor canvas). Converti a PDF (origine BOTTOM) e allinea il rettangolo con top a quella coordinata
+                width = max(120.0, 0.25 * page_w)
+                height = 18.0
+                y_top = (1.0 - perc_y) * page_h
+                rect = fitz.Rect(x, y_top - height, x + width, y_top)
+
+                existing_list = existing_by_name.get((page_index, field_name), [])
+                if existing_list:
+                    # Aggiorna il primo widget con stesso nome su questa pagina
+                    w = existing_list[0]
+                    w.rect = rect
+                    w.text_font = "Helv"
+                    w.text_fontsize = 10
+                    w.text_color = [0, 0, 0]
+                    w.border_width = 0
+                    w.border_color = None
+                    w.fill_color = None
+                    w.update()
+                    any_changes = True
+                else:
+                    widget = fitz.Widget()
+                    widget.field_type = getattr(fitz, 'PDF_WIDGET_TYPE_TEXT', getattr(fitz, 'ANNOT_WG_TEXT', 0))
+                    widget.field_name = field_name
+                    widget.field_label = field_name
+                    widget.field_value = ""  # Vuoto: sarà compilato in generazione o dall'utente
+                    widget.rect = rect
+                    widget.text_font = "Helv"
+                    widget.text_fontsize = 10
+                    widget.text_color = [0, 0, 0]
+                    widget.border_width = 0
+                    widget.border_color = None
+                    widget.fill_color = None
+                    add_widget_compat(page, widget)
+                    any_changes = True
+            except Exception as e:
+                app.logger.warning(f"Errore creazione/aggiornamento widget: {e}")
+                continue
+
+        if any_changes:
+            tmp_path = template_path + ".tmp"
+            doc.save(tmp_path, incremental=False, deflate=True, clean=True)
+            doc.close()
+            os.replace(tmp_path, template_path)
+        else:
+            doc.close()
+        return jsonify({ 'success': True, 'message': 'Campi creati/aggiornati nel PDF' })
+    except Exception as e:
+        app.logger.error(f"apply_template_fields_pdf error: {e}")
+        return jsonify({ 'success': False, 'message': str(e) }), 500
+    finally:
+        cur.close(); conn.close()
+
+@app.route('/consulenze/template-tools')
+@login_required
+@has_package('manage_consulenze')
+def template_tools_home():
+    conn = get_db_connection()
+    cur = conn.cursor()
+    cur.execute("SELECT * FROM template_pdf WHERE user_id = %s ORDER BY nome", (session.get('user_id'),))
+    templates = cur.fetchall()
+    cur.close(); conn.close()
+    return render_template('tools/consulenze/template_tools.html', templates=templates)
 
 @app.route('/consulenze/automazioni')
 @login_required
@@ -2930,10 +3144,11 @@ def add_template():
         conn = get_db_connection()
         cur = conn.cursor()
         cur.execute(
-            "INSERT INTO template_pdf (nome, filename) VALUES (%s, %s) RETURNING id",
-            (nome, filename)
+            "INSERT INTO template_pdf (nome, filename, user_id) VALUES (%s, %s, %s) RETURNING id",
+            (nome, filename, session.get('user_id'))
         )
-        template_id = cur.fetchone()[0]
+        row = cur.fetchone()
+        template_id = row['id'] if isinstance(row, dict) else (row[0] if row else None)
         cur.close()
         conn.close()
         
@@ -3474,6 +3689,20 @@ def init_db():
     
     # Aggiungi user_id alla tabella template_pdf se non esiste
     add_column_if_not_exists('template_pdf', 'user_id', 'INTEGER REFERENCES users(id)')
+
+    # Create template_fields table (definizioni coordinate campi per overlay/testo)
+    cur.execute('''
+        CREATE TABLE IF NOT EXISTS template_fields (
+            id SERIAL PRIMARY KEY,
+            template_id INTEGER REFERENCES template_pdf(id) ON DELETE CASCADE,
+            name VARCHAR(100) NOT NULL,
+            mapping_key VARCHAR(100),
+            page INTEGER NOT NULL DEFAULT 1,
+            perc_x NUMERIC NOT NULL,
+            perc_y NUMERIC NOT NULL,
+            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+        )
+    ''')
     
     # Create config_email table
     cur.execute('''
