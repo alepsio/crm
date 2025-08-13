@@ -1,0 +1,49 @@
+# Python bytecode
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+venv/
+.venv/
+ENV/
+env/
+
+# Pip
+pip-log.txt
+pip-delete-this-directory.txt
+
+# OS / Editors
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Logs
+*.log
+app.log
+
+# Environment files
+.env
+*.env
+
+# Build / Dist
+build/
+dist/
+.eggs/
+*.egg-info/
+
+# Tests / Coverage
+.tox/
+.pytest_cache/
+pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
+
+# Generated user content
+app/static/pdf_generati/
+app/static/upload_clienti/
+
+# Tooling
+.zencoder/
